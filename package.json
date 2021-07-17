@@ -1,0 +1,25 @@
+{
+  "name": "skeletom-net",
+  "version": "1.0.0",
+  "description": "Skeletom's Personal Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FomTarro/skeletom-net.git"
+  },
+  "keywords": [
+    "website"
+  ],
+  "author": "Tom \"Skeletom\" Farro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FomTarro/skeletom-net/issues"
+  },
+  "homepage": "https://github.com/FomTarro/skeletom-net#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
