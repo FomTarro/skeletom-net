@@ -4,7 +4,9 @@
   "description": "Skeletom's Personal Website",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "build-css": "sass --no-source-map sass:public/css",
+    "build-css-watch": "sass --no-source-map --watch sass:public/css"
   },
   "repository": {
     "type": "git",
@@ -21,5 +23,8 @@
   "homepage": "https://github.com/FomTarro/skeletom-net#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "sass": "1.26.5"
   }
 }
