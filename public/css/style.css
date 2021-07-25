@@ -1,11 +1,12 @@
 body {
   margin: 0;
   height: 100vh;
+  color: #FFF;
 }
 
 main {
-  padding: 0.5em;
   background-color: #222;
+  color: #FFF;
   height: 100%;
   width: 100%;
 }
@@ -21,12 +22,20 @@ main {
   margin-left: 200px;
 }
 
+#content-container {
+  padding: calc(4*0.5em);
+}
+
 #about {
   background-color: red;
 }
 
 #home {
   background-color: blue;
+}
+
+.row {
+  display: flex;
 }
 
 .icon {

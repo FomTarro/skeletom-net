@@ -39,3 +39,13 @@ An unstyled home page that include static text and a static image, being served 
 
 #### **End Result**
 A slightly more styled home page that now includes css styling served from the same static directory that we set up last time. The current go-forward idea is to have the portfolio set up like the Megaman Boss Select grid, with my face in the center, and each "boss" being a project. Clicking on any grid square would bring the user to a page about that project in more detail.
+
+### **July 25th, 2021**
+* Decided to make the page resemble my stream layout instead of the last idea.
+* Learned about css `position` property and how nesting works for inheriting properties.
+* Explained the [cascade principle of css](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance).
+* Learned about the css `display` property and the differences between `block` and `flex` values.
+* Explained when and when not to use `!important` in CSS.
+
+#### **End Result**
+A layout that much more closely resembles my stream layout, and will format much more naturally on mobile. It features a navbar that stays fixed to the bottom of the screen, as well as a content panel that can be scrolled and will house the project information.

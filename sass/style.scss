@@ -19,11 +19,12 @@ $grey: #222;
 body{
     margin: 0;
     height: 100vh;
+    color: $white;
 }
 
 main{
-    padding: $basic-margin;
     background-color: $grey;
+    color: $white;
     height: 100%;
     width: 100%;
 }
@@ -39,12 +40,20 @@ main{
     margin-left: $navbar-links-margin;
 }
 
+#content-container{
+    padding: calc(4*#{$basic-margin});
+}
+
 #about{
     background-color: red;
 }
 
 #home{
     background-color: blue;
+}
+
+.row{
+    display: flex;
 }
 
 .icon{
