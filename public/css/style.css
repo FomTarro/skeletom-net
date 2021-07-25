@@ -1,13 +1,24 @@
 body {
   margin: 0;
+  height: 100vh;
 }
 
 main {
   padding: 0.5em;
+  background-color: #222;
+  height: 100%;
+  width: 100%;
 }
 
 #navbar {
-  height: 64px;
+  height: 128px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+#navbar-links {
+  margin-left: 200px;
 }
 
 #about {
@@ -27,10 +38,46 @@ main {
   margin: 0.5em;
 }
 
+.fence {
+  background-image: url("../img/fence.png");
+  height: 18px;
+  top: -18px;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+.tree {
+  background-image: url("../img/tree.png");
+  background-repeat: no-repeat;
+  height: 400px;
+  width: 300px;
+  pointer-events: none;
+  position: fixed;
+}
+
+#tree-top-left {
+  transform: rotateZ(125deg);
+  top: -225px;
+  left: -225px;
+}
+
+#tombstone-bottom-left {
+  position: absolute;
+  top: -75px;
+  left: -35px;
+}
+
+#tombstone-channel-name {
+  position: absolute;
+  color: #FFF;
+  text-shadow: 1px 1px 1px #000;
+}
+
 .background {
   overflow: hidden;
   overflow-y: hidden;
-  opacity: 0.5;
+  opacity: 0.85;
   z-index: -100;
   position: fixed;
   display: block;
@@ -40,7 +87,7 @@ main {
   animation: anim-scroll 16s linear infinite;
 }
 
-.center-align, .grid-row {
+.center-align {
   display: flex;
   flex-wrap: wrap;
   align-items: center;

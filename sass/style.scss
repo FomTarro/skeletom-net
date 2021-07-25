@@ -1,20 +1,42 @@
 $basic-margin: 0.5em;
 $icon-dimensions: 12em;
-$navbar-height: 64px;
+$navbar-height: 128px;
+$navbar-links-margin: 200px;
+$fence-height: 18px;
+
+$tree-width: 300px;
+$tree-height: 400px;
+
+$tree-top-left-offset: -225px;
+
+$tombstone-bottom-left-top-offset: -75px;
+$tombstone-bottom-left-left-offset: -35px;
 
 $white: #FFF;
 $black: #000;
+$grey: #222;
 
 body{
     margin: 0;
+    height: 100vh;
 }
 
 main{
     padding: $basic-margin;
+    background-color: $grey;
+    height: 100%;
+    width: 100%;
 }
 
 #navbar{
     height: $navbar-height;
+    position: fixed;
+    bottom: 0;
+    left: 0; 
+}
+
+#navbar-links{
+    margin-left: $navbar-links-margin;
 }
 
 #about{
@@ -34,10 +56,46 @@ main{
     margin: $basic-margin;
 }
 
+.fence{
+    background-image: url('../img/fence.png');
+    height: $fence-height;
+    top: -$fence-height;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.tree{
+    background-image: url('../img/tree.png');
+    background-repeat: no-repeat;
+    height: $tree-height;
+    width: $tree-width;
+    pointer-events: none;
+    position: fixed;
+}
+
+#tree-top-left{
+    transform: rotateZ(125deg);
+    top: $tree-top-left-offset;
+    left: $tree-top-left-offset;
+}
+
+#tombstone-bottom-left{
+    position: absolute;
+    top: $tombstone-bottom-left-top-offset;
+    left: $tombstone-bottom-left-left-offset;
+}
+
+#tombstone-channel-name{
+    position: absolute;
+    color: $white;
+    text-shadow: 1px 1px 1px $black;
+}
+
 .background{
     overflow: hidden;
     overflow-y: hidden;
-    opacity: 0.5;
+    opacity: 0.85;
     z-index: -100;
     position: fixed;
     display:block;
@@ -52,10 +110,6 @@ main{
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-}
-
-.grid-row{
-    @extend .center-align;
 }
 
 @keyframes anim-scroll {
