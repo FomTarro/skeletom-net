@@ -2,9 +2,10 @@ const http = require('http');
 const path = require('path');
 const express = require('express');
 const app = express();
+require('dotenv').config();
 
 async function launch(){
-    const port = 8080;
+    const port = process.env.PORT || 8080;
     const baseDirectory = path.join(__dirname, './public');
     /*
     // Tells express to treat the base directory as relative to the given directory
