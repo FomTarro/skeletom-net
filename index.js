@@ -17,6 +17,10 @@ async function launch(){
     });
     */
     // Tells the browser to redirect to the given URL
+       app.get('/', (req, res) => {
+        res.redirect('https://skeletom.carrd.co/');
+    });
+    // Tells the browser to redirect to the given URL
     app.get('/stream', (req, res) => {
         res.redirect('https://twitch.tv/skeletom_ch');
     });
