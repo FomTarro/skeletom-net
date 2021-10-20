@@ -17,7 +17,7 @@ async function launch(){
     });
     */
     // Tells the browser to redirect to the given URL
-       app.get('/', (req, res) => {
+       app.get(['', '/', '/about'], (req, res) => {
         res.redirect('https://skeletom.carrd.co/');
     });
     // Tells the browser to redirect to the given URL
