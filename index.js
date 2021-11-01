@@ -24,6 +24,10 @@ async function launch(){
     app.get('/stream', (req, res) => {
         res.redirect('https://twitch.tv/skeletom_ch');
     });
+    // Tells the browser to redirect to the given URL
+       app.get(['/archive', '/vod'], (req, res) => {
+        res.redirect('https://www.youtube.com/channel/UCr5N4CrcoegFpm7fR5a_ORg/videos');
+    });
 
     // Makes an http server out of the express server
     const httpServer = http.createServer(app);
