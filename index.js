@@ -30,7 +30,7 @@ async function launch(){
     });
 
     app.get(['/vts-heartrate/oauth2/pulsoid',], (req, res) => {
-        res.redirect('http://localhost:9000/vts-heartrate/auth');
+        res.redirect(`http://localhost:9000/vts-heartrate/auth?code=${req.params.code}`);
     });
 
 
