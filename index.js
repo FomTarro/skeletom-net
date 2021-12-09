@@ -25,9 +25,14 @@ async function launch(){
         res.redirect('https://twitch.tv/skeletom_ch');
     });
     // Tells the browser to redirect to the given URL
-       app.get(['/archive', '/vod'], (req, res) => {
+    app.get(['/archive', '/vod'], (req, res) => {
         res.redirect('https://www.youtube.com/channel/UCr5N4CrcoegFpm7fR5a_ORg/videos');
     });
+
+    app.get(['/vts-heartrate/oauth2/pulsoid',], (req, res) => {
+        res.redirect('https://www.skeletom.net');
+    });
+
 
     // Makes an http server out of the express server
     const httpServer = http.createServer(app);
