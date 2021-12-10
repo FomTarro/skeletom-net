@@ -1,12 +1,12 @@
 const http = require('http');
 const path = require('path');
 const express = require('express');
-const { json } = require('express');
+const { AppConfig } = require('./app.config');
+const { GetToken } = require('./src/usecases/get.token.usecase');
 const app = express();
-require('dotenv').config();
 
 async function launch(){
-    const port = process.env.PORT || 8080;
+    const port = AppConfig.PORT;
     const baseDirectory = path.join(__dirname, './public');
     /*
     // Tells express to treat the base directory as relative to the given directory
@@ -30,10 +30,14 @@ async function launch(){
         res.redirect('https://www.youtube.com/channel/UCr5N4CrcoegFpm7fR5a_ORg/videos');
     });
 
-    app.get(['/vts-heartrate/oauth2/pulsoid',], (req, res) => {
+    app.get(['/vts-heartrate/oauth2/pulsoid',], async (req, res) => {
         console.log(JSON.stringify(req.query));
-        // res.status(200).send('OK!');
-        res.redirect(`http://localhost:9000/vts-heartrate/auth?code=${req.query.code}`);
+        if(req.query && req.query.code){
+            res.status(200).send(GetToken(req.query.code, AppConfig));
+        }else{
+            res.status(200).send('OK!');
+            res.redirect(`http://localhost:9000/vts-heartrate/auth`);
+        }
     });
 
 
