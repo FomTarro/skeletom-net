@@ -8,6 +8,7 @@ const app = express();
 async function launch(){
     const port = AppConfig.PORT;
     const baseDirectory = path.join(__dirname, './public');
+    // app.use('/', express.static(baseDirectory));
     /*
     // Tells express to treat the base directory as relative to the given directory
     // IE localhost:8080/img/blush.png corresponds to public/img/blush.png
@@ -38,6 +39,13 @@ async function launch(){
             res.status(200).send('OK!');
             res.redirect(`http://localhost:9000/vts-heartrate/auth`);
         }
+    });
+
+    app.use('/gifts', express.static(path.join(__dirname, './gifts')));
+    app.get(['/gifts/lua-birthday-2021'], (req, res) => {
+        const file = path.join(__dirname, './gifts', 'lua-birthday-2021', 'index.html')
+        console.log(file);
+        res.sendFile(file);
     });
 
 

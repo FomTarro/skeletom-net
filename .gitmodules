@@ -1,0 +1,4 @@
+[submodule "gifts/lua-birthday-2021"]
+	path = gifts/lua-birthday-2021
+	url = https://github.com/FomTarro/luavlucky-birthday-2021.git
+	branch = main
