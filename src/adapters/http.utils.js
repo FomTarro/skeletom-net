@@ -3,19 +3,17 @@ const https = require('https');
 /**
  * 
  * @param {https.RequestOptions} params 
- * @param {string} postData 
- * @returns {Promise<string>} Promise with content
+ * @param {String} postData 
+ * @returns {Promise<HttpResponse>} Response with content
  */
-function httpRequest(params, postData) {
-    return new Promise(function(resolve, reject) {
+async function httpRequest(params, postData) {
+    const promise = new Promise(function(resolve, reject) {
         var req = https.request(params, function(res) {
             // reject on bad status
             if (res.statusCode < 200 || res.statusCode >= 300) {
-                console.log(req.path);
-                console.log(res.statusMessage);
-                reject('statusCode=' + res.statusCode);
+                reject(new HttpResponse(res.statusCode, res.statusMessage));
             }
-            // cumulate data
+            // collect chunks
             var body = [];
             res.on('data', function(chunk) {
                 body.push(chunk);
@@ -25,22 +23,39 @@ function httpRequest(params, postData) {
                 try {
                     body = JSON.parse(Buffer.concat(body).toString());
                 } catch(e) {
-                    reject(e);
+                    reject(new HttpResponse(res.statusCode, e));
                 }
-                resolve(body);
+                resolve(new HttpResponse(res.statusCode, body));
             });
         });
         // reject on request error
         req.on('error', function(err) {
             // This is not a "Second reject", just a different sort of failure
-            reject(err);
+            reject(new HttpResponse(500, err));
         });
         if (postData) {
             req.write(postData);
         }
         // IMPORTANT
         req.end();
-    });
+    })
+    .then((r) => { return r})
+    .catch((r) => { return r});
+
+    return promise;
+}
+
+class HttpResponse {
+    /**
+     * 
+     * @param {Number} statusCode 
+     * @param {String} body 
+     */
+    constructor(statusCode, body){
+        this.statusCode = statusCode;
+        this.body = body
+    }
 }
 
 module.exports.httpRequest = httpRequest;
+module.exports.HttpResponse = HttpResponse;

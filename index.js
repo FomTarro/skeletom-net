@@ -33,7 +33,7 @@ async function launch(){
     app.get(['/vts-heartrate/oauth2/pulsoid',], async (req, res) => {
         console.log(JSON.stringify(req.query));
         if(req.query && req.query.code){
-            res.status(200).send(GetToken(req.query.code, AppConfig));
+            res.status(200).send(JSON.stringify(await GetToken(req.query.code, AppConfig)));
         }else{
             res.status(200).send('OK!');
             res.redirect(`http://localhost:9000/vts-heartrate/auth`);
