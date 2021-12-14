@@ -36,9 +36,17 @@ async function launch(){
         if(req.query && req.query.code){
             res.status(200).send(JSON.stringify(await GetToken(req.query.code, AppConfig)));
         }else{
-            res.status(200).send('OK!');
-            res.redirect(`http://localhost:9000/vts-heartrate/auth`);
+            res.status(400).send('BAD REQUEST!');
+            //res.redirect(`http://localhost:9000/vts-heartrate/auth`);
         }
+    });
+
+    app.get(['/vts-heartrate/version',], async (req, res) => {
+        res.status(200).send(JSON.stringify({
+            version: '0.0.1',
+            date: '12/12/21',
+            url: 'https://github.com/FomTarro/vts-heartrate/releases'
+        }));
     });
 
     app.use('/gifts', express.static(path.join(__dirname, './gifts')));
