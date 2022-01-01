@@ -24,7 +24,8 @@
   "homepage": "https://github.com/FomTarro/skeletom-net#readme",
   "dependencies": {
     "dotenv": "8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "ws": "^6.1.4"
   },
   "devDependencies": {
     "sass": "1.26.5"

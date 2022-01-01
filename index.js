@@ -3,6 +3,7 @@ const path = require('path');
 const express = require('express');
 const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
+const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const app = express();
 
 async function launch(){
@@ -34,7 +35,8 @@ async function launch(){
     app.get(['/vts-heartrate/oauth2/pulsoid',], async (req, res) => {
         console.log(JSON.stringify(req.query));
         if(req.query && req.query.code){
-            res.status(200).send(JSON.stringify(await GetToken(req.query.code, AppConfig)));
+            const token = JSON.stringify(await GetToken(req.query.code, AppConfig));
+            res.status(200).send(await EmbedToken(token.body['access_token'], AppConfig));
         }else{
             res.status(400).send('BAD REQUEST!');
             //res.redirect(`http://localhost:9000/vts-heartrate/auth`);
