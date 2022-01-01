@@ -37,13 +37,13 @@ async function launch(){
         if(req.query && req.query.code){
             try{
                 const token = await GetToken(req.query.code, AppConfig);
-                res.status(200).send(await EmbedToken(token.body['access_token'], AppConfig));
+                const templatePath = path.join('src', 'templates', 'pulsoid.token.html');
+                res.status(200).send(await EmbedToken(templatePath, token.body['access_token'], AppConfig));
             }catch(e){
                 res.status(500).send(`"An error occured! Please yell at Tom on Twitter.`)
             }
         }else{
             res.status(400).send('BAD REQUEST!');
-            //res.redirect(`http://localhost:9000/vts-heartrate/auth`);
         }
     });
 

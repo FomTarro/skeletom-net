@@ -2,7 +2,7 @@
 <div>
     <label for="auth-token">Pulsoid Authentication Token (keep secret!):</label>
     <br>
-    <input type="password" id="auth-token" name="token" readonly value=${VALUE}><button id='copy-button'>Copy</button>
+    <input type="password" id="auth-token" name="token" readonly><button id='copy-button'>Copy</button>
 </div>
 <script>
     function copyToClipboard() {
@@ -15,5 +15,5 @@
         navigator.clipboard.writeText(copyText.value);
     }
     document.getElementById('copy-button').addEventListener('click', copyToClipboard);
-    document.getElementById('auth-token').value = "ABCD";
+    document.getElementById('auth-token').value = "${VALUE}";
 </script>
