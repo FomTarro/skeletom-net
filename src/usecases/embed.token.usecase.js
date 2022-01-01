@@ -8,7 +8,7 @@ const fs = require('fs');
  * @returns {string} Token
  */
 async function usecase(accessCode, appConfig){
-    const buffer = fs.readFileSync(path.join('..', 'templates', 'pulsoid.token.html'));
+    const buffer = fs.readFileSync(path.join('src', 'templates', 'pulsoid.token.html'));
     const template = buffer.toString();
     return template.replace('${VALUE}', `"${accessCode}"`);
 }
