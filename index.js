@@ -49,9 +49,9 @@ async function launch(){
 
     app.get(['/vts-heartrate/version',], async (req, res) => {
         res.status(200).send(JSON.stringify({
-            version: '0.0.1',
-            date: '12/12/21',
-            url: 'https://github.com/FomTarro/vts-heartrate/releases'
+            version: AppConfig.VTS_HEARTRATE_VERSION,
+            date: AppConfig.VTS_HEARTRATE_DATE,
+            url: AppConfig.VTS_HEARTRATE_URL
         }));
     });
 
