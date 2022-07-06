@@ -20,7 +20,7 @@ async function launch(){
     });
     */
     // Tells the browser to redirect to the given URL
-       app.get(['', '/', '/about'], (req, res) => {
+    app.get(['', '/', '/about'], (req, res) => {
         res.redirect('https://skeletom.carrd.co/');
     });
     // Tells the browser to redirect to the given URL
@@ -33,6 +33,21 @@ async function launch(){
     });
 
     app.get(['/vts-heartrate/oauth2/pulsoid',], async (req, res) => {
+        console.log(JSON.stringify(req.query));
+        if(req.query && req.query.code){
+            try{
+                const token = await GetToken(req.query.code, AppConfig);
+                const templatePath = path.join('src', 'templates', 'pulsoid.token.html');
+                res.status(200).send(await EmbedToken(templatePath, token.body['access_token'], AppConfig));
+            }catch(e){
+                res.status(500).send(`"An error occured! Please yell at Tom on Twitter.`)
+            }
+        }else{
+            res.status(400).send('BAD REQUEST!');
+        }
+    });
+
+    app.get(['/vts-heartrate/oauth2/google',], async (req, res) => {
         console.log(JSON.stringify(req.query));
         if(req.query && req.query.code){
             try{
