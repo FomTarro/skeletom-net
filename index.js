@@ -5,11 +5,13 @@ const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
 const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
+
 const app = express();
 
 async function launch(){
     const port = AppConfig.PORT;
     const baseDirectory = path.join(__dirname, './public');
+    app.use(express.json());
     // app.use('/', express.static(baseDirectory));
     /*
     // Tells express to treat the base directory as relative to the given directory
@@ -21,7 +23,7 @@ async function launch(){
     });
     */
     // Tells the browser to redirect to the given URL
-       app.get(['', '/', '/about'], (req, res) => {
+    app.get(['', '/', '/about'], (req, res) => {
         res.redirect('https://skeletom.carrd.co/');
     });
     // Tells the browser to redirect to the given URL
@@ -61,6 +63,16 @@ async function launch(){
     app.get(['/wolfram/ask',], async (req, res) => {
         if(req.query && req.query.input){
             const answer = await WolframAsk(req.query.input, AppConfig);
+            res.status(answer.statusCode).send({
+                answer: answer.body
+            })
+        }
+    });
+
+    app.post(['/wolfram/ask-post',], async (req, res) => {
+        console.log(req.body);
+        if(req.body && req.body.input){
+            const answer = await WolframAsk(req.body.input, AppConfig);
             res.status(answer.statusCode).send({
                 answer: answer.body
             })
