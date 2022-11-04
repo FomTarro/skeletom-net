@@ -9,7 +9,7 @@ const { httpRequest, HttpResponse } = require("../adapters/http.utils");
 async function usecase(question, appConfig){
 
     //http://api.wolframalpha.com/v1/result?appid=DEMO
-
+    const decodedQuestion = decodeURI(question);
     const opts = {
         host: 'api.wolframalpha.com',
         method: 'GET',
