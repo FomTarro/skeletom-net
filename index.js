@@ -5,14 +5,6 @@ const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
 const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
-const { rateLimit } = require('express-rate-limit');
-
-// const apiLimiter = rateLimit({
-// 	windowMs: 15 * 60 * 1000, // 15 minutes
-// 	max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
-// 	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-// 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-// })
 
 // Apply the rate limiting middleware to API calls only
 const app = express();
@@ -21,7 +13,6 @@ async function launch(){
     const port = AppConfig.PORT;
     const baseDirectory = path.join(__dirname, './public');
     app.use(express.json());
-    // app.use('/wolfram/ask', apiLimiter)
     // app.use('/', express.static(baseDirectory));
     /*
     // Tells express to treat the base directory as relative to the given directory
