@@ -15,6 +15,10 @@ class AppConfig{
     get VTS_HEARTRATE_DATE(){ return process.env.vts_heartrate_date ? process.env.vts_heartrate_date : "1/7/2022" } 
     get VTS_HEARTRATE_URL(){ return process.env.vts_heartrate_url ? process.env.vts_heartrate_url : "https://github.com/FomTarro/vts-heartrate" } 
 
+    get AMIYAMIGA_VERSION(){ return process.env.amiyamiga_version ? process.env.amiyamiga_version : "0.0.0" } 
+    get AMIYAMIGA_DATE(){ return process.env.amiyamiga_version ? process.env.amiyamiga_date : "11/29/2022" } 
+    get AMIYAMIGA_URL(){ return process.env.amiyamiga_url ? process.env.amiyamiga_url : "https://skeletom-ch.itch.io/amiyamiga" } 
+
     get WOLFRAM_CLIENT_ID(){ return process.env.wolfram_client_id; };
 }
 
