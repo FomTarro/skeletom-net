@@ -4,9 +4,10 @@ const https = require('https');
  * 
  * @param {https.RequestOptions} params 
  * @param {String} postData 
+ * @param {boolean} expectJSON is the returned content json?
  * @returns {Promise<HttpResponse>} Response with content
  */
-async function httpRequest(params, postData) {
+async function httpRequest(params, postData, expectJSON = true) {
     const promise = new Promise(function(resolve, reject) {
         var req = https.request(params, function(res) {
             // reject on bad status
@@ -20,10 +21,14 @@ async function httpRequest(params, postData) {
             });
             // resolve on end
             res.on('end', function() {
-                try {
-                    body = JSON.parse(Buffer.concat(body).toString());
-                } catch(e) {
-                    reject(new HttpResponse(res.statusCode, e));
+                if(expectJSON == true){
+                    try {
+                        body = JSON.parse(Buffer.concat(body).toString());
+                    } catch(e) {
+                        reject(new HttpResponse(400, e.toString()));
+                    }
+                }else{
+                    body = Buffer.concat(body).toString();
                 }
                 resolve(new HttpResponse(res.statusCode, body));
             });
