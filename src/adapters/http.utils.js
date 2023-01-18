@@ -12,7 +12,8 @@ async function httpRequest(params, postData, expectJSON = true) {
         var req = https.request(params, function(res) {
             // reject on bad status
             if (res.statusCode < 200 || res.statusCode >= 300) {
-                reject(new HttpResponse(res.statusCode, res.statusMessage));
+                const redirect = res.headers ? res.headers.location : undefined;
+                reject(new HttpResponse(res.statusCode, res.statusMessage, redirect));
             }
             // collect chunks
             var body = [];
@@ -55,10 +56,12 @@ class HttpResponse {
      * 
      * @param {Number} statusCode 
      * @param {String} body 
+     * @param {String} redirect
      */
-    constructor(statusCode, body){
+    constructor(statusCode, body, redirect){
         this.statusCode = statusCode;
         this.body = body
+        this.redirect = redirect
     }
 }
 

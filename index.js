@@ -4,6 +4,7 @@ const express = require('express');
 const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
 const { EmbedToken } = require('./src/usecases/embed.token.usecase');
+const { GetGoogleAuth } = require('./src/usecases/get.google.auth.usecase');
 const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
 
 // Apply the rate limiting middleware to API calls only
@@ -50,6 +51,11 @@ async function launch(){
         }else{
             res.status(400).send('BAD REQUEST!');
         }
+    });
+
+    app.get(['/vts-heartrate/google',], async (req, res) => { 
+        const response = await GetGoogleAuth(AppConfig);
+        res.status(200).send(response)
     });
 
     app.get(['/vts-heartrate/oauth2/google',], async (req, res) => {
