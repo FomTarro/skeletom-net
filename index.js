@@ -62,9 +62,11 @@ async function launch(){
         console.log(JSON.stringify(req.query));
         if(req.query && req.query.code){
             try{
-                const token = await GetToken(req.query.code, AppConfig);
-                const templatePath = path.join('src', 'templates', 'pulsoid.token.html');
-                res.status(200).send(await EmbedToken(templatePath, token.body['access_token'], AppConfig));
+                const response = await GetGoogleAuth(AppConfig, req.query.code);
+                res.status(200).send(response)
+                // const token = await GetToken(req.query.code, AppConfig);
+                // const templatePath = path.join('src', 'templates', 'pulsoid.token.html');
+                // res.status(200).send(await EmbedToken(templatePath, token.body['access_token'], AppConfig));
             }catch(e){
                 res.status(500).send(`"An error occured! Please yell at Tom on Twitter.`)
             }
