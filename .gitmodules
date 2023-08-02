@@ -2,3 +2,6 @@
 	path = gifts/lua-birthday-2021
 	url = https://github.com/FomTarro/luavlucky-birthday-2021.git
 	branch = main
+[submodule "pkmn/pkmn-stream-tools"]
+	path = pkmn/pkmn-stream-tools
+	url = https://github.com/FomTarro/pkmn-stream-tools.git

@@ -96,6 +96,12 @@ async function launch(){
         res.sendFile(file);
     });
 
+    app.use('/pkmn/ribbon-tracker', express.static(path.join(__dirname, './pkmn', 'pkmn-stream-tools', 'ribbon-tracker')));
+    app.get(['/pkmn/ribbon-tracker'], (req, res) => {
+        const file = path.join(__dirname, './pkmn', 'pkmn-stream-tools', 'ribbon-tracker', 'index.template.html')
+        res.status(200).sendFile(file);
+    });
+
 
     // Makes an http server out of the express server
     const httpServer = http.createServer(app);
