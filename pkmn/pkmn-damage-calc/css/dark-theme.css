@@ -18,6 +18,10 @@ body {
     color-scheme: dark;
 }
 
+.header {
+    background: #8C52FF
+}
+
 .btn {
     background-color: var(--background);
     color: var(--text);
@@ -158,5 +162,37 @@ input.select2-input {
     * whereas the Select2 CSS file is right next to the select2.png file
     */
     background: url('../js/vendor/select2/select2.png') no-repeat 100% -22px, var(--background);
+}
+
+legend {
+    background-color: #1b1b1b;
+}
+
+.blue fieldset {
+    border-top: 5px solid #E9DEFF;
+    background-color: #8C52FF;
+    /* color: #8C52FF; */
+}
+
+.blue legend {
+    border-color: #E9DEFF;
+}
+
+.neutral fieldset {
+    border-top: 5px solid white;
+    background-color: #1b1b1b;
+}
+
+.neutral legend {
+    border-color: white;
+}
+
+.red fieldset {
+    border-top: 5px solid #FFD4D4;
+    background-color: #E40000;
+}
+
+.red legend {
+    border-color: #FFD4D4;
 }
 
