@@ -270,6 +270,6 @@ function stringToElementSelector(str, preserveCase){
 
 $(document).ready(function () {
     if(parent){
-        document.getElementById('header').remove();
+        document.getElementById('header').style.height = 0;
     }
 });
