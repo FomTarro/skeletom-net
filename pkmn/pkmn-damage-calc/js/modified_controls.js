@@ -95,6 +95,9 @@ function fromMinifiedState(state){
     console.log("Loading settings from State object...");
     console.log(state);
     for (const property in state){
+        if(property === 'domain'){
+            DOMAIN = state[property];
+        }
         if(property === "format"){
             const element = $(`#${state[property].toLowerCase()}-format`);
             element.prop("checked", true);
@@ -181,7 +184,7 @@ function fromMinifiedState(state){
  * @returns 
  */
 function toShareURL(){
-    const url = parent ? new URL(parent.location.protocol + '//' + parent.location.host + parent.location.pathname) 
+    const url = DOMAIN ? new URL(DOMAIN) 
     : new URL(location.protocol + '//' + location.host + location.pathname);
     const flattenedState = flatten(generateMinifiedState());
     for (const property in flattenedState){
@@ -197,6 +200,8 @@ function toShareURL(){
     return url.toString();
 }
 
+
+var DOMAIN;
 /**
  * Unflattens the query parameters into a minified state object.
  * @returns 
