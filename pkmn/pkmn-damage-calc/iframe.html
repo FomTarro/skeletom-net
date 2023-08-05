@@ -1,14 +1,16 @@
 <style>
     #frame{
-        position: absolute;
+        position: relative;
         top:0px;
         width:100%;
-        height:100vh;
+        height:165vh
     }
 </style>
-<iframe id='frame' src="https://www.skeletom.net/pkmn/dmg/" scrolling="no" frameborder="0"></iframe>
+<iframe id='frame' allow="clipboard-write *" src="https://www.skeletom.net/pkmn/dmg/" scrolling="no" frameborder="0"></iframe>
 <script>
     var frame = document.getElementById('frame');
-    frame.src = `https://www.skeletom.net/pkmn/dmg/${location.search}`;
+    var ourDomain = location.protocol + '//' + location.host + location.pathname
+    var searchParams = location.search.substring(1);    
+    frame.src = `https://www.skeletom.net/pkmn/dmg/?domain=${ourDomain}&${searchParams}`;
     console.log(location.search);
 </script>
