@@ -6,7 +6,7 @@
     <title>Pok&eacute;mon Damage Calculator</title>
     <link href="https://fonts.googleapis.com/css?family=Avant+Garde+Gothic" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./js/vendor/select2/select2.css" />
-    <link type="text/css" rel="stylesheet" href="./css/main.css?fd4ef6eb" />
+    <link type="text/css" rel="stylesheet" href="./css/main.css?17b76971" />
     <link type="text/css" rel="stylesheet" href="./css/vendor/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="./css/dark-theme.css" id="dark-theme-styles">
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -31,9 +31,10 @@
         * It will be truey and incorrectly cause the
         * dark theme to load.
         */
-        if (localStorage.getItem('darkTheme') !== 'true') {
-            document.getElementById('dark-theme-styles').disabled = true;
-        }
+        document.getElementById('dark-theme-styles').disabled = true;
+        // if (localStorage.getItem('darkTheme') !== 'true') {
+        //     document.getElementById('dark-theme-styles').disabled = true;
+        // }
     </script>
 </head>
 
@@ -1596,7 +1597,7 @@
 
     <script type="text/javascript" src="./js/shared_controls.js?3f7b3610"></script>
     <script type="text/javascript" src="./js/results_display.js?b126618a"></script>
-    <script type="text/javascript" src="./js/modified_controls.js?87dd33b0"></script>
+    <script type="text/javascript" src="./js/modified_controls.js?de7cdcce"></script>
     <script type="text/javascript" src="./js/moveset_import.js?6fb37c7e"></script>
     <script src="https://cdn.jsdelivr.net/gh/pieroxy/lz-string/libs/lz-string.js"></script>
 
@@ -1607,8 +1608,8 @@
         <li><a href="https://github.com/smogon/damage-calc/contributors" class="links-lighten" target="_blank">Original Contributors</a></li>
     <li><a href="https://github.com/smogon/damage-calc" class="links-lighten" target="_blank">Original GitHub repository</a></li>
 </ul>
-    <button type="button" id="dark-theme-toggle"></button> 
-    <script type="text/javascript" src="./js/dark-theme-toggle.js?4adfa54a"></script>
+    <!-- <button type="button" id="dark-theme-toggle"></button> 
+    <script type="text/javascript" src="./js/dark-theme-toggle.js?4adfa54a"></script> -->
 </div>
 
 </body>

@@ -82,7 +82,8 @@ a img {
 .header {
     background: #FFD4D4;
     border-bottom: 1px solid #AAA;
-    min-height: 50px;
+    height: auto;
+    /* min-height: 50px; */
 }
 .header-inner {
     display: flex;
@@ -213,7 +214,7 @@ html, body {
     /* color: #8C52FF; */
     margin: 0;
     padding: 0;
-    min-width: 100em;
+    /* min-width: 100em; */
 }
 .wrapper {
     padding: 0 1em;
@@ -228,9 +229,10 @@ html, body {
 }
 
 .row {
-    justify-content: space-between;
+    justify-content: center;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .column {
@@ -244,10 +246,12 @@ div.wrapper > div > span {
     padding-right: 5px;
 }
 fieldset {
-    float: left;
+    /* float: left; */
     background-color: #FFD4D4;
     border: 1px solid #AAAAAA;
     border-top: 5px solid #E40000;
+    box-sizing: border-box;
+    width: min(31em, 100vw);
 }
 
 
@@ -335,11 +339,11 @@ th {
     display: inline-block; /* required for honkaculate to work */
 }
 .poke-info {
-    width: 30em;
+    /* width: 30em; */
 }
 .field-info, .poke-import {
     text-align: center;
-    width: 27.5em;
+    /* width: 27.5em; */
 }
 .holder-0 {
     position: absolute;
@@ -450,12 +454,16 @@ th {
 
 /* header */
 .move-result-group {
-    min-width: 50em;
-    margin: 1em 0 11.5em;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1em;
 }
 .move-result-subgroup {
     float: left;
-    width: 50%;
+    /* width: 50%; */
 }
 .move-result-group .btn {
     margin-right: 1em;

@@ -271,6 +271,7 @@ function stringToElementSelector(str, preserveCase){
 $(document).ready(function () {
     if(parent){
         document.getElementById('header').style.height = 0;
+        document.getElementById('header').style.minHeight = 0;
         document.getElementById('logo').style.height = 0;
     }
 });
