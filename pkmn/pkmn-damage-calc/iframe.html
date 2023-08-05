@@ -1,0 +1,14 @@
+<style>
+    #frame{
+        position: absolute;
+        top:0px;
+        width:100%;
+        height:100vh;
+    }
+</style>
+<iframe id='frame' src="https://www.skeletom.net/pkmn/dmg/" scrolling="no" frameborder="0"></iframe>
+<script>
+    var frame = document.getElementById('frame');
+    frame.src = `https://www.skeletom.net/pkmn/dmg/${location.search}`;
+    console.log(location.search);
+</script>

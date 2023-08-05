@@ -37,6 +37,8 @@ function generateMinifiedState(){
         }
     }
     function generateField(field){
+        // console.log("Field")
+        // console.log(field)
         return {
             gravity: field.isGravity,
             magicRoom: field.isMagicRoom,
@@ -50,8 +52,27 @@ function generateMinifiedState(){
             tablets: field.isTabletsOfRuin,
             terrain: field.terrain,
             weather: field.weather,
+            left: generateFieldSide(field.attackerSide),
+            right: generateFieldSide(field.defenderSide)
         }
     }
+
+    function generateFieldSide(fieldSide){
+        return {
+            // cannonande: fieldSide.cannonade,
+            auroraVeil: fieldSide.isAuroraVeil,
+            battery: fieldSide.isBattery,
+            flowerGift: fieldSide.isFlowerGift,
+            friendGuard: fieldSide.isFriendGuard,
+            helpingHand: fieldSide.isHelpingHand,
+            lightScreen: fieldSide.isLightScreen,
+            reflect: fieldSide.isReflect,
+            sr: fieldSide.isSR,
+            spikes: fieldSide.spikes,
+            seeded: fieldSide.isSeeded,
+        }
+    }
+
     const minified = {
         gen: state.gen.num,
         format: state.p1field.gameType,
@@ -74,7 +95,6 @@ function fromMinifiedState(state){
     console.log("Loading settings from State object...");
     console.log(state);
     for (const property in state){
-        console.log(property);
         if(property === "format"){
             const element = $(`#${state[property].toLowerCase()}-format`);
             element.prop("checked", true);
@@ -89,7 +109,19 @@ function fromMinifiedState(state){
                     // all others are named after the property with the value being a boolean
                     if(fieldProperty === "terrain" || fieldProperty === "weather"){
                         info.find(`#${stringToElementSelector(field[fieldProperty])}`).prop("checked", true);
-                    }else{
+                    }else if(fieldProperty === "left" || fieldProperty === "right"){
+                        const side = field[fieldProperty];
+                        for (const sideProperty in side){
+                            const elementName = `#${stringToElementSelector(sideProperty, true)}${fieldProperty === "left" ? "L" : "R"}`;
+                            if(sideProperty.includes('spikes')){
+                                // TODO: don't check for spikes, check if the value is a number
+                                console.log(`${elementName}${side[sideProperty]}`);
+                                info.find(`${elementName}${side[sideProperty]}`).prop("checked", true);
+                            }else{
+                                info.find(elementName).prop("checked", true);
+                            }
+                        }
+                    }else {
                         info.find(`#${stringToElementSelector(fieldProperty)}`).prop("checked", true);
                     }
                 }
@@ -149,14 +181,15 @@ function fromMinifiedState(state){
  * @returns 
  */
 function toShareURL(){
-    const url = new URL(location.protocol + '//' + location.host + location.pathname);
+    const url = parent ? new URL(parent.location.protocol + '//' + parent.location.host + parent.location.pathname) 
+    : new URL(location.protocol + '//' + location.host + location.pathname);
     const flattenedState = flatten(generateMinifiedState());
     for (const property in flattenedState){
         // No need to add default-value EVs or boosts to the query (but 0 IVs are still noteworthy) 
         if(flattenedState[property] !== undefined 
         && (!(property.includes(".ivs") && flattenedState[property] === 31))
         && (!((property.includes(".evs") || property.includes(".boosts")) && flattenedState[property] === 0))
-        && (!(property.includes("field.") && flattenedState[property] === false))
+        && (!(property.includes("field.") && (flattenedState[property] === false || flattenedState[property] === 0)))
         && flattenedState[property] !== ""){
             url.searchParams.append(property, flattenedState[property]);
         }
@@ -219,13 +252,19 @@ function flatten(data) {
     return result;
 }
 
-function stringToElementSelector(str){
+function stringToElementSelector(str, preserveCase){
     if(typeof str === "string"){
-        return str.replaceAll(' ', '-').toLowerCase();
+        if(preserveCase){
+            return str.replaceAll(' ', '-');
+        }else{
+            return str.replaceAll(' ', '-').toLowerCase();
+        }
     }
     return str;
 }
 
 $(document).ready(function () {
-
+    if(parent){
+        document.getElementById('header').remove();
+    }
 });
