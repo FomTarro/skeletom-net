@@ -90,6 +90,11 @@ $("input:radio[name='format']").change(function () {
 	var gameType = $("input:radio[name='format']:checked").val();
 	if (gameType === 'Singles') {
 		$("input:checkbox[name='ruin']:checked").prop("checked", false);
+	}else{
+		// doubles is selected:
+		console.log("DOUBLES!");
+		$(".level").val(50);
+		$(".level").change();
 	}
 	$(".format-specific." + gameType.toLowerCase()).each(function () {
 		if ($(this).hasClass("gen-specific") && !$(this).hasClass("g" + gen)) {
@@ -101,7 +106,7 @@ $("input:radio[name='format']").change(function () {
 });
 
 // auto-calc stats and current HP on change
-$(".level").keyup(function () {
+$(".level").bind("keyup change", function () {
 	var poke = $(this).closest(".poke-info");
 	calcHP(poke);
 	calcStats(poke);
@@ -600,7 +605,7 @@ $(".set-selector").change(function () {
 				pokeObj.find("." + LEGACY_STATS[gen][i] + " .dvs").val(15);
 			}
 			pokeObj.find(".nature").val("Hardy");
-			setSelectValueIfValid(abilityObj, pokemon.ab, "");
+			setSelectValueIfValid(abilityObj, pokemon.abilities[0], "");
 			itemObj.val("");
 			for (i = 0; i < 4; i++) {
 				moveObj = pokeObj.find(".move" + (i + 1) + " select.move-selector");

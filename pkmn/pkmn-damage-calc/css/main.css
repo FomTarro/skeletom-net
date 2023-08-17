@@ -251,7 +251,9 @@ fieldset {
     border: 1px solid #AAAAAA;
     border-top: 5px solid #E40000;
     box-sizing: border-box;
-    width: min(31em, 100vw);
+    width: min(31em, 90vw);
+    box-sizing: border-box;
+    min-inline-size: auto;
 }
 
 
@@ -604,13 +606,13 @@ table.field {
 }
 
 .import-team-text {
-    min-width: 27em;
+    /* min-width: 27em; */
     min-height: 10em;
     resize: vertical;
 }
 
 .import-name-text {
-	min-width: 26.3em;
+	/* min-width: 26.3em; */
     min-height: 1em;
     overflow: auto;
     display: inline;
