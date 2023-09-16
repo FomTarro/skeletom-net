@@ -168,6 +168,26 @@ $(".sl .dvs").keyup(function () {
 	calcHP(poke);
 });
 
+function getForcedTeraType(pokemonName) {
+	if (startsWith(pokemonName, "Ogerpon-Cornerstone")) {
+		return "Rock";
+	} else if (startsWith(pokemonName, "Ogerpon-Hearthflame")) {
+		return "Fire";
+	} else if (pokemonName === "Ogerpon" || startsWith(pokemonName, "Ogerpon-Teal")) {
+		return "Grass";
+	} else if (startsWith(pokemonName, "Ogerpon-Wellspring")) {
+		return "Water";
+	}
+	return null;
+}
+
+function getForcedHoldItem(pokemonName){
+	if (startsWith(pokemonName, "Ogerpon-") && !startsWith(pokemonName, "Ogerpon-Teal")) {
+		return pokemonName.split("-")[1] + " Mask";
+	}
+	return null;
+}
+
 function getHPDVs(poke) {
 	return (~~poke.find(".at .dvs").val() % 2) * 8 +
 (~~poke.find(".df .dvs").val() % 2) * 4 +
@@ -533,7 +553,6 @@ $(".set-selector").change(function () {
 					}
 				}
 			}
-			pokeObj.find(".teraType").val(listTeraTypes[0] || pokemon.types[0]);
 			$(this).closest('.poke-info').find(".extraSetTeraTypes").text(listTeraTypes.join(', '));
 		} else {
 			$(this).closest('.poke-info').find(".ability-pool").hide();
@@ -594,7 +613,8 @@ $(".set-selector").change(function () {
 				$(this).closest('.poke-info').find(".extraSetMoves").html(formatMovePool(setMoves));
 			}
 		} else {
-			pokeObj.find(".teraType").val(pokemon.types[0]);
+			pokeObj.find(".teraType").val(getForcedTeraType(pokemonName) || pokemon.types[0]);
+			pokeObj.find(".teraType").prop('disabled', getForcedTeraType(pokemonName) !== null)
 			pokeObj.find(".level").val(100);
 			pokeObj.find(".hp .evs").val(0);
 			pokeObj.find(".hp .ivs").val(31);
@@ -606,7 +626,9 @@ $(".set-selector").change(function () {
 			}
 			pokeObj.find(".nature").val("Hardy");
 			setSelectValueIfValid(abilityObj, pokemon.abilities[0], "");
-			itemObj.val("");
+			itemObj.val(getForcedHoldItem(pokemonName) || "");
+			console.log(getForcedHoldItem(pokemonName) !== null);
+			itemObj.prop('disabled', getForcedHoldItem(pokemonName) !== null)
 			for (i = 0; i < 4; i++) {
 				moveObj = pokeObj.find(".move" + (i + 1) + " select.move-selector");
 				moveObj.attr('data-prev', moveObj.val());
@@ -626,7 +648,6 @@ $(".set-selector").change(function () {
 			//if (isDoubles) field.gameType = 'Doubles'; *TODO*
 		}
 		var formeObj = $(this).siblings().find(".forme").parent();
-		itemObj.prop("disabled", false);
 		var baseForme;
 		if (pokemon.baseSpecies && pokemon.baseSpecies !== pokemon.name) {
 			baseForme = pokedex[pokemon.baseSpecies];
@@ -642,6 +663,7 @@ $(".set-selector").change(function () {
 		calcStats(pokeObj);
 		abilityObj.change();
 		itemObj.change();
+		itemObj.prop('disabled', getForcedHoldItem(pokemonName) !== null)
 		if (pokemon.gender === "N") {
 			pokeObj.find(".gender").parent().hide();
 			pokeObj.find(".gender").val("");
@@ -1085,6 +1107,14 @@ $(".gen").change(function () {
 	/* eslint-enable */
 	// declaring these variables with var here makes z moves not work; TODO
 	pokedex = calc.SPECIES[gen];
+	// Object.entries(calc.SPECIES[gen]).map((mon) => {
+	// 	const tier = TIERS[gen][mon[0].replace('-').toLowerCase()];
+	// 	// console.log(mon[0] + " - " + tier);
+	// 	if(tier && tier.includes('CAP')){
+	// 		console.log("Deleting " + mon[0]);
+	// 		delete pokedex[mon[0]];
+	// 	}
+	// });
 	setdex = SETDEX[gen];
 	randdex = RANDDEX[gen];
 	typeChart = calc.TYPE_CHART[gen];
