@@ -86,16 +86,18 @@ function validate(obj, min, max) {
 	obj.val(Math.max(min, Math.min(max, ~~obj.val())));
 }
 
+var defaultLevel = 100;
 $("input:radio[name='format']").change(function () {
 	var gameType = $("input:radio[name='format']:checked").val();
 	if (gameType === 'Singles') {
 		$("input:checkbox[name='ruin']:checked").prop("checked", false);
+		defaultLevel = 100;
 	}else{
 		// doubles is selected:
-		console.log("DOUBLES!");
-		$(".level").val(50);
-		$(".level").change();
+		defaultLevel = 50;
 	}
+	$(".level").val(defaultLevel);
+	$(".level").change();
 	$(".format-specific." + gameType.toLowerCase()).each(function () {
 		if ($(this).hasClass("gen-specific") && !$(this).hasClass("g" + gen)) {
 			return;
@@ -615,7 +617,7 @@ $(".set-selector").change(function () {
 		} else {
 			pokeObj.find(".teraType").val(getForcedTeraType(pokemonName) || pokemon.types[0]);
 			pokeObj.find(".teraType").prop('disabled', getForcedTeraType(pokemonName) !== null)
-			pokeObj.find(".level").val(100);
+			pokeObj.find(".level").val(defaultLevel);
 			pokeObj.find(".hp .evs").val(0);
 			pokeObj.find(".hp .ivs").val(31);
 			pokeObj.find(".hp .dvs").val(15);
@@ -640,11 +642,11 @@ $(".set-selector").change(function () {
 			}
 		}
 		if (typeof getSelectedTiers === "function") { // doesn't exist when in 1vs1 mode
-			var format = getSelectedTiers()[0];
-			var is50lvl = startsWith(format, "VGC") || startsWith(format, "Battle Spot");
+			// var format = getSelectedTiers()[0];
+			// var is50lvl = startsWith(format, "VGC") || startsWith(format, "Battle Spot");
 			//var isDoubles = format === 'Doubles' || has50lvl; *TODO*
-			if (format === "LC") pokeObj.find(".level").val(5);
-			if (is50lvl) pokeObj.find(".level").val(50);
+			// if (format === "LC") pokeObj.find(".level").val(5);
+			// if (is50lvl) pokeObj.find(".level").val(50);
 			//if (isDoubles) field.gameType = 'Doubles'; *TODO*
 		}
 		var formeObj = $(this).siblings().find(".forme").parent();
@@ -1238,14 +1240,16 @@ function getSetOptions(sets) {
 				var setNames = Object.keys(setdex[pokeName]);
 				for (var j = 0; j < setNames.length; j++) {
 					var setName = setNames[j];
-					setOptions.push({
-						pokemon: pokeName,
-						set: setName,
-						text: pokeName + " (" + setName + ")",
-						id: pokeName + " (" + setName + ")",
-						isCustom: setdex[pokeName][setName].isCustomSet,
-						nickname: setdex[pokeName][setName].nickname || ""
-					});
+					if(setdex[pokeName][setName].isCustomSet){
+						setOptions.push({
+							pokemon: pokeName,
+							set: setName,
+							text: pokeName + " (" + setName + ")",
+							id: pokeName + " (" + setName + ")",
+							isCustom: setdex[pokeName][setName].isCustomSet,
+							nickname: setdex[pokeName][setName].nickname || ""
+						});
+					}
 				}
 			}
 			setOptions.push({
