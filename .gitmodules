@@ -5,3 +5,4 @@
 [submodule "pkmn/pkmn-stream-tools"]
 	path = pkmn/pkmn-stream-tools
 	url = https://github.com/FomTarro/pkmn-stream-tools.git
+	branch = tournament-tracker
