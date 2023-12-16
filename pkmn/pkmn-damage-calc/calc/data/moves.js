@@ -4784,6 +4784,90 @@ var SV_PATCH = {
         secondaries: true,
         isWind: true,
         target: 'allAdjacentFoes'
+    },
+    'Temper Flare': {
+        bp: 75,
+        type: 'Fire',
+        makesContact: true,
+        category: 'Physical'
+    },
+    'Supercell Slam': {
+        bp: 100,
+        type: 'Electric',
+        makesContact: true,
+        category: 'Physical'
+    },
+    'Hard Press': {
+        bp: 0,
+        type: 'Steel',
+        makesContact: true,
+        category: 'Physical'
+    },
+    'Dragon Cheer': {
+        bp: 0,
+        type: 'Dragon',
+        category: 'Status'
+    },
+    'Alluring Voice': {
+        bp: 80,
+        type: 'Fairy',
+        category: 'Special'
+    },
+    'Psychic Noise': {
+        bp: 75,
+        type: 'Psychic',
+        category: 'Special'
+    },
+    'Upper Hand': {
+        bp: 65,
+        type: 'Fighting',
+        makesContact: true,
+        category: 'Physical'
+    },
+    'Electro Shot': {
+        bp: 130,
+        type: 'Electric',
+        category: 'Special'
+    },
+    'Fickle Beam': {
+        bp: 80,
+        type: 'Dragon',
+        category: 'Special'
+    },
+    'Burning Bulwark': {
+        bp: 0,
+        type: 'Fire',
+        category: 'Status'
+    },
+    'Thunderclap': {
+        bp: 80,
+        type: 'Electric',
+        makesContact: false,
+        priority: 2,
+        category: 'Physical'
+    },
+    'Mighty Cleave': {
+        bp: 95,
+        type: 'Rock',
+        makesContact: true,
+        breaksProtect: true,
+        category: 'Physical'
+    },
+    'Tachyon Cutter': {
+        bp: 50,
+        type: 'Steel',
+        category: 'Special',
+        multihit: 2
+    },
+    'Tera Starstorm': {
+        bp: 120,
+        type: 'Normal',
+        category: 'Special'
+    },
+    'Malignant Chain': {
+        bp: 100,
+        type: 'Poison',
+        category: 'Special'
     }
 };
 var SV = (0, util_1.extend)(true, {}, SS, SV_PATCH);

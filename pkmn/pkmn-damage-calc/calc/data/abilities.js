@@ -365,6 +365,10 @@ var SV = SS.concat([
     'Wind Power',
     'Wind Rider',
     'Zero to Hero',
+    'Tera Shift',
+    'Tera Shell',
+    'Teraform Zero',
+    'Poison Puppeteer'
 ]);
 exports.ABILITIES = [[], RBY, GSC, ADV, DPP, BW, XY, SM, SS, SV];
 var Abilities = (function () {

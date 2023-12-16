@@ -193,11 +193,17 @@ function getMoveEffectiveness(gen, move, type, isGhostRevealed, isGravity, isRin
 }
 exports.getMoveEffectiveness = getMoveEffectiveness;
 function checkAirLock(pokemon, field) {
-    if (pokemon.hasAbility('Air Lock', 'Cloud Nine')) {
+    if (pokemon.hasAbility('Air Lock', 'Cloud Nine', 'Teraform Zero')) {
         field.weather = undefined;
     }
 }
 exports.checkAirLock = checkAirLock;
+function checkTeraformZero(pokemon, field) {
+    if (pokemon.hasAbility('Teraform Zero')) {
+        field.terrain = undefined;
+    }
+}
+exports.checkTeraformZero = checkTeraformZero;
 function checkForecast(pokemon, weather) {
     if (pokemon.hasAbility('Forecast') && pokemon.named('Castform')) {
         switch (weather) {

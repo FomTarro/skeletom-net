@@ -9462,6 +9462,81 @@ var SV_PATCH = {
         bs: { hp: 35, at: 100, df: 50, sa: 50, sd: 70, sp: 120 },
         weightkg: 5.4,
         abilities: { 0: 'Gooey' }
+    },
+    Duraludon: {
+        nfe: true
+    },
+    Archaludon: {
+        types: ['Steel', 'Dragon'],
+        bs: { hp: 90, at: 105, df: 130, sa: 125, sd: 65, sp: 85 },
+        weightkg: 60.0,
+        abilities: { 0: 'Stamina' }
+    },
+    Hydrapple: {
+        types: ['Grass', 'Dragon'],
+        bs: { hp: 106, at: 80, df: 110, sa: 120, sd: 80, sp: 44 },
+        weightkg: 93.0,
+        abilities: { 0: 'Supersweet Syrup' }
+    },
+    "Gouging Fire": {
+        types: ['Fire', 'Dragon'],
+        bs: { hp: 105, at: 115, df: 121, sa: 65, sd: 93, sp: 91 },
+        weightkg: 590.0,
+        abilities: { 0: 'Protosynthesis' }
+    },
+    "Raging Bolt": {
+        types: ['Electric', 'Dragon'],
+        bs: { hp: 125, at: 73, df: 91, sa: 137, sd: 89, sp: 75 },
+        weightkg: 480.0,
+        abilities: { 0: 'Protosynthesis' }
+    },
+    "Iron Boulder": {
+        types: ['Rock', 'Psychic'],
+        bs: { hp: 90, at: 120, df: 80, sa: 68, sd: 108, sp: 124 },
+        weightkg: 162.5,
+        abilities: { 0: 'Quark Drive' }
+    },
+    "Iron Crown": {
+        types: ['Steel', 'Psychic'],
+        bs: { hp: 90, at: 72, df: 110, sa: 122, sd: 108, sp: 98 },
+        weightkg: 156.0,
+        abilities: { 0: 'Quark Drive' }
+    },
+    Terapagos: {
+        types: ['Normal'],
+        bs: { hp: 90, at: 65, df: 85, sa: 65, sd: 85, sp: 60 },
+        weightkg: 6.5,
+        abilities: { 0: 'Tera Shift' },
+        otherFormes: [
+            'Terapagos-Terastal',
+            'Terapagos-Stellar',
+        ]
+    },
+    "Terapagos-Terastal": {
+        types: ['Normal'],
+        bs: { hp: 95, at: 95, df: 110, sa: 105, sd: 110, sp: 85 },
+        weightkg: 16.0,
+        abilities: { 0: 'Tera Shell' },
+        otherFormes: [
+            'Terapagos',
+            'Terapagos-Stellar',
+        ]
+    },
+    "Terapagos-Stellar": {
+        types: ['Normal'],
+        bs: { hp: 160, at: 105, df: 110, sa: 130, sd: 110, sp: 85 },
+        weightkg: 77.0,
+        abilities: { 0: 'Teraform Zero' },
+        otherFormes: [
+            'Terapagos',
+            'Terapagos-Terastal',
+        ]
+    },
+    Pecharunt: {
+        types: ['Poison', 'Ghost'],
+        bs: { hp: 88, at: 88, df: 160, sa: 88, sd: 88, sp: 88 },
+        weightkg: 0.3,
+        abilities: { 0: 'Poison Puppeteer' }
     }
 };
 var SV = (0, util_1.extend)(true, {}, SS, SV_PATCH, PLA_PATCH);
