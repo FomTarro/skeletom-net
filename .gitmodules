@@ -6,3 +6,6 @@
 	path = pkmn/pkmn-stream-tools
 	url = https://github.com/FomTarro/pkmn-stream-tools.git
 	branch = tournament-tracker
+[submodule "pkmn/pkmn-tournament-overlay-tool"]
+	path = pkmn/pkmn-tournament-overlay-tool
+	url = https://github.com/FomTarro/pkmn-tournament-overlay-tool.git
