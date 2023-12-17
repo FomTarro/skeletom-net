@@ -102,6 +102,12 @@ async function launch(){
         res.status(200).sendFile(file);
     });
 
+    app.use('/pkmn/tournament-overlay', express.static(path.join(__dirname, './pkmn', 'pkmn-tournament-overlay-tool')));
+    app.get(['/pkmn/tournament-overlay'], (req, res) => {
+        const file = path.join(__dirname, './pkmn', 'pkmn-tournament-overlay-tool', 'index.html')
+        res.status(200).sendFile(file);
+    });
+
 
     // Makes an http server out of the express server
     const httpServer = http.createServer(app);
