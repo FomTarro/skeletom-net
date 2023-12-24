@@ -180,7 +180,7 @@ function calculateSMSSSV(gen, attacker, defender, move, field) {
             desc.attackerAbility = attacker.ability;
         }
     }
-    if (move.named('Tera Blast') && attacker.teraType) {
+    if ((move.named('Tera Blast') || move.named('Tera Starstorm')) && attacker.teraType) {
         type = attacker.teraType;
     }
     move.type = type;
@@ -198,8 +198,15 @@ function calculateSMSSSV(gen, attacker, defender, move, field) {
     var type2Effectiveness = defender.types[1]
         ? (0, util_2.getMoveEffectiveness)(gen, move, defender.types[1], isGhostRevealed, field.isGravity, isRingTarget)
         : 1;
+    if (attacker.teraType === "Stellar" && move.named('Tera Blast')) {
+        move.bp = 100;
+    }
     var typeEffectiveness = type1Effectiveness * type2Effectiveness;
-    if (defender.teraType) {
+    if ((attacker.teraType === "Stellar" && defender.teraType) && (move.named('Tera Blast') || move.named('Tera Starstorm'))) {
+        console.log("into tera");
+        typeEffectiveness = 2;
+    }
+    else if (defender.teraType && defender.teraType !== "Stellar") {
         typeEffectiveness = (0, util_2.getMoveEffectiveness)(gen, move, defender.teraType, isGhostRevealed, field.isGravity, isRingTarget);
     }
     if (typeEffectiveness === 0 && move.hasType('Ground') &&
@@ -374,7 +381,15 @@ function calculateSMSSSV(gen, attacker, defender, move, field) {
         desc.attackerAbility = attacker.ability;
     }
     var teraType = attacker.teraType;
-    if (teraType === move.type) {
+    if (teraType === "Stellar") {
+        if (attacker.hasOriginalType(move.type)) {
+            stabMod += 4096;
+        }
+        else {
+            stabMod += 819;
+        }
+    }
+    else if (teraType === move.type) {
         stabMod += 2048;
         desc.attackerTera = teraType;
     }

@@ -32,7 +32,8 @@ var HP = {
     Psychic: { ivs: { atk: 30, spe: 30 }, dvs: { def: 12 } },
     Rock: { ivs: { def: 30, spd: 30, spe: 30 }, dvs: { atk: 13, def: 12 } },
     Steel: { ivs: { spd: 30 }, dvs: { atk: 13 } },
-    Water: { ivs: { atk: 30, def: 30, spa: 30 }, dvs: { atk: 14, def: 13 } }
+    Water: { ivs: { atk: 30, def: 30, spa: 30 }, dvs: { atk: 14, def: 13 } },
+    Stellar: { ivs: {}, dvs: {} }
 };
 exports.Stats = new ((function () {
     function class_1() {

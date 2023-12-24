@@ -179,12 +179,15 @@ function getForcedTeraType(pokemonName) {
 		return "Grass";
 	} else if (startsWith(pokemonName, "Ogerpon-Wellspring")) {
 		return "Water";
+	} else if (startsWith(pokemonName, "Terapagos")) {
+		return "Stellar";
 	}
 	return null;
 }
 
 function getForcedTera(abilityName) {
-	return startsWith(abilityName, "Tera Shift");
+	return false;
+	//return startsWith(abilityName, "Tera Shift");
 }
 
 function getForcedHoldItem(pokemonName) {
