@@ -104,7 +104,7 @@ async function launch(){
 
     app.use('/pkmn/dmg', express.static(path.join(__dirname, './pkmn', 'pkmn-damage-calc')));
     app.get(['/pkmn/dmg'], (req, res) => {
-        const file = path.join(__dirname, './pkmn', 'pkmn-damage-calc', 'index.html')
+        const file = path.join(__dirname, './pkmn', 'pkmn-damage-calc', 'iframe.html')
         res.status(200).sendFile(file);
     });
 
