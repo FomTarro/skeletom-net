@@ -106,6 +106,4 @@ dist
 .DS_Store
 .env
 
-data/
-
 notes.txt

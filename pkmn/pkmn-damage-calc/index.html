@@ -1,0 +1,16 @@
+<style>
+    #frame{
+        position: relative;
+        top:0px;
+        width:100%;
+        height: 100%;
+    }
+</style>
+<iframe id='frame' allow="clipboard-write *" src="https://pkmn-dmg-calc-4c05423ab501.herokuapp.com/calc" frameborder="0"></iframe>
+<script>
+    var frame = document.getElementById('frame');
+    var ourDomain = location.protocol + '//' + location.host + location.pathname
+    var searchParams = location.search.substring(1);    
+    frame.src = `https://pkmn-dmg-calc-4c05423ab501.herokuapp.com/calc/?domain=${ourDomain}&${searchParams}`;
+    console.log(location.search);
+</script>
