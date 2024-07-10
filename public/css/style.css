@@ -27,7 +27,7 @@
 html {
   color: white;
   font-family: 'dustismo_romanregular';
-  font-size: 1.5em;
+  font-size: min(2vmax, 1.5em);
 }
 
 a {
@@ -136,6 +136,7 @@ h1 {
   justify-content: center;
   flex-direction: row;
   width: 100%;
+  padding: 1.5em;
 }
 
 .title {
