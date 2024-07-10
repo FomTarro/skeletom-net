@@ -48,12 +48,12 @@ a:hover {
 
 body {
   margin: 0;
-  padding: 2em;
+  padding: 1em 2em 2em 2em;
   backdrop-filter: blur(1vmin);
   animation: anim-scroll 16s linear infinite;
   background: conic-gradient(#FEB3D0 25%, #F2C5D9 0 50%, #F0F2F1 0 75%, #F0DAE6 0) 0 0/20vmin 20vmin;
   box-sizing: border-box;
-  height: inherit;
+  height: max(100vh, 100%);
 }
 
 h1 {
@@ -87,7 +87,7 @@ h1 {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 2.5em;
+  gap: 3em;
   align-content: flex-start;
 }
 
@@ -136,7 +136,7 @@ h1 {
   justify-content: center;
   flex-direction: row;
   width: 100%;
-  padding: 1.5em;
+  padding: 4.5vh;
 }
 
 .title {
