@@ -42,7 +42,7 @@ async function launch(){
         if(req.query && req.query.code){
             try{
                 const token = await GetToken(req.query.code, AppConfig);
-                const templatePath = path.join('src', 'templates', 'pulsoid.token.html');
+                const templatePath = path.join('src', 'templates', 'auth.token.html');
                 res.status(200).send(await EmbedToken(templatePath, token.body['access_token'], AppConfig));
             }catch(e){
                 res.status(500).send(`"An error occured! Please yell at Tom on Twitter.`)
@@ -60,6 +60,7 @@ async function launch(){
         }));
     });
 
+    // amiyamiga
     app.get(['/amiyamiga/version',], async (req, res) => {
         res.status(200).send(JSON.stringify({
             version: AppConfig.AMIYAMIGA_VERSION,
@@ -68,7 +69,6 @@ async function launch(){
         }));
     });
 
-    // wolfram
     app.get(['/wolfram/ask',], async (req, res) => {
         if(req.query && req.query.input){
             const answer = await WolframAsk(req.query.input, AppConfig);
@@ -96,6 +96,7 @@ async function launch(){
         res.sendFile(file);
     });
 
+    // pkmn
     app.use('/pkmn/ribbon-tracker', express.static(path.join(__dirname, './pkmn', 'pkmn-stream-tools', 'ribbon-tracker')));
     app.get(['/pkmn/ribbon-tracker'], (req, res) => {
         const file = path.join(__dirname, './pkmn', 'pkmn-stream-tools', 'ribbon-tracker', 'index.template.html')
