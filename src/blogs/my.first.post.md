@@ -1,13 +1,12 @@
 ---
-title: "New Site, Who This?"
-date: "2024-07-07"
-redirect-date: "2024-07-07"
-author: "Skeletom"
-brief: "Hey! Welcome to my brand new developent blog!"
-tags: "vtubers", "general"
-# redirect_to: /articles/welcome
+title: New Site, Who This?
+date: 2024-07-07
+author: Skeletom
+brief: Hey! Welcome to my brand new developent blog!
+tags: vtubers,general
 ---
 
+![face_2](/img/face_2.png =100x100)
 
 Hey! Welcome to my brand new development blog! 
 

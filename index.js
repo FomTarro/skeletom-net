@@ -1,10 +1,12 @@
 const http = require('http');
 const path = require('path');
 const express = require('express');
+const fs = require('fs');
 const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
 const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
+const { ConvertMarkdown } = require('./src/usecases/convert.markdown.usecase');
 
 // Apply the rate limiting middleware to API calls only
 const app = express();
@@ -13,7 +15,7 @@ async function launch(){
     const port = AppConfig.PORT;
     const baseDirectory = path.join(__dirname, './public');
     app.use(express.json());
-    // app.use('/', express.static(baseDirectory));
+    app.use('/', express.static(baseDirectory));
     /*
     // Tells express to treat the base directory as relative to the given directory
     // IE localhost:8080/img/blush.png corresponds to public/img/blush.png
@@ -115,6 +117,23 @@ async function launch(){
         const file = path.join(__dirname, './pkmn', 'pkmn-tournament-overlay-tool', 'index.html')
         res.status(200).sendFile(file);
     });
+
+    // blogs
+    const blogsPath = path.join('src', 'blogs');
+    const templatePath = path.join('src', 'templates', 'blog.html');
+    const blogs = fs.readdirSync(blogsPath);
+    for(const file of blogs){
+        const blogInfo = await ConvertMarkdown(templatePath, path.join(blogsPath, file), AppConfig);
+        console.log(blogInfo);
+        app.get([`/blogs/${blogInfo.title}`], async (req, res) => {
+            try{
+                res.status(200).send(blogInfo.html);
+            }catch(e){
+                console.error(e);
+                res.status(404).send("No such blog post exists.")
+            }
+        })
+    }
 
     // Makes an http server out of the express server
     const httpServer = http.createServer(app);
