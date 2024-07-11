@@ -6,7 +6,8 @@ const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
 const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
-const { ConvertMarkdown, InsertOlderNewer } = require('./src/usecases/convert.markdown.usecase');
+const { ConvertMarkdownToBlog, InsertOlderNewer } = require('./src/usecases/convert.markdown.usecase');
+const { PopulateBlogsList } = require('./src/usecases/populate.blog.list.usecase');
 
 // Apply the rate limiting middleware to API calls only
 const app = express();
@@ -124,7 +125,7 @@ async function launch(){
     const blogs = fs.readdirSync(blogsPath);
     const blogInfos = []
     for(const file of blogs){
-        const blogInfo = await ConvertMarkdown(templatePath, path.join(blogsPath, file), AppConfig);
+        const blogInfo = await ConvertMarkdownToBlog(templatePath, path.join(blogsPath, file), AppConfig);
         blogInfos.push(blogInfo);
     }
     // sorted newest to oldest
@@ -139,10 +140,20 @@ async function launch(){
                 res.status(200).send(updated);
             }catch(e){
                 console.error(e);
-                res.status(404).send("No such blog post exists.")
+                res.status(404).send("No such blog post exists.");
             }
         })
     }
+    app.get([`/blogs`], async (req, res) => {
+        try{
+            const templatePath = path.join('src', 'templates', 'blogs.list.html');
+            const html = await PopulateBlogsList(templatePath, blogInfos, AppConfig);
+            res.status(200).send(html);
+        }catch(e){
+            console.error(e);
+            res.status(404).send("No such blog post exists.");
+        }
+    })
 
     // Makes an http server out of the express server
     const httpServer = http.createServer(app);

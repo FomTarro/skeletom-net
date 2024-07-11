@@ -5,11 +5,12 @@ const jsdom = require('jsdom')
 const { JSDOM } = jsdom;
 
 /**
+ * @param {string} templatePath
  * @param {string} markdownPath
  * @param {AppConfig} appConfig 
- * @returns {string} HTML
+ * @returns {object} HTML
  */
-async function usecase(templatePath, markdownPath, appConfig, older, newer){
+async function usecase(templatePath, markdownPath, appConfig){
     const markdown = fs.readFileSync(markdownPath).toString();
     const converter = new showdown.Converter({
         parseImgDimensions: true,
@@ -49,6 +50,7 @@ async function usecase(templatePath, markdownPath, appConfig, older, newer){
         dom.window.document.querySelector('.tags').append(span);        
     }
     dom.window.document.querySelector('#content').innerHTML = html;
+    // TODO: make classdef for this
     return {
         title: slugify(metadata['title']),
         date: metadata.date,
@@ -68,7 +70,8 @@ async function insertNewerOlderLinks(newerMetadata, olderMetadata, pageHtml){
             dom.window.document.querySelector('#newer-post-img').remove();
         }
     }else{
-        dom.window.document.querySelector('#newer-post').innerHTML = "";
+        dom.window.document.querySelector('#newer-post').remove();
+        dom.window.document.querySelector('.other-posts').classList.add("justify-right");
     }
 
     if(olderMetadata){
@@ -80,10 +83,9 @@ async function insertNewerOlderLinks(newerMetadata, olderMetadata, pageHtml){
             dom.window.document.querySelector('#older-post-img').remove();
         }
     }else{
-        dom.window.document.querySelector('#older-post').innerHTML = "";
+        dom.window.document.querySelector('#older-post').remove();
+        dom.window.document.querySelector('.other-posts').classList.add("justify-left");
     }
-
-
     return dom.serialize();
 }
 
@@ -108,5 +110,5 @@ function slugify(title) {
 //     return time;
 // }
 
-module.exports.ConvertMarkdown = usecase;
+module.exports.ConvertMarkdownToBlog = usecase;
 module.exports.InsertOlderNewer = insertNewerOlderLinks;

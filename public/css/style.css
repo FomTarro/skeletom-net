@@ -60,6 +60,7 @@ hr {
   border: none;
   border-bottom: white 1px solid;
   opacity: 0.25;
+  margin-top: 1em;
   margin-bottom: 1em;
 }
 
@@ -116,7 +117,9 @@ h5 {
 
 .other-post {
   flex: 1 1 0px;
+  max-width: calc(50% - 1.5em);
 }
+
 
 .other-post-img {
   width: 50%;
@@ -173,6 +176,11 @@ h5 {
   font-size: 3vmax;
   font-style: italic;
   color: black;
+}
+
+.title-link {
+  text-decoration: none;
+  color: white;
 }
 
 .subtitle {
@@ -284,6 +292,9 @@ h5 {
 @media screen and (min-height: 100vw) {
   .other-posts {
     flex-direction: column;
+  }
+  .other-post {
+    max-width: 100%
   }
   .other-post-img {
     width: 100%;
