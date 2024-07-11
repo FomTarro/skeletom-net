@@ -6,7 +6,7 @@ const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
 const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
-const { ConvertMarkdown } = require('./src/usecases/convert.markdown.usecase');
+const { ConvertMarkdown, InsertOlderNewer } = require('./src/usecases/convert.markdown.usecase');
 
 // Apply the rate limiting middleware to API calls only
 const app = express();
@@ -122,12 +122,21 @@ async function launch(){
     const blogsPath = path.join('src', 'blogs');
     const templatePath = path.join('src', 'templates', 'blog.html');
     const blogs = fs.readdirSync(blogsPath);
+    const blogInfos = []
     for(const file of blogs){
         const blogInfo = await ConvertMarkdown(templatePath, path.join(blogsPath, file), AppConfig);
-        console.log(blogInfo);
-        app.get([`/blogs/${blogInfo.title}`], async (req, res) => {
+        blogInfos.push(blogInfo);
+    }
+    // sorted newest to oldest
+    blogInfos.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+    console.log(blogInfos.map(info => info.date));
+
+    for(let i = 0; i < blogInfos.length; i++){
+        const info = blogInfos[i];
+        app.get([`/blogs/${info.title}`], async (req, res) => {
             try{
-                res.status(200).send(blogInfo.html);
+                const updated = await InsertOlderNewer(blogInfos[i-1], blogInfos[i+1], info.html);
+                res.status(200).send(updated);
             }catch(e){
                 console.error(e);
                 res.status(404).send("No such blog post exists.")

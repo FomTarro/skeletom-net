@@ -9,7 +9,7 @@ const { JSDOM } = jsdom;
  * @param {AppConfig} appConfig 
  * @returns {string} HTML
  */
-async function usecase(templatePath, markdownPath, appConfig){
+async function usecase(templatePath, markdownPath, appConfig, older, newer){
     const markdown = fs.readFileSync(markdownPath).toString();
     const converter = new showdown.Converter({
         parseImgDimensions: true,
@@ -34,18 +34,57 @@ async function usecase(templatePath, markdownPath, appConfig){
         date.content = timestamp;
         date.innerHTML = timestamp;
     }
-    dom.window.document.querySelector('#content').innerHTML = html;
+    // for(const img of dom.window.document.querySelectorAll('.meta-img')){
+    //     title.content = metadata['title'];
+    //     title.innerHTML = metadata['title'];
+    // }
     for(const tag of tags){
         const anchor = dom.window.document.createElement('a');
         anchor.href = `/blogs?tags=${tag}`;
         anchor.innerHTML = tag;
         dom.window.document.querySelector('.tags').append(anchor);
+        const span = dom.window.document.createElement('span');
+        span.innerHTML = " | ";
+        span.classList.add("regular");
+        dom.window.document.querySelector('.tags').append(span);        
     }
+    dom.window.document.querySelector('#content').innerHTML = html;
     return {
         title: slugify(metadata['title']),
+        date: metadata.date,
         html: dom.serialize(),
         metadata
     }
+}
+
+async function insertNewerOlderLinks(newerMetadata, olderMetadata, pageHtml){
+    const dom = new JSDOM(pageHtml);
+    if(newerMetadata){
+        dom.window.document.querySelector('#newer-post-link').href = `/blogs/${newerMetadata.title}`
+        dom.window.document.querySelector('#newer-post-title').innerHTML = newerMetadata.metadata['title'];
+        if(newerMetadata.metadata['thumb']){
+            dom.window.document.querySelector('#newer-post-img').src = newerMetadata.metadata['thumb'];
+        }else{
+            dom.window.document.querySelector('#newer-post-img').remove();
+        }
+    }else{
+        dom.window.document.querySelector('#newer-post').innerHTML = "";
+    }
+
+    if(olderMetadata){
+        dom.window.document.querySelector('#older-post-link').href = `/blogs/${olderMetadata.title}`
+        dom.window.document.querySelector('#older-post-title').innerHTML = olderMetadata.metadata['title'];
+        if(olderMetadata.metadata['thumb']){
+            dom.window.document.querySelector('#older-post-img').src = olderMetadata.metadata['thumb'];
+        }else{
+            dom.window.document.querySelector('#older-post-img').remove();
+        }
+    }else{
+        dom.window.document.querySelector('#older-post').innerHTML = "";
+    }
+
+
+    return dom.serialize();
 }
 
 function slugify(title) {
@@ -70,3 +109,4 @@ function slugify(title) {
 // }
 
 module.exports.ConvertMarkdown = usecase;
+module.exports.InsertOlderNewer = insertNewerOlderLinks;

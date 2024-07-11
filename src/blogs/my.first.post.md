@@ -3,6 +3,7 @@ title: New Site, Who This?
 date: 2024-07-07
 author: Skeletom
 brief: Hey! Welcome to my brand new developent blog!
+thumb: /img/pkmn-thumb.png
 tags: vtubers,general
 ---
 
