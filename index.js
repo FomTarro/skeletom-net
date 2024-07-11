@@ -147,7 +147,10 @@ async function launch(){
     app.get([`/blogs`], async (req, res) => {
         try{
             const templatePath = path.join('src', 'templates', 'blogs.list.html');
-            const html = await PopulateBlogsList(templatePath, blogInfos, AppConfig);
+            const filteredBlogInfos = (req.query && req.query.tags) 
+            ? blogInfos.filter(info => info.tags.includes(req.query.tags)) : blogInfos;
+            // TODO: what if the list is empty? 
+            const html = await PopulateBlogsList(templatePath, filteredBlogInfos, AppConfig);
             res.status(200).send(html);
         }catch(e){
             console.error(e);

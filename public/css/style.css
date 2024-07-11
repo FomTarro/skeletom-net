@@ -73,30 +73,6 @@ h5 {
   margin-bottom: 0.5em;
 }
 
-.highlight {
-  color: #EBE563;
-}
-
-.white {
-  background-color: white;
-}
-
-.dark {
-  background-color: #2E2D31;
-}
-
-.darker {
-  background-color: #242328;
-}
-
-.italic{
-  font-style: italic;
-}
-
-.regular {
-  font-style: normal;
-}
-
 .column {
   height: 100%;
   display: flex;
@@ -185,6 +161,20 @@ h5 {
 
 .subtitle {
   font-style: italic;
+}
+
+.search-bar-item {
+	padding: 0
+}
+
+.search-bar {
+	height: 100%;
+    width: 100%;
+    border: 0;
+    box-sizing: border-box;
+    border-radius: 1.5em;
+    padding: 1em;
+	font-family: 'dustismo_romanbold_italic';
 }
 
 .list {
@@ -277,6 +267,14 @@ h5 {
 
 .font-tiny {
   font-size: 0.65em;
+}
+
+.italic {
+	font-style: italic;
+}
+  
+.regular {
+	font-style: normal;
 }
 
 .translucent {

@@ -35,24 +35,25 @@ async function usecase(templatePath, markdownPath, appConfig){
         date.content = timestamp;
         date.innerHTML = timestamp;
     }
-    // for(const img of dom.window.document.querySelectorAll('.meta-img')){
-    //     title.content = metadata['title'];
-    //     title.innerHTML = metadata['title'];
-    // }
-    for(const tag of tags){
+    // TODO: images
+    for(let i = 0; i < tags.length; i++){
+        const tag = tags[i]
         const anchor = dom.window.document.createElement('a');
         anchor.href = `/blogs?tags=${tag}`;
         anchor.innerHTML = tag;
         dom.window.document.querySelector('.tags').append(anchor);
-        const span = dom.window.document.createElement('span');
-        span.innerHTML = " | ";
-        span.classList.add("regular");
-        dom.window.document.querySelector('.tags').append(span);        
+        if(tags[i+1]){
+            const span = dom.window.document.createElement('span');
+            span.innerHTML = " | ";
+            span.classList.add("regular");
+            dom.window.document.querySelector('.tags').append(span);   
+        }     
     }
     dom.window.document.querySelector('#content').innerHTML = html;
     // TODO: make classdef for this
     return {
         title: slugify(metadata['title']),
+        tags,
         date: metadata.date,
         html: dom.serialize(),
         metadata
