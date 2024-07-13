@@ -7,7 +7,7 @@ thumb: /img/ape-thumb.png
 tags: vtubers,general,unique tag
 ---
 
-![face_2](/img/face_2.png =100x100)
+<!-- ![face_2](/img/face_2.png =100x100) -->
 
 Hey! Welcome to my brand new development blog! 
 

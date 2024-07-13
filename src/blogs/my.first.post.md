@@ -7,7 +7,7 @@ thumb: /img/pkmn-thumb.png
 tags: vtubers,general
 ---
 
-![face_2](/img/face_2.png =100x100)
+<!-- ![face_2](/img/face_2.png =100x100) -->
 
 Hey! Welcome to my brand new development blog! 
 

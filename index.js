@@ -6,7 +6,7 @@ const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
 const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
-const { ConvertMarkdownToBlog, InsertOlderNewer } = require('./src/usecases/convert.markdown.usecase');
+const { EmbedPostInTemplate, GetPostMetadata } = require('./src/usecases/convert.markdown.usecase');
 const { PopulateBlogsList } = require('./src/usecases/populate.blog.list.usecase');
 
 // Apply the rate limiting middleware to API calls only
@@ -17,15 +17,7 @@ async function launch(){
     const baseDirectory = path.join(__dirname, './public');
     app.use(express.json());
     app.use('/', express.static(baseDirectory));
-    /*
-    // Tells express to treat the base directory as relative to the given directory
-    // IE localhost:8080/img/blush.png corresponds to public/img/blush.png
-    app.use('/', express.static(baseDirectory));
-
-    app.get('/about', (req, res) => {
-        res.sendFile((path.join(baseDirectory, 'about.html')))
-    });
-    */
+    
     // Tells the browser to redirect to the given URL
     app.get(['', '/', '/about'], (req, res) => {
         res.redirect('https://skeletom.carrd.co/');
@@ -122,21 +114,20 @@ async function launch(){
     // blogs
     const blogsPath = path.join('src', 'blogs');
     const templatePath = path.join('src', 'templates', 'blog.html');
-    const blogs = fs.readdirSync(blogsPath);
-    const blogInfos = []
-    for(const file of blogs){
-        const blogInfo = await ConvertMarkdownToBlog(templatePath, path.join(blogsPath, file), AppConfig);
-        blogInfos.push(blogInfo);
+    const blogs = []
+    for(const file of fs.readdirSync(blogsPath)){
+        const blogInfo = await GetPostMetadata(path.join(blogsPath, file), AppConfig);
+        blogs.push(blogInfo);
     }
     // sorted newest to oldest
-    blogInfos.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
-    console.log(blogInfos.map(info => info.date));
+    blogs.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+    console.log(blogs.map(info => info.date));
 
-    for(let i = 0; i < blogInfos.length; i++){
-        const info = blogInfos[i];
-        app.get([`/blogs/${info.title}`], async (req, res) => {
+    for(let i = 0; i < blogs.length; i++){
+        const postData = blogs[i];
+        app.get([`/blogs/${postData.title}`], async (req, res) => {
             try{
-                const updated = await InsertOlderNewer(blogInfos[i-1], blogInfos[i+1], info.html);
+                const updated = await EmbedPostInTemplate(blogs[i-1], blogs[i+1], blogs[i], templatePath);
                 res.status(200).send(updated);
             }catch(e){
                 console.error(e);
@@ -148,7 +139,7 @@ async function launch(){
         try{
             const templatePath = path.join('src', 'templates', 'blogs.list.html');
             const filteredBlogInfos = (req.query && req.query.tags) 
-            ? blogInfos.filter(info => info.tags.includes(req.query.tags)) : blogInfos;
+            ? blogs.filter(info => info.tags.includes(req.query.tags)) : blogs;
             // TODO: what if the list is empty? 
             const html = await PopulateBlogsList(templatePath, filteredBlogInfos, AppConfig);
             res.status(200).send(html);

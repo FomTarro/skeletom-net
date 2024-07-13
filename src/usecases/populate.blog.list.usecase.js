@@ -2,6 +2,7 @@ const { AppConfig } = require("../../app.config");
 const fs = require('fs');
 const jsdom = require('jsdom')
 const { JSDOM } = jsdom;
+const { PostData } = require('./convert.markdown.usecase');
 
 async function usecase(templatePath, blogInfos, appConfig){
     const template = fs.readFileSync(templatePath).toString();
@@ -23,25 +24,30 @@ async function usecase(templatePath, blogInfos, appConfig){
     return dom.serialize();
 }
 
+/**
+ * 
+ * @param {HTMLElement} item 
+ * @param {PostData} info 
+ * @param {jsdom.JSDOM} dom 
+ */
 function populateItem(item, info, dom){
     for(const title of item.querySelectorAll('.meta-title')){
-        title.content = info.metadata['title'];
-        title.innerHTML = info.metadata['title']
+        title.content = info.fullTitle
+        title.innerHTML = info.fullTitle
     }
     for(const desc of item.querySelectorAll('.meta-desc')){
-        desc.content = info.metadata['brief'];
-        desc.innerHTML = info.metadata['brief'];
+        desc.content = info.brief
+        desc.innerHTML = info.brief
     }
     for(const date of item.querySelectorAll('.meta-date')){
-        const timestamp = new Date(Date.parse(info.metadata['date'])).toDateString();
+        const timestamp = new Date(info.date).toDateString();
         date.content = timestamp;
         date.innerHTML = timestamp;
     }
     for(const link of item.querySelectorAll('.meta-link')){
         link.href = `/blogs/${info.title}`
     }
-    const tags = info.metadata['tags'].split(',').map(tag => tag.trim().toLowerCase());
-    for(const tag of tags){
+    for(const tag of info.tags){
         const anchor = dom.window.document.createElement('a');
         anchor.href = `/blogs?tags=${tag}`;
         anchor.innerHTML = tag;
