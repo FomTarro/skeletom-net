@@ -6,8 +6,7 @@ const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
 const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
-const { EmbedPostInTemplate, GetPostMetadata } = require('./src/usecases/convert.markdown.usecase');
-const { PopulateBlogsList } = require('./src/usecases/populate.blog.list.usecase');
+const { EmbedPostInTemplate, EmbedPostsInList, GetPostMetadata } = require('./src/usecases/convert.markdown.usecase');
 
 // Apply the rate limiting middleware to API calls only
 const app = express();
@@ -17,10 +16,13 @@ async function launch(){
     const baseDirectory = path.join(__dirname, './public');
     app.use(express.json());
     app.use('/', express.static(baseDirectory));
-    
+
     // Tells the browser to redirect to the given URL
     app.get(['', '/', '/about'], (req, res) => {
-        res.redirect('https://skeletom.carrd.co/');
+        const templatePath = path.join(__dirname, './src', 'templates', 'home.html');
+        res.sendFile(templatePath);
+
+        // res.redirect('https://skeletom.carrd.co/');
     });
     // Tells the browser to redirect to the given URL
     app.get('/stream', (req, res) => {
@@ -138,10 +140,10 @@ async function launch(){
     app.get([`/blogs`], async (req, res) => {
         try{
             const templatePath = path.join('src', 'templates', 'blogs.list.html');
-            const filteredBlogInfos = (req.query && req.query.tags) 
+            const filteredBlogs = (req.query && req.query.tags) 
             ? blogs.filter(info => info.tags.includes(req.query.tags)) : blogs;
             // TODO: what if the list is empty? 
-            const html = await PopulateBlogsList(templatePath, filteredBlogInfos, AppConfig);
+            const html = await EmbedPostsInList(templatePath, filteredBlogs, AppConfig);
             res.status(200).send(html);
         }catch(e){
             console.error(e);
