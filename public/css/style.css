@@ -47,8 +47,8 @@ main {
 	z-index: -1;
 	overflow: hidden;
 	backdrop-filter: blur(1vmin);
-	height: 100%;
-    width: 100%;
+	height: max(100vh, 100%);
+    width: max(100vw, 100%);
 }
 
 header {
@@ -145,8 +145,10 @@ h5 {
 }
 
 .other-post {
-  flex: 1 1 0px;
-  max-width: calc(50% - 1.5em);
+	display: flex;
+	flex-direction: column;
+  	flex: 1 1 0px;
+  	max-width: calc(50% - 1.5em);
 }
 
 

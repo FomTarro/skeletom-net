@@ -6,8 +6,9 @@ const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
 const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
-const { EmbedPostInTemplate, EmbedPostsInList, GetPostMetadata } = require('./src/usecases/convert.markdown.usecase');
-const { EmbedInFrame } = require('./src/usecases/embed.html.usecase');
+const { GetPostMetadata } = require('./src/usecases/convert.markdown.usecase');
+const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive } = require('./src/usecases/embed.html.usecase');
+const { TemplateMap } = require('./src/utils/template.map');
 
 // Apply the rate limiting middleware to API calls only
 const app = express();
@@ -18,12 +19,49 @@ async function launch(){
     app.use(express.json());
     app.use('/', express.static(baseDirectory));
 
+    // blogs
+    const blogsPath = path.join('src', 'blogs');
+    const blogs = []
+    for(const file of fs.readdirSync(blogsPath)){
+        const blogInfo = await GetPostMetadata(path.join(blogsPath, file), AppConfig);
+        blogs.push(blogInfo);
+    }
+    // sorted newest to oldest
+    blogs.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+    console.log(blogs.map(info => info.date));
+
+    for(let i = 0; i < blogs.length; i++){
+        blogs[i].older = blogs[i+1]
+        blogs[i].newer = blogs[i-1]
+        app.get([`/blogs/${blogs[i].title}`], async (req, res) => {
+            try{
+                const blogPage = await GenerateFullBlogPost(blogs[i], TemplateMap);
+                res.status(200).send(blogPage);
+            }catch(e){
+                console.error(e);
+                res.status(404).send("No such blog post exists.");
+            }
+        })
+    }
+    app.get([`/blogs`], async (req, res) => {
+        try{
+            const filteredBlogs = (req.query && req.query.tags) 
+            ? blogs.filter(info => info.tags.includes(req.query.tags) 
+            || info.fullTitle.split(' ').find(word => word.toLowerCase() === req.query.tags.toLowerCase())) 
+            : blogs;
+            // TODO: what if the list is empty? 
+            const html = await GenerateBlogArchive( filteredBlogs, TemplateMap);
+            res.status(200).send(html);
+        }catch(e){
+            console.error(e);
+            res.status(404).send("No such blog post exists.");
+        }
+    })
+
     // Tells the browser to redirect to the given URL
     app.get(['', '/', '/about'], async (req, res) => {
-        const templatePath = path.join(__dirname, './src', 'templates', 'frame.html');
-        const contentPath = path.join(__dirname, './src', 'templates', 'homepage.content.html');
         // res.sendFile(templatePath);
-        res.status(200).send(await EmbedInFrame(templatePath, contentPath, AppConfig));
+        res.status(200).send(await GenerateHomePage(blogs, TemplateMap));
         // res.redirect('https://skeletom.carrd.co/');
     });
     // Tells the browser to redirect to the given URL
@@ -114,44 +152,6 @@ async function launch(){
         const file = path.join(__dirname, './pkmn', 'pkmn-tournament-overlay-tool', 'index.html')
         res.status(200).sendFile(file);
     });
-
-    // blogs
-    const blogsPath = path.join('src', 'blogs');
-    const templatePath = path.join('src', 'templates', 'blog.html');
-    const blogs = []
-    for(const file of fs.readdirSync(blogsPath)){
-        const blogInfo = await GetPostMetadata(path.join(blogsPath, file), AppConfig);
-        blogs.push(blogInfo);
-    }
-    // sorted newest to oldest
-    blogs.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
-    console.log(blogs.map(info => info.date));
-
-    for(let i = 0; i < blogs.length; i++){
-        const postData = blogs[i];
-        app.get([`/blogs/${postData.title}`], async (req, res) => {
-            try{
-                const updated = await EmbedPostInTemplate(blogs[i-1], blogs[i+1], blogs[i], templatePath);
-                res.status(200).send(updated);
-            }catch(e){
-                console.error(e);
-                res.status(404).send("No such blog post exists.");
-            }
-        })
-    }
-    app.get([`/blogs`], async (req, res) => {
-        try{
-            const templatePath = path.join('src', 'templates', 'blogs.list.html');
-            const filteredBlogs = (req.query && req.query.tags) 
-            ? blogs.filter(info => info.tags.includes(req.query.tags)) : blogs;
-            // TODO: what if the list is empty? 
-            const html = await EmbedPostsInList(templatePath, filteredBlogs, AppConfig);
-            res.status(200).send(html);
-        }catch(e){
-            console.error(e);
-            res.status(404).send("No such blog post exists.");
-        }
-    })
 
     // Makes an http server out of the express server
     const httpServer = http.createServer(app);
