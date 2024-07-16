@@ -7,6 +7,7 @@ const { GetToken } = require('./src/usecases/get.token.usecase');
 const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
 const { EmbedPostInTemplate, EmbedPostsInList, GetPostMetadata } = require('./src/usecases/convert.markdown.usecase');
+const { EmbedInFrame } = require('./src/usecases/embed.html.usecase');
 
 // Apply the rate limiting middleware to API calls only
 const app = express();
@@ -18,10 +19,11 @@ async function launch(){
     app.use('/', express.static(baseDirectory));
 
     // Tells the browser to redirect to the given URL
-    app.get(['', '/', '/about'], (req, res) => {
-        const templatePath = path.join(__dirname, './src', 'templates', 'home.html');
-        res.sendFile(templatePath);
-
+    app.get(['', '/', '/about'], async (req, res) => {
+        const templatePath = path.join(__dirname, './src', 'templates', 'frame.html');
+        const contentPath = path.join(__dirname, './src', 'templates', 'homepage.content.html');
+        // res.sendFile(templatePath);
+        res.status(200).send(await EmbedInFrame(templatePath, contentPath, AppConfig));
         // res.redirect('https://skeletom.carrd.co/');
     });
     // Tells the browser to redirect to the given URL
