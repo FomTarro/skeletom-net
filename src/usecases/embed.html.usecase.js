@@ -25,8 +25,11 @@ async function embedContentInFrame(templateMap, content){
 async function generateHomePage(blogs, templateMap){
     const template = templateMap.HOMEPAGE;
     const dom = new JSDOM(template);
-    for(let i = 0; i < blogs.length; i++){
+    for(let i = 0; (i < blogs.length && i < 3); i++){
         dom.window.document.querySelector('#latest-blogs').innerHTML += await generateThumbnailBlogPost(blogs[i], templateMap);
+    }
+    for(const counter of dom.window.document.querySelectorAll('.blogs-total')){
+        counter.innerHTML = blogs.length;
     }
     return await embedContentInFrame(templateMap, dom.serialize());
 }

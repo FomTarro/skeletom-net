@@ -48,7 +48,7 @@ main {
 	overflow: hidden;
 	backdrop-filter: blur(1vmin);
 	height: max(100vh, 100%);
-    width: max(100vw, 100%);
+    width: 100%;
 }
 
 header {
@@ -140,8 +140,17 @@ h5 {
     justify-content: center;
 }
 
+.center-align {
+	text-align: center;
+}
+
 .float-left {
 	float: left;
+}
+
+.latest-list {
+	padding-top: 0.5em;
+	gap: 1em;
 }
 
 .other-post {
@@ -435,6 +444,10 @@ h5 {
 		float: none;
 		width: 100%;
 		object-position: center;
+	}
+
+	.latest-list {
+		flex-direction: column;
 	}
 
 
