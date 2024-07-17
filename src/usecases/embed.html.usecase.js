@@ -95,6 +95,18 @@ async function embedPostInTemplate(post, template, templateMap){
         }
     }
 
+    if(dom.window.document.querySelector('#related-posts')){
+        console.log('related...');
+        if(post.newer){
+            const newerThumbnail = await generateThumbnailBlogPost(post.newer, templateMap);
+            dom.window.document.querySelector('#related-posts').innerHTML += newerThumbnail;
+        }
+        if(post.older){
+            const olderThumbnail = await generateThumbnailBlogPost(post.older, templateMap);
+            dom.window.document.querySelector('#related-posts').innerHTML += olderThumbnail;
+        }
+    }
+
     // nav links
     if(dom.window.document.querySelector('#newer-post')){
         if(post.newer){
