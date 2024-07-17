@@ -3,7 +3,7 @@ title: A Post About Apes From The Future
 date: 2024-09-10
 author: Skeletom
 brief: Hey! Welcome to my brand new developent blog!
-thumb: /img/ape-thumb.png
+thumb: /img/torkjam.gif
 tags: vtubers,general
 ---
 

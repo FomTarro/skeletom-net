@@ -28,18 +28,18 @@ html {
 	position: relative;
 	color: white;
 	font-family: 'dustismo_romanregular';
-	font-size: min(2vmax, 1.5em);
+	/* font-size: min(2vmax, 1.5em); */
 	margin: 0;
 	padding: 0;
 	backdrop-filter: blur(1vmin);
 	animation: anim-scroll 16s linear infinite;
-	background: conic-gradient(#FEB3D0 25%, #F2C5D9 0 50%, #F0F2F1 0 75%, #F0DAE6 0) 0 0/20vmin 20vmin;
+	background: conic-gradient(#FEB3D0 25%, #F2C5D9 0 50%, #F0F2F1 0 75%, #F0DAE6 0) 0 0/40vmin 40vmin;
 	box-sizing: border-box;
 	height: inherit
 }
 
 main {
-	padding: 1em 2em 2em 2em;
+	padding: 1.5em 2.5em 2.5em 2.5em;
 }
 
 .blur {
@@ -103,7 +103,14 @@ hr {
 }
 
 h1 {
-  margin-bottom: 0.1em;
+	font-size: 2.5em;
+	margin-top: 0.1rem;
+  	margin-bottom: 0.1em;
+}
+
+h3 {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
 }
 
 h5 {
@@ -122,7 +129,7 @@ h5 {
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
-	gap: 3em;
+	gap: 3rem;
 	align-content: flex-start;
 }
 
@@ -131,7 +138,7 @@ h5 {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	gap: 3em;
+	gap: 3rem;
 }
 
 .flex-center {
@@ -146,22 +153,31 @@ h5 {
 }
 
 .latest-list {
+	align-items: flex-start;
 	padding-top: 0.5em;
-	gap: 1em;
+	gap: 1rem;
+	padding-bottom: 0.5em;
+}
+
+.other-posts .other-post-img{
+	max-height: 7em;
 }
 
 .other-post {
 	display: flex;
 	flex-direction: column;
   	flex: 1 1 0px;
-  	/* max-width: calc(50% - 1.5em); */
 }
 
 
 .other-post-img {
-  height: 5em;
-  object-fit: scale-down;
-  filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.45));
+	/* width: 100%; */
+	/* max-height: 5em;
+    max-width: 100%; */
+    object-fit: contain;
+	max-height: 12em;
+	max-width: 100%;
+	filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.45));
 }
 
 .item {
@@ -174,40 +190,40 @@ h5 {
 }
 
 .item-label {
-  padding: 0.75em 1.5em;
-  position: absolute;
-  top: -1.25em;
-  left: -1em;
-  height: 1em;
-  width: fit-content;
-  box-sizing: content-box;
-  line-height: 1em;
-  overflow-y: hidden;
-  /* font-style: italic; */
+	padding: 0.75em 1.5em;
+	position: absolute;
+	top: -1.25em;
+	left: -1em;
+	height: 1em;
+	width: fit-content;
+	box-sizing: content-box;
+	line-height: 1em;
+	overflow-y: hidden;
+	/* font-style: italic; */
 }
 
 .item-label-below {
-  padding: 0.75em 1.5em;
-  position: absolute;
-  bottom: -1em;
-  right: -1em;
-  height: 1em;
-  width: fit-content;
-  box-sizing: content-box;
-  line-height: 1em;
-  overflow-y: hidden;
-  /* font-style: italic; */
+	padding: 0.75em 1.5em;
+	position: absolute;
+	bottom: -1em;
+	right: -1em;
+	height: 1em;
+	width: fit-content;
+	box-sizing: content-box;
+	line-height: 1em;
+	overflow-y: hidden;
+	/* font-style: italic; */
 }
 
 .title {
 	font-family: 'dustismo_romanbold_italic';
-	font-size: 3vmax;
+	font-size: 4vmax;
 	font-style: italic;
 	color: black;
 }
 
 .title-main {
-	padding: 4.5vh;
+	padding: 3.5vh;
 }
 
 .title-text {
@@ -244,7 +260,7 @@ h5 {
 
 .webring-tray {
 	flex-wrap: wrap;
-	gap: 1em;
+	gap: 1rem;
 }
 
 .webring-tray :nth-child(n){
@@ -254,7 +270,7 @@ h5 {
 
 .thumbnail {
 	margin-top: 1em;
-    max-height: 10em;
+    max-height: 20em;
     max-width: 100%;
     object-fit: contain;
     object-position: left;
@@ -280,6 +296,7 @@ h5 {
 .float-left {
 	margin-top: 0em;
 	float: left;
+	max-height: 15em;
 }
 
 .highlight {
@@ -307,7 +324,7 @@ h5 {
 }
 
 .font-medium {
-  font-size: 1.75em;
+  font-size: 1.5em;
 }
 
 .font-small {
@@ -315,7 +332,7 @@ h5 {
 }
 
 .font-tiny {
-  font-size: 0.65em;
+  font-size: 0.85em;
 }
 
 .italic {
@@ -338,8 +355,8 @@ h5 {
 	display: grid;
 	grid-template-columns: repeat(6, 1fr);
 	grid-template-rows: 1fr;
-	grid-column-gap: 3em;
-	grid-row-gap: 3em;
+	grid-column-gap: 3rem;
+	grid-row-gap: 3rem;
 }
   /*<row-start> / <column-start> / <row-end> / <column-end>*/
 .div1 { grid-area: 1 / 1 / 2 / end-2; }
@@ -347,7 +364,7 @@ h5 {
 
 .contact-column {
     display: flex;
-    gap: 0.5em;
+    gap: 0.5rem;
     height: 100%;
     flex-direction: column;
     justify-content: flex-start;
@@ -355,6 +372,8 @@ h5 {
 
 .contact-item {
 	font-size: 0.85em;
+	justify-content: flex-start;
+	gap: 1rem;
 }
 
 .fa-lg {
@@ -385,7 +404,7 @@ h5 {
 }
 
 .marquee {
-	--gap: 1.5em;
+	--gap: 1.5rem;
 	display: flex;
 	overflow: hidden;
 	user-select: none;
@@ -422,12 +441,14 @@ h5 {
   }
 
 /* taller than wide */
-@media screen and (min-height: 100vw) {
+@media screen and (min-height: 85vw) {
 	.other-posts {
 		flex-direction: column;
+		gap: 0.5rem;
 	}
 	.other-post {
-		max-width: 100%
+		/* max-width: 100% */
+		width: 100%
 	}
 
   	.homepage-row {
