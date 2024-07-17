@@ -90,6 +90,7 @@ a:hover {
 
 iframe {
 	filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.45));
+	max-width: 100%;
 }
 
 hr {
@@ -247,6 +248,7 @@ h5 {
 
 .webring-tray {
 	flex-wrap: wrap;
+	gap: 1em;
 }
 
 .webring-tray :nth-child(n){
