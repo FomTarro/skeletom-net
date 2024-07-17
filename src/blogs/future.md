@@ -4,7 +4,7 @@ date: 2024-09-10
 author: Skeletom
 brief: Hey! Welcome to my brand new developent blog!
 thumb: /img/torkjam.gif
-tags: vtubers,general
+tags: vtubers,general,vts-heartrate
 ---
 
 <!-- ![face_2](/img/face_2.png =100x100) -->

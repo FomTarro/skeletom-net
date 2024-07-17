@@ -357,6 +357,7 @@ h5 {
 	grid-template-rows: 1fr;
 	grid-column-gap: 3rem;
 	grid-row-gap: 3rem;
+	width: 100%;
 }
   /*<row-start> / <column-start> / <row-end> / <column-end>*/
 .div1 { grid-area: 1 / 1 / 2 / 10; }

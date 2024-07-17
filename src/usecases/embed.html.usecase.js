@@ -1,7 +1,7 @@
 const jsdom = require('jsdom')
 const { JSDOM } = jsdom;
 const { TemplateMap } = require('../utils/template.map');
-const { PostData } = require('./convert.markdown.usecase');
+const { PostData, FilterPostMetadata, Blogs, Projects } = require('./convert.markdown.usecase');
 
 /**
  * 
@@ -67,7 +67,7 @@ async function embedPostInTemplate(post, template, templateMap){
     }
     for(const date of dom.window.document.querySelectorAll('.meta-date')){
         date.content = post.date;
-        date.innerHTML = post.date;
+        date.innerHTML = new Date(post.date).toDateString();
     }
     for(const img of dom.window.document.querySelectorAll('.meta-img')){
         img.content = post.thumbnail;
@@ -96,14 +96,14 @@ async function embedPostInTemplate(post, template, templateMap){
     }
 
     if(dom.window.document.querySelector('#related-posts')){
-        console.log('related...');
-        if(post.newer){
-            const newerThumbnail = await generateThumbnailBlogPost(post.newer, templateMap);
-            dom.window.document.querySelector('#related-posts').innerHTML += newerThumbnail;
-        }
-        if(post.older){
-            const olderThumbnail = await generateThumbnailBlogPost(post.older, templateMap);
-            dom.window.document.querySelector('#related-posts').innerHTML += olderThumbnail;
+        // TODO: this should probably be passed in, not directly accessed.
+        if(post.related.length > 0){
+            for(const relatedPost of post.related){
+                const newerThumbnail = await generateThumbnailBlogPost(relatedPost, templateMap);
+                dom.window.document.querySelector('#related-posts').innerHTML += newerThumbnail;
+            }
+        }else {
+            dom.window.document.querySelector('#related-posts').innerHTML = "No related posts found :("
         }
     }
 
@@ -181,7 +181,7 @@ async function generateThumbnailBlogPost(post, templateMap){
 
 /**
  * 
- * @param {PostData[]} blogs - List of all Blogs
+ * @param {PostData[]} blogs - List of all Blogs that we want to display.
  * @param {TemplateMap} templateMap 
  * @returns {string} HTML
  */

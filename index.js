@@ -1,12 +1,11 @@
 const http = require('http');
 const path = require('path');
 const express = require('express');
-const fs = require('fs');
 const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
 const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
-const { GetPostMetadata } = require('./src/usecases/convert.markdown.usecase');
+const { Blogs, Projects, FilterPostMetadata, PopulatePostLists } = require('./src/usecases/convert.markdown.usecase');
 const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive } = require('./src/usecases/embed.html.usecase');
 const { TemplateMap } = require('./src/utils/template.map');
 
@@ -18,34 +17,11 @@ async function launch(){
     const baseDirectory = path.join(__dirname, './public');
     app.use(express.json());
     app.use('/', express.static(baseDirectory));
-
-    // blogs
-    const blogsPath = path.join('src', 'blogs');
-    const blogs = []
-    for(const file of fs.readdirSync(blogsPath)){
-        const blogInfo = await GetPostMetadata(path.join(blogsPath, file), "blogs", AppConfig);
-        blogs.push(blogInfo);
-    }
-    // sorted newest to oldest
-    blogs.sort((a, b) => Date.parse(b.updated) - Date.parse(a.updated));
-
-    // projects
-    const projectsPath = path.join('src', 'projects');
-    const projects = []
-    for(const file of fs.readdirSync(projectsPath)){
-        const projectInfo = await GetPostMetadata(path.join(projectsPath, file), "projects", AppConfig);
-        projects.push(projectInfo);
-    }
-    // sorted newest to oldest
-    projects.sort((a, b) => Date.parse(b.updated) - Date.parse(a.updated));
-
-
-    for(let i = 0; i < blogs.length; i++){
-        blogs[i].older = blogs[i+1]
-        blogs[i].newer = blogs[i-1]
-        app.get([`/blogs/${blogs[i].title}`], async (req, res) => {
+    await PopulatePostLists();
+    for(let i = 0; i < Blogs.length; i++){
+        app.get([`/blogs/${Blogs[i].title}`], async (req, res) => {
             try{
-                const blogPage = await GenerateFullBlogPost(blogs[i], TemplateMap);
+                const blogPage = await GenerateFullBlogPost(Blogs[i], TemplateMap);
                 res.status(200).send(blogPage);
             }catch(e){
                 console.error(e);
@@ -54,12 +30,10 @@ async function launch(){
         })
     }
 
-    for(let i = 0; i < projects.length; i++){
-        projects[i].older = projects[i+1]
-        projects[i].newer = projects[i-1]
-        app.get([`/projects/${projects[i].title}`], async (req, res) => {
+    for(let i = 0; i < Projects.length; i++){
+        app.get([`/projects/${Projects[i].title}`], async (req, res) => {
             try{
-                const projectPage = await GenerateFullBlogPost(projects[i], TemplateMap);
+                const projectPage = await GenerateFullBlogPost(Projects[i], TemplateMap);
                 res.status(200).send(projectPage);
             }catch(e){
                 console.error(e);
@@ -70,12 +44,10 @@ async function launch(){
 
     app.get([`/blogs`], async (req, res) => {
         try{
-            const filteredBlogs = (req.query && req.query.tags) 
-            ? blogs.filter(info => info.tags.includes(req.query.tags) 
-            || info.fullTitle.split(' ').find(word => word.toLowerCase() === req.query.tags.toLowerCase())) 
-            : blogs;
-            // TODO: what if the list is empty? 
-            const html = await GenerateBlogArchive( filteredBlogs, TemplateMap);
+            const filteredBlogs = FilterPostMetadata(
+                Blogs, 
+                (req.query && req.query.tags) ? req.query.tags : undefined);
+            const html = await GenerateBlogArchive(filteredBlogs, TemplateMap);
             res.status(200).send(html);
         }catch(e){
             console.error(e);
@@ -86,7 +58,7 @@ async function launch(){
     // Tells the browser to redirect to the given URL
     app.get(['', '/', '/about'], async (req, res) => {
         // res.sendFile(templatePath);
-        res.status(200).send(await GenerateHomePage(blogs, projects, TemplateMap));
+        res.status(200).send(await GenerateHomePage(Blogs, Projects, TemplateMap));
         // res.redirect('https://skeletom.carrd.co/');
     });
     // Tells the browser to redirect to the given URL
