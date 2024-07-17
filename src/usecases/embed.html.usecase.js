@@ -35,48 +35,49 @@ async function generateHomePage(blogs, templateMap){
 }
 
 /**
- * @param {PostData} metadata - This post.
+ * @param {PostData} post - This post.
  * @param {string} template - Template HTML
+ * @param {TemplateMap} templateMap - Map of other Template paths.
  * @returns {string} - Modified HTML 
  */
-async function embedPostInTemplate(metadata, template){
+async function embedPostInTemplate(post, template, templateMap){
     const dom = new JSDOM(template);
     const content = dom.window.document.querySelector('#post-content');
     if(content){
-        content.innerHTML = metadata.html;
+        content.innerHTML += post.html;
     }
 
     // fill in content
     for(const title of dom.window.document.querySelectorAll('.meta-title')){
-        title.content = metadata.fullTitle;
-        title.innerHTML = metadata.fullTitle;
+        title.content = post.fullTitle;
+        title.innerHTML = post.fullTitle;
     }
     for(const desc of dom.window.document.querySelectorAll('.meta-desc')){
-        desc.content = metadata.brief
-        desc.innerHTML = metadata.brief
+        desc.content = post.brief
+        desc.innerHTML = post.brief
     }
     for(const date of dom.window.document.querySelectorAll('.meta-date')){
-        date.content = metadata.date;
-        date.innerHTML = metadata.date;
+        date.content = post.date;
+        date.innerHTML = post.date;
     }
     for(const img of dom.window.document.querySelectorAll('.meta-img')){
-        img.content = metadata.thumbnail;
-        img.src = metadata.thumbnail;
+        img.content = post.thumbnail;
+        img.src = post.thumbnail;
     }
     for(const link of dom.window.document.querySelectorAll('.meta-self-link')){
-        link.href = `/blogs/${metadata.title}`;
+        link.href = `/blogs/${post.title}`;
     }
 
     // tags
     const tags = dom.window.document.querySelector('.tags')
     if(tags){
-        for(let i = 0; i < metadata.tags.length; i++){
-            const tag = metadata.tags[i]
+        for(let i = 0; i < post.tags.length; i++){
+            const tag = post.tags[i]
             const anchor = dom.window.document.createElement('a');
             anchor.href = `/blogs?tags=${tag}`;
             anchor.innerHTML = tag;
             tags.append(anchor);
-            if(metadata.tags[i+1]){
+            if(post.tags[i+1]){
                 const span = dom.window.document.createElement('span');
                 span.innerHTML = " | ";
                 span.classList.add("regular");
@@ -87,35 +88,26 @@ async function embedPostInTemplate(metadata, template){
 
     // nav links
     if(dom.window.document.querySelector('#newer-post')){
-        if(metadata.newer){
+        if(post.newer){
+            const newerThumbnail = await generateThumbnailBlogPost(post.newer, templateMap);
             for(const link of dom.window.document.querySelectorAll('.newer-post-link')){
-                link.href = `/blogs/${metadata.newer.title}`
+                link.href = `/blogs/${post.newer.title}`
             }
-            dom.window.document.querySelector('#newer-post-title').innerHTML = metadata.newer.fullTitle;
-            if(metadata.newer.thumbnail){
-                dom.window.document.querySelector('#newer-post-img').src = metadata.newer.thumbnail;
-            }else{
-                dom.window.document.querySelector('#newer-post-img').remove();
-            }
+            dom.window.document.querySelector('#newer-post').innerHTML = newerThumbnail;
         }else{
-            dom.window.document.querySelector('#newer-post').remove();
+            dom.window.document.querySelector('#newer-post').parentElement.remove();
             dom.window.document.querySelector('.other-posts').classList.add("justify-right");
         }
     }
-
     if(dom.window.document.querySelector('#older-post')){
-        if(metadata.older){
+        if(post.older){
+            const olderThumbnail = await generateThumbnailBlogPost(post.older, templateMap);
             for(const link of dom.window.document.querySelectorAll('.older-post-link')){
-                link.href = `/blogs/${metadata.older.title}`
+                link.href = `/blogs/${post.older.title}`
             }
-            dom.window.document.querySelector('#older-post-title').innerHTML = metadata.older.fullTitle;
-            if(metadata.older.thumbnail){
-                dom.window.document.querySelector('#older-post-img').src = metadata.older.thumbnail;
-            }else{
-                dom.window.document.querySelector('#older-post-img').remove();
-            }
+            dom.window.document.querySelector('#older-post').innerHTML = olderThumbnail;
         }else{
-            dom.window.document.querySelector('#older-post').remove();
+            dom.window.document.querySelector('#older-post').parentElement.remove();
             dom.window.document.querySelector('.other-posts').classList.add("justify-left");
         }
     }
@@ -125,16 +117,15 @@ async function embedPostInTemplate(metadata, template){
 
 /**
  * 
- * @param {PostData} current 
- * @param {PostData} newer 
- * @param {PostData} older 
+ * @param {PostData} post 
  * @param {TemplateMap} templateMap 
  * @returns {string} HTML
  */
-async function generateFullBlogPost(current, templateMap){
-    // We involve the outer frame here so that it can get its meta tags updated in the same sweep
+async function generateFullBlogPost(post, templateMap){
+    // We involve the outer frame here so that it can 
+    // get its meta tags updated in the same sweep
     const frame = await embedContentInFrame(templateMap, templateMap.BLOG_ITEM_FULL);
-    return await embedPostInTemplate(current, frame);
+    return await embedPostInTemplate(post, frame, templateMap);
 }
 
 /**
@@ -144,7 +135,7 @@ async function generateFullBlogPost(current, templateMap){
  * @returns 
  */
 async function generatePreviewBlogPost(post, templateMap){
-    return await embedPostInTemplate(post, templateMap.BLOG_ITEM_PREVIEW);
+    return await embedPostInTemplate(post, templateMap.BLOG_ITEM_PREVIEW, templateMap);
 }
 
 /**
@@ -154,7 +145,7 @@ async function generatePreviewBlogPost(post, templateMap){
  * @returns 
  */
 async function generateMinimalBlogPost(post, templateMap){
-    return await embedPostInTemplate(post, templateMap.BLOG_ITEM_MINIMAL);
+    return await embedPostInTemplate(post, templateMap.BLOG_ITEM_MINIMAL, templateMap);
 }
 
 /**
@@ -164,7 +155,7 @@ async function generateMinimalBlogPost(post, templateMap){
  * @returns 
  */
 async function generateThumbnailBlogPost(post, templateMap){
-    return await embedPostInTemplate(post, templateMap.BLOG_ITEM_THUMBNAIL);
+    return await embedPostInTemplate(post, templateMap.BLOG_ITEM_THUMBNAIL, templateMap);
 }
 
 /**
@@ -190,6 +181,21 @@ async function generateBlogArchive(blogs, templateMap){
     return dom.serialize();
 }
 
+/**
+ * 
+ * @param {PostData} project 
+ * @param {PostData[]} blogs 
+ * @param {TemplateMap} templateMap 
+ * @returns 
+ */
+async function generateFullProjectPost(project, blogs, templateMap){
+    // We involve the outer frame here so that it can 
+    // get its meta tags updated in the same sweep
+    const frame = await embedContentInFrame(templateMap, templateMap.PROJECT_ITEM_FULL);
+    return await embedPostInTemplate(project, frame, templateMap);
+}
+
 module.exports.GenerateHomePage = generateHomePage;
 module.exports.GenerateFullBlogPost = generateFullBlogPost;
 module.exports.GenerateBlogArchive = generateBlogArchive;
+module.exports.GenerateFullProjectPost = generateFullProjectPost;

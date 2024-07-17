@@ -145,10 +145,6 @@ h5 {
 	text-align: center;
 }
 
-.float-left {
-	float: left;
-}
-
 .latest-list {
 	padding-top: 0.5em;
 	gap: 1em;
@@ -158,7 +154,7 @@ h5 {
 	display: flex;
 	flex-direction: column;
   	flex: 1 1 0px;
-  	max-width: calc(50% - 1.5em);
+  	/* max-width: calc(50% - 1.5em); */
 }
 
 
@@ -281,6 +277,11 @@ h5 {
   align-items: flex-end;
 }
 
+.float-left {
+	margin-top: 0em;
+	float: left;
+}
+
 .highlight {
   color: #EBE563;
 }
@@ -346,7 +347,7 @@ h5 {
 
 .contact-column {
     display: flex;
-    gap: 1em;
+    gap: 0.5em;
     height: 100%;
     flex-direction: column;
     justify-content: flex-start;
@@ -427,9 +428,6 @@ h5 {
 	}
 	.other-post {
 		max-width: 100%
-	}
-	.other-post-img {
-		width: 100%;
 	}
 
   	.homepage-row {
