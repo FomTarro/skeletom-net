@@ -98,8 +98,8 @@ hr {
 	border: none;
 	border-bottom: white 1px solid;
 	opacity: 0.25;
-	/* margin-top: 1em;
-	margin-bottom: 1em; */
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 
 h1 {
@@ -353,13 +353,13 @@ h5 {
 
 .homepage-row {
 	display: grid;
-	grid-template-columns: repeat(6, 1fr);
+	grid-template-columns: repeat(12, 1fr);
 	grid-template-rows: 1fr;
 	grid-column-gap: 3rem;
 	grid-row-gap: 3rem;
 }
   /*<row-start> / <column-start> / <row-end> / <column-end>*/
-.div1 { grid-area: 1 / 1 / 2 / end-2; }
+.div1 { grid-area: 1 / 1 / 2 / 10; }
 .div2 { grid-area: 1 / 10 / 2 / end; }
 
 .contact-column {

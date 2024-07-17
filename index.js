@@ -23,12 +23,22 @@ async function launch(){
     const blogsPath = path.join('src', 'blogs');
     const blogs = []
     for(const file of fs.readdirSync(blogsPath)){
-        const blogInfo = await GetPostMetadata(path.join(blogsPath, file), AppConfig);
+        const blogInfo = await GetPostMetadata(path.join(blogsPath, file), "blogs", AppConfig);
         blogs.push(blogInfo);
     }
     // sorted newest to oldest
-    blogs.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
-    console.log(blogs.map(info => info.date));
+    blogs.sort((a, b) => Date.parse(b.updated) - Date.parse(a.updated));
+
+    // projects
+    const projectsPath = path.join('src', 'projects');
+    const projects = []
+    for(const file of fs.readdirSync(projectsPath)){
+        const projectInfo = await GetPostMetadata(path.join(projectsPath, file), "projects", AppConfig);
+        projects.push(projectInfo);
+    }
+    // sorted newest to oldest
+    projects.sort((a, b) => Date.parse(b.updated) - Date.parse(a.updated));
+
 
     for(let i = 0; i < blogs.length; i++){
         blogs[i].older = blogs[i+1]
@@ -43,6 +53,21 @@ async function launch(){
             }
         })
     }
+
+    for(let i = 0; i < projects.length; i++){
+        projects[i].older = projects[i+1]
+        projects[i].newer = projects[i-1]
+        app.get([`/projects/${projects[i].title}`], async (req, res) => {
+            try{
+                const projectPage = await GenerateFullBlogPost(projects[i], TemplateMap);
+                res.status(200).send(projectPage);
+            }catch(e){
+                console.error(e);
+                res.status(404).send("No such project exists.");
+            }
+        })
+    }
+
     app.get([`/blogs`], async (req, res) => {
         try{
             const filteredBlogs = (req.query && req.query.tags) 
@@ -61,7 +86,7 @@ async function launch(){
     // Tells the browser to redirect to the given URL
     app.get(['', '/', '/about'], async (req, res) => {
         // res.sendFile(templatePath);
-        res.status(200).send(await GenerateHomePage(blogs, TemplateMap));
+        res.status(200).send(await GenerateHomePage(blogs, projects, TemplateMap));
         // res.redirect('https://skeletom.carrd.co/');
     });
     // Tells the browser to redirect to the given URL

@@ -20,9 +20,10 @@ async function embedContentInFrame(templateMap, content){
  * 
  * @param {TemplateMap} templateMap 
  * @param {PostData[]} blogs
+ * @param {PostData[]} projects
  * @returns {string} HTML
  */
-async function generateHomePage(blogs, templateMap){
+async function generateHomePage(blogs, projects, templateMap){
     const template = templateMap.HOMEPAGE;
     const dom = new JSDOM(template);
     for(let i = 0; (i < blogs.length && i < 3); i++){
@@ -31,6 +32,14 @@ async function generateHomePage(blogs, templateMap){
     for(const counter of dom.window.document.querySelectorAll('.blogs-total')){
         counter.innerHTML = blogs.length;
     }
+
+    for(let i = 0; (i < projects.length && i < 3); i++){
+        dom.window.document.querySelector('#latest-projects').innerHTML += await generateThumbnailBlogPost(projects[i], templateMap);
+    }
+    for(const counter of dom.window.document.querySelectorAll('.projects-total')){
+        counter.innerHTML = projects.length;
+    }
+
     return await embedContentInFrame(templateMap, dom.serialize());
 }
 
@@ -65,7 +74,7 @@ async function embedPostInTemplate(post, template, templateMap){
         img.src = post.thumbnail;
     }
     for(const link of dom.window.document.querySelectorAll('.meta-self-link')){
-        link.href = `/blogs/${post.title}`;
+        link.href = `/${post.classification}/${post.title}`;
     }
 
     // tags
@@ -74,7 +83,7 @@ async function embedPostInTemplate(post, template, templateMap){
         for(let i = 0; i < post.tags.length; i++){
             const tag = post.tags[i]
             const anchor = dom.window.document.createElement('a');
-            anchor.href = `/blogs?tags=${tag}`;
+            anchor.href = `/${post.classification}?tags=${tag}`;
             anchor.innerHTML = tag;
             tags.append(anchor);
             if(post.tags[i+1]){
@@ -91,7 +100,7 @@ async function embedPostInTemplate(post, template, templateMap){
         if(post.newer){
             const newerThumbnail = await generateThumbnailBlogPost(post.newer, templateMap);
             for(const link of dom.window.document.querySelectorAll('.newer-post-link')){
-                link.href = `/blogs/${post.newer.title}`
+                link.href = `/${post.classification}/${post.newer.title}`
             }
             dom.window.document.querySelector('#newer-post').innerHTML = newerThumbnail;
         }else{
@@ -103,7 +112,7 @@ async function embedPostInTemplate(post, template, templateMap){
         if(post.older){
             const olderThumbnail = await generateThumbnailBlogPost(post.older, templateMap);
             for(const link of dom.window.document.querySelectorAll('.older-post-link')){
-                link.href = `/blogs/${post.older.title}`
+                link.href = `/${post.classification}/${post.older.title}`
             }
             dom.window.document.querySelector('#older-post').innerHTML = olderThumbnail;
         }else{
