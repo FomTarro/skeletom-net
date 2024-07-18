@@ -15,7 +15,7 @@ A VTube Studio plugin that allows for connectivity between heart rate monitors (
 
 <!--more-->
 
-[Get the plugin for free!](https://skeletom-ch.itch.io/vts-heartrate)
+<span class="fa fa-lg fa-link"></span> [Get the plugin for free!](https://skeletom-ch.itch.io/vts-heartrate)
 
 Originally envisioned as a way for me to test that my open-source library, [VTS-Sharp](/projects/vts-sharp) was indeed developer-friendly, this plugin quickly expanded to accommodate for a wide variety of use-cases. If you're interested, you can even watch the entire development cycle [in one handy playlist](https://www.youtube.com/playlist?list=PLspwi8mJZ27_6P2n30lj97e3z4Zd_QUaU).
 
