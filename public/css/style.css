@@ -355,6 +355,10 @@ h5 {
 	font-style: normal;
 }
 
+.mostly-opaque {
+	opacity: 0.75;
+  }
+
 .translucent {
   opacity: 0.5;
 }

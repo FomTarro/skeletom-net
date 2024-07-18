@@ -211,13 +211,15 @@ async function generateThumbnailBlogPost(post, templateMap){
 async function generateBlogArchive(blogs, templateMap){
     const dom = new JSDOM(await embedContentInFrame(templateMap, templateMap.BLOG_ARCHIVE_CONTAINER));
     for(let i = 0; i < blogs.length; i++){
-        if(i == 0){
-            const firstPost = await generatePreviewBlogPost(blogs[i], templateMap);
-            dom.window.document.querySelector('#list').innerHTML += firstPost;
-        }else{
-            const post = await generateMinimalBlogPost(blogs[i], templateMap);
-            dom.window.document.querySelector('#list').innerHTML += post
-        }
+        const post = await generatePreviewBlogPost(blogs[i], templateMap);
+        dom.window.document.querySelector('#list').innerHTML += post;
+        // if(i == 0){
+        //     const firstPost = await generatePreviewBlogPost(blogs[i], templateMap);
+        //     dom.window.document.querySelector('#list').innerHTML += firstPost;
+        // }else{
+        //     const post = await generateMinimalBlogPost(blogs[i], templateMap);
+        //     dom.window.document.querySelector('#list').innerHTML += post
+        // }
     }
     if(blogs.length <= 0){
         dom.window.document.querySelector('#list').innerHTML = templateMap.BLOG_NO_RESULTS_ALERT;

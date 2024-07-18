@@ -1,5 +1,5 @@
 ---
-title: TourKOAL - Competitve Pokemon Stream Overlay Tool
+title: TourKOAL
 date: 2023-11-23
 updated: 2024-05-21
 author: Skeletom
