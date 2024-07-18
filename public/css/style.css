@@ -189,6 +189,10 @@ h5 {
   width: 100%;
 }
 
+.item img {
+	max-width: 100%;
+}
+
 .item-label {
 	padding: 0.75em 1.5em;
 	position: absolute;

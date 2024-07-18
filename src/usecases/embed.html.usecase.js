@@ -112,6 +112,9 @@ async function embedPostInTemplate(post, template, templateMap){
     }
 
     if(dom.window.document.querySelector('#related-posts')){
+        for(const classification of dom.window.document.querySelectorAll('.related-classification')){
+            classification.innerHTML = post.classification === "blogs" ? "Projects" : "Blogs Posts";
+        }
         if(post.related.length > 0){
             for(const relatedPost of post.related){
                 const newerThumbnail = await generateThumbnailBlogPost(relatedPost, templateMap);
@@ -119,9 +122,6 @@ async function embedPostInTemplate(post, template, templateMap){
             }
             for(const counter of dom.window.document.querySelectorAll('.related-posts-total')){
                 counter.innerHTML = post.related.length;
-            }
-            for(const classification of dom.window.document.querySelectorAll('.related-classification')){
-                classification.innerHTML = post.classification === "blogs" ? "Projects" : "Blogs Posts";
             }
             dom.window.document.querySelector('#related-all').href = `/${post.classification === "blogs" ? "projects" : "blogs"}?tags=${post.title}`;
         }else {
