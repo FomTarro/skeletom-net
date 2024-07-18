@@ -30,6 +30,20 @@ async function launch(){
         })
     }
 
+    app.get([`/blogs`], async (req, res) => {
+        try{
+            const filteredBlogs = 
+            (req.query && req.query.tags) ?
+            FilterPostMetadata(Blogs, req.query.tags)
+            : Blogs;
+            const html = await GenerateBlogArchive(filteredBlogs, TemplateMap);
+            res.status(200).send(html);
+        }catch(e){
+            console.error(e);
+            res.status(404).send("No such blog post exists.");
+        }
+    })
+
     for(let i = 0; i < Projects.length; i++){
         app.get([`/projects/${Projects[i].title}`], async (req, res) => {
             try{
@@ -42,16 +56,17 @@ async function launch(){
         })
     }
 
-    app.get([`/blogs`], async (req, res) => {
+    app.get([`/projects`], async (req, res) => {
         try{
-            const filteredBlogs = FilterPostMetadata(
-                Blogs, 
-                (req.query && req.query.tags) ? req.query.tags : undefined);
-            const html = await GenerateBlogArchive(filteredBlogs, TemplateMap);
+            const filteredProjects =
+                (req.query && req.query.tags) ?
+                FilterPostMetadata(Projects, req.query.tags)
+                : Projects;
+            const html = await GenerateBlogArchive(filteredProjects, TemplateMap);
             res.status(200).send(html);
         }catch(e){
             console.error(e);
-            res.status(404).send("No such blog post exists.");
+            res.status(404).send("No such project post exists.");
         }
     })
 

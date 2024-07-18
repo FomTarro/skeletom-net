@@ -19,6 +19,7 @@ const fs = require('fs');
  * @property {string} thumbnail - The absolute URL of the thumbnail image.
  * @property {string} release - The absolute URL of the release link for the item.
  * @property {string} version - The release version of the item.
+ * @property {string} platforms - The list of platforms. (TODO: these should work as tags, too?)
  * @property {string} html - The HTML of the post page.
  */
 
@@ -62,7 +63,8 @@ async function getMetadata(markdownPath, classification, appConfig){
         newer: undefined,
         related: [],
         thumbnail: `${appConfig.DOMAIN}${metadata['thumb']}`,
-        link: metadata['release'],
+        platforms: metadata['platforms'],
+        release: metadata['release'],
         version: metadata['version'],
         html,
     }
@@ -76,7 +78,7 @@ async function populatePostLists(){
         blogs.push(blogInfo);
     }
     // sorted newest to oldest
-    blogs.sort((a, b) => Date.parse(b.updated) - Date.parse(a.updated));
+    blogs.sort((a, b) => b.updated - a.updated);
 
     // projects
     const projectsPath = path.join(__dirname, '..', 'projects');
@@ -85,7 +87,7 @@ async function populatePostLists(){
         projects.push(projectInfo);
     }
     // sorted newest to oldest
-    projects.sort((a, b) => Date.parse(b.updated) - Date.parse(a.updated));
+    projects.sort((a, b) => b.updated - a.updated);
 
     for(let i = 0; i < blogs.length; i ++){
         blogs[i].newer = blogs[i-1];

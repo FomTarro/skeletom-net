@@ -248,6 +248,10 @@ h5 {
 	padding: 1em;
 }
 
+.top-padding {
+	padding-top: 1em;
+}
+
 .search-bar {
 	height: 100%;
     width: 100%;
@@ -338,6 +342,10 @@ h5 {
 .italic {
 	font-style: italic;
 }
+
+.bold {
+	font-weight: bold;
+}
   
 .regular {
 	font-style: normal;
@@ -377,8 +385,8 @@ h5 {
 	gap: 1rem;
 }
 
-.fa-lg {
-	line-height: inherit !important;
+.fa {
+	line-height: 1.25em !important;
 }
 
 .offline {

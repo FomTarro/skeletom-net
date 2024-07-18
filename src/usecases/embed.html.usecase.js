@@ -95,13 +95,35 @@ async function embedPostInTemplate(post, template, templateMap){
         }
     }
 
+    // TODO: this section is absolutely going to be a kludge
+    // Refactor it when you have a moment to breathe.
+    // It should probably just be a separate template
+    if(dom.window.document.querySelector('#key-information')){
+        if(post.classification === "blogs"){
+                dom.window.document.querySelector('#key-information').remove();
+        }else{
+            dom.window.document.querySelector("#key-information-initial-release").innerHTML = post.date ? new Date(post.date).toDateString() : "N/A";
+            dom.window.document.querySelector("#key-information-latest-release").innerHTML = post.updated ? new Date(post.updated).toDateString() : "N/A";
+            dom.window.document.querySelector("#key-information-version").innerHTML = post.version ? post.version : "N/A";
+            dom.window.document.querySelector("#key-information-platforms").innerHTML = post.platforms ? post.platforms : "N/A";
+            dom.window.document.querySelector("#key-information-link").innerHTML = post.release ? post.release : "N/A";
+            dom.window.document.querySelector("#key-information-link").href = post.release ? post.release : "";
+        }
+    }
+
     if(dom.window.document.querySelector('#related-posts')){
-        // TODO: this should probably be passed in, not directly accessed.
         if(post.related.length > 0){
             for(const relatedPost of post.related){
                 const newerThumbnail = await generateThumbnailBlogPost(relatedPost, templateMap);
                 dom.window.document.querySelector('#related-posts').innerHTML += newerThumbnail;
             }
+            for(const counter of dom.window.document.querySelectorAll('.related-posts-total')){
+                counter.innerHTML = post.related.length;
+            }
+            for(const classification of dom.window.document.querySelectorAll('.related-classification')){
+                classification.innerHTML = post.classification === "blogs" ? "Projects" : "Blogs Posts";
+            }
+            dom.window.document.querySelector('#related-all').href = `/${post.classification === "blogs" ? "projects" : "blogs"}?tags=${post.title}`;
         }else {
             dom.window.document.querySelector('#related-posts').innerHTML = "No related posts found :("
         }
