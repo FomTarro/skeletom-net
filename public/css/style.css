@@ -118,6 +118,14 @@ h5 {
   margin-bottom: 0.5em;
 }
 
+li {
+	padding-top: 0.5em;
+}
+
+ul {
+	padding-left: 1.5em;
+}
+
 .fill {
 	width: 100%;
 	height: 100%
@@ -191,6 +199,11 @@ h5 {
 
 .item img {
 	max-width: 100%;
+	filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.45));
+}
+
+.caption {
+	padding-top: 0;
 }
 
 .item-label {
@@ -391,6 +404,7 @@ h5 {
 	font-size: 0.85em;
 	justify-content: flex-start;
 	gap: 1rem;
+	word-break: break-word;
 }
 
 .fa {
@@ -486,6 +500,10 @@ h5 {
 
 	.latest-list {
 		flex-direction: column;
+	}
+
+	#common-tags-list {
+		columns: 2;
 	}
 
 

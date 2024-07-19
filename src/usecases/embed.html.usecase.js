@@ -210,19 +210,39 @@ async function generateThumbnailBlogPost(post, templateMap){
  */
 async function generateBlogArchive(blogs, templateMap){
     const dom = new JSDOM(await embedContentInFrame(templateMap, templateMap.BLOG_ARCHIVE_CONTAINER));
+    
+    const counts = {};
     for(let i = 0; i < blogs.length; i++){
         const post = await generatePreviewBlogPost(blogs[i], templateMap);
         dom.window.document.querySelector('#list').innerHTML += post;
-        // if(i == 0){
-        //     const firstPost = await generatePreviewBlogPost(blogs[i], templateMap);
-        //     dom.window.document.querySelector('#list').innerHTML += firstPost;
-        // }else{
-        //     const post = await generateMinimalBlogPost(blogs[i], templateMap);
-        //     dom.window.document.querySelector('#list').innerHTML += post
-        // }
+        for(const tag of blogs[i].tags){
+            counts[tag] = counts[tag] ? counts[tag] + 1 : 1;
+        }
     }
     if(blogs.length <= 0){
         dom.window.document.querySelector('#list').innerHTML = templateMap.BLOG_NO_RESULTS_ALERT;
+    }
+
+    const map = Object.entries(counts).sort((a, b) => {
+        if(a[0] < b[0]) { return -1; }
+        if(a[0] > b[0]) { return 1; }
+        return 0;
+    }).sort((a, b) => {
+        return b[1] - a[1]
+    });
+
+    const tagsList = dom.window.document.getElementById("common-tags-list");
+    for(const [key, value] of map){
+        const li = dom.window.document.createElement('li')
+        const anchor = dom.window.document.createElement('a');
+        li.append(anchor);
+        anchor.href = `/blogs?tags=${key}`;
+        anchor.innerHTML = `${key}`;
+        const span = dom.window.document.createElement('span');
+        span.innerHTML = ` | ${value}`;
+        span.classList.add("regular")
+        li.append(span);
+        tagsList.append(li);    
     }
     return dom.serialize();
 }

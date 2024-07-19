@@ -30,7 +30,7 @@ The plugin has several highly-configurable features, such as:
 * Plugin API so that you can build your own apps that consume or write heartrate data! (Yes, you can make plugins for the plugin!)
 
 ![Akari demonstrating some of the features of vts-heartrate](/img/projects/vts-heartrate/akari_gif_features.gif)
-<span class="font-tiny translucent italic">VTube Studio's mascot, Akari, demonstrating some of the features of vts-heartrate.</span>
+<div class="font-tiny translucent italic caption">VTube Studio's mascot, Akari, demonstrating some of the features of vts-heartrate.</div>
 
 You can also check out the [complete, unabridged README here](https://github.com/FomTarro/vts-heartrate).
 

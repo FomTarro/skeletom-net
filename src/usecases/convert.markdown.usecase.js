@@ -48,7 +48,7 @@ async function getMetadata(markdownPath, classification, appConfig){
     });
     const html = converter.makeHtml(markdown);
     const metadata = converter.getMetadata();
-    const tags = metadata['tags'].split(',').map(tag => tag.trim().toLowerCase());
+    const tags = metadata['tags'].split(',').map(tag => tag.trim().toLowerCase()).sort();
     const timestamp = Date.parse(metadata['date']);
     const updated = metadata['updated'] ? Date.parse(metadata['updated']) : timestamp;
     return {
