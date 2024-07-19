@@ -112,6 +112,7 @@ async function populatePostLists(){
  * @returns {PostData[]} - Filtered set of posts
  */
 function filterPosts(posts, tags){
+    tags = tags.toLowerCase();
     return tags ? posts.filter(info => info.tags.find(word => word.toLowerCase() === tags.toLowerCase()) 
     || info.fullTitle.split(' ').find(word => word.toLowerCase() === tags.toLowerCase())) 
     : [];

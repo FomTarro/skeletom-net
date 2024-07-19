@@ -15,9 +15,13 @@ A desktop assistant harkening back to the early 2000s, made in the likeness of b
 
 <!--more-->
 
+---
+
 ## About
 
 This app was made in roughly 4 months, and finally released in honor of Amiya's birthday on November 29th, 2022. Thank you for all that you do, Amiya. Happy birthday!
+
+---
 
 ## Features
 
@@ -29,9 +33,13 @@ In addition to wandering around your desktop and windows, Amiya can also help yo
 * Costume and Animation Player!
 * Links to all of Amiya's online spaces!
 
+---
+
 ## Media
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/2yIP_yXiEIE?si=wUaBtVB_5W475_qx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+---
 
 ## Credits
 
