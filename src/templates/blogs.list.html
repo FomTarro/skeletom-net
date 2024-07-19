@@ -1,7 +1,8 @@
 <div class="column fill">
-    <div class="white item no-padding">
-        <form>
-            <input name='tags' class="search-bar font-small" type="text" placeholder="Search for specifics...">
+    <div class="white row item no-padding row search-bar">
+        <a href="#" onclick="document.getElementById('search-form').submit();" class="font-black fa-lg fa-solid fa-magnifying-glass search-icon"></a>
+        <form id="search-form" class="search-form">
+            <input name='tags' class="font-small search-input" type="text" placeholder="Search for specifics...">
         </form>
     </div>
     <div class="homepage-row">

@@ -269,7 +269,7 @@ ul {
 	padding-top: 1em;
 }
 
-.search-bar {
+.search-input {
 	height: 100%;
     width: 100%;
     border: 0;
@@ -277,6 +277,26 @@ ul {
     border-radius: 1.5em;
     padding: 1em;
 	font-family: 'dustismo_romanbold_italic';
+	padding-left: 3em;
+}
+
+.search-form {
+	width: 100%;
+}
+
+.search-bar {
+	position: relative;
+	align-items: center;
+}
+
+.search-icon{
+	position: absolute;
+	padding-left: 1em;
+	text-decoration: none;
+}
+
+.search-icon:hover{
+	color: black;
 }
 
 .webring-tray {
