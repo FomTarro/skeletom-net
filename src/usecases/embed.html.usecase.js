@@ -67,7 +67,13 @@ async function embedPostInTemplate(post, template, templateMap){
     }
     for(const date of dom.window.document.querySelectorAll('.meta-date')){
         date.content = post.date;
-        date.innerHTML = new Date(post.date).toDateString();
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          };
+        date.innerHTML = new Date(post.date).toLocaleDateString("en-US", options);
     }
     for(const img of dom.window.document.querySelectorAll('.meta-img')){
         img.content = post.thumbnail;
