@@ -13,6 +13,8 @@ platforms: Windows
 
 A desktop assistant harkening back to the early 2000s, made in the likeness of beloved VTuber [Amiya Aranha](https://www.youtube.com/@AmiyaAranha)!
 
+<span class="fa fa-lg fa-link"></span> [Get AmiyaAmiga for free!](https://skeletom-ch.itch.io/amiyamiga)
+
 <!--more-->
 
 ---

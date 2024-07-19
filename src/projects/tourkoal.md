@@ -13,5 +13,7 @@ platforms: Web
 
 A web-based plugin for OBS that facilitates displaying information such as team composition, individual Pokemon status, player standings, and more, all with only a few clicks!
 
+<span class="fa fa-lg fa-link"></span> [Use TourKOAL for free!](https://www.skeletom.net/pkmn/tournament-overlay/)
+
 <!--more-->
 

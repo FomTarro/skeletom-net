@@ -126,7 +126,7 @@ async function embedPostInTemplate(post, template, templateMap){
             dom.window.document.querySelector('#related-all').href = `/${post.classification === "blogs" ? "projects" : "blogs"}?tags=${post.title}`;
         }else {
             dom.window.document.querySelector('#related-posts').classList.add('top-padding')
-            dom.window.document.querySelector('#related-posts').innerHTML = "No related posts found :("
+            dom.window.document.querySelector('#related-posts').innerHTML = "No related content found :("
         }
     }
 
