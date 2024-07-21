@@ -51,6 +51,30 @@ async function generateHomePage(blogs, projects, templateMap){
  */
 async function embedPostInTemplate(post, template, templateMap){
     const dom = new JSDOM(template);
+
+    const caption = dom.window.document.querySelector('#post-caption');
+    if(caption){
+        if(post.caption){
+            caption.innerHTML = post.caption
+        }else{
+            caption.remove();
+        }
+    }
+
+    const brief = dom.window.document.querySelector('#post-brief');
+    if(brief){
+        brief.innerHTML = post.brief;
+    }
+
+    const release = dom.window.document.querySelector('#post-release');
+    if(release){
+        if(post.release){
+            release.href = post.release
+        }else{
+            release.remove();
+        }
+    }
+
     const content = dom.window.document.querySelector('#post-content');
     if(content){
         content.innerHTML += post.html;

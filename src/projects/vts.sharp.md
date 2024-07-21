@@ -10,7 +10,3 @@ release: https://github.com/FomTarro/VTS-Sharp
 version: v2.2.2
 ---
 
-A C# client interface for creating VTube Studio Plugins with the official VTube Studio API, for use in Unity and other C# runtime environments!
-
-<!--more-->
-

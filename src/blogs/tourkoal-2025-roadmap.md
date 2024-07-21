@@ -2,16 +2,11 @@
 title: TourKOAL Roadmap - 2025 Competitive Season
 date: 2024-07-18
 author: Skeletom
-brief: Some new features planned to be added to TourKOAL in the upcoming season to bring it to even closer parity with Regional productions.
+brief: Some new features planned to be added to TourKOAL in the upcoming season to bring it even closer to parity with Regional productions.
 thumb: /img/projects/tourkoal/santiago_1.png
+caption: Screenshot from the 2024 Santiago Regional broadcast, which used TourKOAL!
 tags: tourkoal, pokemon, webdev
 ---
-
-<div class="font-tiny translucent italic caption">Screenshot from the 2024 Santiago Regional broadcast, which used TourKOAL!</div>
-
-Some new features planned to be added to TourKOAL in the upcoming season to bring it to even closer parity with Regional productions.
-
-<!--more-->
 
 Also, this post serves the secondary purpose of being a demonstration of the handy "Related Projects" tab on this page, which offers you direct access to [learn more about TourKOAL](/projects/tourkoal) with just one click. Magical.
 

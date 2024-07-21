@@ -11,17 +11,11 @@ version: v1.1.0
 platforms: Windows
 ---
 
-A desktop assistant harkening back to the early 2000s, made in the likeness of beloved VTuber [Amiya Aranha](https://www.youtube.com/@AmiyaAranha)!
-
-<span class="fa fa-lg fa-link"></span> [Get AmiyaAmiga for free!](https://skeletom-ch.itch.io/amiyamiga)
-
-<!--more-->
-
 ---
 
 ## About
 
-This app was made in roughly 4 months, and finally released in honor of Amiya's birthday on November 29th, 2022. Thank you for all that you do, Amiya. Happy birthday!
+This app was made in roughly 4 months, and finally released in honor of [Amiya](https://www.youtube.com/@AmiyaAranha)'s birthday on November 29th, 2022. Thank you for all that you do, Amiya. Happy birthday!
 
 ---
 

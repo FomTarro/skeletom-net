@@ -17,6 +17,7 @@ const fs = require('fs');
  * @property {PostData} older - The next oldest Post of this type.
  * @property {PostData[]} related - Related posts.
  * @property {string} thumbnail - The absolute URL of the thumbnail image.
+ * @property {string} caption - The optional caption for the post thumbnail.
  * @property {string} release - The absolute URL of the release link for the item.
  * @property {string} version - The release version of the item.
  * @property {string} platforms - The list of platforms. (TODO: these should work as tags, too?)
@@ -63,6 +64,7 @@ async function getMetadata(markdownPath, classification, appConfig){
         newer: undefined,
         related: [],
         thumbnail: `${appConfig.DOMAIN}${metadata['thumb']}`,
+        caption: metadata['caption'],
         platforms: metadata['platforms'],
         release: metadata['release'],
         version: metadata['version'],
