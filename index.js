@@ -10,6 +10,22 @@ const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive } = require(
 const { TemplateMap } = require('./src/utils/template.map');
 const { getChannelStatus } = require('./src/adapters/twitch.client');
 
+let LAST_STREAM_STATUS = {
+    status: "OFFLINE",
+    address: AppConfig.STREAM_URL
+};
+const STREAM_STATUS_POLLER = setInterval(async () => {
+    const channelName = AppConfig.STREAM_URL.split('/').pop();
+    const status = await getChannelStatus(channelName, AppConfig);
+    LAST_STREAM_STATUS = {
+        status: status.status,
+        // status: "ONLINE",
+        address: status.address,
+        title: status.title,
+        game: status.game
+    }
+}, 10000);
+
 // Apply the rate limiting middleware to API calls only
 const app = express();
 
@@ -73,19 +89,16 @@ async function launch(){
 
     // Tells the browser to redirect to the given URL
     app.get(['', '/', '/about'], async (req, res) => {
-        // res.sendFile(templatePath);
         res.status(200).send(await GenerateHomePage(Blogs, Projects, TemplateMap));
-        // res.redirect('https://skeletom.carrd.co/');
     });
     // Tells the browser to redirect to the given URL
     app.get('/stream', (req, res) => {
-        res.redirect('https://twitch.tv/skeletom_ch');
+        res.redirect(AppConfig.STREAM_URL);
     });
 
-    app.get('/stream-status', async (req, res) => {
-        const channel = AppConfig.STREAM_URL.split('/').pop();
-        res.status(200).send(await getChannelStatus(channel, AppConfig));
-    })
+    app.get('/stream/status', async (req, res) => {
+        res.status(200).send(LAST_STREAM_STATUS);
+    });
 
     // Tells the browser to redirect to the given URL
     app.get(['/archive', '/vod'], (req, res) => {
