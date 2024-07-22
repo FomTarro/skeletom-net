@@ -8,6 +8,7 @@ const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
 const { Blogs, Projects, FilterPostMetadata, PopulatePostLists } = require('./src/usecases/convert.markdown.usecase');
 const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive } = require('./src/usecases/embed.html.usecase');
 const { TemplateMap } = require('./src/utils/template.map');
+const { getChannelStatus } = require('./src/adapters/twitch.client');
 
 // Apply the rate limiting middleware to API calls only
 const app = express();
@@ -80,6 +81,12 @@ async function launch(){
     app.get('/stream', (req, res) => {
         res.redirect('https://twitch.tv/skeletom_ch');
     });
+
+    app.get('/stream-status', async (req, res) => {
+        const channel = AppConfig.STREAM_URL.split('/').pop();
+        res.status(200).send(await getChannelStatus(channel, AppConfig));
+    })
+
     // Tells the browser to redirect to the given URL
     app.get(['/archive', '/vod'], (req, res) => {
         res.redirect('https://www.youtube.com/channel/UCr5N4CrcoegFpm7fR5a_ORg/videos');

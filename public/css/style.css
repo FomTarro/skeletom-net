@@ -1,11 +1,7 @@
 @font-face {
   font-family: 'dustismo_romanregular';
-  src: url('../fonts/dustismoroman_regular_macroman/Dustismo_Roman-webfont.eot');
-  src: url('../fonts/dustismoroman_regular_macroman/Dustismo_Roman-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/dustismoroman_regular_macroman/dustismoroman_regular_macromanDustismo_Roman-webfont.woff2') format('woff2'),
-       url('../fonts/dustismoroman_regular_macroman/Dustismo_Roman-webfont.woff') format('woff'),
-       url('../fonts/dustismoroman_regular_macroman/Dustismo_Roman-webfont.ttf') format('truetype'),
-       url('../fonts/dustismoroman_regular_macroman/Dustismo_Roman-webfont.svg#dustismo_romanregular') format('svg');
+  src: url('../fonts/dustismoroman_regular_macroman/Dustismo_Roman-webfont.eot'),
+       url('../fonts/dustismoroman_regular_macroman/Dustismo_Roman-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -13,12 +9,8 @@
 
 @font-face {
   font-family: 'dustismo_romanbold_italic';
-  src: url('../fonts/dustismoroman_bolditalic_macroman/Dustismo_Roman_Italic_Bold-webfont.eot');
-  src: url('../fonts/dustismoroman_bolditalic_macroman/Dustismo_Roman_Italic_Bold-webfont.eot?#iefix') format('embedded-opentype'),
-       url('../fonts/dustismoroman_bolditalic_macroman/Dustismo_Roman_Italic_Bold-webfont.woff2') format('woff2'),
-       url('../fonts/dustismoroman_bolditalic_macroman/Dustismo_Roman_Italic_Bold-webfont.woff') format('woff'),
-       url('../fonts/dustismoroman_bolditalic_macroman/Dustismo_Roman_Italic_Bold-webfont.ttf') format('truetype'),
-       url('../fonts/dustismoroman_bolditalic_macroman/Dustismo_Roman_Italic_Bold-webfont.svg#dustismo_romanbold_italic') format('svg');
+  src: url('../fonts/dustismoroman_bolditalic_macroman/Dustismo_Roman_Italic_Bold-webfont.eot'),
+       url('../fonts/dustismoroman_bolditalic_macroman/Dustismo_Roman_Italic_Bold-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -31,11 +23,10 @@ html {
 	/* font-size: min(2vmax, 1.5em); */
 	margin: 0;
 	padding: 0;
-	backdrop-filter: blur(1vmin);
 	animation: anim-scroll 16s linear infinite;
 	background: conic-gradient(#FEB3D0 25%, #F2C5D9 0 50%, #F0F2F1 0 75%, #F0DAE6 0) 0 0/40vmin 40vmin;
 	box-sizing: border-box;
-	height: inherit
+	height: inherit;
 }
 
 main {
@@ -68,24 +59,24 @@ body {
 }
   
 footer {
-  margin: 0;
-  justify-content: center;
+	margin: 0;
+	justify-content: center;
 }
 
 a {
-  color: #EBE563;
-  text-decoration: underline;
-  text-decoration-thickness: 2%;
-  text-decoration-style: solid;
-  text-underline-offset: 2px;
-  transition: color 0.5s ease, background-color 0.5s ease, text-decoration-color 0.5s ease;
-  text-decoration-color: #EBE563;
+	color: #EBE563;
+	text-decoration-color: #EBE563;
+	text-decoration: underline;
+	text-decoration-thickness: 2%;
+	text-decoration-style: solid;
+	text-underline-offset: 2px;
+	transition: color 0.5s ease, background-color 0.5s ease, text-decoration-color 0.5s ease;
 }
 
 a:hover {
-  color: white;
-  text-decoration-color: white;
-  text-decoration-style: dashed;
+	color: white;
+	text-decoration-color: white;
+	text-decoration-style: dashed;
 }
 
 iframe {
@@ -114,8 +105,8 @@ h3 {
 }
 
 h5 {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
 }
 
 li {
@@ -189,12 +180,12 @@ ul {
 }
 
 .item {
-  position: relative;
-  box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.45);
-  padding: 5vmin;
-  border-radius: 1.5em;
-  box-sizing: border-box;
-  width: 100%;
+	position: relative;
+	box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.45);
+	padding: 5vmin;
+	border-radius: 1.5em;
+	box-sizing: border-box;
+	width: 100%;
 }
 
 .item img {
@@ -265,9 +256,9 @@ ul {
     border-radius: 1.5em;
     display: flex;
     text-align: center;
-    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.45);
     justify-content: center;
 	text-decoration: none;
+	box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.45);
 }
 
 .download-button:hover {
