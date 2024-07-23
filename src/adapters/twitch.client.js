@@ -67,4 +67,4 @@ async function getChannelStatus(loginName, appConfig){
     }
 }
 
-module.exports.getChannelStatus = getChannelStatus;
+module.exports.GetChannelStatus = getChannelStatus;

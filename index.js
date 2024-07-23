@@ -8,19 +8,20 @@ const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
 const { Blogs, Projects, FilterPostMetadata, PopulatePostLists } = require('./src/usecases/convert.markdown.usecase');
 const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive } = require('./src/usecases/embed.html.usecase');
 const { TemplateMap } = require('./src/utils/template.map');
-const { getChannelStatus } = require('./src/adapters/twitch.client');
+const { GetChannelStatus } = require('./src/adapters/twitch.client');
 
 let LAST_STREAM_STATUS = {
     status: "OFFLINE",
     address: AppConfig.STREAM_URL
 };
+// check Twitch API every 10 seconds and cache the result
 const STREAM_STATUS_POLLER = setInterval(async () => {
     const channelName = AppConfig.STREAM_URL.split('/').pop();
-    const status = await getChannelStatus(channelName, AppConfig);
+    const status = await GetChannelStatus(channelName, AppConfig);
     LAST_STREAM_STATUS = {
         status: status.status,
-        // status: "ONLINE",
-        address: status.address,
+        address: AppConfig.STREAM_URL,
+        channel: channelName,
         title: status.title,
         game: status.game
     }
@@ -35,11 +36,11 @@ async function launch(){
     app.use(express.json());
     app.use('/', express.static(baseDirectory));
     await PopulatePostLists();
-    for(let i = 0; i < Blogs.length; i++){
-        app.get([`/blogs/${Blogs[i].title}`], async (req, res) => {
+    for(const blog of Blogs){
+        app.get([`/blogs/${blog.title}`], async (req, res) => {
             try{
-                const blogPage = await GenerateFullBlogPost(Blogs[i], TemplateMap);
-                res.status(200).send(blogPage);
+                const html = await GenerateFullBlogPost(blog, TemplateMap);
+                res.status(200).send(html);
             }catch(e){
                 console.error(e);
                 res.status(404).send("No such blog post exists.");
@@ -61,11 +62,11 @@ async function launch(){
         }
     })
 
-    for(let i = 0; i < Projects.length; i++){
-        app.get([`/projects/${Projects[i].title}`], async (req, res) => {
+    for(const project of Projects){
+        app.get([`/projects/${project.title}`], async (req, res) => {
             try{
-                const projectPage = await GenerateFullBlogPost(Projects[i], TemplateMap);
-                res.status(200).send(projectPage);
+                const html = await GenerateFullBlogPost(project, TemplateMap);
+                res.status(200).send(html);
             }catch(e){
                 console.error(e);
                 res.status(404).send("No such project exists.");
@@ -87,11 +88,13 @@ async function launch(){
         }
     })
 
-    // Tells the browser to redirect to the given URL
+    // Home
     app.get(['', '/', '/about'], async (req, res) => {
         res.status(200).send(await GenerateHomePage(Blogs, Projects, TemplateMap));
     });
+
     // Tells the browser to redirect to the given URL
+    // Configurable to redirect to a different channel if I'm on a collab
     app.get('/stream', (req, res) => {
         res.redirect(AppConfig.STREAM_URL);
     });
@@ -102,7 +105,7 @@ async function launch(){
 
     // Tells the browser to redirect to the given URL
     app.get(['/archive', '/vod'], (req, res) => {
-        res.redirect('https://www.youtube.com/channel/UCr5N4CrcoegFpm7fR5a_ORg/videos');
+        res.redirect('https://www.youtube.com/@fomtarro/videos');
     });
 
     // vts-heartrate authentication

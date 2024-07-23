@@ -62,26 +62,41 @@
             <a class="marquee-link stream-link translucent" href="/stream" target="_blank">
                 <div class="marquee">
                     <div class="marquee-content">
-                        <span><span class="fa fa-brands fa-twitch fa-lg"></span> Stream is <span class="stream-status offline">OFFLINE</span></span>
+                        <span><span class="fa fa-brands fa-twitch fa-lg"></span> Stream is <span class="stream-status offline"></span></span>
                         <span class="stream-address">twitch.tv/skeletom_ch</span>
-                        <span><span class="fa fa-brands fa-twitch fa-lg"></span> Stream is <span class="stream-status offline">OFFLINE</span></span>
+                        <span><span class="fa fa-brands fa-twitch fa-lg"></span> Stream is <span class="stream-status offline"></span></span>
                         <span class="stream-address">twitch.tv/skeletom_ch</span>
                     </div>
                     <!-- Mirrors the content above -->
                     <div class="marquee-content" aria-hidden="true">
-                        <span><span class="fa fa-brands fa-twitch fa-lg"></span> Stream is <span class="stream-status offline">OFFLINE</span></span>
+                        <span><span class="fa fa-brands fa-twitch fa-lg"></span> Stream is <span class="stream-status offline"></span></span>
                         <span class="stream-address">twitch.tv/skeletom_ch</span>
-                        <span><span class="fa fa-brands fa-twitch fa-lg"></span> Stream is <span class="stream-status offline">OFFLINE</span></span>
+                        <span><span class="fa fa-brands fa-twitch fa-lg"></span> Stream is <span class="stream-status offline"></span></span>
                         <span class="stream-address">twitch.tv/skeletom_ch</span>
                     </div>
                 </div>
             </a>
         </div>
+    </div>
+    <div class="dark item stream-info">
+        <div class="darker item-label item">
+            <span class="highlight">Now Broadcasting!</span>
+        </div>
+        <div>
+            <h1 class="stream-title"></h1>
+            <div class="translucent font-tiny italic">
+                <span class="stream-game"></span>
+            </div>
+        </div>
+        <div id="stream-embed" class="top-padding flex-center center-align">
+            <!-- iframe goes here -->
+        </div>
+        <script src="https://embed.twitch.tv/embed/v1.js"></script>
         <script src="/js/stream.status.js"></script>
     </div>
     <div class="dark item">
         <div class="darker item-label item">
-            <span class="highlight meta-date">Latest Releases</span>
+            <span class="highlight">Latest Releases</span>
         </div>
         <div class="row fill flex-center center-align latest-list" id="latest-projects">
 
@@ -93,7 +108,7 @@
     </div>
     <div class="dark item">
         <div class="darker item-label item">
-            <span class="highlight meta-date">Latest Blog Posts</span>
+            <span class="highlight">Latest Blog Posts</span>
         </div>
         <div class="row fill flex-center center-align latest-list" id="latest-blogs">
 
