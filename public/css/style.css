@@ -40,6 +40,8 @@ html {
 
 main {
 	padding: 1.5em 2.5em 2.5em 2.5em;
+	max-width: 1280px;
+	margin: auto;
 }
 
 .blur {
