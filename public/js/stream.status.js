@@ -1,9 +1,17 @@
 let embed = undefined;
-function reqListener() {
-    console.log("Checking stream status...");
+function processStatusResponse() {
     if(this.responseText){
         const parsed = JSON.parse(this.responseText);
         const isOnline = (parsed.status === "ONLINE")
+        // The whole marquee
+        for(const marquee of document.querySelectorAll('.stream-status-marquee')){
+            if(isOnline){
+                marquee.classList.remove("translucent");
+            }else{
+                marquee.classList.add("translucent");
+            }
+        }
+        // Status icons
         for(const status of document.querySelectorAll('.stream-status')){
             if(isOnline){
                 status.classList.add("online");
@@ -13,43 +21,35 @@ function reqListener() {
                 status.classList.remove("online");
             }
         }
+        // Stream Address written text
         for(const address of document.querySelectorAll('.stream-address')){
             address.innerHTML = parsed.address;
         }
-        for(const link of document.querySelectorAll('.stream-link')){
-            if(isOnline){
-                link.classList.remove("translucent");
-            }else{
-                link.classList.add("translucent");
-            }
-        }
-        for(const title of document.querySelectorAll('.stream-title')){
-            if(isOnline){
-                title.innerHTML = parsed.title;
-            }
-        }
-        for(const game of document.querySelectorAll('.stream-game')){
-            if(isOnline){
-                game.innerHTML = parsed.game;
-            }
-        }
         if(isOnline){
             if(!embed){
+                // docs: https://dev.twitch.tv/docs/embed/video-and-clips/#interactive-frames-for-live-streams-and-vods
+                // TODO: maybe just replace this with a normal iframe?
                 embed = new Twitch.Embed("stream-embed", {
                     channel: parsed.channel,
                     autoplay: false,
                     parent: ["localhost", "skeletom.net", "tomfarro.com", "skeletom.pizza"]
                 }); 
             }
-            if(embed.getPlayer().getChannel !== parsed.channel){
+            if(embed.getPlayer().getChannel() !== parsed.channel){
                 embed.getPlayer().setChannel(parsed.channel);
             }
-            for(const game of document.querySelectorAll('.stream-info')){
-                game.classList.remove("hidden");
+            for(const title of document.querySelectorAll('.stream-title')){
+                title.innerHTML = parsed.title;
             }
-        }else{
-            for(const game of document.querySelectorAll('.stream-info')){
-                game.classList.add("hidden");
+            for(const game of document.querySelectorAll('.stream-game')){
+                game.innerHTML = parsed.game;
+            }
+        }
+        for(const panel of document.querySelectorAll('.stream-info')){
+            if(isOnline){
+                panel.classList.remove("hidden");
+            }else{
+                panel.classList.add("hidden");
             }
         }
     }
@@ -57,9 +57,13 @@ function reqListener() {
 
 function getStreamStatus(){
     const req = new XMLHttpRequest();
-    req.addEventListener("load", reqListener);
-    req.open("GET", "/stream/status");
-    req.send();
+    try{
+        req.addEventListener("load", processStatusResponse);
+        req.open("GET", "/stream/status");
+        req.send();
+    }catch(e){
+        // swallow exceptions harmlessly here
+    }
 }
 
 const poller = setInterval(getStreamStatus, 5000);

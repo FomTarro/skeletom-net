@@ -27,7 +27,7 @@ html {
 	--drop-shadow: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.45));
 
 	position: relative;
-	color: white;
+	color: var(--white);
 	font-family: 'dustismo_romanregular';
 	/* font-size: min(2vmax, 1.5em); */
 	margin: 0;
@@ -140,8 +140,8 @@ ul {
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
-	gap: 3rem;
 	align-content: flex-start;
+	gap: 3rem;
 }
 
 .row {
@@ -170,7 +170,7 @@ ul {
 	padding-bottom: 0.5em;
 }
 
-.other-posts .other-post-img{
+.other-posts .other-post-img {
 	max-height: 7em;
 }
 
