@@ -96,7 +96,7 @@ async function embedPostInTemplate(post, template, templateMap){
             year: 'numeric',
             month: 'long',
             day: 'numeric',
-          };
+        };
         date.innerHTML = new Date(post.date).toLocaleDateString("en-US", options);
     }
     for(const img of dom.window.document.querySelectorAll('.meta-img')){
@@ -153,9 +153,15 @@ async function embedPostInTemplate(post, template, templateMap){
             for(const counter of dom.window.document.querySelectorAll('.related-posts-total')){
                 counter.innerHTML = post.related.length;
             }
-            dom.window.document.querySelector('#related-all').href = `/${post.classification === "blogs" ? "projects" : "blogs"}?tags=${post.title}`;
+            if(post.classification === "blogs"){
+                // if this is a blog post, we find related projects by their names in our tags
+                dom.window.document.querySelector('#related-all').href = `/projects?tags=${post.related.map(project => project.title).join(',')}`;
+            }else{
+                // if this is a project, we find related blog posts by our name in their tags
+                dom.window.document.querySelector('#related-all').href = `/blogs?tags=${post.title}`;
+            }
         }else {
-            dom.window.document.querySelector('#related-posts').classList.add('top-padding')
+            dom.window.document.querySelector('#related-posts').classList.add('top-padding');
             dom.window.document.querySelector('#related-posts').innerHTML = "No related content found :("
         }
     }

@@ -18,6 +18,7 @@
 html {
 	--white: white;
 	--black: black;
+	--light: #F0F2F1;
 	--dark: #2E2D31;
 	--darker: #242328;
 	--highlight: #EBE563;
@@ -93,6 +94,7 @@ a:hover {
 iframe {
 	max-width: 100%;
 	filter: var(--drop-shadow);
+	background-color: var(--light);
 }
 
 hr {
@@ -132,6 +134,11 @@ ul {
 	display: none !important;
 }
 
+.resize-both {
+	overflow: scroll;
+	resize: both;
+}
+
 .fill {
 	width: 100%;
 	height: 100%
@@ -152,6 +159,10 @@ ul {
 	flex-direction: row;
 	justify-content: space-between;
 	gap: 3rem;
+}
+
+.gap-small {
+	gap: 1em;
 }
 
 .flex-center {

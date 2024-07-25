@@ -72,7 +72,6 @@ async function getMetadata(markdownPath, classification, appConfig){
     }
 }
 
-
 async function populatePostLists(){
     const blogsPath = path.join(__dirname, '..', 'blogs');
     for(const file of fs.readdirSync(blogsPath)){
@@ -114,19 +113,28 @@ async function populatePostLists(){
  * @returns {PostData[]} - Filtered set of posts
  */
 function filterPosts(posts, tags){
-    tags = tags.toLowerCase();
-    return tags ? posts.filter(info => info.tags.find(word => word.toLowerCase() === tags.toLowerCase()) 
-    || info.fullTitle.split(' ').find(word => word.toLowerCase() === tags.toLowerCase())) 
-    : [];
+    if(!tags){
+        return [];
+    }
+    const splitTags = tags.toLowerCase().split(',').map(tag => tag.trim());
+    // find all posts whos tags or words in title contain any of the tags from our comma separated list
+    return posts.filter(post => post.tags.filter(postTag => splitTags.includes(postTag.toLowerCase())).length > 0 
+    || post.fullTitle.split(' ').filter(word => splitTags.includes(word.toLowerCase())).length > 0
+    || splitTags.includes(post.title));
 }
 
 // Utils
+/**
+ * Converts a string like "A Blog Post" into "a-blog-post"
+ * @param {string} title 
+ * @returns {string}
+ */
 function slugify(title) {
     return title
-      .trim()
-      .replace(/ +/g, '-')
-      .toLowerCase()
-      .replace(/[^a-z0-9-]/g, '')
+        .trim()
+        .replace(/ +/g, '-')
+        .toLowerCase()
+        .replace(/[^a-z0-9-]/g, '')
 }
 
 module.exports.PopulatePostLists = populatePostLists;
