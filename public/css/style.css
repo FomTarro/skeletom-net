@@ -1,18 +1,18 @@
 @font-face {
-  font-family: 'dustismo_romanregular';
-  src: url('../fonts/dustismoroman_regular_macroman/Dustismo_Roman-webfont.eot'),
-       url('../fonts/dustismoroman_regular_macroman/Dustismo_Roman-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'dustismo_romanregular';
+	src: url('../fonts/dustismoroman_regular_macroman/Dustismo_Roman-webfont.eot'),
+		url('../fonts/dustismoroman_regular_macroman/Dustismo_Roman-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 
 @font-face {
-  font-family: 'dustismo_romanbold_italic';
-  src: url('../fonts/dustismoroman_bolditalic_macroman/Dustismo_Roman_Italic_Bold-webfont.eot'),
-       url('../fonts/dustismoroman_bolditalic_macroman/Dustismo_Roman_Italic_Bold-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+	font-family: 'dustismo_romanbold_italic';
+	src: url('../fonts/dustismoroman_bolditalic_macroman/Dustismo_Roman_Italic_Bold-webfont.eot'),
+		url('../fonts/dustismoroman_bolditalic_macroman/Dustismo_Roman_Italic_Bold-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 html {
@@ -51,7 +51,7 @@ main {
 	overflow: hidden;
 	backdrop-filter: blur(1vmin);
 	height: max(100vh, 100%);
-    width: 100%;
+	width: 100%;
 }
 
 header {
@@ -63,13 +63,13 @@ header {
 	flex-direction: column;
 	width: 100%;
 }
-  
+
 body {
 	margin: 0;
 	height: 100%;
 	width: 100%;
 }
-  
+
 footer {
 	margin: 0;
 	justify-content: center;
@@ -87,7 +87,7 @@ a {
 
 a:hover {
 	color: var(--white);
-	text-decoration-color:var(--white);
+	text-decoration-color: var(--white);
 	text-decoration-style: dashed;
 }
 
@@ -109,7 +109,7 @@ hr {
 h1 {
 	font-size: 2.5em;
 	margin-top: 0.1rem;
-  	margin-bottom: 0.1em;
+	margin-bottom: 0.1em;
 }
 
 h3 {
@@ -168,8 +168,8 @@ ul {
 .flex-center {
 	display: flex;
 	align-content: center;
-    align-items: center;
-    justify-content: center;
+	align-items: center;
+	justify-content: center;
 }
 
 .center-align {
@@ -190,11 +190,11 @@ ul {
 .other-post {
 	display: flex;
 	flex-direction: column;
-  	flex: 1 1 0px;
+	flex: 1 1 0px;
 }
 
 .other-post-img {
-    object-fit: contain;
+	object-fit: contain;
 	max-height: 12em;
 	max-width: 100%;
 	filter: var(--drop-shadow);
@@ -255,7 +255,7 @@ ul {
 
 .title-text {
 	display: flex;
-    flex-direction: column;
+	flex-direction: column;
 }
 
 .title-link {
@@ -269,13 +269,13 @@ ul {
 
 .download-button {
 	background-color: var(--highlight);
-    color: var(--darker);
-    font-weight: bold;
-    padding: 1em;
-    border-radius: 1.5em;
-    display: flex;
-    text-align: center;
-    justify-content: center;
+	color: var(--darker);
+	font-weight: bold;
+	padding: 1em;
+	border-radius: 1.5em;
+	display: flex;
+	text-align: center;
+	justify-content: center;
 	text-decoration: none;
 	box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.45);
 }
@@ -283,7 +283,7 @@ ul {
 .download-button:hover {
 	background-color: #FEB3D0;
 	text-decoration: none;
-  }
+}
 
 .no-padding {
 	padding: 0
@@ -299,11 +299,11 @@ ul {
 
 .search-input {
 	height: 100%;
-    width: 100%;
-    border: 0;
-    box-sizing: border-box;
-    border-radius: 1.5em;
-    padding: 1em;
+	width: 100%;
+	border: 0;
+	box-sizing: border-box;
+	border-radius: 1.5em;
+	padding: 1em;
 	font-family: 'dustismo_romanbold_italic';
 	padding-left: 3em;
 }
@@ -317,24 +317,24 @@ ul {
 	align-items: center;
 }
 
-.search-icon{
+.search-icon {
 	position: absolute;
 	padding-left: 1em;
 	text-decoration: none;
 }
 
-.search-icon:hover{
+.search-icon:hover {
 	color: var(--darker);
 }
 
-#stream-embed > iframe {
+#stream-embed>iframe {
 	width: 100%;
 	max-height: 25em;
 	aspect-ratio: 940/480;
 }
 
-.stream-address{
-    text-underline-offset: 0;
+.stream-address {
+	text-underline-offset: 0;
 }
 
 .webring-tray {
@@ -343,17 +343,17 @@ ul {
 	max-width: 85%;
 }
 
-.webring-tray :nth-child(n){
+.webring-tray :nth-child(n) {
 	height: 31px;
 	width: 88px;
 }
 
 .thumbnail {
 	margin-top: 1em;
-    max-height: 20em;
-    max-width: 100%;
-    object-fit: contain;
-    object-position: left;
+	max-height: 20em;
+	max-width: 100%;
+	object-fit: contain;
+	object-position: left;
 	filter: var(--drop-shadow);
 }
 
@@ -380,7 +380,7 @@ ul {
 }
 
 .highlight {
-  color: var(--highlight);
+	color: var(--highlight);
 }
 
 .white {
@@ -430,7 +430,7 @@ ul {
 .bold {
 	font-weight: bold;
 }
-  
+
 .regular {
 	font-style: normal;
 }
@@ -448,7 +448,7 @@ ul {
 }
 
 .gradient-mask-edges {
-	mask-image: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(255,255,255,0) 100%);
+	mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 1) 15%, rgba(0, 0, 0, 1) 85%, rgba(255, 255, 255, 0) 100%);
 }
 
 .homepage-row {
@@ -459,15 +459,21 @@ ul {
 	grid-row-gap: 3rem;
 	width: 100%;
 }
-  /*<row-start> / <column-start> / <row-end> / <column-end>*/
-.div1 { grid-area: 1 / 1 / 2 / 10; }
-.div2 { grid-area: 1 / 10 / 2 / end; }
+
+/*<row-start> / <column-start> / <row-end> / <column-end>*/
+.div1 {
+	grid-area: 1 / 1 / 2 / 10;
+}
+
+.div2 {
+	grid-area: 1 / 10 / 2 / end;
+}
 
 .contact-column {
-    display: flex;
-    gap: 0.5rem;
-    flex-direction: column;
-    justify-content: flex-start;
+	display: flex;
+	gap: 0.5rem;
+	flex-direction: column;
+	justify-content: flex-start;
 }
 
 .contact-item {
@@ -508,8 +514,13 @@ ul {
 }
 
 @keyframes anim-scroll {
-	0% { background-position: 0px 0px; }
-	100% { background-position: -80vmin -80vmin; }
+	0% {
+		background-position: 0px 0px;
+	}
+
+	100% {
+		background-position: -80vmin -80vmin;
+	}
 }
 
 .marquee {
@@ -519,7 +530,7 @@ ul {
 	user-select: none;
 	gap: var(--gap);
 }
-  
+
 .marquee-content {
 	flex-shrink: 0;
 	display: flex;
@@ -541,17 +552,18 @@ ul {
 
 @keyframes marquee-scroll {
 	from {
-	  transform: translateX(0);
+		transform: translateX(0);
 	}
+
 	to {
-	  transform: translateX(calc(-100% - var(--gap)));
+		transform: translateX(calc(-100% - var(--gap)));
 	}
-  }
+}
 
 /* taller than wide */
 @media screen and (min-height: 85vw) {
 
-	#stream-embed > iframe {
+	#stream-embed>iframe {
 		width: 100%;
 		max-height: none;
 		aspect-ratio: 940/1080;
@@ -561,11 +573,12 @@ ul {
 		flex-direction: column;
 		gap: 0.5rem;
 	}
+
 	.other-post {
 		width: 100%
 	}
 
-  	.homepage-row {
+	.homepage-row {
 		display: flex;
 		flex-direction: column;
 	}
