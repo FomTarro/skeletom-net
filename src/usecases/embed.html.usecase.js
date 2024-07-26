@@ -7,7 +7,7 @@ const { PostData } = require('./convert.markdown.usecase');
  * 
  * @param {TemplateMap} templateMap 
  * @param {string} content 
- * @returns {string} HTML
+ * @returns {Promise<string>} HTML
  */
 async function embedContentInFrame(templateMap, content){
     const template = templateMap.FRAME;
@@ -21,7 +21,7 @@ async function embedContentInFrame(templateMap, content){
  * @param {TemplateMap} templateMap 
  * @param {PostData[]} blogs
  * @param {PostData[]} projects
- * @returns {string} HTML
+ * @returns {Promise<string>} HTML
  */
 async function generateHomePage(blogs, projects, templateMap){
     const template = templateMap.HOMEPAGE;
@@ -47,7 +47,7 @@ async function generateHomePage(blogs, projects, templateMap){
  * @param {PostData} post - This post.
  * @param {string} template - Template HTML
  * @param {TemplateMap} templateMap - Map of other Template paths.
- * @returns {string} - Modified HTML 
+ * @returns {Promise<string>} - Modified HTML 
  */
 async function embedPostInTemplate(post, template, templateMap){
     const dom = new JSDOM(template);
@@ -199,7 +199,7 @@ async function embedPostInTemplate(post, template, templateMap){
  * 
  * @param {PostData} post 
  * @param {TemplateMap} templateMap 
- * @returns {string} HTML
+ * @returns {Promise<string>} HTML
  */
 async function generateFullBlogPost(post, templateMap){
     // We involve the outer frame here so that it can 
@@ -212,7 +212,7 @@ async function generateFullBlogPost(post, templateMap){
  * 
  * @param {PostData} post 
  * @param {TemplateMap} templateMap 
- * @returns 
+ * @returns {Promise<string>} HTML
  */
 async function generatePreviewBlogPost(post, templateMap){
     return await embedPostInTemplate(post, templateMap.BLOG_ITEM_PREVIEW, templateMap);
@@ -222,7 +222,7 @@ async function generatePreviewBlogPost(post, templateMap){
  * 
  * @param {PostData} post 
  * @param {TemplateMap} templateMap 
- * @returns 
+ * @returns {Promise<string>} HTML
  */
 async function generateMinimalBlogPost(post, templateMap){
     return await embedPostInTemplate(post, templateMap.BLOG_ITEM_MINIMAL, templateMap);
@@ -232,7 +232,7 @@ async function generateMinimalBlogPost(post, templateMap){
  * 
  * @param {PostData} post 
  * @param {TemplateMap} templateMap 
- * @returns 
+ * @returns {Promise<string>} HTML
  */
 async function generateThumbnailBlogPost(post, templateMap){
     return await embedPostInTemplate(post, templateMap.BLOG_ITEM_THUMBNAIL, templateMap);
@@ -242,7 +242,7 @@ async function generateThumbnailBlogPost(post, templateMap){
  * 
  * @param {PostData[]} blogs - List of all Blogs that we want to display.
  * @param {TemplateMap} templateMap 
- * @returns {string} HTML
+ * @returns {Promise<string>} HTML
  */
 async function generateBlogArchive(blogs, templateMap){
     const dom = new JSDOM(await embedContentInFrame(templateMap, templateMap.BLOG_ARCHIVE_CONTAINER));
@@ -289,7 +289,7 @@ async function generateBlogArchive(blogs, templateMap){
  * @param {PostData} project 
  * @param {PostData[]} blogs 
  * @param {TemplateMap} templateMap 
- * @returns 
+ * @returns {Promise<string>} HTML
  */
 async function generateFullProjectPost(project, blogs, templateMap){
     // We involve the outer frame here so that it can 

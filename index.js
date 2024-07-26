@@ -5,7 +5,7 @@ const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
 const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
-const { Blogs, Projects, FilterPostMetadata, PopulatePostLists } = require('./src/usecases/convert.markdown.usecase');
+const { Blogs, Projects, FilterPostMetadata, PopulatePostLists, ProjectsPath, BlogsPath } = require('./src/usecases/convert.markdown.usecase');
 const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive } = require('./src/usecases/embed.html.usecase');
 const { TemplateMap } = require('./src/utils/template.map');
 const { GetChannelStatus } = require('./src/adapters/twitch.client');
@@ -27,7 +27,7 @@ const STREAM_STATUS_POLLER = setInterval(async () => {
     }
 }, 10000);
 
-// Apply the rate limiting middleware to API calls only
+
 const app = express();
 
 async function launch(){
@@ -36,24 +36,24 @@ async function launch(){
     app.use(express.json());
     app.use('/', express.static(baseDirectory));
     await PopulatePostLists();
-    for(const blog of Blogs){
-        app.get([`/blogs/${blog.title}`], async (req, res) => {
-            try{
-                const html = await GenerateFullBlogPost(blog, TemplateMap);
-                res.status(200).send(html);
-            }catch(e){
-                console.error(e);
-                res.status(404).send("No such blog post exists.");
-            }
-        })
-    }
+
+    app.get([`/blogs/:blogTitle`], async (req, res) => {
+        try{
+            const blog = Blogs().find(item => item.title.toLowerCase() === req.params.blogTitle.toLowerCase());
+            const html = await GenerateFullBlogPost(blog, TemplateMap);
+            res.status(200).send(html);
+        }catch(e){
+            console.error(e);
+            res.status(404).send("No such blog post exists.");
+        }
+    })
 
     app.get([`/blogs`], async (req, res) => {
         try{
             const filteredBlogs = 
             (req.query && req.query.tags) ?
-            FilterPostMetadata(Blogs, req.query.tags)
-            : Blogs;
+            FilterPostMetadata(Blogs(), req.query.tags)
+            : Blogs();
             const html = await GenerateBlogArchive(filteredBlogs, TemplateMap);
             res.status(200).send(html);
         }catch(e){
@@ -62,24 +62,23 @@ async function launch(){
         }
     })
 
-    for(const project of Projects){
-        app.get([`/projects/${project.title}`], async (req, res) => {
-            try{
-                const html = await GenerateFullBlogPost(project, TemplateMap);
-                res.status(200).send(html);
-            }catch(e){
-                console.error(e);
-                res.status(404).send("No such project exists.");
-            }
-        })
-    }
+    app.get([`/projects/:projectTitle`], async (req, res) => {
+        try{
+            const project = Projects().find(item => item.title.toLowerCase() === req.params.projectTitle.toLowerCase());
+            const html = await GenerateFullBlogPost(project, TemplateMap);
+            res.status(200).send(html);
+        }catch(e){
+            console.error(e);
+            res.status(404).send("No such project exists.");
+        }
+    })
 
     app.get([`/projects`], async (req, res) => {
         try{
             const filteredProjects =
                 (req.query && req.query.tags) ?
-                FilterPostMetadata(Projects, req.query.tags)
-                : Projects;
+                FilterPostMetadata(Projects(), req.query.tags)
+                : Projects();
             const html = await GenerateBlogArchive(filteredProjects, TemplateMap);
             res.status(200).send(html);
         }catch(e){
@@ -90,7 +89,8 @@ async function launch(){
 
     // Home
     app.get(['', '/', '/about'], async (req, res) => {
-        res.status(200).send(await GenerateHomePage(Blogs, Projects, TemplateMap));
+        const html = await GenerateHomePage(Blogs(), Projects(), TemplateMap)
+        res.status(200).send(html);
     });
 
     // Tells the browser to redirect to the given URL

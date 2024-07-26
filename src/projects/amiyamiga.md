@@ -13,7 +13,7 @@ platforms: Windows
 
 ---
 
-## About
+## Background
 
 This app was made in roughly 4 months, and finally released in honor of [Amiya](https://www.youtube.com/@AmiyaAranha)'s birthday on November 29th, 2022. Thank you for all that you do, Amiya. Happy birthday!
 

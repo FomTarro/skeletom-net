@@ -29,17 +29,21 @@ const fs = require('fs');
  * @type {PostData[]}
  */
 const blogs = [];
+const blogsPath = path.join(__dirname, '..', 'blogs');
+
 /**
  * List of all project posts, sorted by newest first
  * @type {PostData[]}
  */
-const projects = []
+const projects = [];
+const projectsPath = path.join(__dirname, '..', 'projects');
+
 
 /**
  * @param {string} markdownPath
  * @param {string} classification - "blogs" or "projects"
  * @param {AppConfig} appConfig 
- * @returns {PostData} Post data
+ * @returns {Promise<PostData>} Post data
  */
 async function getMetadata(markdownPath, classification, appConfig){
     const markdown = fs.readFileSync(markdownPath).toString();
@@ -73,7 +77,8 @@ async function getMetadata(markdownPath, classification, appConfig){
 }
 
 async function populatePostLists(){
-    const blogsPath = path.join(__dirname, '..', 'blogs');
+    // blogs
+    blogs.length = 0;
     for(const file of fs.readdirSync(blogsPath)){
         const blogInfo = await getMetadata(path.join(blogsPath, file), "blogs", AppConfig);
         blogs.push(blogInfo);
@@ -82,7 +87,7 @@ async function populatePostLists(){
     blogs.sort((a, b) => b.updated - a.updated);
 
     // projects
-    const projectsPath = path.join(__dirname, '..', 'projects');
+    projects.length = 0;
     for(const file of fs.readdirSync(projectsPath)){
         const projectInfo = await getMetadata(path.join(projectsPath, file), "projects", AppConfig);
         projects.push(projectInfo);
@@ -113,7 +118,7 @@ async function populatePostLists(){
  * @returns {PostData[]} - Filtered set of posts
  */
 function filterPosts(posts, tags){
-    if(!tags){
+    if(!tags || !posts){
         return [];
     }
     const splitTags = tags.toLowerCase().split(',').map(tag => tag.trim());
@@ -126,8 +131,8 @@ function filterPosts(posts, tags){
 // Utils
 /**
  * Converts a string like "A Blog Post" into "a-blog-post"
- * @param {string} title 
- * @returns {string}
+ * @param {string} title - ex "A Blog Post"
+ * @returns {string} ex "a-blog-post"
  */
 function slugify(title) {
     return title
@@ -137,9 +142,30 @@ function slugify(title) {
         .replace(/[^a-z0-9-]/g, '')
 }
 
+// If we're running locally, spin up a set of watchers 
+// to automatically refresh the content when we make edits
+if(AppConfig.DOMAIN.includes("localhost")){
+    let fsTimeout;
+    fs.watch(blogsPath, e => {
+        populatePostLists();
+        if(!fsTimeout){
+            fsTimeout = setTimeout(() => { fsTimeout = undefined }, 500);
+        }
+    });
+    fs.watch(projectsPath, e => {
+        populatePostLists();
+        if(!fsTimeout){
+            fsTimeout = setTimeout(() => { fsTimeout = undefined }, 500);
+        }
+    });
+}
+
+function PROJECTS(){ return projects; };
+function BLOGS(){ return blogs; };
+
 module.exports.PopulatePostLists = populatePostLists;
 module.exports.GetPostMetadata = getMetadata;
 module.exports.FilterPostMetadata = filterPosts;
-module.exports.Blogs = blogs;
-module.exports.Projects = projects;
+module.exports.Blogs = BLOGS;
+module.exports.Projects = PROJECTS;
 module.exports.PostData = this.PostData;
