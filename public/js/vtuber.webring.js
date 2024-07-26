@@ -10,8 +10,11 @@ thisSite = window.location.href; // get the url of the site we're currently on
 thisIndex = sites.findIndex(site => thisSite.startsWith(site) || thisSite.startsWith("http://localhost"))
 
 function randomSite() {
-  otherSites = sites.slice(); // create a copy of the sites list
-  otherSites.splice(thisIndex, 1); // remove the current site so we don't just land on it again
+  const R18_FILTER = [
+    "https://xinjinmeng.neocities.org"
+  ]
+  otherSites = sites.slice().filter(site => !R18_FILTER.includes(site));
+  otherSites.splice(thisIndex, 1);
   randomIndex = Math.floor(Math.random() * otherSites.length);
   location.href = otherSites[randomIndex];
 }
