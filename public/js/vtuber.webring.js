@@ -58,8 +58,11 @@ if (thisIndex == null) {
         <div id='vtubers-on-neocities-title-elem-2'>
         o n
         </div>
-        <div id='vtubers-on-neocities-title-elem-3'>
+        <div id='vtubers-on-neocities-title-elem-3' class='strikethrough'>
         n e o c i t i e s
+        </div>
+        <div id='vtubers-on-neocities-title-elem-5'>
+        SELF-HOSTING
         </div>
         <div id='vtubers-on-neocities-title-elem-4'>
         !
