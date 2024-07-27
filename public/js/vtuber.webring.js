@@ -7,7 +7,7 @@
 
 const tag = document.getElementById(ringID); // find the widget on the page
 thisSite = window.location.href; // get the url of the site we're currently on
-thisIndex = sites.findIndex(site => thisSite.startsWith(site) || thisSite.startsWith("http://localhost"))
+thisIndex = sites.findIndex(site => thisSite.includes("skeletom.net") || thisSite.startsWith("http://localhost"))
 
 function randomSite() {
   const R18_FILTER = [
