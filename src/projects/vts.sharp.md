@@ -10,6 +10,8 @@ release: https://github.com/FomTarro/VTS-Sharp
 version: v2.2.2
 ---
 
+---
+
 ## Background
 
 On [September 19th, 2021](https://twitter.com/VTubeStudio/status/1439719246842540039), industry-leading VTubing application [VTube Studio](https://denchisoft.com/) released [plugin support via an API](https://github.com/DenchiSoft/VTubeStudio). Several weeks prior, I had been tipped off by [the developer](https://twitter.com/DenchiSoft) that such an advancement was on its way. 
