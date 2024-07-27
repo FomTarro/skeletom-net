@@ -13,8 +13,9 @@ function randomSite() {
   const R18_FILTER = [
     "https://xinjinmeng.neocities.org"
   ]
-  otherSites = sites.slice().filter(site => !R18_FILTER.includes(site));
+  otherSites = sites.slice();
   otherSites.splice(thisIndex, 1);
+  otherSites = otherSites.filter(site => !R18_FILTER.includes(site));
   randomIndex = Math.floor(Math.random() * otherSites.length);
   location.href = otherSites[randomIndex];
 }

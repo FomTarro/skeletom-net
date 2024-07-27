@@ -17,6 +17,8 @@ platforms: Windows
 
 Originally designed simply as a way for me to test if my open-source library, [VTS-Sharp](/projects/vts-sharp) was indeed developer-friendly, the scope of this plugin quickly expanded to accommodate for a wide variety of use-cases. If you're interested, you can even watch the entire development cycle [in one handy playlist](https://www.youtube.com/playlist?list=PLspwi8mJZ27_6P2n30lj97e3z4Zd_QUaU).
 
+---
+
 ## Features
 
 The plugin has several highly-configurable features, such as:

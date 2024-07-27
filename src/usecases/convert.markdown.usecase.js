@@ -49,7 +49,7 @@ async function getMetadata(markdownPath, classification, appConfig){
     const markdown = fs.readFileSync(markdownPath).toString();
     const converter = new showdown.Converter({
         parseImgDimensions: true,
-        metadata: true
+        metadata: true,
     });
     const html = converter.makeHtml(markdown);
     const metadata = converter.getMetadata();
