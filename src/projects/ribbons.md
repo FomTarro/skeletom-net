@@ -39,16 +39,19 @@ Below is an embedded version of the tracker, along with a URL that you can copy 
 </div>
 <script>
     function copyURL(){
-        const copyTextarea = document.querySelector('#widget-url');
-        copyTextarea.focus();
-        copyTextarea.select();
+        const copyZone = document.querySelector('#widget-url');
+        copyZone.focus();
+        copyZone.select();
         try {
             const successful = document.execCommand('copy');
             var msg = successful ? 'successful' : 'unsuccessful';
-            console.log('Copying command was ' + msg);
+            console.log('Copying was ' + msg);
         } catch (err) {
             console.log('Unable to copy');
         }
+    }
+    function setDimensions(){
+        // Do nothing
     }
 </script>
 
