@@ -28,14 +28,17 @@ The tracker displays a list of all ribbons available in the selected games, as d
 
 When used as a [Browser Source in OBS](https://obsproject.com/kb/browser-source), you can right-click on the source and select "Interact" from the menu in order to, well, interact with it as you would in a normal browser.  
 
-Below is an embedded version of the tracker, along with a URL that you can copy into OBS as a Browser Source. You can also resize it with the little handle in the bottom-right corner of the frame, as well. The tracker is farily responsive, so you can see how it adapts to different resolutions.
+Below is an embedded version of the tracker, along with a URL that you can copy into OBS as a Browser Source. You can also resize this embedded version with the little handle in the bottom-right corner of the frame, to see how it adapts to different resolutions.
 
 <div class="resize-both drop-shadow" style="height: 500px; margin-bottom: 1em;">
     <iframe class="fill" src="https://www.skeletom.net/pkmn/ribbon-tracker/?games=[or,x,sun,sw,scarlet]"></iframe>
 </div>
 
 <div class="flex" style="width: 100%; gap: 1em;">
-    <input id="widget-url" type="text" style="flex: 1;" readonly value="https://www.skeletom.net/pkmn/ribbon-tracker/?games=[or,x,sun,sw,scarlet]"></input><button onclick=copyURL()>Copy URL to Clipboard</button>
+    <input id="widget-url" type="text" style="flex: 1;" readonly value="https://www.skeletom.net/pkmn/ribbon-tracker/?games=[or,x,sun,sw,scarlet]"></input>
+    <button onclick=copyURL()>
+        Copy URL to Clipboard
+    </button>
 </div>
 <script>
     function copyURL(){

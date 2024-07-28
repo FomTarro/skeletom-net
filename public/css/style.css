@@ -18,7 +18,7 @@
 html {
 	--white: white;
 	--black: black;
-	--light: #f0f2f13d;
+	--light: #3C3C3C;
 	--dark: #2E2D31;
 	--darker: #242328;
 	--highlight: #EBE563;
@@ -49,6 +49,7 @@ main {
 	position: absolute;
 	z-index: -1;
 	overflow: hidden;
+	user-select: none;
 	backdrop-filter: blur(1vmin);
 	height: max(100vh, 100%);
 	width: 100%;
@@ -95,7 +96,7 @@ iframe {
 	max-width: 100%;
 	filter: var(--drop-shadow);
 	background-color: var(--light);
-	border: 1px solid var(--white);
+	border: 1px solid rgba(255, 255, 255, 0.25);
 	box-sizing: border-box;
 }
 
