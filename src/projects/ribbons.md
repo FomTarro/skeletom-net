@@ -18,7 +18,7 @@ platforms: Web
 
 Back in 2023, Nintendo announced that they'd be [shutting down all 3DS Online capabilities](https://en-americas-support.nintendo.com/app/answers/detail/a_id/63227/~/announcement-of-discontinuation-of-online-services-for-nintendo-3ds-and-wii-u). Well, all of them [except for Pokémon Bank](https://en-americas-support.nintendo.com/app/answers/detail/a_id/63227/~/announcement-of-discontinuation-of-online-services-for-nintendo-3ds-and-wii-u#s1q2), the app that lets you transfer Pokémon from the 3DS to the Switch. 
 
-Reading the writing on the wall and knowing that Bank was living on borrowed time, I set out to [collect as many ribbons as possible](https://www.youtube.com/playlist?list=PLspwi8mJZ27_sVLlxuWNwB7wNRbsrG2Zg) from the 3DS-era and beyond on my favorite Pokémon, Torkoal.
+Reading the writing on the wall and knowing that Bank was living on borrowed time, I set out to [collect as many ribbons as possible](https://www.youtube.com/playlist?list=PLspwi8mJZ27_sVLlxuWNwB7wNRbsrG2Zg) from the 3DS-era and beyond on my favorite Pokémon, Torkoal. I figured it would make for good stream content, and as such needed a good way to visually convey my objective and progress to viewers, who may be joining at any stage in the journey. Thus, I dreamed up a nice little widget to add to my stream overlay!
 
 ---
 
