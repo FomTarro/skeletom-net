@@ -18,7 +18,7 @@
 html {
 	--white: white;
 	--black: black;
-	--light: #F0F2F1;
+	--light: #f0f2f13d;
 	--dark: #2E2D31;
 	--darker: #242328;
 	--highlight: #EBE563;
@@ -95,6 +95,8 @@ iframe {
 	max-width: 100%;
 	filter: var(--drop-shadow);
 	background-color: var(--light);
+	border: 1px solid var(--white);
+	box-sizing: border-box;
 }
 
 hr {
@@ -135,7 +137,8 @@ ul {
 }
 
 .resize-both {
-	overflow: scroll;
+	max-width: 100%;
+	overflow: hidden;
 	resize: both;
 }
 
@@ -163,6 +166,10 @@ ul {
 
 .gap-small {
 	gap: 1em;
+}
+
+.flex {
+	display: flex;
 }
 
 .flex-center {
@@ -377,6 +384,10 @@ ul {
 	margin-top: 0em;
 	float: left;
 	max-height: 15em;
+}
+
+.drop-shadow {
+	filter: var(--drop-shadow);
 }
 
 .highlight {
