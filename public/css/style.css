@@ -94,10 +94,26 @@ a:hover {
 
 iframe {
 	max-width: 100%;
-	filter: var(--drop-shadow);
-	background-color: var(--light);
+	box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.45);
+	/* background-color: var(--light); */
 	border: 1px solid rgba(255, 255, 255, 0.25);
 	box-sizing: border-box;
+	background: repeating-conic-gradient(#e6e5e5 0% 25%, white 0% 50%) 50% / 20px 20px;
+	animation: anim-scroll 64s linear infinite;
+	/* --grid-size: 30px;
+    --grid-strength: 1px;
+    --grid-dash: 5px;
+    --grid-gap: 10px;
+    --grid-color: #ddd;
+    --paper-color: #fff;
+
+	background-color: var(--paper-color);
+	background-size: var(--grid-gap) var(--grid-gap), var(--grid-size) var(--grid-size);
+	background-image:
+		linear-gradient(to bottom, transparent var(--grid-dash), var(--paper-color) var(--grid-dash)), 
+		linear-gradient(to right, var(--grid-color) var(--grid-strength), transparent var(--grid-strength)),
+		linear-gradient(to right, transparent var(--grid-dash), var(--paper-color) var(--grid-dash)),
+		linear-gradient(to bottom, var(--grid-color) var(--grid-strength), transparent var(--grid-strength)); */
 }
 
 hr {

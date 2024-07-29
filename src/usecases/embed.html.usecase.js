@@ -99,6 +99,18 @@ async function embedPostInTemplate(post, template, templateMap){
         };
         date.innerHTML = new Date(post.date).toLocaleDateString("en-US", options);
     }
+    if(post.date !== post.updated){
+        for(const date of dom.window.document.querySelectorAll('.meta-updated')){
+            date.content = post.updated;
+            const options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+            };
+            date.innerHTML = `${new Date(post.updated).toLocaleDateString("en-US", options)}`;
+        }
+    }
     for(const img of dom.window.document.querySelectorAll('.meta-img')){
         img.content = post.thumbnail;
         img.src = post.thumbnail;
