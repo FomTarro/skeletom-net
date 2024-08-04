@@ -41,7 +41,7 @@ html {
 
 main {
 	padding: 1.5em 2.5em 2.5em 2.5em;
-	max-width: 1280px;
+	max-width: 1380px;
 	margin: auto;
 }
 
@@ -51,6 +51,7 @@ main {
 	overflow: hidden;
 	user-select: none;
 	backdrop-filter: blur(1vmin);
+	backface-visibility: hidden;
 	height: max(100vh, 100%);
 	width: 100%;
 }
