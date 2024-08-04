@@ -148,13 +148,21 @@ function slugify(title) {
 if(AppConfig.DOMAIN.includes("localhost")){
     let fsTimeout;
     fs.watch(blogsPath, e => {
-        populatePostLists();
+        try{
+            populatePostLists();
+        }catch(e){
+
+        }
         if(!fsTimeout){
             fsTimeout = setTimeout(() => { fsTimeout = undefined }, 500);
         }
     });
     fs.watch(projectsPath, e => {
-        populatePostLists();
+        try{
+            populatePostLists();
+        }catch(e){
+            
+        }
         if(!fsTimeout){
             fsTimeout = setTimeout(() => { fsTimeout = undefined }, 500);
         }

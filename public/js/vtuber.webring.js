@@ -37,17 +37,8 @@ if (thisIndex == null) {
   previousIndex = (thisIndex - 1 < 0) ? sites.length - 1 : thisIndex - 1;
   nextIndex = (thisIndex + 1 >= sites.length) ? 0 : thisIndex + 1;
 
-  indexText = ""
-  // if you've chosen to include an index, this builds the link to that
-  if (useIndex) {
-    indexText = `<a href='${indexPage}'>index</a>`;
-  }
-
-  randomText = ""
-  // if you've chosen to include a random button, this builds the link that does that
-  if (useRandom) {
-    randomText = `<a href='javascript:void(0)' onclick='randomSite()'>random</a>`;
-  }
+  indexText = useIndex ? `<a href='${indexPage}'>index</a>` : "";
+  randomText = useRandom ? `<a href='javascript:void(0)' onclick='randomSite()'>random</a>` : "";
 
   // this is the code that displays the widget 
   // EDIT THIS if you want to change the structure
@@ -76,10 +67,10 @@ if (thisIndex == null) {
     </td>
     </tr>
     <tr>
-      <td class='webring-prev'><a href='${sites[previousIndex]}'>← prev</a></td>
+      <td class='webring-prev'>← <a href='${sites[previousIndex]}'>prev</a></td>
       <td class='webring-info'>
       <span class='webring-links' align="center">
-        ${randomText} | ${indexText}<td class='webring-next'><a href='${sites[nextIndex]}'>next →</a></td>
+        ${randomText} | ${indexText}<td class='webring-next'><a href='${sites[nextIndex]}'>next</a> →</td>
     </tr>
   </table>
   `);
