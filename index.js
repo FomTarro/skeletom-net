@@ -37,6 +37,11 @@ async function launch(){
     app.use('/', express.static(baseDirectory));
     await PopulatePostLists();
 
+    app.all('*', function (req, res, next) {
+        console.log(req.path);
+        next();
+    });
+
     app.get([`/blogs/:blogTitle`], async (req, res) => {
         try{
             const blog = Blogs().find(item => item.title.toLowerCase() === req.params.blogTitle.toLowerCase());
