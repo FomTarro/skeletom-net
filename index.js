@@ -40,7 +40,7 @@ async function launch(){
 
     app.all('*', async (req, res, next) => {
         const path = req.path;
-        if(path && !path.startsWith('/stream') && !path.startsWith('/hits')){
+        if(path && !path.startsWith('/stream/status') && !path.startsWith('/hits')){
             // increment hit counter;
             IncrementHitCountForPath(path, AppConfig);
         }
