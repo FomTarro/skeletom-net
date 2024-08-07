@@ -42,7 +42,7 @@ async function launch(){
         const path = req.path;
         if(path && !path.startsWith('/stream/status') && !path.startsWith('/hits')){
             // increment hit counter;
-            IncrementHitCountForPath(path, AppConfig);
+            IncrementHitCountForPath(path, req.ip, AppConfig);
         }
         next();
     });

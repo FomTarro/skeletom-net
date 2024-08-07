@@ -172,10 +172,10 @@
     color: yellow;
     font-family: monospace;
     font-weight: bold;
-    font-size: 2em;
+    font-size: 1.9em;
     transform: scale(1.2, 1) rotate(3deg);
     top: 1.95rem;
-    left: 2.5rem;
+    left: 2.7rem;
     z-index: 5;
     text-shadow: 0 0 5px black;
     user-select: none;
