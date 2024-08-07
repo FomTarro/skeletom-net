@@ -9,6 +9,7 @@ const { Blogs, Projects, FilterPostMetadata, PopulatePostLists, ProjectsPath, Bl
 const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive } = require('./src/usecases/embed.html.usecase');
 const { TemplateMap } = require('./src/utils/template.map');
 const { GetChannelStatus } = require('./src/adapters/twitch.client');
+const { GetHitCountForPath, IncrementHitCountForPath } = require('./src/usecases/count.hits.usecase');
 
 let LAST_STREAM_STATUS = {
     status: "OFFLINE",
@@ -37,9 +38,25 @@ async function launch(){
     app.use('/', express.static(baseDirectory));
     await PopulatePostLists();
 
-    app.all('*', function (req, res, next) {
-        console.log(req.path);
+    app.all('*', async (req, res, next) => {
+        const path = req.path;
+        if(path && !path.startsWith('/stream') && !path.startsWith('/hits')){
+            // increment hit counter;
+            IncrementHitCountForPath(path, AppConfig);
+        }
         next();
+    });
+
+    app.get([`/hits`], async (req, res) => {
+        if(req.query && req.query.page){
+            res.status(200).send(JSON.stringify({
+                count: await GetHitCountForPath(req.query.page, AppConfig)
+            }));
+        }else{
+            res.status(201).send(JSON.stringify({
+                count: 0
+            }));
+        }
     });
 
     app.get([`/blogs/:blogTitle`], async (req, res) => {
@@ -169,7 +186,6 @@ async function launch(){
     app.use('/gifts', express.static(path.join(__dirname, './gifts')));
     app.get(['/gifts/lua-birthday-2021'], (req, res) => {
         const file = path.join(__dirname, './gifts', 'lua-birthday-2021', 'index.html')
-        console.log(file);
         res.sendFile(file);
     });
 

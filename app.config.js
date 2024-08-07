@@ -23,9 +23,11 @@ class AppConfig{
 
     get WOLFRAM_CLIENT_ID(){ return process.env.wolfram_client_id; };
 
-    
     get TWITCH_CLIENT_ID(){ return process.env.twitch_client_id; };
     get TWITCH_CLIENT_SECRET(){ return process.env.twitch_client_secret; };
+
+    get AWS_CLIENT_ID(){ return process.env.aws_client_id; };
+    get AWS_CLIENT_SECRET(){ return process.env.aws_client_secret; };
 }
 
 const instance = new AppConfig();

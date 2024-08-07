@@ -2,6 +2,7 @@ const jsdom = require('jsdom')
 const { JSDOM } = jsdom;
 const { TemplateMap } = require('../utils/template.map');
 const { PostData } = require('./convert.markdown.usecase');
+const { GetHitCountForPath } = require('./count.hits.usecase');
 
 /**
  * 
@@ -13,6 +14,7 @@ async function embedContentInFrame(templateMap, content){
     const template = templateMap.FRAME;
     const dom = new JSDOM(template);
     dom.window.document.getElementById('body').innerHTML = content;
+    // dom.window.document.getElementById('counter-value').innerHTML = await GetHitCountForPath("/");
     return dom.serialize();
 }
 
