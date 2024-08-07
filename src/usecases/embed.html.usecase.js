@@ -2,7 +2,6 @@ const jsdom = require('jsdom')
 const { JSDOM } = jsdom;
 const { TemplateMap } = require('../utils/template.map');
 const { PostData } = require('./convert.markdown.usecase');
-const { GetHitCountForPath } = require('./count.hits.usecase');
 
 /**
  * 
@@ -16,6 +15,15 @@ async function embedContentInFrame(templateMap, content){
     dom.window.document.getElementById('body').innerHTML = content;
     // dom.window.document.getElementById('counter-value').innerHTML = await GetHitCountForPath("/");
     return dom.serialize();
+}
+
+/**
+ * 
+ * @param {TemplateMap} templateMap 
+ * @returns {Promise<string>} HTML
+ */
+async function generateNotFound(templateMap){
+    return await embedContentInFrame(templateMap, templateMap.NOT_FOUND);
 }
 
 /**
@@ -310,6 +318,7 @@ async function generateFullProjectPost(project, blogs, templateMap){
     return await embedPostInTemplate(project, frame, templateMap);
 }
 
+module.exports.GenerateNotFound = generateNotFound;
 module.exports.GenerateHomePage = generateHomePage;
 module.exports.GenerateFullBlogPost = generateFullBlogPost;
 module.exports.GenerateBlogArchive = generateBlogArchive;

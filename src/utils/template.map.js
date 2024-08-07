@@ -17,6 +17,8 @@ class TemplateMap {
     get BLOG_ARCHIVE_CONTAINER(){ return fs.readFileSync(path.join(__dirname, '..', 'templates', 'blogs.list.html'))};
 
     get PROJECT_ITEM_FULL(){ return fs.readFileSync(path.join(__dirname, '..', 'templates', 'project.item.full.html'))};
+
+    get NOT_FOUND(){ return fs.readFileSync(path.join(__dirname, '..', 'templates', 'not.found.html'))};
 }
 
 const instance = new TemplateMap();
