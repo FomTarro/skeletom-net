@@ -43,7 +43,6 @@ async function launch(){
         const path = req.path;
         if(path && !path.startsWith('/stream/status') && !path.startsWith('/hits')){
             // increment hit counter;
-            console.log(`Hit from: ${req.ip}`);
             IncrementHitCountForPath(path, req.ip, AppConfig);
         }
         next();
