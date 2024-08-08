@@ -36,6 +36,7 @@ async function launch(){
     const baseDirectory = path.join(__dirname, './public');
     app.use(express.json());
     app.use('/', express.static(baseDirectory));
+    app.set('trust proxy', true);
     await PopulatePostLists();
 
     app.all('*', async (req, res, next) => {
