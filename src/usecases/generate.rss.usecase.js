@@ -39,9 +39,10 @@ async function generateRSS(posts, templateMap) {
         const pubDate = doc.createElement("pubDate");
         pubDate.innerHTML = new Date(post.updated).toUTCString();
         item.appendChild(pubDate);
-        const lastBuildDate = doc.createElement("lastBuildDate");
-        lastBuildDate.innerHTML = new Date(post.updated).toUTCString();
-        item.appendChild(lastBuildDate);
+
+        const guid = doc.createElement("guid");
+        guid.innerHTML = link.innerHTML;
+        item.appendChild(guid);
 
         channel.appendChild(item);
         
