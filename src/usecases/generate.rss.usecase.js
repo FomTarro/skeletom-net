@@ -20,18 +20,9 @@ async function generateRSS(posts, templateMap) {
     lastBuildDate.innerHTML = new Date().toUTCString();
     channel.appendChild(lastBuildDate);
 
-    posts.sort((a, b) => {
-        a.updated - b.updated
-    });
+    posts.sort((a, b) => b.updated - a.updated);
     const slice = posts.slice(0, 5);
     for (const post of slice) {
-//         <item>
-            // <title>Louisiana Students to Hear from NASA Astronauts Aboard Space Station</title>
-            // <link>http://www.nasa.gov/press-release/louisiana-students-to-hear-from-nasa-astronauts-aboard-space-station</link>
-            // <description>As part of the state's first Earth-to-space call, students from Louisiana will have an opportunity soon to hear from NASA astronauts aboard the International Space Station.</description>
-            // <pubDate>Fri, 21 Jul 2023 09:04 EDT</pubDate>
-            // <guid>http://www.nasa.gov/press-release/louisiana-students-to-hear-from-nasa-astronauts-aboard-space-station</guid>
-        // </item>
         const item = doc.createElement("item");
         const title = doc.createElement("title");
         title.innerHTML = post.fullTitle;
