@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<meta charset="utf-16"/>
+<div class="column fill">
+    <div class="row homepage-row">
+        <!-- About -->
+        <div class="dark item div1">
+            <div class="darker item-label item">
+                <span class="highlight meta-date">Bone giorno!</span>
+            </div>
+            <div>
+                <h1 class="meta-title"><span class="font-tiny">Tom</span> <span>"Skeletom"</span> <span class="font-tiny">Farro</span></h1>
+                <div class="translucent font-tiny">💀🤌<span class="italic">Cartoon in a cartoon graveyard...</span></div>
+            </div>
+            <div id="content">
+                <img class="meta-img thumbnail float-left" src="/img/skeletom_bust.png">
+                <p class="font-medium">
+                    <span class="italic">Ciao!</span>
+                    I'm Skeletom. Like all members of the living dead, I am bound to this world by unfinished business. In my case, it's outstanding <a href="https://www.github.com/fomtarro" target="_blank">Git issues</a>.
+                </p>
+                <p>
+                    By day I'm a software engineer, and by night I'm a VTuber on <a href='/stream'><span class="fa fa-sm fa-brands fa-twitch"></span> twitch.tv</a>, where I broadcast <a href="https://www.youtube.com/playlist?list=PLspwi8mJZ27_6P2n30lj97e3z4Zd_QUaU" target="_blank">programming</a>, <a href="https://www.youtube.com/playlist?list=PLspwi8mJZ2799Rhk-6G-fP3JQBjBFgOFT" target="_blank">cooking</a>, <a href="https://www.youtube.com/playlist?list=PLspwi8mJZ27_2J2LgRgI2gEEFp_SOx_T9" target="_blank">model-building</a>, and on rare occasions, even <a href="https://www.youtube.com/playlist?list=PLspwi8mJZ279vtjmFN9jqt2IJirrd_f-Z" target="_blank">video gaming</a>. 
+                </p>
+                <p>
+                    I work day in and day out to make cool tech for both VTubers and their fans, to help everyone enjoy this virtual world to the fullest.
+                </p>
+            </div>
+        </div>
+        <!-- Contact -->
+        <div class="dark item div2">
+            <div class="darker item-label item">
+                <span class="highlight meta-date">Stay in touch!</span>
+            </div>
+            <div class="contact-column">
+                <p>Email me at:</p>
+                <div class="row contact-item">
+                    <span class="fa fa-envelope fa-lg"></span><a href="mailto:tom@skeletom.net">tom@skeletom.net</a>
+                </div>
+                <p>Or find me on:</p>
+                <div class="row contact-item">
+                    <span class="fa fa-brands fa-twitter fa-lg"></span><a href="https://www.twitter.com/fomtarro" target="_blank">@fomtarro</a>
+                </div>
+                <div class="row contact-item">
+                    <span class="fa fa-rss fa-lg"></span><a href="/rss/rss.xml" target="_blank">/rss/rss.xml</a>
+                </div>
+                <hr>
+                <div class="row contact-item">
+                    <span class="fa fa-brands fa-twitch fa-lg"></span><a href="https://www.twitch.tv/skeletom_ch" target="_blank">skeletom_ch</a>
+                </div>
+                <div class="row contact-item">
+                    <span class="fa fa-brands fa-youtube fa-lg"></span><a href="https://www.youtube.com/@fomtarro" target="_blank">@fomtarro</a>
+                </div>
+                <hr>
+                <div class="row contact-item">
+                    <span class="fa fa-brands fa-itch-io fa-lg"></span><a href="https://skeletom-ch.itch.io" target="_blank">skeletom-ch.itch.io</a>
+                </div>
+                <div class="row contact-item">
+                    <span class="fa fa-brands fa-github fa-lg"></span><a href="https://github.com/FomTarro" target="_blank">fomtarro</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Stream Marquee -->
+    <div id='stream-status-marquee' class="item white small-padding">
+        <div class="no-padding font-black gradient-mask-edges italic">
+            <a class="marquee-link stream-status-marquee translucent" href="/stream" target="_blank">
+                <div class="marquee">
+                    <div class="marquee-content">
+                        <span><span class="fa fa-brands fa-twitch"></span> Stream is <span class="stream-status offline"></span></span>
+                        <span class="stream-address">twitch.tv/skeletom_ch</span>
+                        <span><span class="fa fa-brands fa-twitch"></span> Stream is <span class="stream-status offline"></span></span>
+                        <span class="stream-address">twitch.tv/skeletom_ch</span>
+                    </div>
+                    <!-- Mirrors the content above -->
+                    <div class="marquee-content" aria-hidden="true">
+                        <span><span class="fa fa-brands fa-twitch"></span> Stream is <span class="stream-status offline"></span></span>
+                        <span class="stream-address">twitch.tv/skeletom_ch</span>
+                        <span><span class="fa fa-brands fa-twitch"></span> Stream is <span class="stream-status offline"></span></span>
+                        <span class="stream-address">twitch.tv/skeletom_ch</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- Stream Embed -->
+    <div class="dark item stream-info hidden">
+        <div class="darker item-label item">
+            <span class="highlight">Now Broadcasting!</span>
+        </div>
+        <div>
+            <h1 class="stream-title"></h1>
+            <div class="translucent font-tiny italic">
+                <span class="stream-game"></span>
+            </div>
+        </div>
+        <div id="stream-embed" class="top-padding flex-center center-align">
+            <!-- iframe goes here -->
+        </div>
+        <script src="https://embed.twitch.tv/embed/v1.js"></script>
+        <script src="/js/stream.status.js"></script>
+    </div>
+    <!-- Projects and Posts -->
+    <div class="dark item">
+        <div class="darker item-label item">
+            <span class="highlight">Latest Releases!</span>
+        </div>
+        <div class="row fill flex-center center-align latest-list" id="latest-projects">
+
+        </div>
+        <hr>
+        <div class="font-tiny">
+            <span><a href="/projects">Check out all <span class="projects-total">0</span> Projects</a> →</span>
+        </div>
+    </div>
+    <div class="dark item">
+        <div class="darker item-label item">
+            <span class="highlight">Latest Blog Posts!</span>
+        </div>
+        <div class="row fill flex-center center-align latest-list" id="latest-blogs">
+
+        </div>
+        <hr>
+        <div class="font-tiny">
+            <span><a href="/blogs">Check out all <span class="blogs-total">0</span> Blog Posts</a> →</span>
+        </div>
+    </div>
+</div>

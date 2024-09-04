@@ -8,6 +8,8 @@ class AppConfig{
     get PORT(){ return process.env.PORT || 8080; };
     get DOMAIN(){ return process.env.domain || `http://localhost:${this.PORT}` };
 
+    get STREAM_URL(){ return process.env.current_stream_url || 'https://www.twitch.tv/skeletom_ch'; };
+
     get PULSOID_CLIENT_ID(){ return process.env.pulsoid_client_id; };
     get PULSOID_CLIENT_SECRET(){ return process.env.pulsoid_client_secret; };
 
@@ -20,6 +22,12 @@ class AppConfig{
     get AMIYAMIGA_URL(){ return process.env.amiyamiga_url ? process.env.amiyamiga_url : "https://skeletom-ch.itch.io/amiyamiga" } 
 
     get WOLFRAM_CLIENT_ID(){ return process.env.wolfram_client_id; };
+
+    get TWITCH_CLIENT_ID(){ return process.env.twitch_client_id; };
+    get TWITCH_CLIENT_SECRET(){ return process.env.twitch_client_secret; };
+
+    get AWS_CLIENT_ID(){ return process.env.aws_client_id; };
+    get AWS_CLIENT_SECRET(){ return process.env.aws_client_secret; };
 }
 
 const instance = new AppConfig();

@@ -1,0 +1,22 @@
+<html>
+    <body>
+        <div>
+            <label for="auth-token">Your Authentication Token (keep secret!):</label>
+            <br>
+            <input type="password" id="auth-token" name="token" readonly><button id='copy-button'>Copy</button>
+        </div>
+        <script>
+            function copyToClipboard() {
+                var copyText = document.getElementById('auth-token');
+                /* Select the text field */
+                copyText.select();
+                copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+                /* Copy the text inside the text field */
+                navigator.clipboard.writeText(copyText.value);
+            }
+            document.getElementById('copy-button').addEventListener('click', copyToClipboard);
+            document.getElementById('auth-token').value = "${VALUE}";
+        </script>
+    </body>
+</html>

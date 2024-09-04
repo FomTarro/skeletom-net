@@ -5,35 +5,137 @@ const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
 const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
+const { Blogs, Projects, FilterPostMetadata, PopulatePostLists, ProjectsPath, BlogsPath } = require('./src/usecases/convert.markdown.usecase');
+const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive, GenerateNotFound } = require('./src/usecases/embed.html.usecase');
+const { TemplateMap } = require('./src/utils/template.map');
+const { GetChannelStatus } = require('./src/adapters/twitch.client');
+const { GetHitCountForPath, IncrementHitCountForPath } = require('./src/usecases/count.hits.usecase');
+const { GenerateRSS } = require('./src/usecases/generate.rss.usecase');
 
-// Apply the rate limiting middleware to API calls only
+let LAST_STREAM_STATUS = {
+    status: "OFFLINE",
+    address: AppConfig.STREAM_URL
+};
+// check Twitch API every 10 seconds and cache the result
+const STREAM_STATUS_POLLER = setInterval(async () => {
+    const channelName = AppConfig.STREAM_URL.split('/').pop();
+    const status = await GetChannelStatus(channelName, AppConfig);
+    LAST_STREAM_STATUS = {
+        status: status.status,
+        address: AppConfig.STREAM_URL,
+        channel: channelName,
+        title: status.title,
+        game: status.game
+    }
+}, 10000);
+
+
 const app = express();
 
 async function launch(){
     const port = AppConfig.PORT;
     const baseDirectory = path.join(__dirname, './public');
     app.use(express.json());
-    // app.use('/', express.static(baseDirectory));
-    /*
-    // Tells express to treat the base directory as relative to the given directory
-    // IE localhost:8080/img/blush.png corresponds to public/img/blush.png
     app.use('/', express.static(baseDirectory));
+    app.set('trust proxy', true);
+    await PopulatePostLists();
 
-    app.get('/about', (req, res) => {
-        res.sendFile((path.join(baseDirectory, 'about.html')))
+    app.all('*', async (req, res, next) => {
+        const path = req.path;
+        if(path && !path.startsWith('/stream/status') && !path.startsWith('/hits')){
+            // increment hit counter;
+            IncrementHitCountForPath(path, req.ip, AppConfig);
+        }
+        next();
     });
-    */
-    // Tells the browser to redirect to the given URL
-    app.get(['', '/', '/about'], (req, res) => {
-        res.redirect('https://skeletom.carrd.co/');
+
+    app.get([`/hits`], async (req, res) => {
+        if(req.query && req.query.page){
+            res.status(200).send(JSON.stringify({
+                count: await GetHitCountForPath(req.query.page, AppConfig)
+            }));
+        }else{
+            res.status(201).send(JSON.stringify({
+                count: 0
+            }));
+        }
     });
+
+    app.get(['/rss/rss.xml'], async (req, res) => {
+        res.setHeader("Content-Type", "text/xml")
+            .status(200)
+            .send(await GenerateRSS([...Blogs(), ...Projects()], TemplateMap));
+    });
+
+    app.get([`/blogs/:blogTitle`], async (req, res) => {
+        try{
+            const blog = Blogs().find(item => item.title.toLowerCase() === req.params.blogTitle.toLowerCase());
+            const html = await GenerateFullBlogPost(blog, TemplateMap);
+            res.status(200).send(html);
+        }catch(e){
+            console.error(e);
+            res.status(404).send("No such blog post exists.");
+        }
+    })
+
+    app.get([`/blogs`], async (req, res) => {
+        try{
+            const filteredBlogs = 
+            (req.query && req.query.tags) ?
+            FilterPostMetadata(Blogs(), req.query.tags)
+            : Blogs();
+            const html = await GenerateBlogArchive(filteredBlogs, TemplateMap);
+            res.status(200).send(html);
+        }catch(e){
+            console.error(e);
+            res.status(404).send("No such blog post exists.");
+        }
+    })
+
+    app.get([`/projects/:projectTitle`], async (req, res) => {
+        try{
+            const project = Projects().find(item => item.title.toLowerCase() === req.params.projectTitle.toLowerCase());
+            const html = await GenerateFullBlogPost(project, TemplateMap);
+            res.status(200).send(html);
+        }catch(e){
+            console.error(e);
+            res.status(404).send("No such project exists.");
+        }
+    })
+
+    app.get([`/projects`], async (req, res) => {
+        try{
+            const filteredProjects =
+                (req.query && req.query.tags) ?
+                FilterPostMetadata(Projects(), req.query.tags)
+                : Projects();
+            const html = await GenerateBlogArchive(filteredProjects, TemplateMap);
+            res.status(200).send(html);
+        }catch(e){
+            console.error(e);
+            res.status(404).send("No such project post exists.");
+        }
+    })
+
+    // Home
+    app.get(['', '/', '/about'], async (req, res) => {
+        const html = await GenerateHomePage(Blogs(), Projects(), TemplateMap)
+        res.status(200).send(html);
+    });
+
     // Tells the browser to redirect to the given URL
+    // Configurable to redirect to a different channel if I'm on a collab
     app.get('/stream', (req, res) => {
-        res.redirect('https://twitch.tv/skeletom_ch');
+        res.redirect(AppConfig.STREAM_URL);
     });
+
+    app.get('/stream/status', async (req, res) => {
+        res.status(200).send(LAST_STREAM_STATUS);
+    });
+
     // Tells the browser to redirect to the given URL
     app.get(['/archive', '/vod'], (req, res) => {
-        res.redirect('https://www.youtube.com/channel/UCr5N4CrcoegFpm7fR5a_ORg/videos');
+        res.redirect('https://www.youtube.com/@fomtarro/videos');
     });
 
     // vts-heartrate authentication
@@ -42,7 +144,7 @@ async function launch(){
         if(req.query && req.query.code){
             try{
                 const token = await GetToken(req.query.code, AppConfig);
-                const templatePath = path.join('src', 'templates', 'pulsoid.token.html');
+                const templatePath = path.join('src', 'templates', 'auth.token.html');
                 res.status(200).send(await EmbedToken(templatePath, token.body['access_token'], AppConfig));
             }catch(e){
                 res.status(500).send(`"An error occured! Please yell at Tom on Twitter.`)
@@ -60,6 +162,7 @@ async function launch(){
         }));
     });
 
+    // amiyamiga
     app.get(['/amiyamiga/version',], async (req, res) => {
         res.status(200).send(JSON.stringify({
             version: AppConfig.AMIYAMIGA_VERSION,
@@ -68,7 +171,6 @@ async function launch(){
         }));
     });
 
-    // wolfram
     app.get(['/wolfram/ask',], async (req, res) => {
         if(req.query && req.query.input){
             const answer = await WolframAsk(req.query.input, AppConfig);
@@ -92,10 +194,10 @@ async function launch(){
     app.use('/gifts', express.static(path.join(__dirname, './gifts')));
     app.get(['/gifts/lua-birthday-2021'], (req, res) => {
         const file = path.join(__dirname, './gifts', 'lua-birthday-2021', 'index.html')
-        console.log(file);
         res.sendFile(file);
     });
 
+    // pkmn
     app.use('/pkmn/ribbon-tracker', express.static(path.join(__dirname, './pkmn', 'pkmn-stream-tools', 'ribbon-tracker')));
     app.get(['/pkmn/ribbon-tracker'], (req, res) => {
         const file = path.join(__dirname, './pkmn', 'pkmn-stream-tools', 'ribbon-tracker', 'index.template.html')
@@ -113,6 +215,11 @@ async function launch(){
     app.get(['/pkmn/tournament-overlay'], (req, res) => {
         const file = path.join(__dirname, './pkmn', 'pkmn-tournament-overlay-tool', 'index.html')
         res.status(200).sendFile(file);
+    });
+
+    app.all('*', async (req, res, next) => {
+        const html = await GenerateNotFound(TemplateMap)
+        res.status(404).send(html);
     });
 
     // Makes an http server out of the express server

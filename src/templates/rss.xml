@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Skeletom.net News Feed</title>
+        <link>https://www.skeletom.net/</link>
+        <description>All the latest project updates and blog posts from Tom "Skeletom" Farro.</description>
+        <language>en-us</language>
+        <docs>https://www.rssboard.org/rss-specification</docs>
+        <generator>Homespun</generator>
+        <managingEditor>tom@skeletom.net (Tom Farro)</managingEditor>
+        <webMaster>tom@skeletom.net (Tom Farro)</webMaster>
+        <atom:link href="https://www.skeletom.net/rss/rss.xml" rel="self" type="application/rss+xml"/>
+        <!-- Content goes here! -->
+    </channel>
+</rss>
