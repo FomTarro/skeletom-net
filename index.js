@@ -10,6 +10,7 @@ const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive, GenerateNot
 const { TemplateMap } = require('./src/utils/template.map');
 const { GetChannelStatus } = require('./src/adapters/twitch.client');
 const { GetHitCountForPath, IncrementHitCountForPath } = require('./src/usecases/count.hits.usecase');
+const { GenerateRSS } = require('./src/usecases/generate.rss.usecase');
 
 let LAST_STREAM_STATUS = {
     status: "OFFLINE",
@@ -58,6 +59,12 @@ async function launch(){
                 count: 0
             }));
         }
+    });
+
+    app.get(['/rss/rss.xml'], async (req, res) => {
+        res.setHeader("Content-Type", "text/xml")
+            .status(200)
+            .send(await GenerateRSS([...Blogs(), ...Projects()], TemplateMap));
     });
 
     app.get([`/blogs/:blogTitle`], async (req, res) => {
