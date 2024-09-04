@@ -7,7 +7,7 @@ thumb: /img/rss_logo.png
 tags: general, housekeeping, rss
 ---
 
-If you've ever wanted to keep tabs on when I post new project updates, or just have something pithy to say, BUT you're also living in the year 2005 and Twitter hasn't been invented yet, you can now subscribe to my shiny new [RSS Feed](/rss/rss.xml)!
+If you've ever wanted to keep tabs on when I post new project updates or just want to know when I have something pithy to say, BUT you're also living in the year 2005 and Twitter hasn't been invented yet, you can now subscribe to my shiny new [RSS Feed](/rss/rss.xml)!
 
 ---
 
