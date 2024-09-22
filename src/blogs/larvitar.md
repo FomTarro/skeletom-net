@@ -35,8 +35,6 @@ Additionally, long-time fans of the game might also know that there's a trick kn
 Starting with Sword and Shield in 2019, wild Pokémon may have a badge applied to them when they spawn, known as a "mark". Marks are extremely similar to Ribbons, except that they (typically) can't be earned, only found. In fact, only wild Pokémon can have a mark; hatched Pokémon will never have one. This provides an incentive towards actually catching your monsters instead of just breeding in the post-game. It's a nice bit of style.
 
 
-
-
 Marks, like Ribbons, can be "equipped" on the status screen to give your Pokémon a unique title when being sent out. For example, our Sandstorm Mark bestows the title *"the Sandswept"*, which I feel is particularly apt for what will eventually be a Tyranitar, a Pokémon famous for summoning a sandstorm when it enters battle.
 
 
@@ -81,7 +79,7 @@ Between <span class=highlight>August 23rd, 2024</span>, and <span class=highligh
 
 And do note that I only say *"possible"*; the location of these outbreaks changed every day, and lasted for that entire day. Therefore, it would be entirely likely for any given player to have played the game every day for the entire duration of the event, and still never have an opportunity to encounter Larvitar in the desert. That's rough!
 
-
+Fortunately (for me), if you *don't* sign back in to online after the event ends, your console doesn't get the memo and continues the event until you do. As such, I was able to wait until I got my lucky Mass Outbreak location, well after the event ended.
 
 
 Given infinite time, one would eventually be able to reproduce the odds of finding a Shiny Larvitar with the Rare Mark. The same cannot be said for a Shiny Larvitar with the Sandstorm Mark. Assuming the Switch logged into online services after September 1st, 2024, thereby ending the event, it does not matter how much time you spend; you will *never* find another Shiny Larvitar with the Sandstorm Mark, because Larvitar will stop spawning where sandstorms occur. Therefore, I posit that this makes my Larvitar one of the rarest Pokémon of all time.
