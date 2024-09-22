@@ -4,7 +4,7 @@ date: 2024-09-21
 author: Skeletom
 brief: This is a Larvitar. There are many like it, but this one is mine. Actually, no, there aren't many like it. In fact, I'd be surprised if there were any others like it at all.
 thumb: /img/blogs/larvitar/larvitar_2.png
-tags: pokemon
+tags: pokemon, ribbon master tracker
 ---
 
 
@@ -25,17 +25,17 @@ Ever since Gold and Silver in 1999, Pokémon have had a chance to appear with an
 <span class="font-tiny translucent italic caption">This Larvitar is a darker shade of green than normal. He will evolve into a sandy-colored Tyranitar.</span>
 
 
-Additionally, long-time fans of the game might also know that there's a trick known as the "[Masuda Method](https://bulbapedia.bulbagarden.net/wiki/Masuda_method)" that can drastically increase the odds of hatched Pokémon being Shiny. It simply involves breeding two Pokémon who originated from games with different language settings, and increases the Shiny odds sixfold; up to <span class=highlight>6/4096</span>, or <span class=highlight>1/683</span>.
+Additionally, long-time players might also know that there's a trick known as the "[Masuda Method](https://bulbapedia.bulbagarden.net/wiki/Masuda_method)" that can drastically increase the odds of hatched Pokémon being Shiny. It simply involves breeding two Pokémon who originated from games with different language settings, and increases the Shiny odds sixfold; up to <span class=highlight>6/4096</span>, or <span class=highlight>1/683</span>.
 
 
 ---
 
 
 ## What is a "Mark"?
-Starting with Sword and Shield in 2019, wild Pokémon may have a badge applied to them when they spawn, known as a "mark". Marks are extremely similar to Ribbons, except that they (typically) can't be earned, only found. In fact, only wild Pokémon can have a mark; hatched Pokémon will never have one. This provides an incentive towards actually catching your monsters instead of just breeding in the post-game. It's a nice bit of style.
+Starting with Sword and Shield in 2019, wild Pokémon may have a badge applied to them when they spawn, known as a "Mark". Marks are extremely similar to Ribbons, except that they (typically) can't be earned, only found. In fact, only wild Pokémon can have a mark; hatched Pokémon will never have one. This provides an incentive towards actually catching your monsters instead of just breeding in the post-game. It's a nice bit of style.
 
 
-Marks, like Ribbons, can be "equipped" on the status screen to give your Pokémon a unique title when being sent out. For example, our Sandstorm Mark bestows the title *"the Sandswept"*, which I feel is particularly apt for what will eventually be a Tyranitar, a Pokémon famous for summoning a sandstorm when it enters battle.
+Marks, like Ribbons, can be "equipped" on the status screen to give your Pokémon a unique title when being sent out. Fans of the channel will recall that I went to [great lengths](/projects/ribbon-master-tracker) to collect every Ribbon on my Torkoal for this very reason. In this case, our Sandstorm Mark bestows the title *"the Sandswept"*, which I feel is particularly apt for what will eventually be a Tyranitar, a Pokémon famous for summoning a sandstorm when it enters battle.
 
 
 ![The Mark](/img/blogs/larvitar/mark.jpg)
@@ -77,7 +77,7 @@ Between <span class=highlight>August 23rd, 2024</span>, and <span class=highligh
 <span class="font-tiny translucent italic caption">A Larvitar outbreak occuring in the Asado Desert, indicated on the map.</span>
 
 
-And do note that I only say *"possible"*; the location of these outbreaks changed every day, and lasted for that entire day. Therefore, it would be entirely likely for any given player to have played the game every day for the entire duration of the event, and still never have an opportunity to encounter Larvitar in the desert. That's rough!
+And do note that I only say *"possible"*; the location of these outbreaks changed every day, and lasted for the whole day. Therefore, it would be entirely likely for any given player to have played the game every day for the complete duration of the event, and still never have been given an opportunity to encounter Larvitar in the desert. That's rough!
 
 Fortunately (for me), if you *don't* sign back in to online after the event ends, your console doesn't get the memo and continues the event until you do. As such, I was able to wait until I got my lucky Mass Outbreak location, well after the event *should* have ended.
 
