@@ -82,7 +82,7 @@ And do note that I only say *"possible"*; the location of these outbreaks change
 Fortunately (for me), if you *don't* sign back in to online after the event ends, your console doesn't get the memo and continues the event until you do. As such, I was able to wait until I got my lucky Mass Outbreak location, well after the event *should* have ended.
 
 
-Given infinite time, one would eventually be able to reproduce the odds of finding a Shiny Larvitar with the Rare Mark. The same cannot be said for a Shiny Larvitar with the Sandstorm Mark. Assuming the Switch logged into online services after September 1st, 2024, thereby ending the event, it does not matter how much time you spend; you will *never* find another Shiny Larvitar with the Sandstorm Mark, because Larvitar will stop spawning where sandstorms occur. Therefore, I posit that this makes my Larvitar one of the rarest Pokémon of all time, as a finite number of them will ever exist.
+Given infinite time, one would eventually be able to reproduce the odds of finding a Shiny Larvitar with the Rare Mark. The same cannot be said for a Shiny Larvitar with the Sandstorm Mark. Assuming the Switch logged into online services after September 1st, 2024, thereby ending the event, it does not matter how much time you spend; you will *never* find another Shiny Larvitar with the Sandstorm Mark, because Larvitar will stop spawning where sandstorms occur. Therefore, I posit that this makes my Larvitar one of the rarest Pokémon of all time, as *a finite number of them will ever exist*.
 
 
 ---
