@@ -25,7 +25,7 @@ Ever since Gold and Silver in 1999, Pokémon have had a chance to appear with an
 <span class="font-tiny translucent italic caption">This Larvitar is a darker shade of green than normal. He will evolve into a sandy-colored Tyranitar.</span>
 
 
-Additionally, long-time fans of the game might also know that there's a trick known as the "[Masuda Method](https://bulbapedia.bulbagarden.net/wiki/Masuda_method)" that can drastically increase the odds of hatched Pokémon being Shiny. The trick simply involves breeding two Pokémon who originated from games with different language settings, and increases the Shiny odds sixfold; up to <span class=highlight>6/4096</span>, or <span class=highlight>1/683</span>.
+Additionally, long-time fans of the game might also know that there's a trick known as the "[Masuda Method](https://bulbapedia.bulbagarden.net/wiki/Masuda_method)" that can drastically increase the odds of hatched Pokémon being Shiny. It simply involves breeding two Pokémon who originated from games with different language settings, and increases the Shiny odds sixfold; up to <span class=highlight>6/4096</span>, or <span class=highlight>1/683</span>.
 
 
 ---
@@ -40,7 +40,7 @@ Marks, like Ribbons, can be "equipped" on the status screen to give your Pokémo
 
 ![The Mark](/img/blogs/larvitar/mark.jpg)
 <br>
-<span class="font-tiny translucent italic caption">The Sandstorm Mark confers the title of "the Sandswept" (displayed here on my English save file for your convenience).</span>
+<span class="font-tiny translucent italic caption">Equipping a Mark on the status screen (displayed here on my English save file for your convenience).</span>
 
 
 Marks, like Shinies, are also rare, though less so. There are several categories of Mark, each with different odds of appearing. The rarest Mark in the game is the aptly-named "Rare Mark", which has a <span class=highlight>1/1000</span> chance of appearing on any given wild Pokémon. The Sandstorm Mark falls under the category of "weather marks", which only roll their odds on Pokémon that spawned while a certain weather condition is occurring in the overworld. In this Mark's case, it's a <span class=highlight>1/50</span> chance that any wild Pokémon will have it, if the current weather is a sandstorm.
@@ -53,7 +53,7 @@ Marks, like Shinies, are also rare, though less so. There are several categories
 So! We have a Shiny Pokémon that has a Mark, meaning that it had to be caught in the wild (eliminating the possibility of us using the aforementioned Masuda Method).
 
 
-The math is pretty straightforward, with two sets of odds that are dependent: <span class=highlight>1/4096 * 1/50</span>, which comes out to a nice <span class=highlight>1/204800</span>, or a <span class=highlight>~0.0004%</span> chance of encountering a single Pokémon with both of these characteristics (assuming the encounter occurred during a sandstorm, which itself is also randomly-occurring, with odds that I don't have numbers for).
+The math is pretty straightforward, with two sets of odds that are independent rolls: <span class=highlight>1/4096 * 1/50</span>, which comes out to a nice <span class=highlight>1/204800</span>, or a <span class=highlight>~0.0004%</span> chance of encountering a single Pokémon with both of these characteristics (assuming the encounter occurred during a sandstorm, which itself is also randomly-occurring, with odds that I don't have numbers for).
 
 
 ---
@@ -79,10 +79,10 @@ Between <span class=highlight>August 23rd, 2024</span>, and <span class=highligh
 
 And do note that I only say *"possible"*; the location of these outbreaks changed every day, and lasted for that entire day. Therefore, it would be entirely likely for any given player to have played the game every day for the entire duration of the event, and still never have an opportunity to encounter Larvitar in the desert. That's rough!
 
-Fortunately (for me), if you *don't* sign back in to online after the event ends, your console doesn't get the memo and continues the event until you do. As such, I was able to wait until I got my lucky Mass Outbreak location, well after the event ended.
+Fortunately (for me), if you *don't* sign back in to online after the event ends, your console doesn't get the memo and continues the event until you do. As such, I was able to wait until I got my lucky Mass Outbreak location, well after the event *should* have ended.
 
 
-Given infinite time, one would eventually be able to reproduce the odds of finding a Shiny Larvitar with the Rare Mark. The same cannot be said for a Shiny Larvitar with the Sandstorm Mark. Assuming the Switch logged into online services after September 1st, 2024, thereby ending the event, it does not matter how much time you spend; you will *never* find another Shiny Larvitar with the Sandstorm Mark, because Larvitar will stop spawning where sandstorms occur. Therefore, I posit that this makes my Larvitar one of the rarest Pokémon of all time.
+Given infinite time, one would eventually be able to reproduce the odds of finding a Shiny Larvitar with the Rare Mark. The same cannot be said for a Shiny Larvitar with the Sandstorm Mark. Assuming the Switch logged into online services after September 1st, 2024, thereby ending the event, it does not matter how much time you spend; you will *never* find another Shiny Larvitar with the Sandstorm Mark, because Larvitar will stop spawning where sandstorms occur. Therefore, I posit that this makes my Larvitar one of the rarest Pokémon of all time, as a finite number of them will ever exist.
 
 
 ---
