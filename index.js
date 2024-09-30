@@ -171,6 +171,15 @@ async function launch(){
         }));
     });
 
+    //mintfantome
+    app.get(['/mintfantome-desktop/version',], async (req, res) => {
+        res.status(200).send(JSON.stringify({
+            version: AppConfig.MINT_DESKTOP_VERSION,
+            date: AppConfig.MINT_DESKTOP_DATE,
+            url: AppConfig.MINT_DESKTOP_URL
+        }));
+    });
+
     app.get(['/wolfram/ask',], async (req, res) => {
         if(req.query && req.query.input){
             const answer = await WolframAsk(req.query.input, AppConfig);
