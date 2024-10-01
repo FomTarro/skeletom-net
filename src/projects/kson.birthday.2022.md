@@ -25,7 +25,7 @@ You can play the whole thing in browser, and share your completed doll on Twitte
 
 kson herself checked out this app on a "Just Chatting" stream! You can watch it (with timestamp) in the video below:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/YmApXx2jbkI?si=S03TDvyVUGxx6RN2&amp;start=2573" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe class="yt-embed" src="https://www.youtube.com/embed/YmApXx2jbkI?si=S03TDvyVUGxx6RN2&amp;start=2573" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ---
 

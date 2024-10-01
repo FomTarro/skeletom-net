@@ -68,8 +68,8 @@ In order to configure the tracker for just the games that you have access to, ed
 
 Below is one of the many, many episodes of ribbon hunting that I streamed! The [whole process](https://www.youtube.com/playlist?list=PLspwi8mJZ27_sVLlxuWNwB7wNRbsrG2Zg) took me over 6 months, because I only streamed for about 2 hours, once a week. But we get there in the end! 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/EVVRxHBh9YM?si=72hhN8kyOPQL-gkG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe class="yt-embed" src="https://www.youtube.com/embed/EVVRxHBh9YM?si=72hhN8kyOPQL-gkG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 I also streamed the process of imagining and building the tracker itself! You can watch that in [this handly playlist](https://www.youtube.com/playlist?list=PLspwi8mJZ27__j3ICkMHVI4agTKPMOAhy).
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/VZ-veX-6jbg?si=Ao8__F1BKUHKCS8e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe class="yt-embed" src="https://www.youtube.com/embed/VZ-veX-6jbg?si=Ao8__F1BKUHKCS8e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

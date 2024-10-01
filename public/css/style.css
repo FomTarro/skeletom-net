@@ -121,6 +121,12 @@ iframe {
 		linear-gradient(to bottom, var(--grid-color) var(--grid-strength), transparent var(--grid-strength)); */
 }
 
+.yt-embed{
+	width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 560 / 315 !important;
+}
+
 hr {
 	width: 100%;
 	border: none;

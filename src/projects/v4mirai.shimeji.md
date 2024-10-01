@@ -29,4 +29,4 @@ It was an honor and joy to work with the talents before their debut getting this
 
 ## Media
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/9Kr10VPx0I4?si=T5fzAIXSUqHD0CYA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe class="yt-embed" src="https://www.youtube.com/embed/9Kr10VPx0I4?si=T5fzAIXSUqHD0CYA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

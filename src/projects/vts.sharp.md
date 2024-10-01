@@ -42,7 +42,7 @@ Below is a clip demonstrating how to make an incredibly simple plugin (one that 
 
 We can see that all the heavy lifting has been abstracted away by the library, letting developers get right to the fun parts.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/lUGeMEVzjAU?si=cP4CN8vmHHFrS73y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe class="yt-embed" src="https://www.youtube.com/embed/lUGeMEVzjAU?si=cP4CN8vmHHFrS73y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ---
 

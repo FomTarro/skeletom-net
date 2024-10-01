@@ -41,7 +41,7 @@ You can also check out the [complete, unabridged README here](https://github.com
 
 Below you'll find a brief video tutorial showcasing some of the plugin's features, as well as demonstrating how to set them up.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/tV1kK0uSjFE?si=P7vPTyk-nrHxRZ8s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe class="yt-embed" src="https://www.youtube.com/embed/tV1kK0uSjFE?si=P7vPTyk-nrHxRZ8s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 In addition, as mentioned above, I typically stream all of the work I do on this plugin. Those streams get archived [in a playlist on my YouTube channel](https://www.youtube.com/playlist?list=PLspwi8mJZ27_6P2n30lj97e3z4Zd_QUaU) for easy reference later.
 
