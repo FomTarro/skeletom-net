@@ -22,7 +22,7 @@ class AppConfig{
     get AMIYAMIGA_URL() { return process.env.amiyamiga_url ? process.env.amiyamiga_url : "https://skeletom-ch.itch.io/amiyamiga" } 
     
     get MINT_DESKTOP_VERSION(){ return process.env.mint_desktop_version ? process.env.mint_desktop_version : "1.0.0" } 
-    get MINT_DESKTOP_DATE(){ return process.env.mint_desktop_version ? process.env.mint_desktop_date : "10/01/2024" } 
+    get MINT_DESKTOP_DATE(){ return process.env.mint_desktop_date ? process.env.mint_desktop_date : "10/01/2024" } 
     get MINT_DESKTOP_URL(){ return process.env.mint_desktop_url ? process.env.mint_desktop_url : "https://www.skeletom.net" } 
 
     get WOLFRAM_CLIENT_ID(){ return process.env.wolfram_client_id; };
