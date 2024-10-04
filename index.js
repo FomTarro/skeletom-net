@@ -154,11 +154,21 @@ async function launch(){
         }
     });
 
+    // vts-heartrate
     app.get(['/vts-heartrate/version',], async (req, res) => {
         res.status(200).send(JSON.stringify({
             version: AppConfig.VTS_HEARTRATE_VERSION,
             date: AppConfig.VTS_HEARTRATE_DATE,
             url: AppConfig.VTS_HEARTRATE_URL
+        }));
+    });
+
+    //vts-midi
+    app.get(['/vts-midi/version',], async (req, res) => {
+        res.status(200).send(JSON.stringify({
+            version: AppConfig.VTS_MIDI_VERSION,
+            date: AppConfig.VTS_MIDI_DATE,
+            url: AppConfig.VTS_MIDI_URL
         }));
     });
 
@@ -218,7 +228,6 @@ async function launch(){
         const file = path.join(__dirname, './pkmn', 'pkmn-damage-calc', 'iframe.html')
         res.status(200).sendFile(file);
     });
-
 
     app.use('/pkmn/tournament-overlay', express.static(path.join(__dirname, './pkmn', 'pkmn-tournament-overlay-tool')));
     app.get(['/pkmn/tournament-overlay'], (req, res) => {

@@ -7,7 +7,7 @@ brief: Beloved VTuber and Metal Gear fanatic Mint Fantome infiltrates your deskt
 thumb: /img/projects/mint-birthday-2024/banner.png
 tags: vtubers,c#,unity,fan game,mint,dekstop toy,mgs,metal gear
 release: https://skeletom-ch.itch.io/tactical-desktop-action
-version: v1.0.0
+version: v1.0.1
 platforms: Windows
 ---
 
@@ -36,7 +36,11 @@ Double-click on Mint to pull up the Codec and explore all the tools at your disp
 
 ## Media
 
+You can check out one of the best trailers I've ever cut, which is carried entirely on the back of how good of a song *"Theme of Tara"* is:
 <iframe src="https://www.youtube.com/embed/gsTf3HYvf64?si=wUaBtVB_5W475_qx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="yt-embed"></iframe>
+
+Mint was also pretty happy to recieve this gift! You can watch her live reaction, timestamped below:
+<iframe src="https://www.youtube.com/embed/DxkVeaVdi_U?start=7526" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen class="yt-embed"></iframe>
 
 ---
 
