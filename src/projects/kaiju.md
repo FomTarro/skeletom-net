@@ -5,7 +5,7 @@ updated: 2022-01-19
 author: Skeletom
 brief: Help the Deep Divers steal Furuya Mari's treasure! Made for the 2nd Annual VTuber Game Jam!
 thumb: /img/projects/kaiju/banner.png
-tags: vtubers,c#,unity,fan game,mari
+tags: vtubers,c#,unity,fan game,mari,toy
 release: https://skeletom-ch.itch.io/kaiju
 version: v1.1.0
 platforms: Windows, Web

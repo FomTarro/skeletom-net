@@ -5,7 +5,7 @@ updated: 2024-10-01
 author: Skeletom
 brief: Beloved VTuber and Metal Gear fanatic Mint Fantome infiltrates your desktop as a digital assistant!!
 thumb: /img/projects/mint-birthday-2024/banner.png
-tags: vtubers,c#,unity,fan game,mint,dekstop toy,mgs,metal gear
+tags: vtubers,c#,unity,fan game,mint,dekstop toy,mgs,metal gear,toy
 release: https://skeletom-ch.itch.io/tactical-desktop-action
 version: v1.0.1
 platforms: Windows

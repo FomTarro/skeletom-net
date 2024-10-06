@@ -5,7 +5,7 @@ updated: 2024-04-05
 author: Skeletom
 brief: Enjoy V4Mirai's 3rd generation Lunalia as they run rampant across your workspace with these hand-illustrated desktop buddies!
 thumb: /img/projects/v4mirai/banner.png
-tags: vtubers,java,v4mirai,dekstop toy
+tags: vtubers,java,v4mirai,dekstop toy,toy
 release: https://v4mirai.com/article/introducing-the-lunalia-shimeji-collection/
 version: v1.0.0
 platforms: Windows

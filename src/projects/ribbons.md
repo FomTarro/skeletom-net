@@ -6,7 +6,7 @@ author: Skeletom
 brief: A configurable web-based HTML widget used for tracking ribbon collection progress in the Pokémon video games. Perfect for use as an OBS Browser Source!
 thumb: /img/projects/ribbons/ribbon_stream_thumb.png
 caption: An example of the widget being used as part of my OBS Overlay in my <a href=https://www.youtube.com/watch?v=FstgY3qsPV0>Ribbon Master Quest</a>.
-tags: pokemon,javascript,web,open source,obs,streaming
+tags: pokemon,javascript,web,open source,obs,streaming,tool
 release: https://www.skeletom.net/pkmn/ribbon-tracker/
 version: v1.1.0
 platforms: Web

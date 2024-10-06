@@ -5,7 +5,7 @@ updated: 2024-08-04
 author: Skeletom
 brief: A C# client interface for creating VTube Studio Plugins with the official VTube Studio API, for use in Unity and other C# runtime environments!
 thumb: /img/projects/vts-sharp/logo_banner.png
-tags: vtubers,c#,unity,plugin,vtube studio,library,open source
+tags: vtubers,c#,unity,plugin,vtube studio,library,open source,tool
 release: https://github.com/FomTarro/VTS-Sharp
 version: v2.3.0
 ---

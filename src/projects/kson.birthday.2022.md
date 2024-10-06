@@ -5,7 +5,7 @@ updated: 2022-06-10
 author: Skeletom
 brief: Dress up beloved streamer ksonONAIR in this cute little paper-doll game.
 thumb: /img/projects/kson-birthday-2022/banner.gif
-tags: vtubers,javascript,web,fan game,kson,kumichou
+tags: vtubers,javascript,web,fan game,kson,kumichou,toy
 release: https://skeletom-ch.itch.io/kson-birthday-2022
 version: v1.1.0
 platforms: Web

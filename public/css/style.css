@@ -238,6 +238,7 @@ ul {
 .item {
 	position: relative;
 	padding: 5vmin;
+	padding-top: 1.5em;
 	border-radius: 1.5em;
 	box-sizing: border-box;
 	width: 100%;
@@ -366,6 +367,7 @@ ul {
 
 .small-padding {
 	padding: 1em;
+	box-sizing: border-box;
 }
 
 .top-padding {

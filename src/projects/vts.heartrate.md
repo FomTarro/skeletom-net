@@ -5,7 +5,7 @@ updated: 2024-04-27
 author: Skeletom
 brief: A VTube Studio plugin that allows for connectivity between heart rate monitors (HRM) and VTube Studio! Control your avatar with your real pulse!
 thumb: /img/projects/vts-heartrate/logo.png
-tags: vtubers,c#,unity,plugin,vtube studio,heartrate,heartbeat
+tags: vtubers,c#,unity,plugin,vtube studio,heartrate,heartbeat,tool
 release: https://skeletom-ch.itch.io/vts-heartrate
 version: v1.3.1
 platforms: Windows

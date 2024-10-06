@@ -5,7 +5,7 @@ updated: 2024-05-21
 author: Skeletom
 brief: A web-based plugin for OBS that facilitates displaying information such as team composition, individual Pokémon status, player standings, and more, all with only a few clicks!
 thumb: /img/projects/tourkoal/logo.png
-tags: pokemon,vgc,javascript,web,open source,obs,streaming
+tags: pokemon,vgc,javascript,web,open source,obs,streaming,tool
 release: https://www.skeletom.net/pkmn/tournament-overlay/
 version: v1.3.2
 platforms: Web
