@@ -163,6 +163,11 @@ async function launch(){
         }));
     });
 
+    app.get(['/vts-heartrate/widget',], async (req, res) => {
+        const file = path.join(baseDirectory, './assets', 'hrm.html')
+        res.sendFile(file)
+    });
+
     //vts-midi
     app.get(['/vts-midi/version',], async (req, res) => {
         res.status(200).send(JSON.stringify({
