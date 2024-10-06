@@ -297,6 +297,21 @@ ul {
 	background: none;
 }
 
+#logo {
+	height: 100px;
+	filter: none;
+}
+
+#stamp {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	opacity: 0.1;
+	background-image: url('../img/skeletom_stamp.png');
+	background-repeat: no-repeat;
+	background-position: left 10px top;
+}
+
 .title {
 	font-family: 'dustismo_romanbold_italic';
 	font-size: 4vmax;
@@ -305,10 +320,11 @@ ul {
 }
 
 .title-main {
-	padding: 3.5vh;
+	padding: 1.5vh;
 }
 
 .title-text {
+	overflow: hidden;
 	display: flex;
 	flex-direction: column;
 }
@@ -436,6 +452,14 @@ ul {
 
 .drop-shadow {
 	filter: var(--drop-shadow);
+}
+
+.checker-border {
+	border-image: repeating-conic-gradient(var(--pink) 0% 25%, white 0% 50%) 50% / 20px 20px;
+	border-width: 20px;
+    border-style: solid;
+	border-radius: 0;
+	box-sizing: border-box;
 }
 
 .highlight {
