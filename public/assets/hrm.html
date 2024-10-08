@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html>
     <style>
+        html {
+            height: 100%;
+            overflow: hidden;
+        }
+        body{
+            margin: auto;
+            height: 100%;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+        }
         .container {
             display: flex;
             justify-content: center;
@@ -10,7 +22,7 @@
 
         #display {
             font-family: monospace;
-            font-size: 30em;
+            font-size: 50vmin;
             color: white;
             text-align: center;
             padding-top: 1rem;
@@ -18,9 +30,9 @@
         }
 
         #pulse {
-            top: -6rem;
+            /* top: -6rem; */
             position: absolute;
-            font-size: 30em;
+            font-size: 50vmin;
             z-index: -1;
             overflow: hidden;
             filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.45));
@@ -39,6 +51,7 @@
         const offset = urlParams.get('offset') ? +urlParams.get('offset') : 0;
         const port = urlParams.get('port') ? +urlParams.get('port') : 8214;
         const dataWS = new WebSocket(`ws://localhost:${port}/data`);
+        
         dataWS.onmessage = (e) => {
             const parsed = JSON.parse(e.data);
             const adjustedHr = (+parsed.data.heartrate) + offset;
