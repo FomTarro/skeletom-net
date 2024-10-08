@@ -6,7 +6,7 @@ author: Skeletom
 brief: A configurable web-based HTML widget used for tracking ribbon collection progress in the Pokémon video games. Perfect for use as an OBS Browser Source!
 thumb: /img/projects/ribbons/ribbon_stream_thumb.png
 caption: An example of the widget being used as part of my OBS Overlay in my <a href=https://www.youtube.com/watch?v=FstgY3qsPV0>Ribbon Master Quest</a>.
-tags: pokemon,javascript,web,open source,obs,streaming,tool
+tags: pokemon,javascript,web,open source,obs,streaming,tool,widget
 release: https://www.skeletom.net/pkmn/ribbon-tracker/
 version: v1.1.0
 platforms: Web
@@ -33,7 +33,7 @@ When used as a [Browser Source in OBS](https://obsproject.com/kb/browser-source)
 Below is an embedded version of the tracker, along with a URL that you can copy into OBS as a Browser Source. You can also resize this embedded version with the little handle in the bottom-right corner of the frame, to see how it adapts to different resolutions.
 
 <div class="resize-both drop-shadow" style="height: 500px; margin-bottom: 1em;">
-    <iframe class="fill" src="https://www.skeletom.net/pkmn/ribbon-tracker/?games=[or,x,sun,sw,scarlet]"></iframe>
+    <iframe class="fill" src="../pkmn/ribbon-tracker/?games=[or,x,sun,sw,scarlet]"></iframe>
 </div>
 
 <div class="flex" style="width: 100%; gap: 1em;">
@@ -60,7 +60,7 @@ Below is an embedded version of the tracker, along with a URL that you can copy 
     }
 </script>
 
-In order to configure the tracker for just the games that you have access to, edit the list contained between the brackets in the URL! Abbreviations <span class="font-tiny translucent italic">("sw", "or", "um"...)</span> and full titles <span class="font-tiny translucent italic">("sword", "omega ruby", "ultra moon"...)</span> work just fine!
+In order to configure the tracker for just the games that you have access to, edit the list contained between the brackets in the `?games=[...]` query parameter of the URL. Abbreviations such as `"sw", "or", "um"...` and full titles such as `"sword", "omega ruby", "ultra moon"...` work just fine!
 
 ---
 

@@ -5,7 +5,7 @@ updated: 2024-04-27
 author: Skeletom
 brief: A VTube Studio plugin that allows for connectivity between heart rate monitors (HRM) and VTube Studio! Control your avatar with your real pulse!
 thumb: /img/projects/vts-heartrate/logo.png
-tags: vtubers,c#,unity,plugin,vtube studio,heartrate,heartbeat,tool
+tags: vtubers,c#,unity,plugin,vtube studio,heartrate,heartbeat,tool,widget
 release: https://skeletom-ch.itch.io/vts-heartrate
 version: v1.3.1
 platforms: Windows
@@ -39,11 +39,11 @@ You can also check out the [complete, unabridged README here](https://github.com
 
 ## Widget
 
-You can use the below heartrate display widget as a [Browser Source in OBS](https://obsproject.com/kb/browser-source), or as a [Web Item in VTube Studio](https://github.com/DenchiSoft/VTubeStudio/wiki/Web-Items). It displays your heartrate in real time, and the backing image does a pulsing animation at the corresponding speed.
+You can use the below heartrate display widget as a [Browser Source in OBS](https://obsproject.com/kb/browser-source), or as a [Web Item in VTube Studio](https://github.com/DenchiSoft/VTubeStudio/wiki/Web-Items). It prints your heartrate in real time, and the backing image does a pulsing animation at the corresponding speed.
 
 The widget will automatically attempt to connect to vts-heartrate when it loads, so if you open the widget before launching vts-heartrate, simply refresh the widget to connect.
 
-If you have changed your vts-heartrate API Server port, you can specify that to the widget via the `?port=...` query parameter in its URL. Otherwise, the default port value of `8214` will be assumed.
+If you have changed your vts-heartrate API Server port, you can specify that to the widget via the `?port=...` query parameter of its URL. Otherwise, the default port value of `8214` will be assumed.
 
 <div class="resize-both drop-shadow" style="width: 100%; margin-bottom: 1em;">
     <iframe class="fill" src="../vts-heartrate/widget"></iframe>
