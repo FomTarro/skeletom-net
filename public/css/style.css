@@ -440,7 +440,7 @@ ul {
 .webring-tray {
 	flex-wrap: wrap;
 	gap: 1rem;
-	max-width: 85%;
+	/* max-width: 85%; */
 }
 
 .webring-tray :nth-child(n) {
@@ -481,7 +481,6 @@ ul {
 
 .top {
 	top: 0;
-	margin-bottom: 10px;
 }
 
 .bottom {

@@ -25,7 +25,7 @@ Ever since Gold and Silver in 1999, Pokémon have had a chance to appear with an
 <span class="font-tiny translucent italic caption">This Larvitar is a darker shade of green than normal. He will evolve into a sandy-colored Tyranitar.</span>
 
 
-Additionally, long-time players might also know that there's a trick known as the "[Masuda Method](https://bulbapedia.bulbagarden.net/wiki/Masuda_method)" that can drastically increase the odds of hatched Pokémon being Shiny. It simply involves breeding two Pokémon who originated from games with different language settings, and increases the Shiny odds sixfold; up to `6/4096`, or `1/683`. This is typically considered the easiest and most reliable way to obtain a shiny Pokémon, but unfortunately, is not a method we can leverage for our purposes here for reasons that will be explained in a moment.
+Additionally, long-time players might also know that there's a trick known as the "[Masuda Method](https://bulbapedia.bulbagarden.net/wiki/Masuda_method)" that can drastically increase the odds of hatched Pokémon being Shiny. It simply involves breeding two Pokémon who originated from games with different language settings, and increases the Shiny odds sixfold; up to `6/4096`, or `1/683`. This is typically considered the easiest and most reliable way to obtain a shiny Pokémon, but unfortunately, is not a method we can leverage, for reasons that will be explained momentarily.
 
 
 ---
