@@ -37,6 +37,38 @@ You can also check out the [complete, unabridged README here](https://github.com
 
 ---
 
+## Widget
+
+<div class="resize-both drop-shadow" style="width: 100%; margin-bottom: 1em;">
+    <iframe class="fill" src="../vts-heartrate/widget"></iframe>
+</div>
+
+<div class="flex" style="width: 100%; gap: 1em;">
+    <input id="widget-url" type="text" style="flex: 1;" readonly value="https://www.skeletom.net/vts-heartrate/widget?port=8214"></input>
+    <button onclick=copyURL()>
+        Copy URL to Clipboard
+    </button>
+</div>
+<script>
+    function copyURL(){
+        const copyZone = document.querySelector('#widget-url');
+        copyZone.focus();
+        copyZone.select();
+        try {
+            const successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Copying was ' + msg);
+        } catch (err) {
+            console.log('Unable to copy');
+        }
+    }
+    function setDimensions(){
+        // Do nothing
+    }
+</script>
+
+---
+
 ## Media
 
 Below you'll find a brief video tutorial showcasing some of the plugin's features, as well as demonstrating how to set them up.
