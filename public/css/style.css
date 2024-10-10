@@ -33,8 +33,10 @@ html {
 	/* font-size: min(2vmax, 1.5em); */
 	margin: 0;
 	padding: 0;
-	animation: anim-scroll 16s linear infinite;
-	background: conic-gradient(#FEB3D0 25%, #F2C5D9 0 50%, #F0F2F1 0 75%, #F0DAE6 0) 0 0/40vmin 40vmin;
+	animation: anim-scroll 8s linear infinite;
+	/* background: conic-gradient(#FEB3D0 25%, #F2C5D9 0 50%, #F0F2F1 0 75%, #F0DAE6 0) 0 0/40vmin 40vmin; */
+	background-image: url(../img/gingham_tile.png);
+	background-repeat: repeat;
 	box-sizing: border-box;
 	height: inherit;
 	overflow-x: hidden;
@@ -51,7 +53,7 @@ main {
 	z-index: -1;
 	overflow: hidden;
 	user-select: none;
-	backdrop-filter: blur(1vmin);
+	/* backdrop-filter: blur(1vmin); */
 	backface-visibility: hidden;
 	height: max(100vh, 100%);
 	width: 100%;
@@ -658,7 +660,7 @@ ul {
 	}
 
 	100% {
-		background-position: -80vmin -80vmin;
+		background-position: -256px -256px;
 	}
 }
 
