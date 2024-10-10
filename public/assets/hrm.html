@@ -60,10 +60,10 @@
                 document.getElementById("pulse").style.transform = `scale(${mappedScale})`;
             }
             dataWS.onerror = (err) => {
-                connect();
+                setTimeout(connect, 5000)
             }
             dataWS.onclose = (err) => {
-                connect();
+                setTimeout(connect, 5000)
             }
         }
         connect();
