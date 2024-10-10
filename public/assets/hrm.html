@@ -38,13 +38,22 @@
         const urlParams = new URLSearchParams(window.location.search);
         const offset = urlParams.get('offset') ? +urlParams.get('offset') : 0;
         const port = urlParams.get('port') ? +urlParams.get('port') : 8214;
-        const dataWS = new WebSocket(`ws://localhost:${port}/data`);
-        dataWS.onmessage = (e) => {
-            const parsed = JSON.parse(e.data);
-            const adjustedHr = (+parsed.data.heartrate) + offset;
-            document.getElementById("display").innerHTML = adjustedHr;
-            const mappedScale = 0.75 + ((parsed.data.parameters.vts_heartrate_pulse)/3.0)
-            document.getElementById("pulse").style.transform = `scale(${mappedScale})`;
+        const connect = () => {
+            const dataWS = new WebSocket(`ws://localhost:${port}/data`);
+            dataWS.onmessage = (e) => {
+                const parsed = JSON.parse(e.data);
+                const adjustedHr = (+parsed.data.heartrate) + offset;
+                document.getElementById("display").innerHTML = adjustedHr;
+                const mappedScale = 0.75 + ((parsed.data.parameters.vts_heartrate_pulse)/3.0)
+                document.getElementById("pulse").style.transform = `scale(${mappedScale})`;
+            }
+            dataWS.onerror = (err) => {
+                connect();
+            }
+            dataWS.onclose = (err) => {
+                connect();
+            }
         }
+        connect();
     </script>
 </html>
