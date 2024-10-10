@@ -51,7 +51,7 @@
         const offset = urlParams.get('offset') ? +urlParams.get('offset') : 0;
         const port = urlParams.get('port') ? +urlParams.get('port') : 8214;
         const connect = () => {
-            const dataWS = new WebSocket(`ws://localhost:${port}/data`);
+            var dataWS = new WebSocket(`ws://localhost:${port}/data`);
             dataWS.onmessage = (e) => {
                 const parsed = JSON.parse(e.data);
                 const adjustedHr = (+parsed.data.heartrate) + offset;
