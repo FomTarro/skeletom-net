@@ -50,7 +50,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         const offset = urlParams.get('offset') ? +urlParams.get('offset') : 0;
         const port = urlParams.get('port') ? +urlParams.get('port') : 8214;
-        const connect = () => {
+        function connect(){
             var dataWS = new WebSocket(`ws://localhost:${port}/data`);
             dataWS.onmessage = (e) => {
                 const parsed = JSON.parse(e.data);
@@ -60,8 +60,7 @@
                 document.getElementById("pulse").style.transform = `scale(${mappedScale})`;
             }
             dataWS.onerror = (err) => {
-                dataWS = null;
-                setTimeout(connect, 5000)
+                dataWS.close();
             }
             dataWS.onclose = (err) => {
                 dataWS = null;
