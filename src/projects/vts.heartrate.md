@@ -1,13 +1,13 @@
 ---
 title: VTS-Heartrate
 date: 2022-01-03
-updated: 2024-04-27
+updated: 2024-10-10
 author: Skeletom
 brief: A VTube Studio plugin that allows for connectivity between heart rate monitors (HRM) and VTube Studio! Control your avatar with your real pulse!
 thumb: /img/projects/vts-heartrate/logo.png
 tags: vtubers,c#,unity,plugin,vtube studio,heartrate,heartbeat,tool,widget
 release: https://skeletom-ch.itch.io/vts-heartrate
-version: v1.3.1
+version: v1.4.0
 platforms: Windows
 ---
 
@@ -27,6 +27,7 @@ The plugin has several highly-configurable features, such as:
 * Configurable model tinting that scales with pulse!
 * Automatic expression and hotkey triggering at desired heartrate thresholds!
 * Custom tracking parameters for pulse, breath and Live2D items!
+* Dynamically control [VTube Studio VFX](https://github.com/DenchiSoft/VTubeStudio/wiki/Visual-Effects) with your pulse!
 * Plugin API so that you can build your own apps that consume or write heartrate data! (Yes, you can make plugins for the plugin!)
 
 ![Akari demonstrating some of the features of vts-heartrate](/img/projects/vts-heartrate/akari_gif_features.gif)
