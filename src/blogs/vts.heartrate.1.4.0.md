@@ -3,7 +3,7 @@ title: VTS-Heartrate 1.4.0 Release
 date: 2024-10-10
 author: Skeletom
 brief: Just in time for Halloween, vts-heartrate updates to version 1.4.0 with some delightful new features, well-suited for scary games.
-thumb: /img/projects/vts-heartrate/logo.png
+thumb: /img/projects/vts-heartrate/vtsh_update_thumb_v140.png
 tags: vtubers,c#,unity,plugin,vtube studio,heartrate,heartbeat,tool,widget,vts-heartrate
 release: https://skeletom-ch.itch.io/vts-heartrate/devlog/813407/update-v140
 version: v1.4.0
