@@ -600,8 +600,6 @@ ul {
 /*<row-start> / <column-start> / <row-end> / <column-end>*/
 .div1 {
 	grid-area: 1 / 1 / 2 / 10;
-	transform: rotate(-10deg);
-	background-color: brown;
 }
 
 .div2 {
