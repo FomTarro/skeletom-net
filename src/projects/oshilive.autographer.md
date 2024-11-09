@@ -5,7 +5,7 @@ updated: 2024-11-01
 author: Skeletom
 brief: A browser-based drawing pad that allows call-in convention guests to sign real physical autographs for on-site attendees from across the world using a CNC machine!
 thumb: /img/projects/oshilive/canvas.png
-tags: vtubers,javascript,oshilive,hardware,convention,tool
+tags: vtubers,javascript,web,oshilive,hardware,convention,tool,commission
 version: v1.0.0
 platforms: Web, Mobile
 ---
