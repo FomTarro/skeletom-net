@@ -306,6 +306,31 @@ async function generateBlogArchive(blogs, templateMap){
 
 /**
  * 
+ * @param {string[]} blogs - List of all Blogs that we want to display.
+ * @param {TemplateMap} templateMap 
+ * @returns {Promise<string>} HTML
+ */
+async function generateFileList(files, directory, templateMap) {
+    const frame = await embedContentInFrame(templateMap, templateMap.FILE_LIST);
+    const dom = new JSDOM(frame);
+    for(const title of dom.window.document.querySelectorAll('.meta-title')){
+        title.content = directory;
+        title.innerHTML = directory;
+    }
+    for (const file of files) {
+        console.log(file);
+        const li = dom.window.document.createElement("li");
+        const anchor = dom.window.document.createElement("a");
+        anchor.href = `./${file}`;
+        anchor.innerHTML = file;
+        li.appendChild(anchor);
+        dom.window.document.getElementById("files").appendChild(li);
+    }
+    return dom.serialize();
+}
+
+/**
+ * 
  * @param {PostData} project 
  * @param {PostData[]} blogs 
  * @param {TemplateMap} templateMap 
@@ -319,6 +344,7 @@ async function generateFullProjectPost(project, blogs, templateMap){
 }
 
 module.exports.GenerateNotFound = generateNotFound;
+module.exports.GenerateFileList = generateFileList;
 module.exports.GenerateHomePage = generateHomePage;
 module.exports.GenerateFullBlogPost = generateFullBlogPost;
 module.exports.GenerateBlogArchive = generateBlogArchive;

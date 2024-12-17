@@ -1,12 +1,13 @@
 const http = require('http');
 const path = require('path');
+const fs = require("fs");
 const express = require('express');
 const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
 const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
 const { Blogs, Projects, FilterPostMetadata, PopulatePostLists, ProjectsPath, BlogsPath } = require('./src/usecases/convert.markdown.usecase');
-const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive, GenerateNotFound } = require('./src/usecases/embed.html.usecase');
+const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive, GenerateNotFound, GenerateFileList } = require('./src/usecases/embed.html.usecase');
 const { TemplateMap } = require('./src/utils/template.map');
 const { GetChannelStatus } = require('./src/adapters/twitch.client');
 const { GetHitCountForPath, IncrementHitCountForPath } = require('./src/usecases/count.hits.usecase');
@@ -241,8 +242,18 @@ async function launch(){
     });
 
     app.all('*', async (req, res, next) => {
-        const html = await GenerateNotFound(TemplateMap)
-        res.status(404).send(html);
+
+        const filePath = path.join(baseDirectory, req.path);
+
+        // Check if the existing item is a directory or a file.
+        if (fs.statSync(filePath).isDirectory()) {
+            const filesInDir = fs.readdirSync(filePath);
+            // If the item is a directory: show all the items inside that directory.
+            return res.send(await GenerateFileList(filesInDir, req.path, TemplateMap));
+        } else {
+            const html = await GenerateNotFound(TemplateMap)
+            res.status(404).send(html);
+        }
     });
 
     // Makes an http server out of the express server
