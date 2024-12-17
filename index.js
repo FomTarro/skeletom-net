@@ -246,7 +246,7 @@ async function launch(){
         const filePath = path.join(baseDirectory, req.path);
 
         // Check if the existing item is a directory or a file.
-        if (fs.statSync(filePath).isDirectory()) {
+        if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
             const filesInDir = fs.readdirSync(filePath);
             // If the item is a directory: show all the items inside that directory.
             return res.send(await GenerateFileList(filesInDir, req.path, TemplateMap));
