@@ -15,7 +15,7 @@ platforms: Web
 
 ## Background
 
-Built as part of a larget "V4Nightmares" Halloween event, the Puzzle Campaign features festive artwork of all 12 (at the time of publication) V4Mirai talents, which users can unlock by scanning QR codes that pop up during streams. 
+Built as part of a larger "V4Nightmares" Halloween event, the Puzzle Campaign features festive artwork of all 12 (at the time of publication) V4Mirai talents, which users can unlock by scanning QR codes that pop up during streams. 
 
 Each code unlocked the next piece of the puzzle, with 12 pieces in all. Users could download their puzzle to use as a phone wallpaper at any stage of completion!
 
