@@ -241,6 +241,16 @@ async function launch(){
         res.status(200).sendFile(file);
     });
 
+    app.get([`/recorder`], async (req, res) => {
+        try {
+            const html = path.join(baseDirectory, 'audio.html')
+            res.status(200).sendFile(html);
+        }catch(e){
+            console.error(e);
+            res.status(404).send("No such project post exists.");
+        }
+    })
+
     app.all('*', async (req, res, next) => {
 
         const filePath = path.join(baseDirectory, req.path);
