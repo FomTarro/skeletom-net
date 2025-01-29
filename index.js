@@ -196,6 +196,14 @@ async function launch(){
         }));
     });
 
+    app.get(['/word-salad/version',], async (req, res) => {
+        res.status(200).send(JSON.stringify({
+            version: AppConfig.WORD_SALAD_VERSION,
+            date: AppConfig.WORD_SALAD_DATE,
+            url: AppConfig.WORD_SALAD_URL
+        }));
+    });
+
     app.get(['/wolfram/ask',], async (req, res) => {
         if(req.query && req.query.input){
             const answer = await WolframAsk(req.query.input, AppConfig);

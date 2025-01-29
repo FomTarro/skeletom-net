@@ -5,7 +5,7 @@ updated: 2024-10-25
 author: Skeletom
 brief:  Tune in to streams or VODs from affiliated V4Mirai talent to find puzzle pieces as part of the "V4Nightmares Puzzle Campaign"! 12 pieces per puzzle in total! 
 thumb: /img/projects/v4mirai/puzzle_campaign.png
-tags: vtubers,web,v4mirai,javascript,holiday,toy
+tags: vtubers,web,v4mirai,javascript,holiday,toy,commission
 release: https://www.v4trickortreat.com
 version: v1.0.0
 platforms: Web
