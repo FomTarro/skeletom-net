@@ -4,7 +4,7 @@ date: 2025-01-31
 updated: 2025-01-31
 author: Skeletom
 brief:  Text-to-speech with a sentence-mixing twist!
-thumb: /img/projects/word-salad/logo.png
+thumb: /img/projects/word-salad/banner.png
 tags: electron,javascript,web,toy,tts,redeem,twitch
 release: https://skeletom-ch.itch.io/word-salad
 version: v1.0.0
