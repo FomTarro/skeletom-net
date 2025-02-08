@@ -123,10 +123,15 @@ function filterPosts(posts, tags){
         return [];
     }
     const splitTags = tags.toLowerCase().split(',').map(tag => tag.trim());
+
     // find all posts whos tags or words in title contain any of the tags from our comma separated list
-    return posts.filter(post => post.tags.filter(postTag => splitTags.includes(postTag.toLowerCase())).length > 0 
-    || post.fullTitle.split(' ').filter(word => splitTags.includes(word.toLowerCase())).length > 0
-    || splitTags.includes(post.title));
+    return posts.filter(post => splitTags.some(tag => 
+    post.tags.filter(pt => pt.toLowerCase().includes(tag)).length > 0 
+    || post.fullTitle.toLowerCase().includes(tag)))
+    // return posts.filter(post => post.tags.filter(postTag => splitTags.includes(postTag.toLowerCase())).length > 0 
+    // || post.fullTitle.split(' ').filter(word => splitTags.includes(word.toLowerCase())).length > 0
+    // || splitTags.includes(post.title)
+    // || );
 }
 
 // Utils

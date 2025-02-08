@@ -5,7 +5,7 @@
             <div class="checker-border bottom"></div> -->
             <a href="#" onclick="document.getElementById('search-form').submit();" class="font-black fa-lg fa-solid fa-magnifying-glass search-icon"></a>
             <form id="search-form" class="search-form">
-                <input name='tags' class="font-small search-input" type="text" placeholder="Search for specifics...">
+                <input id='tags' name='tags' class="font-small search-input" type="text" placeholder="Search for specifics...">
             </form>
         </div>
     </div>
@@ -26,4 +26,11 @@
             </div>
         </div>
     </div>
+    <script>
+        const urlSearchParams = new URLSearchParams(location.search);
+        const params = Object.fromEntries(urlSearchParams.entries());
+        if(params.tags){
+            document.getElementById('tags').value = params.tags;
+        }
+    </script>
 </div>

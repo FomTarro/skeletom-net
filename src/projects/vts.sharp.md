@@ -16,7 +16,7 @@ version: v2.3.0
 
 On [September 19th, 2021](https://twitter.com/VTubeStudio/status/1439719246842540039), industry-leading VTubing application [VTube Studio](https://denchisoft.com/) released [plugin support via an API](https://github.com/DenchiSoft/VTubeStudio). Several weeks prior, I had been tipped off by [the developer](https://twitter.com/DenchiSoft) that such an advancement was on its way. 
 
-After wracking my mind for something fun to build that would showcase the power of the API and utterly failing to come up with anything flashy, I resolved to leave the imagination to [the more creative folks](https://github.com/FomTarro/VTS-Sharp?tab=readme-ov-file#made-with-vts-sharp), and instead built a library to enable [other people](https://remasuri3.itch.io/tits) make [the cool stuff](https://store.steampowered.com/app/1898830/VBridger/) with minimal friction. Thus, VTS-Sharp was born.
+After wracking my mind for something fun to build that would showcase the power of the API and utterly failing to come up with anything flashy, I resolved to leave the imagination to [the more creative folks](https://github.com/FomTarro/VTS-Sharp?tab=readme-ov-file#made-with-vts-sharp), and instead built a library to enable [other people](https://remasuri3.itch.io/tits) in making [the cool stuff](https://store.steampowered.com/app/1898830/VBridger/) with minimal friction. Thus, VTS-Sharp was born.
 
 ---
 
