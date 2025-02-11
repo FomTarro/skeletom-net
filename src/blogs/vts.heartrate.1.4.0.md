@@ -26,9 +26,9 @@ version: v1.4.0
 
 ### Tips and Tricks
 
-The <span class="highlight">VFX</span> feature lends itself to a lot of customizability. Maybe too much! It can be pretty overwhelming to look at, but the basic gist is that you can use Custom Tracking Paramrters to control effects. You can  then apply an additional multipler to these values to increase or decrease the overall intensity of the effect.
+The <span class="highlight">VFX</span> feature lends itself to a lot of customizability. Maybe too much! It can be pretty overwhelming to look at, but the basic gist is that you can use <span class="highlight">Custom Tracking Parameters</span> to control effects. You can then apply an additional multipler to these values to increase or decrease the overall intensity of the effect.
 
-Broadly speaking, I think setting the `strength` component of your desired effect to be driven by the `vts_heartrate_linear` Custom Tracking Parameter is a good starting point. You can then control the other components of the effect with `vts_heartrate_pulse` to create a visual reminsicent of being at "critical HP" in a video game.
+Broadly speaking, I think setting the `strength` component of your desired effect to be driven by the `vts_heartrate_linear` Custom Tracking Parameter is a good starting point. You can then control the other components of the effect with `vts_heartrate_pulse` to create a visual reminsicent of being at "critical HP" in a video game. Finally, we can apply some dampening modifiers with the sliders to keep the effect relatively subtle.
 
 Here's an effect I set up for myself and the configuration I used to achieve it.
 
@@ -41,4 +41,5 @@ Here's an effect I set up for myself and the configuration I used to achieve it.
 <img src=/img/projects/vts-heartrate/vfx_config_2.png>
 </div>
 
-I hope this example helps! As always, if you have an idea for afeature, find a bug, or figure out a better way to convey this complicated information to the end-user, please feel free to reach out to me on any platform! My inbox is always open!
+
+I hope this example helps! As always, if you have an idea for a feature, find a bug, or figure out a better way to convey this complicated information to the end-user, please feel free to reach out to me on any platform! My inbox is always open!
