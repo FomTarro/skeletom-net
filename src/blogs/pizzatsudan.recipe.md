@@ -4,7 +4,7 @@ date: 2025-02-14
 author: Skeletom
 brief: My world-famous pizza dough recipe, now yours for the using!
 thumb: /img/blogs/pizzatsudan/logo.png
-tags: pizza,cooking,baking,pizzatsudan,food
+tags: pizza,cooking,baking,pizzatsudan,food,🍕
 ---
 
 ---
