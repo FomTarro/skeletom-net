@@ -31,7 +31,11 @@ class AppConfig{
 
     get WORD_SALAD_VERSION(){ return process.env.word_salad_version ? process.env.word_salad_version : "1.0.0" } 
     get WORD_SALAD_DATE(){ return process.env.word_salad_date ? process.env.word_salad_date : "01/30/2025" } 
-    get WORD_SALAD_URL(){ return process.env.word_salad_url ? process.env.word_salad_url : "https://www.skeletom.net" } 
+    get WORD_SALAD_URL() { return process.env.word_salad_url ? process.env.word_salad_url : "https://www.skeletom.net" } 
+    
+    get VTS_COUNTER_VERSION(){ return process.env.vts_counter_version ? process.env.vts_counter_version : "1.0.0" } 
+    get VTS_COUNTER_DATE(){ return process.env.vts_counter_date ? process.env.vts_counter_date : "02/28/2025" } 
+    get VTS_COUNTER_URL(){ return process.env.vts_counter_url ? process.env.vts_counter_url : "https://www.skeletom.net" } 
 
 
     get WOLFRAM_CLIENT_ID(){ return process.env.wolfram_client_id; };

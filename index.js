@@ -204,6 +204,14 @@ async function launch(){
         }));
     });
 
+    app.get(['/vts-counter/version',], async (req, res) => {
+        res.status(200).send(JSON.stringify({
+            version: AppConfig.VTS_COUNTER_VERSION,
+            date: AppConfig.VTS_COUNTER_DATE,
+            url: AppConfig.VTS_COUNTER_URL
+        }));
+    });
+
     app.get(['/wolfram/ask',], async (req, res) => {
         if(req.query && req.query.input){
             const answer = await WolframAsk(req.query.input, AppConfig);
