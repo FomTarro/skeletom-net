@@ -196,6 +196,14 @@ async function launch(){
         }));
     });
 
+    app.get(['/kkcyber-desktop/version',], async (req, res) => {
+        res.status(200).send(JSON.stringify({
+            version: AppConfig.KK_DESKTOP_VERSION,
+            date: AppConfig.KK_DESKTOP_DATE,
+            url: AppConfig.KK_DESKTOP_URL
+        }));
+    });
+
     app.get(['/word-salad/version',], async (req, res) => {
         res.status(200).send(JSON.stringify({
             version: AppConfig.WORD_SALAD_VERSION,

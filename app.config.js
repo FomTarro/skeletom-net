@@ -27,7 +27,11 @@ class AppConfig{
     
     get MINT_DESKTOP_VERSION(){ return process.env.mint_desktop_version ? process.env.mint_desktop_version : "1.0.0" } 
     get MINT_DESKTOP_DATE(){ return process.env.mint_desktop_date ? process.env.mint_desktop_date : "10/01/2024" } 
-    get MINT_DESKTOP_URL(){ return process.env.mint_desktop_url ? process.env.mint_desktop_url : "https://www.skeletom.net" } 
+    get MINT_DESKTOP_URL() { return process.env.mint_desktop_url ? process.env.mint_desktop_url : "https://www.skeletom.net" } 
+    
+    get KK_DESKTOP_VERSION(){ return process.env.kk_desktop_version ? process.env.kk_desktop_version : "1.0.0" } 
+    get KK_DESKTOP_DATE(){ return process.env.kk_desktop_date ? process.env.kk_desktop_date : "04/04/2025" } 
+    get KK_DESKTOP_URL(){ return process.env.kk_desktop_url ? process.env.kk_desktop_url : "https://www.skeletom.net" } 
 
     get WORD_SALAD_VERSION(){ return process.env.word_salad_version ? process.env.word_salad_version : "1.0.0" } 
     get WORD_SALAD_DATE(){ return process.env.word_salad_date ? process.env.word_salad_date : "01/30/2025" } 
