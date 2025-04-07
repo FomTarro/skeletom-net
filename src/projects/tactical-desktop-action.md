@@ -3,7 +3,7 @@ title: Tactical Desktop Action
 date: 2024-10-01
 updated: 2024-10-01
 author: Skeletom
-brief: Beloved VTuber and Metal Gear fanatic Mint Fantome infiltrates your desktop as a digital assistant!!
+brief: Beloved VTuber and Metal Gear fanatic Mint Fantome infiltrates your desktop as a digital assistant!
 thumb: /img/projects/mint-birthday-2024/banner.png
 tags: vtubers,c#,unity,fan game,mint,desktop toy,mgs,metal gear,toy
 release: https://skeletom-ch.itch.io/tactical-desktop-action
@@ -47,7 +47,7 @@ Mint was also pretty happy to recieve this gift! You can watch her live reaction
 ## Credits
 
 * Project Lead / Programming: Tom "Skeletom" Farro ([@FomTarro](https://twitter.com/fomtarro))
-* 3D Character / Prop Modeling: BIGHAM (([@BIGHAM_vt](https://twitter.com/gunpuncher)))
+* 3D Character / Prop Modeling: BIGHAM (([@BIGHAM_vt](https://bsky.app/profile/bigham.bsky.social)))
 * 3D Character Animation: Dillon ([@gunpuncher](https://twitter.com/gunpuncher))
 * Mint Portrait Illustration: Advarcher ([@Anonamos_701](https://twitter.com/Anonamos_701))
 * Shader Programming: Millennium Cyborg ([@y2k_cyborg](https://twitter.com/y2k_cyborg))
