@@ -1,8 +1,9 @@
-const { LRUMap } = require("../utils/lru.map");
-const { YouTubeClient, VideoDetail } = require("./youtube.client");
+const { YouTubeClient } = require("../youtube.client");
+const { VideoDetail } = require("../video.detail");
+const { TrackedChannel, OnLiveCallback } = require('./tracked.channel');
 
 // TODO: move batching logic to the client
-const VIDEO_LOOKUP_BATCH_SIZE = 20;
+const VIDEO_LOOKUP_BATCH_SIZE = 50;
 
 class YouTubeTracker {
     /**
@@ -29,11 +30,6 @@ class YouTubeTracker {
             this.interval = undefined;
         }
     }
-
-    /**
-     * @callback OnLiveCallback
-     * @param {VideoDetail} - Video Details about the Live stream.
-     */
 
     /**
      * 
@@ -123,25 +119,6 @@ class YouTubeTracker {
                 }
             }
         }
-    }
-}
-
-class TrackedChannel {
-    /**
-     * 
-     * @param {string} channelId 
-     * @param {string} channelHandle 
-     * @param {OnLiveCallback} onLive 
-     */
-    constructor(channelId, channelHandle, onLive) {
-        this.channelId = channelId;
-        this.channelHandle = channelHandle;
-        this.onLive = onLive;
-        /**
-         * Indexed by video ID
-         * @type {Map<string, VideoData>}
-         */
-        this.videoDetails = new LRUMap(100);
     }
 }
 

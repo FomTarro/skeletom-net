@@ -14,7 +14,7 @@ const { GetChannelStatus } = require('./src/adapters/twitch.client');
 const { GetHitCountForPath, IncrementHitCountForPath } = require('./src/usecases/count.hits.usecase');
 const { GenerateRSS } = require('./src/usecases/generate.rss.usecase');
 const { YouTubeClient } = require('./src/adapters/youtube.client');
-const { YouTubeTracker } = require('./src/adapters/youtube.tracker');
+const { YouTubeTracker } = require('./src/adapters/trackers/youtube.tracker');
 const WebSocket = require('ws');
 
 let LAST_STREAM_STATUS = {
@@ -305,26 +305,58 @@ async function createHttpRoutes(){
 
 const YOUTUBE_CLIENT = new YouTubeClient(AppConfig);
 const YOUTUBE_TRACKER = new YouTubeTracker(YOUTUBE_CLIENT);
-YOUTUBE_TRACKER.trackChannel("@mintfantome", (detail) => { console.log(`Channel's live, bud! ${JSON.stringify(detail)}`); });
-YOUTUBE_TRACKER.start();
 
-async function createWebSocketRoutes(httpServer){
-    const websocketServer = new WebSocket.Server({server: httpServer, path:'/mintfantome/stream/status'});
+async function createYouTubeTrackerSocket(httpServer, route, channelHandle) {
+    const websocketServer = new WebSocket.Server({server: httpServer, path: route});
     websocketServer.on('connection', async (ws) => {
-        console.log('New connection for Mint Fantome YouTube Tracker...')
-        ws.send(await YOUTUBE_TRACKER.getCurrentlyLiveForChannel('@MintFantome'))
+        console.log(`New connection for ${channelHandle} YouTube Tracker!`);
+        const currentStreams = await YOUTUBE_TRACKER.getCurrentlyLiveForChannel(channelHandle);
+        ws.send(JSON.stringify({
+            details: currentStreams
+        }));
+    });
+    YOUTUBE_TRACKER.trackChannel(channelHandle, (detail) => {
+        websocketServer.clients.forEach(client => {
+            if (client.readyState === WebSocket.OPEN) {
+                client.send(JSON.stringify({
+                    details: [detail]
+                }));
+            }
+        });
     });
     return websocketServer;
 }
 
+/**
+ * 
+ * @param {http.Server} httpServer 
+ */
+async function createWebSocketRoutes(httpServer){
+    const routes = [
+        await createYouTubeTrackerSocket(httpServer, '/mintfantome-desktop/youtube/status', '@mintfantome'),
+        await createYouTubeTrackerSocket(httpServer, '/amiyamiga/youtube/status', '@amiyaaranha')
+    ];
+
+    app.get([`/wss/stats`], async (req, res) => { 
+        res.status(200).send(routes.map(ws => {
+            return {
+                path: ws.address,
+                connections: ws.clients,
+            }
+        }));
+    })
+}
+
 async function launch(){
     const httpServer = await createHttpRoutes();
-    const websocketServer = await createWebSocketRoutes(httpServer);
+    const wssRoutes = await createWebSocketRoutes(httpServer);
     const port = AppConfig.PORT;
     httpServer.listen(port, () => {
         // code to execute when the server successfully starts
         console.log(`started on ${port}`)
     });
+
+    YOUTUBE_TRACKER.start();
 }
 
 launch();

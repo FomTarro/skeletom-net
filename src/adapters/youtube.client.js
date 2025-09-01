@@ -1,5 +1,6 @@
 const jsdom = require('jsdom')
 const { JSDOM } = jsdom;
+const { VideoDetail } = require('./video.detail');
 
 class YouTubeClient {
     /**
@@ -43,14 +44,16 @@ class YouTubeClient {
     async getVideoListDetails(videoIds){
         const url = new URL(`https://www.googleapis.com/youtube/v3/videos?key=${this.apiKey}&part=snippet,liveStreamingDetails&id=${videoIds.join(',')}`);
         const response = await fetch(url);
-        const videos = [];
+        const videoDetails = [];
         if(response.status >= 200 && response.status < 300){
             const json = await response.json();
             for(const item of json.items){
-                videos.push(new VideoDetail(
+                videoDetails.push(new VideoDetail(
                     item.id,
-                    item.kind,
+                    "Stream",
+                    "YouTube",
                     item.snippet?.title,
+                    item.snippet?.categoryId,
                     `https://www.youtube.com/watch?v=${item.id}`,
                     item.liveStreamingDetails && (item.liveStreamingDetails.actualStartTime && !item.liveStreamingDetails.actualEndTime)
                 ));
@@ -58,7 +61,7 @@ class YouTubeClient {
         }else{
              console.error(`Error fetching video list details for channel ID ${channelId} - ${response.statusText}`);
         }
-        return videos;
+        return videoDetails;
     }
 
     async getChannelId(channelName){
@@ -87,23 +90,4 @@ class YouTubeClient {
     // and forgetting which streams it has pinged about.
 }
 
-class VideoDetail {
-    /**
-     * 
-     * @param {string} id 
-     * @param {string} type 
-     * @param {string} title 
-     * @param {string} url
-     * @param {boolean} isLive 
-     */
-    constructor(id, type, title, url, isLive) {
-        this.id = id;
-        this.type = type;
-        this.title = title;
-        this.url = url;
-        this.isLive = isLive;
-    }
-}
-
 module.exports.YouTubeClient = YouTubeClient;
-module.exports.VideoDetail = VideoDetail;
