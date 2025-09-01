@@ -36,7 +36,8 @@ const STREAM_STATUS_POLLER = setInterval(async () => {
 
 const YOUTUBE_CLIENT = new YouTubeClient(AppConfig);
 const YOUTUBE_TRACKER = new YouTubeTracker(YOUTUBE_CLIENT);
-YOUTUBE_TRACKER.trackChannel("@MintFantome", () => { console.log("She's live, bud"); });
+YOUTUBE_TRACKER.trackChannel("@mintfantome", (detail) => { console.log(`Channel's live, bud! ${JSON.stringify(detail)}`); });
+YOUTUBE_TRACKER.start();
 
 const app = express();
 
@@ -203,18 +204,8 @@ async function launch(){
         }));
     });
 
-    app.get(['/mintfantome-desktop/streams',], async (req, res) => {
-        res.status(200).send((await YOUTUBE_CLIENT.getVideoListDetails(
-            [...(await YOUTUBE_CLIENT.getRecentVideoList('UCcHHkJ98eSfa5aj0mdTwwLQ')).map(item => item.id)]))
-        );
-    });
-
-    app.get(['/test/streams',], async (req, res) => {
-        res.status(200).send((await YOUTUBE_CLIENT.getVideoListDetails(
-            [...(await YOUTUBE_CLIENT.getRecentVideoList(
-                await YOUTUBE_CLIENT.getChannelId(req.query.channelHandle)
-            )).map(item => item.id)]))
-        );
+    app.get(['/yt-tracker/streams',], async (req, res) => {
+        res.status(200).send(await YOUTUBE_TRACKER.getCurrentlyLiveForChannel('@mintfantome'));
     });
 
     app.get(['/kkcyber-desktop/version',], async (req, res) => {

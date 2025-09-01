@@ -1,4 +1,8 @@
-const { YouTubeClient, VideoData } = require("./youtube.client");
+const { LRUMap } = require("../utils/lru.map");
+const { YouTubeClient, VideoDetail } = require("./youtube.client");
+
+// TODO: move batching logic to the client
+const VIDEO_LOOKUP_BATCH_SIZE = 20;
 
 class YouTubeTracker {
     /**
@@ -12,12 +16,23 @@ class YouTubeTracker {
          * @type {Map<string, TrackedChannel>}
          */
         this.channels = new Map();
-        this.handledVideos = [];
+    }
+
+    start() {
+        this.stop();
         this.interval = setInterval(this.scanAndNotify.bind(this), 30*1000);
+    }
+
+    stop() {
+        if (this.interval) {
+            clearInterval(this.interval);
+            this.interval = undefined;
+        }
     }
 
     /**
      * @callback OnLiveCallback
+     * @param {VideoDetail} - Video Details about the Live stream.
      */
 
     /**
@@ -35,6 +50,10 @@ class YouTubeTracker {
         }
     }
 
+    /**
+     * 
+     * @param {string} channelHandle 
+     */
     async untrackChannel(channelHandle) {
         if (this.channels.has(channelHandle)) {
             this.channels.delete(channelHandle);
@@ -44,6 +63,11 @@ class YouTubeTracker {
         }
     }
 
+    /**
+     * 
+     * @param {string} channelHandle 
+     * @returns {Promise<VideoDetail[]>}
+     */
     async getCurrentlyLiveForChannel(channelHandle) {
         const liveDetails = []
         if (this.channels.has(channelHandle)) {
@@ -59,46 +83,41 @@ class YouTubeTracker {
     }
 
     async scanAndNotify() {
-        // for every tracked channel
         /**
-         * Indexed by channelHandle
+         * Indexed by video ID, value is channel handle
          * @type {Map<string, string>}
-         */
+        */
         const videosToSearch = new Map();
-        for (const [key, value] of this.channels) {
+        // for every tracked channel...
+        for (const [handle, tracker] of this.channels) {
             // get updated video list for the channel
-            const videos = await this.client.getRecentVideoList(value.channelId);
+            const videos = await this.client.getRecentVideoList(tracker.channelId);
             // console.log(`Found videos for channel ${key}: ${videos.map(v => v.id)}`);
             for (const video of videos) {
-                // populate map of video ids, linking them to their corresponding channels
-                videosToSearch.set(video.id, value.channelHandle);
+                // populate global map of video ids, linking them to their corresponding channels
+                // (this will be used for batching against the YouTube API quota in the next step)
+                videosToSearch.set(video.id, tracker.channelHandle);
             }
         }
         // chunk our videos into groups of 20 to query against the API
         const videoIds = [...videosToSearch.keys()]
         // console.log(`Preparing the following videos to query: ${videoIds}`);
-        for (let i = 0; i < videoIds.length; i += 20) {
-            const chunk = videoIds.slice(i, i + 20);
+        for (let i = 0; i < videoIds.length; i += VIDEO_LOOKUP_BATCH_SIZE) {
+            const chunk = videoIds.slice(i, i + VIDEO_LOOKUP_BATCH_SIZE);
             const videoDetails = await this.client.getVideoListDetails(chunk);
             // process results
             for (const detail of videoDetails) {
                 const originalHandle = videosToSearch.get(detail.id);
                 const trackedChannel = this.channels.get(originalHandle);
-                // if the video comes back as being Live, and we either have no record of it or have a record of it NOT being live..
-                const isNowLive = detail.isLive && (!trackedChannel.videoDetails.has(detail.id) || !trackedChannel.videoDetails.get(detail.id).isLive);
+                // if the video comes back as being Live, and we either have no record of it or have a record of it NOT being live, 
+                // that means it has become live, so we want to act.
+                const isNewlyLive = detail.isLive
+                    && (!trackedChannel.videoDetails.has(detail.id)
+                        || !trackedChannel.videoDetails.get(detail.id).isLive);
+                // update the detail record
                 trackedChannel.videoDetails.set(detail.id, detail);
-                if (detail.isLive && !this.handledVideos.includes(detail.id)) {
+                if (isNewlyLive) {
                     console.log(`Handling OnLive callback for video: ${detail.id}`);
-                    // flag it as handled
-                    // TODO: this is not satisfactory as it doesn't allow us to learn 
-                    // which streams are CURRENTLY live for each channel after the fact.
-                    // (which is something we want to do for clients that connect mid-stream)
-                    // We need to re-implement a map of video data for each channel
-                    this.handledVideos.push(detail.id);
-                    // keep the record relatively short
-                    if (this.handledVideos.length > 1000) {
-                        this.handledVideos.shift();
-                    }
                     // invoke the OnLive callback for the corresponding channel
                     trackedChannel.onLive(detail);
                 }
@@ -119,10 +138,10 @@ class TrackedChannel {
         this.channelHandle = channelHandle;
         this.onLive = onLive;
         /**
-         * Indexed by video ID, this needs to become an LRU or something
+         * Indexed by video ID
          * @type {Map<string, VideoData>}
          */
-        this.videoDetails = new Map();
+        this.videoDetails = new LRUMap(100);
     }
 }
 

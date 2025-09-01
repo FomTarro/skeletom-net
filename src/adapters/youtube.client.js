@@ -41,14 +41,13 @@ class YouTubeClient {
      * @param {string[]} videoIds - A list of video IDs to query for.
      */
     async getVideoListDetails(videoIds){
-        console.log(videoIds);
         const url = new URL(`https://www.googleapis.com/youtube/v3/videos?key=${this.apiKey}&part=snippet,liveStreamingDetails&id=${videoIds.join(',')}`);
         const response = await fetch(url);
         const videos = [];
         if(response.status >= 200 && response.status < 300){
             const json = await response.json();
             for(const item of json.items){
-                videos.push(new videoDetail(
+                videos.push(new VideoDetail(
                     item.id,
                     item.kind,
                     item.snippet?.title,
@@ -88,7 +87,7 @@ class YouTubeClient {
     // and forgetting which streams it has pinged about.
 }
 
-class videoDetail {
+class VideoDetail {
     /**
      * 
      * @param {string} id 
@@ -107,4 +106,4 @@ class videoDetail {
 }
 
 module.exports.YouTubeClient = YouTubeClient;
-module.exports.VideoDetail = videoDetail;
+module.exports.VideoDetail = VideoDetail;
