@@ -34,9 +34,16 @@ const STREAM_STATUS_POLLER = setInterval(async () => {
     }
 }, 10000);
 
-const app = express();
+/**
+ * @type {WebSocket.Server[]}
+ */
+let WEBSOCKET_ROUTES = [];
+
+const YOUTUBE_CLIENT = new YouTubeClient(AppConfig);
+const YOUTUBE_TRACKER = new YouTubeTracker(YOUTUBE_CLIENT);
 
 async function createHttpRoutes(){
+    const app = express();
     const baseDirectory = path.join(__dirname, './public');
     app.use(express.json());
     app.use('/', express.static(baseDirectory));
@@ -116,7 +123,7 @@ async function createHttpRoutes(){
             res.status(200).send(html);
         }catch(e){
             console.error(e);
-            res.status(404).send("No such project post exists.");
+            res.status(404).send("No such project exists.");
         }
     })
 
@@ -136,10 +143,19 @@ async function createHttpRoutes(){
         res.status(200).send(LAST_STREAM_STATUS);
     });
 
-    // Tells the browser to redirect to the given URL
     app.get(['/archive', '/vod'], (req, res) => {
         res.redirect('https://www.youtube.com/@fomtarro/videos');
     });
+
+    // WebSocket Server Stats
+    app.get([`/wss/stats`], async (req, res) => { 
+        res.status(200).send(WEBSOCKET_ROUTES.map(ws => {
+            return {
+                path: ws.options.path,
+                connections: ws.clients.size,
+            }
+        }));
+    })
 
     // vts-heartrate authentication
     app.get(['/vts-heartrate/oauth2/pulsoid',], async (req, res) => {
@@ -150,7 +166,7 @@ async function createHttpRoutes(){
                 const templatePath = path.join('src', 'templates', 'auth.token.html');
                 res.status(200).send(await EmbedToken(templatePath, token.body['access_token'], AppConfig));
             }catch(e){
-                res.status(500).send(`"An error occured! Please yell at Tom on Twitter.`)
+                res.status(500).send(`"An error occured! Please yell at Tom via email: tom@skeletom.net.`)
             }
         }else{
             res.status(400).send('BAD REQUEST!');
@@ -303,9 +319,6 @@ async function createHttpRoutes(){
     return httpServer;
 }
 
-const YOUTUBE_CLIENT = new YouTubeClient(AppConfig);
-const YOUTUBE_TRACKER = new YouTubeTracker(YOUTUBE_CLIENT);
-
 async function createYouTubeTrackerSocket(httpServer, route, channelHandle) {
     const websocketServer = new WebSocket.Server({server: httpServer, path: route});
     websocketServer.on('connection', async (ws) => {
@@ -336,20 +349,13 @@ async function createWebSocketRoutes(httpServer){
         await createYouTubeTrackerSocket(httpServer, '/mintfantome-desktop/youtube/status', '@mintfantome'),
         await createYouTubeTrackerSocket(httpServer, '/amiyamiga/youtube/status', '@amiyaaranha')
     ];
-
-    app.get([`/wss/stats`], async (req, res) => { 
-        res.status(200).send(routes.map(ws => {
-            return {
-                path: ws.address,
-                connections: ws.clients,
-            }
-        }));
-    })
+    return routes;
 }
 
 async function launch(){
     const httpServer = await createHttpRoutes();
     const wssRoutes = await createWebSocketRoutes(httpServer);
+    WEBSOCKET_ROUTES = wssRoutes;
     const port = AppConfig.PORT;
     httpServer.listen(port, () => {
         // code to execute when the server successfully starts

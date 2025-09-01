@@ -55,7 +55,7 @@ class YouTubeTracker {
             this.channels.delete(channelHandle);
             console.log(`No longer tracking channel ${channelHandle}`);
         } else {
-            console.warn(`Channel ${channelHandle} was not being tracked!`);
+            console.warn(`YouTube Channel ${channelHandle} was not being tracked!`);
         }
     }
 
@@ -73,7 +73,7 @@ class YouTubeTracker {
                 }
             }
         } else {
-            console.warn(`Channel ${channelHandle} was not being tracked!`);
+            console.warn(`YouTube Channel ${channelHandle} is not being tracked!`);
         }
         return liveDetails;
     }
@@ -113,7 +113,7 @@ class YouTubeTracker {
                 // update the detail record
                 trackedChannel.videoDetails.set(detail.id, detail);
                 if (isNewlyLive) {
-                    console.log(`Handling OnLive callback for video: ${detail.id}`);
+                    console.log(`Handling OnLive callback for YouTube Channel ${originalHandle} with video: ${detail.id}`);
                     // invoke the OnLive callback for the corresponding channel
                     trackedChannel.onLive(detail);
                 }

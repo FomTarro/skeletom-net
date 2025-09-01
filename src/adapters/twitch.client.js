@@ -4,7 +4,7 @@ const { httpRequest } = require("./http.utils");
 /**
  * 
  * @param {AppConfig} appConfig 
- * @returns {string} - the token!
+ * @returns {Promise<string>} - the token!
  */
 async function getToken(appConfig){
     const url = new URL(`https://id.twitch.tv/oauth2/token`);
@@ -35,7 +35,7 @@ async function getToken(appConfig){
  * 
  * @param {string} loginName - The channel name (not ID)
  * @param {AppConfig} appConfig
- * @returns {StreamData} - Information about the stream
+ * @returns {Promise<StreamData>} - Information about the stream
  */
 async function getChannelStatus(loginName, appConfig){
     const token = await getToken(appConfig);
