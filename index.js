@@ -15,6 +15,7 @@ const { GetHitCountForPath, IncrementHitCountForPath } = require('./src/usecases
 const { GenerateRSS } = require('./src/usecases/generate.rss.usecase');
 const { YouTubeClient } = require('./src/adapters/youtube.client');
 const { YouTubeTracker } = require('./src/adapters/youtube.tracker');
+const WebSocket = require('ws');
 
 let LAST_STREAM_STATUS = {
     status: "OFFLINE",
@@ -33,16 +34,9 @@ const STREAM_STATUS_POLLER = setInterval(async () => {
     }
 }, 10000);
 
-
-const YOUTUBE_CLIENT = new YouTubeClient(AppConfig);
-const YOUTUBE_TRACKER = new YouTubeTracker(YOUTUBE_CLIENT);
-YOUTUBE_TRACKER.trackChannel("@mintfantome", (detail) => { console.log(`Channel's live, bud! ${JSON.stringify(detail)}`); });
-YOUTUBE_TRACKER.start();
-
 const app = express();
 
-async function launch(){
-    const port = AppConfig.PORT;
+async function createHttpRoutes(){
     const baseDirectory = path.join(__dirname, './public');
     app.use(express.json());
     app.use('/', express.static(baseDirectory));
@@ -204,10 +198,6 @@ async function launch(){
         }));
     });
 
-    app.get(['/yt-tracker/streams',], async (req, res) => {
-        res.status(200).send(await YOUTUBE_TRACKER.getCurrentlyLiveForChannel('@mintfantome'));
-    });
-
     app.get(['/kkcyber-desktop/version',], async (req, res) => {
         res.status(200).send(JSON.stringify({
             version: AppConfig.KK_DESKTOP_VERSION,
@@ -296,9 +286,7 @@ async function launch(){
     })
 
     app.all('*', async (req, res, next) => {
-
         const filePath = path.join(baseDirectory, req.path);
-
         // Check if the existing item is a directory or a file.
         if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
             const filesInDir = fs.readdirSync(filePath);
@@ -312,11 +300,30 @@ async function launch(){
 
     // Makes an http server out of the express server
     const httpServer = http.createServer(app);
+    return httpServer;
+}
 
-    // Starts the http server
+const YOUTUBE_CLIENT = new YouTubeClient(AppConfig);
+const YOUTUBE_TRACKER = new YouTubeTracker(YOUTUBE_CLIENT);
+YOUTUBE_TRACKER.trackChannel("@mintfantome", (detail) => { console.log(`Channel's live, bud! ${JSON.stringify(detail)}`); });
+YOUTUBE_TRACKER.start();
+
+async function createWebSocketRoutes(httpServer){
+    const websocketServer = new WebSocket.Server({server: httpServer, path:'/mintfantome/stream/status'});
+    websocketServer.on('connection', async (ws) => {
+        console.log('New connection for Mint Fantome YouTube Tracker...')
+        ws.send(await YOUTUBE_TRACKER.getCurrentlyLiveForChannel('@MintFantome'))
+    });
+    return websocketServer;
+}
+
+async function launch(){
+    const httpServer = await createHttpRoutes();
+    const websocketServer = await createWebSocketRoutes(httpServer);
+    const port = AppConfig.PORT;
     httpServer.listen(port, () => {
         // code to execute when the server successfully starts
-        console.log(`started on ${port}`);
+        console.log(`started on ${port}`)
     });
 }
 
