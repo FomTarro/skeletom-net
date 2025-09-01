@@ -13,6 +13,7 @@ const { TemplateMap } = require('./src/utils/template.map');
 const { GetChannelStatus } = require('./src/adapters/twitch.client');
 const { GetHitCountForPath, IncrementHitCountForPath } = require('./src/usecases/count.hits.usecase');
 const { GenerateRSS } = require('./src/usecases/generate.rss.usecase');
+const { YouTubeClient } = require('./src/adapters/youtube.client');
 
 let LAST_STREAM_STATUS = {
     status: "OFFLINE",
@@ -31,6 +32,8 @@ const STREAM_STATUS_POLLER = setInterval(async () => {
     }
 }, 10000);
 
+
+const YOUTUBE_CLIENT = new YouTubeClient(AppConfig);
 
 const app = express();
 
@@ -195,6 +198,20 @@ async function launch(){
             date: AppConfig.MINT_DESKTOP_DATE,
             url: AppConfig.MINT_DESKTOP_URL
         }));
+    });
+
+    app.get(['/mintfantome-desktop/streams',], async (req, res) => {
+        res.status(200).send((await YOUTUBE_CLIENT.getVideoListDetails(
+            [...(await YOUTUBE_CLIENT.getRecentVideoList('UCcHHkJ98eSfa5aj0mdTwwLQ')).map(item => item.id)]))
+        );
+    });
+
+    app.get(['/test/streams',], async (req, res) => {
+        res.status(200).send((await YOUTUBE_CLIENT.getVideoListDetails(
+            [...(await YOUTUBE_CLIENT.getRecentVideoList(
+                await YOUTUBE_CLIENT.getChannelId(req.query.channelHandle)
+            )).map(item => item.id)]))
+        );
     });
 
     app.get(['/kkcyber-desktop/version',], async (req, res) => {

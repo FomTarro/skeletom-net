@@ -47,6 +47,8 @@ class AppConfig{
     get TWITCH_CLIENT_ID(){ return process.env.twitch_client_id; };
     get TWITCH_CLIENT_SECRET(){ return process.env.twitch_client_secret; };
 
+    get YOUTUBE_CLIENT_API_KEY() { return process.env.youtube_api_key; };
+
     get AWS_CLIENT_ID(){ return process.env.aws_client_id; };
     get AWS_CLIENT_SECRET(){ return process.env.aws_client_secret; };
 }

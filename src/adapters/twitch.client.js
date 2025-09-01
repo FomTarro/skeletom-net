@@ -23,9 +23,9 @@ async function getToken(appConfig){
 }
 
 /**
- * A Blog/Project Post data structure
+ * A Twitch Stream information data structure.
  * @typedef {Object} StreamData
- * @property {string} status - Either "ONLINE" or "OFFLINE".
+ * @property {"ONLINE"|"OFFLINE"} status - Either "ONLINE" or "OFFLINE".
  * @property {string} address - The address the strewam should be at.
  * @property {string | undefined} title - The title of the stream, if it is online.
  * @property {string | undefined} game - The title of the game being played, if it is online.
