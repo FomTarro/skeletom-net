@@ -5,7 +5,7 @@ updated: 2022-12-15
 author: Skeletom
 brief: A desktop assistant harkening back to the early 2000s, made in the likeness of beloved VTuber Amiya Aranha!
 thumb: /img/projects/amiyamiga/amiyamiga_banner.png
-tags: vtubers,c#,unity,fan game,amiya,desktop toy,toy
+tags: vtubers,c#,unity,fan game,amiya,desktop toy,toy,retro
 release: https://skeletom-ch.itch.io/amiyamiga
 version: v1.1.0
 platforms: Windows

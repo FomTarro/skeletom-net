@@ -6,6 +6,7 @@ const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
 const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
+const { GetCurrencyRates } = require('./src/usecases/currency.convert.usecase');
 const { Blogs, Projects, FilterPostMetadata, PopulatePostLists, ProjectsPath, BlogsPath } = require('./src/usecases/convert.markdown.usecase');
 const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive, GenerateNotFound, GenerateFileList } = require('./src/usecases/embed.html.usecase');
 const { TemplateMap } = require('./src/utils/template.map');
@@ -236,6 +237,14 @@ async function launch(){
             res.status(answer.statusCode).send({
                 answer: answer.body
             })
+        }
+    });
+
+    // Currency conversion for the Universal Tracker
+    app.get(['/donation/convert',], async (req, res) => {
+        if(req.query && req.query.currency){
+            const answer = await GetCurrencyRates(req.query.currency)
+            res.status(200).send(answer)
         }
     });
 
