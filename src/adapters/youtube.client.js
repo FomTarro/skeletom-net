@@ -42,18 +42,19 @@ class YouTubeClient {
      */
     async getVideoListDetails(videoIds){
         console.log(videoIds);
-        const url = new URL(`https://www.googleapis.com/youtube/v3/videos?key=${this.apiKey}&part=snippet,contentDetails,statistics,liveStreamingDetails&id=${videoIds.join(',')}`);
+        const url = new URL(`https://www.googleapis.com/youtube/v3/videos?key=${this.apiKey}&part=snippet,liveStreamingDetails&id=${videoIds.join(',')}`);
         const response = await fetch(url);
         const videos = [];
         if(response.status >= 200 && response.status < 300){
             const json = await response.json();
             for(const item of json.items){
-                videos.push({
-                    id: item.id,
-                    type: item.kind,
-                    details: item.liveStreamingDetails,
-                    isLive: item.liveStreamingDetails && (item.liveStreamingDetails.actualStartTime && !item.liveStreamingDetails.actualEndTime)
-                });
+                videos.push(new videoDetail(
+                    item.id,
+                    item.kind,
+                    item.snippet?.title,
+                    `https://www.youtube.com/watch?v=${item.id}`,
+                    item.liveStreamingDetails && (item.liveStreamingDetails.actualStartTime && !item.liveStreamingDetails.actualEndTime)
+                ));
             }
         }else{
              console.error(`Error fetching video list details for channel ID ${channelId} - ${response.statusText}`);
@@ -87,4 +88,23 @@ class YouTubeClient {
     // and forgetting which streams it has pinged about.
 }
 
+class videoDetail {
+    /**
+     * 
+     * @param {string} id 
+     * @param {string} type 
+     * @param {string} title 
+     * @param {string} url
+     * @param {boolean} isLive 
+     */
+    constructor(id, type, title, url, isLive) {
+        this.id = id;
+        this.type = type;
+        this.title = title;
+        this.url = url;
+        this.isLive = isLive;
+    }
+}
+
 module.exports.YouTubeClient = YouTubeClient;
+module.exports.VideoDetail = videoDetail;

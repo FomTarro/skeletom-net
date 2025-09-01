@@ -14,6 +14,7 @@ const { GetChannelStatus } = require('./src/adapters/twitch.client');
 const { GetHitCountForPath, IncrementHitCountForPath } = require('./src/usecases/count.hits.usecase');
 const { GenerateRSS } = require('./src/usecases/generate.rss.usecase');
 const { YouTubeClient } = require('./src/adapters/youtube.client');
+const { YouTubeTracker } = require('./src/adapters/youtube.tracker');
 
 let LAST_STREAM_STATUS = {
     status: "OFFLINE",
@@ -34,6 +35,8 @@ const STREAM_STATUS_POLLER = setInterval(async () => {
 
 
 const YOUTUBE_CLIENT = new YouTubeClient(AppConfig);
+const YOUTUBE_TRACKER = new YouTubeTracker(YOUTUBE_CLIENT);
+YOUTUBE_TRACKER.trackChannel("@MintFantome", () => { console.log("She's live, bud"); });
 
 const app = express();
 
