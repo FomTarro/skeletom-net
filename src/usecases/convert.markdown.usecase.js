@@ -150,7 +150,8 @@ function slugify(title) {
 
 // If we're running locally, spin up a set of watchers 
 // to automatically refresh the content when we make edits
-if(AppConfig.DOMAIN.includes("localhost")){
+const APP_CONFIG = new AppConfig();
+if(APP_CONFIG.DOMAIN.includes("localhost")){
     let fsTimeout;
     fs.watch(blogsPath, e => {
         try{

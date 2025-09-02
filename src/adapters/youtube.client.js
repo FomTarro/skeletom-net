@@ -1,6 +1,7 @@
 const jsdom = require('jsdom')
 const { JSDOM } = jsdom;
 const { VideoDetail } = require('./video.detail');
+const { AppConfig } = require('../../app.config');
 
 class YouTubeClient {
     /**
@@ -76,18 +77,6 @@ class YouTubeClient {
         }
         return undefined;
     }
-
-    // TODO - record a DB of video IDs, then check the IDs for details. 
-    // Details that have an actualStartTime property are live, 
-    // and ones that have an actualEndTime property are done.
-    // Thus, a stream is live if it has actualStartTime and NOT actualEndTime.
-
-    // Websocket Server will ping all registered clients when a stream goes live initially, 
-    // and also inform a new connection if there's currently a live stream
-    // Similarly, clients will keep track of stream IDs they've been informed of
-
-    // This creates a safeguard against the server rebooting mid-stream 
-    // and forgetting which streams it has pinged about.
 }
 
 module.exports.YouTubeClient = YouTubeClient;

@@ -39,10 +39,14 @@ class YouTubeTracker {
     async trackChannel(channelHandle, onLive) {
         if (!this.channels.has(channelHandle)) {
             const channelId = await this.client.getChannelId(channelHandle);
-            this.channels.set(channelHandle, new TrackedChannel(channelId, channelHandle, onLive));
-            console.log(`Now tracking channel ${channelHandle}`);
+            if(channelId){
+                this.channels.set(channelHandle, new TrackedChannel(channelId, channelHandle, onLive));
+                console.log(`Now tracking YouTube Channel ${channelHandle}`);
+            }else{
+                console.warn(`Cannot track YouTube Channel ${channelHandle} as no channel ID could be found`);
+            }
         } else {
-            console.warn(`Channel ${channelHandle} is already being tracked!`);
+            console.warn(`YouTube Channel ${channelHandle} is already being tracked!`);
         }
     }
 
@@ -53,7 +57,7 @@ class YouTubeTracker {
     async untrackChannel(channelHandle) {
         if (this.channels.has(channelHandle)) {
             this.channels.delete(channelHandle);
-            console.log(`No longer tracking channel ${channelHandle}`);
+            console.log(`No longer tracking YouTube Channel ${channelHandle}`);
         } else {
             console.warn(`YouTube Channel ${channelHandle} was not being tracked!`);
         }
