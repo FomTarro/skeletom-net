@@ -36,14 +36,13 @@ const STREAM_STATUS_POLLER = setInterval(async () => {
     }
 }, 10000);
 
-/**
- * @type {WebSocket.Server[]}
- */
-let WEBSOCKET_ROUTES = [];
-
 const YOUTUBE_CLIENT = new YouTubeClient(APP_CONFIG);
 const YOUTUBE_TRACKER = new YouTubeTracker(YOUTUBE_CLIENT);
 
+/**
+ * Creates an HTTP server.
+ * @returns {Promise<http.Server>}
+ */
 async function createHttpRoutes(){
     const app = express();
     const baseDirectory = path.join(__dirname, './public');
@@ -148,16 +147,6 @@ async function createHttpRoutes(){
     app.get(['/archive', '/vod'], (req, res) => {
         res.redirect('https://www.youtube.com/@fomtarro/videos');
     });
-
-    // WebSocket Server Stats
-    app.get([`/wss/stats`], async (req, res) => { 
-        res.status(200).send(WEBSOCKET_ROUTES.map(ws => {
-            return {
-                path: ws.options.path,
-                connections: ws.clients.size,
-            }
-        }));
-    })
 
     // vts-heartrate authentication
     app.get(['/vts-heartrate/oauth2/pulsoid',], async (req, res) => {
@@ -321,53 +310,93 @@ async function createHttpRoutes(){
     return httpServer;
 }
 
-async function createYouTubeTrackerSocket(httpServer, route, channelHandle) {
-    const websocketServer = new WebSocket.Server({server: httpServer, path: route});
-    websocketServer.on('connection', async (ws) => {
-        console.log(`New connection for ${channelHandle} YouTube Tracker!`);
-        const currentStreams = await YOUTUBE_TRACKER.getCurrentlyLiveForChannel(channelHandle);
-        ws.send(JSON.stringify({
-            details: currentStreams
-        }));
-    });
-    YOUTUBE_TRACKER.trackChannel(channelHandle, (detail) => {
-        websocketServer.clients.forEach(client => {
-            if (client.readyState === WebSocket.OPEN) {
-                client.send(JSON.stringify({
-                    details: [detail]
-                }));
+class YouTubeTrackerRoute {
+    /**
+     * Class for configuring a YouTube Tracker route for a WebSocket server.
+     * @param {string} route 
+     * @param {WebSocket.Server} server 
+     * @param {string} channelHandle 
+     */
+    constructor(route, server, channelHandle){
+        // TODO: this is a case where TypeScript could come in clutch,
+        // making an interface for Route classes that require a Route accessor 
+        // and an onConnection(client) callback definition
+        this.route = route;
+        YOUTUBE_TRACKER.trackChannel(channelHandle, (detail) => {
+            for(const client of server.clients){
+                if (client.readyState === WebSocket.OPEN 
+                && client.route.toLowerCase() === route.toLowerCase()) {
+                    const content = JSON.stringify({
+                        details: [detail]
+                    });
+                    client.send(content);
+                }
             }
         });
-    });
-    return websocketServer;
+        this.onConnection = async (webSocketClient) => {
+            console.log(`New connection for ${channelHandle} YouTube Tracker!`);
+            const currentStreams = await YOUTUBE_TRACKER.getCurrentlyLiveForChannel(channelHandle);
+            const content = JSON.stringify({
+                details: [...currentStreams]
+            });
+            webSocketClient.send(content);
+        }
+    }
 }
 
-async function createTwitchTrackerSocket(httpServer, route, channelHandle) {
-    const websocketServer = new WebSocket.Server({server: httpServer, path: route});
-    return websocketServer;
+class TwitchTrackerRoute {
+    /**
+     * Class for configuring a Twitch Tracker route for a WebSocket server.
+     * @param {string} route 
+     * @param {WebSocket.Server} webSocketServer 
+     * @param {string} channelHandle 
+     */
+    constructor(route, webSocketServer, channelHandle){
+        this.route = route;
+        this.onConnection = async (webSocketClient) => {
+
+        }
+    }
 }
 
 /**
- * 
+ * Creates a WebSocket server from an existing HTTP Server.
  * @param {http.Server} httpServer 
+ * @returns {Promise<WebSocket.Server>}
  */
 async function createWebSocketRoutes(httpServer){
-    const routes = [
-        await createYouTubeTrackerSocket(httpServer, '/mintfantome-desktop/youtube/status', '@mintfantome'),
-        await createYouTubeTrackerSocket(httpServer, '/amiyamiga/youtube/status', '@amiyaaranha'),
-        await createTwitchTrackerSocket(httpServer, '/twitch/status', 'skeletom_ch')
-    ];
-    return routes;
+    const webSocketServer = new WebSocket.Server({server: httpServer});
+    const routes = new Map([
+        new YouTubeTrackerRoute(`/mintfantome-desktop/youtube/status`, webSocketServer, '@mintfantome'),
+        new YouTubeTrackerRoute(`/amiyamiga/youtube/status`, webSocketServer, '@amiyaaranha'),
+        new TwitchTrackerRoute(`/twitch/status`, webSocketServer, 'skeletom_ch')
+    ].map(i => [i.route.toLowerCase(), i]));
+    webSocketServer.on('open', async () => {
+        console.log(`WebSocket Server now open!`);
+    });
+    webSocketServer.on('connection', async (ws, req) => {
+        const url = req.url.toLowerCase();
+        console.log(`Attempting WebSocket connection to ${url}`);
+        if(routes.has(url)){
+            // tag the socket as being connected to this route
+            // so that we can properly filter it later
+            ws.route = url;
+            routes.get(url).onConnection(ws);
+        }else{
+            // close any sockets connecting to unknown routes
+            ws.close();
+        }
+    });
+    return webSocketServer;
 }
 
 async function launch(){
     const httpServer = await createHttpRoutes();
-    const wssRoutes = await createWebSocketRoutes(httpServer);
-    WEBSOCKET_ROUTES = wssRoutes;
+    const wsServer = await createWebSocketRoutes(httpServer);
     const port = APP_CONFIG.PORT;
     httpServer.listen(port, () => {
         // code to execute when the server successfully starts
-        console.log(`started on ${port}`)
+        console.log(`Started on ${port}`)
     });
 
     YOUTUBE_TRACKER.start();
