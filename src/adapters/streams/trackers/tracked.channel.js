@@ -1,4 +1,4 @@
-const { LRUMap } = require("../../utils/lru.map");
+const { LRUMap } = require("../../../utils/lru.map");
 const { VideoDetail } = require("../video.detail");
 
 /**

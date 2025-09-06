@@ -1,6 +1,6 @@
 const jsdom = require('jsdom')
 const { JSDOM } = jsdom;
-const { TemplateMap } = require('../utils/template.map');
+const { TemplateMap } = require('../pages/template.map');
 const { PostData } = require('./convert.markdown.usecase');
 
 /**

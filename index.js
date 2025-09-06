@@ -9,18 +9,20 @@ const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const { GetCurrencyRates } = require('./src/usecases/currency.convert.usecase');
 const { Blogs, Projects, FilterPostMetadata, PopulatePostLists } = require('./src/usecases/convert.markdown.usecase');
 const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive, GenerateNotFound, GenerateFileList } = require('./src/usecases/embed.html.usecase');
-const { TemplateMap } = require('./src/utils/template.map');
-const { GenerateRSS } = require('./src/usecases/generate.rss.usecase');
-const { YouTubeClient } = require('./src/adapters/youtube.client');
-const { YouTubeTracker } = require('./src/adapters/trackers/youtube.tracker');
-const { TwitchClient } = require('./src/adapters/twitch.client');
-const { TwitchTracker } = require('./src/adapters/trackers/twitch.tracker');
+const { TemplateMap } = require('./src/pages/template.map');
+const { YouTubeClient } = require('./src/adapters/streams/youtube.client');
+const { YouTubeTracker } = require('./src/adapters/streams/trackers/youtube.tracker');
+const { TwitchClient } = require('./src/adapters/streams/twitch.client');
+const { TwitchTracker } = require('./src/adapters/streams/trackers/twitch.tracker');
 const { AWSClient } = require('./src/adapters/aws.client');
 const { HitCounter } = require('./src/utils/hit.counter');
 const { WolframClient } = require('./src/adapters/wolfram.client');
+const { PageGenerator } = require('./src/pages/page.generator');
 
 const APP_CONFIG = new AppConfig();
 const TEMPLATE_MAP = new TemplateMap();
+
+const PAGE_GENERATOR = new PageGenerator(APP_CONFIG, TEMPLATE_MAP);
 
 const YOUTUBE_CLIENT = new YouTubeClient(APP_CONFIG);
 const YOUTUBE_TRACKER = new YouTubeTracker(YOUTUBE_CLIENT);
@@ -69,7 +71,19 @@ async function createHttpRoutes(){
     app.get(['/rss/rss.xml'], async (req, res) => {
         res.setHeader("Content-Type", "text/xml")
             .status(200)
-            .send(await GenerateRSS([...Blogs(), ...Projects()], TEMPLATE_MAP));
+            .send(await PAGE_GENERATOR.generateRSS([...Blogs(), ...Projects()]));
+    });
+
+    app.get(['/rss/blogs.xml'], async (req, res) => {
+        res.setHeader("Content-Type", "text/xml")
+            .status(200)
+            .send(await PAGE_GENERATOR.generateRSS([...Blogs()]));
+    });
+
+    app.get(['/rss/projects.xml'], async (req, res) => {
+        res.setHeader("Content-Type", "text/xml")
+            .status(200)
+            .send(await PAGE_GENERATOR.generateRSS([...Projects()]));
     });
 
     app.get([`/blogs/:blogTitle`], async (req, res) => {

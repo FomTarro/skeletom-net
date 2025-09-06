@@ -1,8 +1,8 @@
 const jsdom = require('jsdom')
 const { JSDOM } = jsdom;
+const { AppConfig } = require('../../../app.config');
 const { VideoDetail } = require('./video.detail');
-const { AppConfig } = require('../../app.config');
-const { customFetch } = require('../utils/custom.fetch');
+const { customFetch } = require('../../utils/custom.fetch');
 
 class YouTubeClient {
     /**

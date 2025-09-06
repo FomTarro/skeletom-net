@@ -29,14 +29,14 @@ const fs = require('fs');
  * @type {PostData[]}
  */
 const blogs = [];
-const blogsPath = path.join(__dirname, '..', 'blogs');
+const BLOGS_PATH = path.join(__dirname, '..', 'pages', 'blogs');
 
 /**
  * List of all project posts, sorted by newest first
  * @type {PostData[]}
  */
 const projects = [];
-const projectsPath = path.join(__dirname, '..', 'projects');
+const PROJECTS_PATH = path.join(__dirname, '..', 'pages', 'projects');
 
 
 /**
@@ -84,8 +84,8 @@ async function getMetadata(markdownPath, classification, appConfig){
 async function populatePostLists(appConfig){
     // blogs
     blogs.length = 0;
-    for(const file of fs.readdirSync(blogsPath)){
-        const blogInfo = await getMetadata(path.join(blogsPath, file), "blogs", appConfig);
+    for(const file of fs.readdirSync(BLOGS_PATH)){
+        const blogInfo = await getMetadata(path.join(BLOGS_PATH, file), "blogs", appConfig);
         blogs.push(blogInfo);
     }
     // sorted newest to oldest
@@ -93,8 +93,8 @@ async function populatePostLists(appConfig){
 
     // projects
     projects.length = 0;
-    for(const file of fs.readdirSync(projectsPath)){
-        const projectInfo = await getMetadata(path.join(projectsPath, file), "projects", appConfig);
+    for(const file of fs.readdirSync(PROJECTS_PATH)){
+        const projectInfo = await getMetadata(path.join(PROJECTS_PATH, file), "projects", appConfig);
         projects.push(projectInfo);
     }
     // sorted newest to oldest
@@ -157,7 +157,7 @@ function slugify(title) {
 const APP_CONFIG = new AppConfig();
 if(APP_CONFIG.DOMAIN.includes("localhost")){
     let fsTimeout;
-    fs.watch(blogsPath, e => {
+    fs.watch(BLOGS_PATH, e => {
         try{
             populatePostLists(APP_CONFIG);
         }catch(e){
@@ -167,7 +167,7 @@ if(APP_CONFIG.DOMAIN.includes("localhost")){
             fsTimeout = setTimeout(() => { fsTimeout = undefined }, 500);
         }
     });
-    fs.watch(projectsPath, e => {
+    fs.watch(PROJECTS_PATH, e => {
         try{
             populatePostLists(APP_CONFIG);
         }catch(e){
