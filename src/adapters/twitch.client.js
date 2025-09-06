@@ -1,70 +1,84 @@
 const { AppConfig } = require('../../app.config');
-const { httpRequest } = require("./http.utils");
+const { customFetch } = require('./custom.fetch');
+const { VideoDetail } = require('./video.detail');
 
-/**
- * 
- * @param {AppConfig} appConfig 
- * @returns {Promise<string>} - the token!
- */
-async function getToken(appConfig){
-    const url = new URL(`https://id.twitch.tv/oauth2/token`);
-    url.searchParams.append("client_id", appConfig.TWITCH_CLIENT_ID);
-    url.searchParams.append("client_secret", appConfig.TWITCH_CLIENT_SECRET);
-    url.searchParams.append("grant_type", "client_credentials");
-    const response = await httpRequest({
-        host: url.host,
-        path: `${url.pathname}${url.search}`,
-        method: 'POST',
-    });
-    if(response.statusCode < 400){
-        return response.body["access_token"];
+class TwitchClient {
+    /**
+     * 
+     * @param {AppConfig} appConfig 
+     */
+    constructor(appConfig){
+        this.client_id = appConfig.TWITCH_CLIENT_ID;
+        this.client_secret = appConfig.TWITCH_CLIENT_SECRET;
     }
-    return "BAD_TOKEN";
-}
 
-/**
- * A Twitch Stream information data structure.
- * @typedef {Object} StreamData
- * @property {"ONLINE"|"OFFLINE"} status - Either "ONLINE" or "OFFLINE".
- * @property {string} address - The address the strewam should be at.
- * @property {string | undefined} title - The title of the stream, if it is online.
- * @property {string | undefined} game - The title of the game being played, if it is online.
- */
+    async getToken(){
+        const url = new URL(`https://id.twitch.tv/oauth2/token`);
+        url.searchParams.append("client_id", this.client_id);
+        url.searchParams.append("client_secret", this.client_secret);
+        url.searchParams.append("grant_type", "client_credentials");
+        const response = await customFetch(url, {
+            method: 'POST'
+        });
+        if(response.status >= 200 && response.status < 300){
+            const json = await response.json();
+            return json["access_token"];
+        }
+        return "BAD_TOKEN";
+    }
 
-/**
- * 
- * @param {string} loginName - The channel name (not ID)
- * @param {AppConfig} appConfig
- * @returns {Promise<StreamData>} - Information about the stream
- */
-async function getChannelStatus(loginName, appConfig){
-    const token = await getToken(appConfig);
-    const url = new URL(`https://api.twitch.tv/helix/streams`);
-    url.searchParams.append("user_login",loginName);
-    if(token){
-        const response = await httpRequest({
-            host: url.host,
-            path: `${url.pathname}${url.search}`,
-            method: 'GET',
+    /**
+     * 
+     * @param {string[]} loginNames 
+     * @returns 
+     */
+    async getChannelListDetails(loginNames){
+        const token = await this.getToken();
+        const url = new URL(`https://api.twitch.tv/helix/streams`);
+        for(const loginName of loginNames){
+            url.searchParams.append("user_login",loginName);
+        }
+        const response = await customFetch(url, {
             headers: {
-                'Client-ID': appConfig.TWITCH_CLIENT_ID,
+                'Client-ID': this.client_id,
                 'Accept': 'application/vnd.twitchtv.v5+json',
                 'Authorization': `Bearer ${token}`
             }
         });
-        if(response.body && response.body.data && response.body.data.length > 0){
-            return {
-                status: "ONLINE",
-                address: appConfig.STREAM_URL,
-                title: response.body.data[0].title,
-                game: response.body.data[0].game_name
+        const streamDetails = [];
+        const foundChannels = [];
+        if(response.status >= 200 && response.status < 300){
+            const json = await response.json();
+            for(const data of json.data){
+                foundChannels.push(data.user_login);
+                streamDetails.push(new VideoDetail(
+                    data.id,
+                    data.user_login,
+                    "Stream",
+                    "Twitch",
+                    data.title,
+                    data.game_name,
+                    `https://www.twitch.tv/${data.user_login}`,
+                    true
+                ));
             }
         }
-    }
-    return {
-        status: "OFFLINE",
-        address: appConfig.STREAM_URL,
+        // TODO: check how youtube handles missing data. Do we really need to create blank records?
+        const remainingChannelNames = loginNames.filter(name => !foundChannels.includes(name));
+        for(const name of remainingChannelNames){
+            streamDetails.push(new VideoDetail(
+                0,
+                name,
+                "Stream",
+                "Twitch",
+                "",
+                "",
+                `https://www.twitch.tv/${name}`,
+                false
+            ));
+        }
+        return streamDetails;
     }
 }
 
-module.exports.GetChannelStatus = getChannelStatus;
+module.exports.TwitchClient = TwitchClient;

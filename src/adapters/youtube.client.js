@@ -2,6 +2,7 @@ const jsdom = require('jsdom')
 const { JSDOM } = jsdom;
 const { VideoDetail } = require('./video.detail');
 const { AppConfig } = require('../../app.config');
+const { customFetch } = require('./custom.fetch');
 
 class YouTubeClient {
     /**
@@ -18,7 +19,7 @@ class YouTubeClient {
      */
     async getRecentVideoList(channelId){
         const url = new URL(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
-        const response = await fetch(url);
+        const response = await customFetch(url);
         const videos = [];
         if(response.status >= 200 && response.status < 300){
             const text = await response.text();
@@ -44,13 +45,14 @@ class YouTubeClient {
      */
     async getVideoListDetails(videoIds){
         const url = new URL(`https://www.googleapis.com/youtube/v3/videos?key=${this.apiKey}&part=snippet,liveStreamingDetails&id=${videoIds.join(',')}`);
-        const response = await fetch(url);
+        const response = await customFetch(url);
         const videoDetails = [];
         if(response.status >= 200 && response.status < 300){
             const json = await response.json();
             for(const item of json.items){
                 videoDetails.push(new VideoDetail(
                     item.id,
+                    item.snippet?.channelId,
                     "Stream",
                     "YouTube",
                     item.snippet?.title,
@@ -67,7 +69,7 @@ class YouTubeClient {
 
     async getChannelId(channelName){
         const url = new URL(`https://www.googleapis.com/youtube/v3/channels?key=${this.apiKey}&forHandle=${channelName}&part=id`);
-        const response = await fetch(url);
+        const response = await customFetch(url);
         if(response.status >= 200 && response.status < 300){
             const json = await response.json();
             const id = json.items ? json.items[0].id : undefined;

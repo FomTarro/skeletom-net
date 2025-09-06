@@ -11,33 +11,20 @@ const { GetCurrencyRates } = require('./src/usecases/currency.convert.usecase');
 const { Blogs, Projects, FilterPostMetadata, PopulatePostLists } = require('./src/usecases/convert.markdown.usecase');
 const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive, GenerateNotFound, GenerateFileList } = require('./src/usecases/embed.html.usecase');
 const { TemplateMap } = require('./src/utils/template.map');
-const { GetChannelStatus } = require('./src/adapters/twitch.client');
 const { GetHitCountForPath, IncrementHitCountForPath } = require('./src/usecases/count.hits.usecase');
 const { GenerateRSS } = require('./src/usecases/generate.rss.usecase');
 const { YouTubeClient } = require('./src/adapters/youtube.client');
 const { YouTubeTracker } = require('./src/adapters/trackers/youtube.tracker');
+const { TwitchClient } = require('./src/adapters/twitch.client');
+const { TwitchTracker } = require('./src/adapters/trackers/twitch.tracker');
 
 const APP_CONFIG = new AppConfig();
 
-let LAST_STREAM_STATUS = {
-    status: "OFFLINE",
-    address: APP_CONFIG.STREAM_URL
-};
-// check Twitch API every 10 seconds and cache the result
-const STREAM_STATUS_POLLER = setInterval(async () => {
-    const channelName = APP_CONFIG.STREAM_URL.split('/').pop();
-    const status = await GetChannelStatus(channelName, APP_CONFIG);
-    LAST_STREAM_STATUS = {
-        status: status.status,
-        address: APP_CONFIG.STREAM_URL,
-        channel: channelName,
-        title: status.title,
-        game: status.game
-    }
-}, 10000);
-
 const YOUTUBE_CLIENT = new YouTubeClient(APP_CONFIG);
 const YOUTUBE_TRACKER = new YouTubeTracker(YOUTUBE_CLIENT);
+
+const TWITCH_CLIENT = new TwitchClient(APP_CONFIG);
+const TWITCH_TRACKER = new TwitchTracker(TWITCH_CLIENT);
 
 /**
  * Creates an HTTP server.
@@ -49,7 +36,7 @@ async function createHttpRoutes(){
     app.use(express.json());
     app.use('/', express.static(baseDirectory));
     app.set('trust proxy', true);
-    await PopulatePostLists();
+    await PopulatePostLists(APP_CONFIG);
 
     app.all('*', async (req, res, next) => {
         const path = req.path;
@@ -140,9 +127,9 @@ async function createHttpRoutes(){
         res.redirect(APP_CONFIG.STREAM_URL);
     });
 
-    app.get('/stream/status', async (req, res) => {
-        res.status(200).send(LAST_STREAM_STATUS);
-    });
+    // app.get('/stream/status', async (req, res) => {
+    //     res.status(200).send(LAST_STREAM_STATUS);
+    // });
 
     app.get(['/archive', '/vod'], (req, res) => {
         res.redirect('https://www.youtube.com/@fomtarro/videos');
@@ -325,7 +312,7 @@ class YouTubeTrackerRoute {
         YOUTUBE_TRACKER.trackChannel(channelHandle, (detail) => {
             for(const client of server.clients){
                 if (client.readyState === WebSocket.OPEN 
-                && client.route.toLowerCase() === route.toLowerCase()) {
+                && client.route && client.route.toLowerCase() === route.toLowerCase()) {
                     const content = JSON.stringify({
                         details: [detail]
                     });
@@ -348,13 +335,64 @@ class TwitchTrackerRoute {
     /**
      * Class for configuring a Twitch Tracker route for a WebSocket server.
      * @param {string} route 
-     * @param {WebSocket.Server} webSocketServer 
-     * @param {string} channelHandle 
+     * @param {WebSocket.Server} server 
+     * @param {string} userLogin 
      */
-    constructor(route, webSocketServer, channelHandle){
+    constructor(route, server, userLogin){
         this.route = route;
+        TWITCH_TRACKER.trackChannel(userLogin, (detail) => {
+            for(const client of server.clients){
+                if (client.readyState === WebSocket.OPEN 
+                && client.route && client.route.toLowerCase() === route.toLowerCase()) {
+                    const content = JSON.stringify({
+                        details: [detail]
+                    });
+                    client.send(content);
+                }
+            }
+        });
         this.onConnection = async (webSocketClient) => {
+            console.log(`New connection for ${userLogin} Twitch Tracker!`);
+            const currentStream = await TWITCH_TRACKER.getCurrentlyLiveForChannel(userLogin);
+            const content = JSON.stringify({
+                details: [...currentStream]
+            });
+            webSocketClient.send(content);
+        }
+    }
+}
 
+class StreamTrackerRoute {
+    /**
+     * Class for configuring a Twitch Tracker route for a WebSocket server.
+     * @param {string} route 
+     * @param {WebSocket.Server} server 
+     * @param {string} streamAddress 
+     */
+    constructor(route, server, streamAddress){
+        this.route = route;
+        // if it's a twitch stream, track the channel
+        if(streamAddress.includes(`twitch.tv`)){
+            const userLogin = streamAddress.split('/').pop();
+            TWITCH_TRACKER.trackChannel(userLogin, (detail) => {
+                for(const client of server.clients){
+                    if (client.readyState === WebSocket.OPEN 
+                    && client.route && client.route.toLowerCase() === route.toLowerCase()) {
+                        const content = JSON.stringify({
+                            details: [detail]
+                        });
+                        client.send(content);
+                    }
+                }
+            });
+            this.onConnection = async (webSocketClient) => {
+            console.log(`New connection for ${userLogin} Twitch Tracker!`);
+            const currentStream = await TWITCH_TRACKER.getCurrentlyLiveForChannel(userLogin);
+            const content = JSON.stringify({
+                details: [...currentStream]
+            });
+            webSocketClient.send(content);
+        }
         }
     }
 }
@@ -369,7 +407,8 @@ async function createWebSocketRoutes(httpServer){
     const routes = new Map([
         new YouTubeTrackerRoute(`/mintfantome-desktop/youtube/status`, webSocketServer, '@mintfantome'),
         new YouTubeTrackerRoute(`/amiyamiga/youtube/status`, webSocketServer, '@amiyaaranha'),
-        new TwitchTrackerRoute(`/twitch/status`, webSocketServer, 'skeletom_ch')
+        new TwitchTrackerRoute(`/twitch/status`, webSocketServer, 'skeletom_ch'),
+        new StreamTrackerRoute(`/stream/status`, webSocketServer, APP_CONFIG.STREAM_URL)
     ].map(i => [i.route.toLowerCase(), i]));
     webSocketServer.on('open', async () => {
         console.log(`WebSocket Server now open!`);
@@ -392,14 +431,14 @@ async function createWebSocketRoutes(httpServer){
 
 async function launch(){
     const httpServer = await createHttpRoutes();
-    const wsServer = await createWebSocketRoutes(httpServer);
     const port = APP_CONFIG.PORT;
-    httpServer.listen(port, () => {
+    httpServer.listen(port, async () => {
         // code to execute when the server successfully starts
-        console.log(`Started on ${port}`)
+        console.log(`Started on ${port}`);
+        const wsServer = await createWebSocketRoutes(httpServer);
+        YOUTUBE_TRACKER.start();
+        TWITCH_TRACKER.start();
     });
-
-    YOUTUBE_TRACKER.start();
 }
 
 launch();

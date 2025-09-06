@@ -77,11 +77,15 @@ async function getMetadata(markdownPath, classification, appConfig){
     }
 }
 
-async function populatePostLists(){
+/**
+ * 
+ * @param {AppConfig} appConfig 
+ */
+async function populatePostLists(appConfig){
     // blogs
     blogs.length = 0;
     for(const file of fs.readdirSync(blogsPath)){
-        const blogInfo = await getMetadata(path.join(blogsPath, file), "blogs", AppConfig);
+        const blogInfo = await getMetadata(path.join(blogsPath, file), "blogs", appConfig);
         blogs.push(blogInfo);
     }
     // sorted newest to oldest
@@ -90,7 +94,7 @@ async function populatePostLists(){
     // projects
     projects.length = 0;
     for(const file of fs.readdirSync(projectsPath)){
-        const projectInfo = await getMetadata(path.join(projectsPath, file), "projects", AppConfig);
+        const projectInfo = await getMetadata(path.join(projectsPath, file), "projects", appConfig);
         projects.push(projectInfo);
     }
     // sorted newest to oldest
@@ -155,7 +159,7 @@ if(APP_CONFIG.DOMAIN.includes("localhost")){
     let fsTimeout;
     fs.watch(blogsPath, e => {
         try{
-            populatePostLists();
+            populatePostLists(APP_CONFIG);
         }catch(e){
 
         }
@@ -165,7 +169,7 @@ if(APP_CONFIG.DOMAIN.includes("localhost")){
     });
     fs.watch(projectsPath, e => {
         try{
-            populatePostLists();
+            populatePostLists(APP_CONFIG);
         }catch(e){
             
         }

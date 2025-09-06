@@ -1,0 +1,104 @@
+const { TwitchClient } = require("../twitch.client");
+const { VideoDetail } = require("../video.detail");
+const { TrackedChannel, OnLiveCallback } = require('./tracked.channel');
+
+class TwitchTracker {
+    /**
+     * 
+     * @param {TwitchClient} client 
+     */
+    constructor(client){
+        this.client = client;
+        /**
+         * Indexed by login name
+         * @type {Map<string, TrackedChannel>}
+         */
+        this.channels = new Map();
+    }
+
+    start() {
+        this.stop();
+        this.interval = setInterval(this.scanAndNotify.bind(this), 30*1000);
+    }
+
+    stop() {
+        if (this.interval) {
+            clearInterval(this.interval);
+            this.interval = undefined;
+        }
+    }
+
+    getTrackedChannelList(){
+        return [...this.channels.keys()];
+    }
+
+    /**
+     * 
+     * @param {string} userLogin 
+     * @param {OnLiveCallback} onLive - Callback executed when a stream is detected as finally going live.
+     */
+    async trackChannel(userLogin, onLive) {
+        if (!this.channels.has(userLogin)) {
+            this.channels.set(userLogin, new TrackedChannel(0, userLogin, onLive));
+            console.log(`Now tracking Twitch Channel ${userLogin}`);
+        } else {
+            console.warn(`Twitch Channel ${userLogin} is already being tracked!`);
+        }
+    }
+
+    /**
+     * 
+     * @param {string} userLogin 
+     */
+    async untrackChannel(userLogin) {
+        if (this.channels.has(userLogin)) {
+            this.channels.delete(userLogin);
+            console.log(`No longer tracking Twitch Channel ${userLogin}`);
+        } else {
+            console.warn(`Twitch Channel ${userLogin} was not being tracked!`);
+        }
+    }
+
+    /**
+     * 
+     * @param {string} userLogin 
+     * @returns {Promise<VideoDetail[]>}
+     */
+    async getCurrentlyLiveForChannel(userLogin) {
+        const liveDetails = []
+        if (this.channels.has(userLogin)) {
+            for (const [id, video] of this.channels.get(userLogin).videoDetails) {
+                if (video.isLive) {
+                    liveDetails.push(video);
+                }
+            }
+        } else {
+            console.warn(`Twitch Channel ${userLogin} is not being tracked!`);
+        }
+        return liveDetails;
+    }
+
+    async scanAndNotify() {
+        const channelNames = [...this.channels.keys()];
+        const channelDetails = await this.client.getChannelListDetails(channelNames);
+        for(const detail of channelDetails){
+            const trackedChannel = this.channels.get(detail.channel);
+            if(trackedChannel){
+                const isNewlyLive = detail.isLive
+                    && (!trackedChannel.videoDetails.has(detail.channel)
+                        || !trackedChannel.videoDetails.get(detail.channel).isLive);
+                 // update the detail record, 
+                 // for Twitch we can just index by channel handle, since it's a list of 1 element.
+                trackedChannel.videoDetails.set(detail.channel, detail);
+                if (isNewlyLive) {
+                    console.log(`Handling OnLive callback for Twitch Channel ${trackedChannel.channelHandle}`);
+                    // invoke the OnLive callback for the corresponding channel
+                    trackedChannel.onLive(detail);
+                }
+            }
+        }
+    }
+    
+}
+
+module.exports.TwitchTracker = TwitchTracker;

@@ -31,6 +31,10 @@ class YouTubeTracker {
         }
     }
 
+    getTrackedChannelList(){
+        return [...this.channels.keys()];
+    }
+
     /**
      * 
      * @param {string} channelHandle 
