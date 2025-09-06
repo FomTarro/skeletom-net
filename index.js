@@ -6,7 +6,6 @@ const WebSocket = require('ws');
 const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
 const { EmbedToken } = require('./src/usecases/embed.token.usecase');
-const { WolframAsk } = require('./src/usecases/wolfram.ask.usecase');
 const { GetCurrencyRates } = require('./src/usecases/currency.convert.usecase');
 const { Blogs, Projects, FilterPostMetadata, PopulatePostLists } = require('./src/usecases/convert.markdown.usecase');
 const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive, GenerateNotFound, GenerateFileList } = require('./src/usecases/embed.html.usecase');
@@ -18,8 +17,10 @@ const { TwitchClient } = require('./src/adapters/twitch.client');
 const { TwitchTracker } = require('./src/adapters/trackers/twitch.tracker');
 const { AWSClient } = require('./src/adapters/aws.client');
 const { HitCounter } = require('./src/utils/hit.counter');
+const { WolframClient } = require('./src/adapters/wolfram.client');
 
 const APP_CONFIG = new AppConfig();
+const TEMPLATE_MAP = new TemplateMap();
 
 const YOUTUBE_CLIENT = new YouTubeClient(APP_CONFIG);
 const YOUTUBE_TRACKER = new YouTubeTracker(YOUTUBE_CLIENT);
@@ -29,6 +30,8 @@ const TWITCH_TRACKER = new TwitchTracker(TWITCH_CLIENT);
 
 const AWS_CLIENT = new AWSClient(APP_CONFIG);
 const HIT_COUNTER = new HitCounter(AWS_CLIENT);
+
+const WOLFRAM_CLIENT = new WolframClient(APP_CONFIG);
 
 /**
  * Creates an HTTP server.
@@ -66,13 +69,13 @@ async function createHttpRoutes(){
     app.get(['/rss/rss.xml'], async (req, res) => {
         res.setHeader("Content-Type", "text/xml")
             .status(200)
-            .send(await GenerateRSS([...Blogs(), ...Projects()], TemplateMap));
+            .send(await GenerateRSS([...Blogs(), ...Projects()], TEMPLATE_MAP));
     });
 
     app.get([`/blogs/:blogTitle`], async (req, res) => {
         try{
             const blog = Blogs().find(item => item.title.toLowerCase() === req.params.blogTitle.toLowerCase());
-            const html = await GenerateFullBlogPost(blog, TemplateMap);
+            const html = await GenerateFullBlogPost(blog, TEMPLATE_MAP);
             res.status(200).send(html);
         }catch(e){
             console.error(e);
@@ -86,7 +89,7 @@ async function createHttpRoutes(){
             (req.query && req.query.tags) ?
             FilterPostMetadata(Blogs(), req.query.tags)
             : Blogs();
-            const html = await GenerateBlogArchive(filteredBlogs, TemplateMap);
+            const html = await GenerateBlogArchive(filteredBlogs, TEMPLATE_MAP);
             res.status(200).send(html);
         }catch(e){
             console.error(e);
@@ -97,7 +100,7 @@ async function createHttpRoutes(){
     app.get([`/projects/:projectTitle`], async (req, res) => {
         try{
             const project = Projects().find(item => item.title.toLowerCase() === req.params.projectTitle.toLowerCase());
-            const html = await GenerateFullBlogPost(project, TemplateMap);
+            const html = await GenerateFullBlogPost(project, TEMPLATE_MAP);
             res.status(200).send(html);
         }catch(e){
             console.error(e);
@@ -111,7 +114,7 @@ async function createHttpRoutes(){
                 (req.query && req.query.tags) ?
                 FilterPostMetadata(Projects(), req.query.tags)
                 : Projects();
-            const html = await GenerateBlogArchive(filteredProjects, TemplateMap);
+            const html = await GenerateBlogArchive(filteredProjects, TEMPLATE_MAP);
             res.status(200).send(html);
         }catch(e){
             console.error(e);
@@ -121,7 +124,7 @@ async function createHttpRoutes(){
 
     // Home
     app.get(['', '/', '/about'], async (req, res) => {
-        const html = await GenerateHomePage(Blogs(), Projects(), TemplateMap)
+        const html = await GenerateHomePage(Blogs(), Projects(), TEMPLATE_MAP)
         res.status(200).send(html);
     });
 
@@ -130,10 +133,6 @@ async function createHttpRoutes(){
     app.get('/stream', (req, res) => {
         res.redirect(APP_CONFIG.STREAM_URL);
     });
-
-    // app.get('/stream/status', async (req, res) => {
-    //     res.status(200).send(LAST_STREAM_STATUS);
-    // });
 
     app.get(['/archive', '/vod'], (req, res) => {
         res.redirect('https://www.youtube.com/@fomtarro/videos');
@@ -222,18 +221,17 @@ async function createHttpRoutes(){
 
     app.get(['/wolfram/ask',], async (req, res) => {
         if(req.query && req.query.input){
-            const answer = await WolframAsk(req.query.input, APP_CONFIG);
-            res.status(answer.statusCode).send({
+            const answer = await WOLFRAM_CLIENT.ask(req.query.input);
+            res.status(answer.status).send({
                 answer: answer.body
             })
         }
     });
 
     app.post(['/wolfram/ask-post',], async (req, res) => {
-        console.log(req.body);
         if(req.body && req.body.input){
-            const answer = await WolframAsk(req.body.input, APP_CONFIG);
-            res.status(answer.statusCode).send({
+            const answer = await WOLFRAM_CLIENT.ask(req.body.input);
+            res.status(answer.status).send({
                 answer: answer.body
             })
         }
@@ -289,9 +287,9 @@ async function createHttpRoutes(){
         if (fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
             const filesInDir = fs.readdirSync(filePath);
             // If the item is a directory: show all the items inside that directory.
-            return res.send(await GenerateFileList(filesInDir, req.path, TemplateMap));
+            return res.send(await GenerateFileList(filesInDir, req.path, TEMPLATE_MAP));
         } else {
-            const html = await GenerateNotFound(TemplateMap)
+            const html = await GenerateNotFound(TEMPLATE_MAP)
             res.status(404).send(html);
         }
     });
@@ -368,7 +366,7 @@ class TwitchTrackerRoute {
 
 class StreamTrackerRoute {
     /**
-     * Class for configuring a Twitch Tracker route for a WebSocket server.
+     * Class for configuring a Twitch Tracker of YouTube route for a WebSocket server.
      * @param {string} route 
      * @param {WebSocket.Server} server 
      * @param {string} streamAddress 
@@ -390,13 +388,15 @@ class StreamTrackerRoute {
                 }
             });
             this.onConnection = async (webSocketClient) => {
-            console.log(`New connection for ${userLogin} Twitch Tracker!`);
-            const currentStream = await TWITCH_TRACKER.getCurrentlyLiveForChannel(userLogin);
-            const content = JSON.stringify({
-                details: [...currentStream]
-            });
-            webSocketClient.send(content);
-        }
+                console.log(`New connection for ${userLogin} Stream Tracker!`);
+                const currentStream = await TWITCH_TRACKER.getCurrentlyLiveForChannel(userLogin);
+                const content = JSON.stringify({
+                    details: [...currentStream]
+                });
+                webSocketClient.send(content);
+            }
+        }else if(streamAddress.includes(`youtube.com`)){
+            // TODO
         }
     }
 }

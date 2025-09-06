@@ -13,7 +13,6 @@ async function embedContentInFrame(templateMap, content){
     const template = templateMap.FRAME;
     const dom = new JSDOM(template);
     dom.window.document.getElementById('body').innerHTML = content;
-    // dom.window.document.getElementById('counter-value').innerHTML = await GetHitCountForPath("/");
     return dom.serialize();
 }
 
@@ -145,9 +144,6 @@ async function embedPostInTemplate(post, template, templateMap){
         }
     }
 
-    // TODO: this section is absolutely going to be a kludge
-    // Refactor it when you have a moment to breathe.
-    // It should probably just be a separate template
     if(dom.window.document.querySelector('#key-information')){
         if(post.classification === "blogs"){
                 dom.window.document.querySelector('#key-information').remove();

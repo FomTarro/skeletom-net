@@ -1,4 +1,8 @@
 class LRUMap {
+    /**
+     * 
+     * @param {number} max 
+     */
     constructor(max = 10) {
         this.max = max;
         this.cache = new Map();

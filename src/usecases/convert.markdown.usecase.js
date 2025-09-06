@@ -8,7 +8,7 @@ const fs = require('fs');
  * @typedef {Object} PostData
  * @property {string} title - The URL-formatted title.
  * @property {string} fullTitle - Unmodified title as originally written in the markdown.
- * @property {string} classification - What kind of post is this? Should be either "blogs" or "projects". 
+ * @property {"blogs"|"projects"} classification - What kind of post is this? Should be either "blogs" or "projects". 
  * @property {string} brief - The description/summary of the post.
  * @property {string[]} tags - The search tags that this Post is filed under.
  * @property {number} date - The date timestamp, as a number.

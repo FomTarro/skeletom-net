@@ -25,6 +25,4 @@ class TemplateMap {
     get RSS(){ return fs.readFileSync(path.join(__dirname, '..', 'templates', 'rss.xml'))};
 }
 
-const instance = new TemplateMap();
-
-module.exports.TemplateMap = instance;
+module.exports.TemplateMap = TemplateMap;

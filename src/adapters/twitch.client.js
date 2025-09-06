@@ -1,5 +1,5 @@
 const { AppConfig } = require('../../app.config');
-const { customFetch } = require('./custom.fetch');
+const { customFetch } = require('../utils/custom.fetch');
 const { VideoDetail } = require('./video.detail');
 
 class TwitchClient {
