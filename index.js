@@ -425,7 +425,8 @@ async function createWebSocketRoutes(httpServer){
     const routes = new Map([
         new YouTubeTrackerRoute(`/mintfantome-desktop/youtube/status`, webSocketServer, '@mintfantome'),
         new YouTubeTrackerRoute(`/amiyamiga/youtube/status`, webSocketServer, '@amiyaaranha'),
-        new TwitchTrackerRoute(`/twitch/status`, webSocketServer, 'skeletom_ch'),
+        // TODO: if multiple trackers try to track the same channel, listeners won't get hooked up for the second one.
+        // new TwitchTrackerRoute(`/twitch/status`, webSocketServer, 'skeletom_ch'), 
         new StreamTrackerRoute(`/stream/status`, webSocketServer, APP_CONFIG.STREAM_URL)
     ].map(i => [i.route.toLowerCase(), i]));
     webSocketServer.on('open', async () => {
