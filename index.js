@@ -11,12 +11,13 @@ const { GetCurrencyRates } = require('./src/usecases/currency.convert.usecase');
 const { Blogs, Projects, FilterPostMetadata, PopulatePostLists } = require('./src/usecases/convert.markdown.usecase');
 const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive, GenerateNotFound, GenerateFileList } = require('./src/usecases/embed.html.usecase');
 const { TemplateMap } = require('./src/utils/template.map');
-const { GetHitCountForPath, IncrementHitCountForPath } = require('./src/usecases/count.hits.usecase');
 const { GenerateRSS } = require('./src/usecases/generate.rss.usecase');
 const { YouTubeClient } = require('./src/adapters/youtube.client');
 const { YouTubeTracker } = require('./src/adapters/trackers/youtube.tracker');
 const { TwitchClient } = require('./src/adapters/twitch.client');
 const { TwitchTracker } = require('./src/adapters/trackers/twitch.tracker');
+const { AWSClient } = require('./src/adapters/aws.client');
+const { HitCounter } = require('./src/utils/hit.counter');
 
 const APP_CONFIG = new AppConfig();
 
@@ -25,6 +26,9 @@ const YOUTUBE_TRACKER = new YouTubeTracker(YOUTUBE_CLIENT);
 
 const TWITCH_CLIENT = new TwitchClient(APP_CONFIG);
 const TWITCH_TRACKER = new TwitchTracker(TWITCH_CLIENT);
+
+const AWS_CLIENT = new AWSClient(APP_CONFIG);
+const HIT_COUNTER = new HitCounter(AWS_CLIENT);
 
 /**
  * Creates an HTTP server.
@@ -40,9 +44,9 @@ async function createHttpRoutes(){
 
     app.all('*', async (req, res, next) => {
         const path = req.path;
-        if(path && !path.startsWith('/stream/status') && !path.startsWith('/hits')){
+        if(path && !path.startsWith('/hits')){
             // increment hit counter;
-            IncrementHitCountForPath(path, req.ip, APP_CONFIG);
+            HIT_COUNTER.incrementHitCountForPath(path, req.ip);
         }
         next();
     });
@@ -50,7 +54,7 @@ async function createHttpRoutes(){
     app.get([`/hits`], async (req, res) => {
         if(req.query && req.query.page){
             res.status(200).send(JSON.stringify({
-                count: await GetHitCountForPath(req.query.page, APP_CONFIG)
+                count: await HIT_COUNTER.getHitCountForPath(req.query.page)
             }));
         }else{
             res.status(201).send(JSON.stringify({
@@ -435,6 +439,9 @@ async function launch(){
     httpServer.listen(port, async () => {
         // code to execute when the server successfully starts
         console.log(`Started on ${port}`);
+        HIT_COUNTER.start();
+
+        // trackers and sockets
         const wsServer = await createWebSocketRoutes(httpServer);
         YOUTUBE_TRACKER.start();
         TWITCH_TRACKER.start();
