@@ -131,7 +131,7 @@ class YouTubeTracker {
                 if (isNewlyLive) {
                     console.log(`Handling OnLive callback for YouTube Channel ${originalHandle} with video: ${detail.id}`);
                     // invoke the OnLive callback for the corresponding channel
-                    for (const [trackerId, onLive] of trackedChannel.onLive) {
+                    for (const [callbackId, onLive] of trackedChannel.onLive) {
                         onLive(detail);
                     }
                 }

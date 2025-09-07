@@ -71,7 +71,7 @@ class TwitchTracker {
      * @returns {Promise<VideoDetail[]>}
      */
     async getCurrentlyLiveForChannel(userLogin) {
-        const liveDetails = []
+        const liveDetails = [];
         if (this.channels.has(userLogin)) {
             for (const [id, video] of this.channels.get(userLogin).videoDetails) {
                 if (video.isLive) {
@@ -99,7 +99,7 @@ class TwitchTracker {
                 if (isNewlyLive) {
                     console.log(`Handling OnLive callback for Twitch Channel ${trackedChannel.channelHandle}`);
                     // invoke the OnLive callback for the corresponding channel
-                    for (const [trackerId, onLive] of trackedChannel.onLive) {
+                    for (const [callbackId, onLive] of trackedChannel.onLive) {
                         onLive(detail);
                     }
                 }

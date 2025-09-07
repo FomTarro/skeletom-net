@@ -33,8 +33,8 @@ class TrackedChannel {
 
     /**
      * Adds a callback to be executed when the channel goes live.
-     * @param {string} callbackId 
-     * @param {OnLiveCallback} onLive 
+     * @param {string} callbackId - The ID to reference this callback with, useful for removing it later.
+     * @param {OnLiveCallback} onLive - The callback to execute when the stream goes live.
      */
     addOnLiveCallback(callbackId, onLive) {
         this.onLive.set(callbackId, onLive)
@@ -42,7 +42,7 @@ class TrackedChannel {
 
     /**
      * Removes a specified callback from being executed when the channel goes live.
-     * @param {string} callbackId 
+     * @param {string} callbackId - The ID to reference this callback with.
      */
     removeOnLiveCallback(callbackId) {
         if (this.onLive.has(callbackId)) {

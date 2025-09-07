@@ -10,6 +10,7 @@ const { GetCurrencyRates } = require('./src/usecases/currency.convert.usecase');
 const { Blogs, Projects, FilterPostMetadata, PopulatePostLists } = require('./src/usecases/convert.markdown.usecase');
 const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive, GenerateNotFound, GenerateFileList } = require('./src/usecases/embed.html.usecase');
 const { TemplateMap } = require('./src/pages/template.map');
+const { PageGenerator } = require('./src/pages/page.generator');
 const { YouTubeClient } = require('./src/adapters/streams/youtube.client');
 const { YouTubeTracker } = require('./src/adapters/streams/trackers/youtube.tracker');
 const { TwitchClient } = require('./src/adapters/streams/twitch.client');
@@ -17,7 +18,6 @@ const { TwitchTracker } = require('./src/adapters/streams/trackers/twitch.tracke
 const { AWSClient } = require('./src/adapters/aws.client');
 const { HitCounter } = require('./src/utils/hit.counter');
 const { WolframClient } = require('./src/adapters/wolfram.client');
-const { PageGenerator } = require('./src/pages/page.generator');
 
 const APP_CONFIG = new AppConfig();
 const TEMPLATE_MAP = new TemplateMap();
