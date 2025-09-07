@@ -1,8 +1,9 @@
-const jsdom = require('jsdom')
-const { JSDOM } = jsdom;
+const { JSDOM } = require('jsdom');
 const { AppConfig } = require('../../../app.config');
 const { VideoDetail } = require('./video.detail');
 const { customFetch } = require('../../utils/custom.fetch');
+
+const VIDEO_LOOKUP_BATCH_SIZE = 50;
 
 class YouTubeClient {
     /**
@@ -42,40 +43,50 @@ class YouTubeClient {
     /**
      * Gets a list of metadata about the provided list of video IDs.
      * @param {string[]} videoIds - A list of video IDs to query for.
+     * @returns {Promise<string>}
      */
     async getVideoListDetails(videoIds) {
-        const url = new URL(`https://www.googleapis.com/youtube/v3/videos?key=${this.apiKey}&part=snippet,liveStreamingDetails&id=${videoIds.join(',')}`);
-        const response = await customFetch(url);
         const videoDetails = [];
-        if (response.status >= 200 && response.status < 300) {
-            const json = await response.json();
-            for (const item of json.items) {
-                videoDetails.push(new VideoDetail(
-                    item.id,
-                    item.snippet?.channelId,
-                    "Stream",
-                    "YouTube",
-                    item.snippet?.title,
-                    item.snippet?.categoryId,
-                    `https://www.youtube.com/watch?v=${item.id}`,
-                    item.liveStreamingDetails && (item.liveStreamingDetails.actualStartTime && !item.liveStreamingDetails.actualEndTime)
-                ));
+        // YouTube API has a batch size of 50 videos per list lookup
+        for (let i = 0; i < videoIds.length; i += VIDEO_LOOKUP_BATCH_SIZE) {
+            const chunk = videoIds.slice(i, i + VIDEO_LOOKUP_BATCH_SIZE);
+            const url = new URL(`https://www.googleapis.com/youtube/v3/videos?key=${this.apiKey}&part=snippet,liveStreamingDetails&id=${chunk.join(',')}`);
+            const response = await customFetch(url);
+            if (response.status >= 200 && response.status < 300) {
+                const json = await response.json();
+                for (const item of json.items) {
+                    videoDetails.push(new VideoDetail(
+                        item.id,
+                        item.snippet?.channelId,
+                        "Stream",
+                        "YouTube",
+                        item.snippet?.title,
+                        item.snippet?.categoryId,
+                        `https://www.youtube.com/watch?v=${item.id}`,
+                        item.liveStreamingDetails && (item.liveStreamingDetails.actualStartTime && !item.liveStreamingDetails.actualEndTime)
+                    ));
+                }
+            } else {
+                console.error(`Error fetching video details for list ${chunk.join(',')} - ${response.statusText}`);
             }
-        } else {
-            console.error(`Error fetching video list details for channel ID ${channelId} - ${response.statusText}`);
         }
         return videoDetails;
     }
 
-    async getChannelId(channelName) {
-        const url = new URL(`https://www.googleapis.com/youtube/v3/channels?key=${this.apiKey}&forHandle=${channelName}&part=id`);
+    /**
+     * 
+     * @param {string} channelHandle 
+     * @returns {Promise<string | undefined>}
+     */
+    async getChannelId(channelHandle) {
+        const url = new URL(`https://www.googleapis.com/youtube/v3/channels?key=${this.apiKey}&forHandle=${channelHandle}&part=id`);
         const response = await customFetch(url);
         if (response.status >= 200 && response.status < 300) {
             const json = await response.json();
             const id = json.items ? json.items[0].id : undefined;
             return id;
         } else {
-            console.error(`Error fetching channel ID for channel ID ${channelName} - ${response.statusText}`);
+            console.error(`Error fetching channel ID for channel ID ${channelHandle} - ${response.statusText}`);
         }
         return undefined;
     }

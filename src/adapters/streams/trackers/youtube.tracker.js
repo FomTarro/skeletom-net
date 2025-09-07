@@ -2,9 +2,6 @@ const { YouTubeClient } = require("../youtube.client");
 const { VideoDetail } = require("../video.detail");
 const { TrackedChannel, OnLiveCallback } = require('./tracked.channel');
 
-// TODO: move batching logic to the client
-const VIDEO_LOOKUP_BATCH_SIZE = 50;
-
 class YouTubeTracker {
     /**
      * A class used to track YouTube channels for streams going live.
@@ -111,29 +108,24 @@ class YouTubeTracker {
                 videosToSearch.set(video.id, tracker.channelHandle);
             }
         }
-        // chunk our videos into groups of 20 to query against the API
         const videoIds = [...videosToSearch.keys()]
-        // console.log(`Preparing the following videos to query: ${videoIds}`);
-        for (let i = 0; i < videoIds.length; i += VIDEO_LOOKUP_BATCH_SIZE) {
-            const chunk = videoIds.slice(i, i + VIDEO_LOOKUP_BATCH_SIZE);
-            const videoDetails = await this.client.getVideoListDetails(chunk);
-            // process results
-            for (const detail of videoDetails) {
-                const originalHandle = videosToSearch.get(detail.id);
-                const trackedChannel = this.channels.get(originalHandle);
-                // if the video comes back as being Live, and we either have no record of it or have a record of it NOT being live, 
-                // that means it has become live, so we want to act.
-                const isNewlyLive = detail.isLive
-                    && (!trackedChannel.videoDetails.has(detail.id)
-                        || !trackedChannel.videoDetails.get(detail.id).isLive);
-                // update the detail record
-                trackedChannel.videoDetails.set(detail.id, detail);
-                if (isNewlyLive) {
-                    console.log(`Handling OnLive callback for YouTube Channel ${originalHandle} with video: ${detail.id}`);
-                    // invoke the OnLive callback for the corresponding channel
-                    for (const [callbackId, onLive] of trackedChannel.onLive) {
-                        onLive(detail);
-                    }
+        const videoDetails = await this.client.getVideoListDetails(videoIds);
+        // process results
+        for (const detail of videoDetails) {
+            const originalHandle = videosToSearch.get(detail.id);
+            const trackedChannel = this.channels.get(originalHandle);
+            // if the video comes back as being Live, and we either have no record of it or have a record of it NOT being live, 
+            // that means it has become live, so we want to act.
+            const isNewlyLive = detail.isLive
+                && (!trackedChannel.videoDetails.has(detail.id)
+                    || !trackedChannel.videoDetails.get(detail.id).isLive);
+            // update the detail record
+            trackedChannel.videoDetails.set(detail.id, detail);
+            if (isNewlyLive) {
+                console.log(`Handling OnLive callback for YouTube Channel ${originalHandle} with video: ${detail.id}`);
+                // invoke the OnLive callback for the corresponding channel
+                for (const [callbackId, onLive] of trackedChannel.onLive) {
+                    onLive(detail);
                 }
             }
         }
