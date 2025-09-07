@@ -11,17 +11,41 @@ class TrackedChannel {
      * 
      * @param {string} channelId 
      * @param {string} channelHandle 
-     * @param {OnLiveCallback} onLive 
      */
-    constructor(channelId, channelHandle, onLive) {
+    constructor(channelId, channelHandle) {
         this.channelId = channelId;
         this.channelHandle = channelHandle;
-        this.onLive = onLive;
+        /**
+         * Indexed by video ID
+         * @type {Map<string, OnLiveCallback>}
+         */
+        this.onLive = new Map();
         /**
          * Indexed by video ID
          * @type {Map<string, VideoDetail>}
          */
         this.videoDetails = new LRUMap(100);
+    }
+
+    /**
+     * 
+     * @param {string} callbackId 
+     * @param {OnLiveCallback} onLive 
+     */
+    addOnLiveCallback(callbackId, onLive){
+        this.onLive.set(callbackId, onLive)
+    }
+
+    /**
+     * 
+     * @param {string} callbackId 
+     */
+    removeOnLiveCallback(callbackId){
+        if(this.onLive.has(callbackId)){
+            this.onLive.delete(callbackId);
+        }else{
+            console.warn(`Tracker for channel ${this.channelHandle} does not contain a callback with ID ${callbackId}` )
+        }
     }
 }
 

@@ -325,7 +325,7 @@ class YouTubeTrackerRoute {
         // making an interface for Route classes that require a Route accessor 
         // and an onConnection(client) callback definition
         this.route = route;
-        YOUTUBE_TRACKER.trackChannel(channelHandle, (detail) => {
+        YOUTUBE_TRACKER.trackChannel(channelHandle, route, (detail) => {
             for(const client of server.clients){
                 if (client.readyState === WebSocket.OPEN 
                 && client.route && client.route.toLowerCase() === route.toLowerCase()) {
@@ -356,7 +356,7 @@ class TwitchTrackerRoute {
      */
     constructor(route, server, userLogin){
         this.route = route;
-        TWITCH_TRACKER.trackChannel(userLogin, (detail) => {
+        TWITCH_TRACKER.trackChannel(userLogin, route, (detail) => {
             for(const client of server.clients){
                 if (client.readyState === WebSocket.OPEN 
                 && client.route && client.route.toLowerCase() === route.toLowerCase()) {
@@ -390,7 +390,7 @@ class StreamTrackerRoute {
         // if it's a twitch stream, track the channel
         if(streamAddress.includes(`twitch.tv`)){
             const userLogin = streamAddress.split('/').pop();
-            TWITCH_TRACKER.trackChannel(userLogin, (detail) => {
+            TWITCH_TRACKER.trackChannel(userLogin, route, (detail) => {
                 for(const client of server.clients){
                     if (client.readyState === WebSocket.OPEN 
                     && client.route && client.route.toLowerCase() === route.toLowerCase()) {
@@ -426,7 +426,7 @@ async function createWebSocketRoutes(httpServer){
         new YouTubeTrackerRoute(`/mintfantome-desktop/youtube/status`, webSocketServer, '@mintfantome'),
         new YouTubeTrackerRoute(`/amiyamiga/youtube/status`, webSocketServer, '@amiyaaranha'),
         // TODO: if multiple trackers try to track the same channel, listeners won't get hooked up for the second one.
-        // new TwitchTrackerRoute(`/twitch/status`, webSocketServer, 'skeletom_ch'), 
+        new TwitchTrackerRoute(`/twitch/status`, webSocketServer, 'skeletom_ch'), 
         new StreamTrackerRoute(`/stream/status`, webSocketServer, APP_CONFIG.STREAM_URL)
     ].map(i => [i.route.toLowerCase(), i]));
     webSocketServer.on('open', async () => {

@@ -38,9 +38,10 @@ class YouTubeTracker {
     /**
      * 
      * @param {string} channelHandle 
+     * @param {string} callbackId
      * @param {OnLiveCallback} onLive - Callback executed when a stream is detected as finally going live.
      */
-    async trackChannel(channelHandle, onLive) {
+    async trackChannel(channelHandle, callbackId, onLive) {
         if (!this.channels.has(channelHandle)) {
             const channelId = await this.client.getChannelId(channelHandle);
             if(channelId){
@@ -49,19 +50,26 @@ class YouTubeTracker {
             }else{
                 console.warn(`Cannot track YouTube Channel ${channelHandle} as no channel ID could be found`);
             }
-        } else {
-            console.warn(`YouTube Channel ${channelHandle} is already being tracked!`);
+        }
+        if (this.channels.has(channelHandle)) {
+            console.log(`Adding callback with ID ${callbackId} for YouTube Channel ${channelHandle}`);
+            this.channels.get(channelHandle).addOnLiveCallback(callbackId, onLive);
         }
     }
 
     /**
      * 
      * @param {string} channelHandle 
+     * @param {string} callbackId
      */
-    async untrackChannel(channelHandle) {
+    async untrackChannel(channelHandle, callbackId) {
         if (this.channels.has(channelHandle)) {
-            this.channels.delete(channelHandle);
-            console.log(`No longer tracking YouTube Channel ${channelHandle}`);
+            console.log(`Removing callback with ID ${callbackId} for YouTube Channel ${channelHandle}`);;
+            this.channels.get(userLogin).removeOnLiveCallback(callbackId);
+            if(this.channels.get(userLogin).onLive.size <= 0) {
+                this.channels.delete(userLogin);
+                console.log(`All callbacks removed, no longer tracking YouTube Channel ${channelHandle}`);
+            }
         } else {
             console.warn(`YouTube Channel ${channelHandle} was not being tracked!`);
         }
@@ -123,7 +131,9 @@ class YouTubeTracker {
                 if (isNewlyLive) {
                     console.log(`Handling OnLive callback for YouTube Channel ${originalHandle} with video: ${detail.id}`);
                     // invoke the OnLive callback for the corresponding channel
-                    trackedChannel.onLive(detail);
+                    for(const [trackerId, onLive] of trackedChannel.onLive){
+                        onLive(detail);
+                    }
                 }
             }
         }

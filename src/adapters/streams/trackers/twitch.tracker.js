@@ -35,25 +35,31 @@ class TwitchTracker {
     /**
      * 
      * @param {string} userLogin 
+     * @param {string} callbackId
      * @param {OnLiveCallback} onLive - Callback executed when a stream is detected as finally going live.
      */
-    async trackChannel(userLogin, onLive) {
+    async trackChannel(userLogin, callbackId, onLive) {
         if (!this.channels.has(userLogin)) {
-            this.channels.set(userLogin, new TrackedChannel(0, userLogin, onLive));
+            this.channels.set(userLogin, new TrackedChannel(0, userLogin));
             console.log(`Now tracking Twitch Channel ${userLogin}`);
-        } else {
-            console.warn(`Twitch Channel ${userLogin} is already being tracked!`);
-        }
+        } 
+        console.log(`Adding callback with ID ${callbackId} for Twitch Channel ${userLogin}`);
+        this.channels.get(userLogin).addOnLiveCallback(callbackId, onLive);
     }
 
     /**
      * 
      * @param {string} userLogin 
+     * @param {string} callbackId
      */
-    async untrackChannel(userLogin) {
+    async untrackChannel(userLogin, callbackId) {
         if (this.channels.has(userLogin)) {
-            this.channels.delete(userLogin);
-            console.log(`No longer tracking Twitch Channel ${userLogin}`);
+            console.log(`Removing callback with ID ${callbackId} for Twitch Channel ${userLogin}`);
+            this.channels.get(userLogin).removeOnLiveCallback(callbackId);
+            if(this.channels.get(userLogin).onLive.size <= 0) {
+                this.channels.delete(userLogin);
+                console.log(`All callbacks removed, no longer tracking Twitch Channel ${userLogin}`);
+            }
         } else {
             console.warn(`Twitch Channel ${userLogin} was not being tracked!`);
         }
@@ -93,7 +99,9 @@ class TwitchTracker {
                 if (isNewlyLive) {
                     console.log(`Handling OnLive callback for Twitch Channel ${trackedChannel.channelHandle}`);
                     // invoke the OnLive callback for the corresponding channel
-                    trackedChannel.onLive(detail);
+                    for(const [trackerId, onLive] of trackedChannel.onLive){
+                        onLive(detail);
+                    }
                 }
             }
         }
