@@ -8,7 +8,7 @@ const fs = require('fs');
  * @typedef {Object} PostData
  * @property {string} title - The URL-formatted title.
  * @property {string} fullTitle - Unmodified title as originally written in the markdown.
- * @property {string} classification - What kind of post is this? Should be either "blogs" or "projects". 
+ * @property {"blogs"|"projects"} classification - What kind of post is this? Should be either "blogs" or "projects". 
  * @property {string} brief - The description/summary of the post.
  * @property {string[]} tags - The search tags that this Post is filed under.
  * @property {number} date - The date timestamp, as a number.
@@ -29,14 +29,14 @@ const fs = require('fs');
  * @type {PostData[]}
  */
 const blogs = [];
-const blogsPath = path.join(__dirname, '..', 'blogs');
+const BLOGS_PATH = path.join(__dirname, '..', 'pages', 'blogs');
 
 /**
  * List of all project posts, sorted by newest first
  * @type {PostData[]}
  */
 const projects = [];
-const projectsPath = path.join(__dirname, '..', 'projects');
+const PROJECTS_PATH = path.join(__dirname, '..', 'pages', 'projects');
 
 
 /**
@@ -77,11 +77,15 @@ async function getMetadata(markdownPath, classification, appConfig){
     }
 }
 
-async function populatePostLists(){
+/**
+ * 
+ * @param {AppConfig} appConfig 
+ */
+async function populatePostLists(appConfig){
     // blogs
     blogs.length = 0;
-    for(const file of fs.readdirSync(blogsPath)){
-        const blogInfo = await getMetadata(path.join(blogsPath, file), "blogs", AppConfig);
+    for(const file of fs.readdirSync(BLOGS_PATH)){
+        const blogInfo = await getMetadata(path.join(BLOGS_PATH, file), "blogs", appConfig);
         blogs.push(blogInfo);
     }
     // sorted newest to oldest
@@ -89,8 +93,8 @@ async function populatePostLists(){
 
     // projects
     projects.length = 0;
-    for(const file of fs.readdirSync(projectsPath)){
-        const projectInfo = await getMetadata(path.join(projectsPath, file), "projects", AppConfig);
+    for(const file of fs.readdirSync(PROJECTS_PATH)){
+        const projectInfo = await getMetadata(path.join(PROJECTS_PATH, file), "projects", appConfig);
         projects.push(projectInfo);
     }
     // sorted newest to oldest
@@ -150,11 +154,12 @@ function slugify(title) {
 
 // If we're running locally, spin up a set of watchers 
 // to automatically refresh the content when we make edits
-if(AppConfig.DOMAIN.includes("localhost")){
+const APP_CONFIG = new AppConfig();
+if(APP_CONFIG.DOMAIN.includes("localhost")){
     let fsTimeout;
-    fs.watch(blogsPath, e => {
+    fs.watch(BLOGS_PATH, e => {
         try{
-            populatePostLists();
+            populatePostLists(APP_CONFIG);
         }catch(e){
 
         }
@@ -162,9 +167,9 @@ if(AppConfig.DOMAIN.includes("localhost")){
             fsTimeout = setTimeout(() => { fsTimeout = undefined }, 500);
         }
     });
-    fs.watch(projectsPath, e => {
+    fs.watch(PROJECTS_PATH, e => {
         try{
-            populatePostLists();
+            populatePostLists(APP_CONFIG);
         }catch(e){
             
         }

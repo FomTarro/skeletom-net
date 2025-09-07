@@ -1,0 +1,13 @@
+<script>
+    const socket = new WebSocket("ws://localhost:8080/mintfantome-desktop/youtube/status");
+    // Listen for messages
+    socket.addEventListener("message", (event) => {
+        console.log("Message from server ", event.data);
+    });
+
+    const socket2 = new WebSocket("ws://localhost:8080/twitch/status");
+    // Listen for messages
+    socket2.addEventListener("message", (event) => {
+        console.log("Message from server ", event.data);
+    });
+</script>
