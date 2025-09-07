@@ -7,7 +7,7 @@ class TwitchTracker {
      * 
      * @param {TwitchClient} client 
      */
-    constructor(client){
+    constructor(client) {
         this.client = client;
         /**
          * Indexed by login name
@@ -18,7 +18,7 @@ class TwitchTracker {
 
     start() {
         this.stop();
-        this.interval = setInterval(this.scanAndNotify.bind(this), 30*1000);
+        this.interval = setInterval(this.scanAndNotify.bind(this), 30 * 1000);
     }
 
     stop() {
@@ -28,7 +28,7 @@ class TwitchTracker {
         }
     }
 
-    getTrackedChannelList(){
+    getTrackedChannelList() {
         return [...this.channels.keys()];
     }
 
@@ -42,7 +42,7 @@ class TwitchTracker {
         if (!this.channels.has(userLogin)) {
             this.channels.set(userLogin, new TrackedChannel(0, userLogin));
             console.log(`Now tracking Twitch Channel ${userLogin}`);
-        } 
+        }
         console.log(`Adding callback with ID ${callbackId} for Twitch Channel ${userLogin}`);
         this.channels.get(userLogin).addOnLiveCallback(callbackId, onLive);
     }
@@ -56,7 +56,7 @@ class TwitchTracker {
         if (this.channels.has(userLogin)) {
             console.log(`Removing callback with ID ${callbackId} for Twitch Channel ${userLogin}`);
             this.channels.get(userLogin).removeOnLiveCallback(callbackId);
-            if(this.channels.get(userLogin).onLive.size <= 0) {
+            if (this.channels.get(userLogin).onLive.size <= 0) {
                 this.channels.delete(userLogin);
                 console.log(`All callbacks removed, no longer tracking Twitch Channel ${userLogin}`);
             }
@@ -87,26 +87,26 @@ class TwitchTracker {
     async scanAndNotify() {
         const channelNames = [...this.channels.keys()];
         const channelDetails = await this.client.getChannelListDetails(channelNames);
-        for(const detail of channelDetails){
+        for (const detail of channelDetails) {
             const trackedChannel = this.channels.get(detail.channel);
-            if(trackedChannel){
+            if (trackedChannel) {
                 const isNewlyLive = detail.isLive
                     && (!trackedChannel.videoDetails.has(detail.channel)
                         || !trackedChannel.videoDetails.get(detail.channel).isLive);
-                 // update the detail record, 
-                 // for Twitch we can just index by channel handle, since it's a list of 1 element.
+                // update the detail record, 
+                // for Twitch we can just index by channel handle, since it's a list of 1 element.
                 trackedChannel.videoDetails.set(detail.channel, detail);
                 if (isNewlyLive) {
                     console.log(`Handling OnLive callback for Twitch Channel ${trackedChannel.channelHandle}`);
                     // invoke the OnLive callback for the corresponding channel
-                    for(const [trackerId, onLive] of trackedChannel.onLive){
+                    for (const [trackerId, onLive] of trackedChannel.onLive) {
                         onLive(detail);
                     }
                 }
             }
         }
     }
-    
+
 }
 
 module.exports.TwitchTracker = TwitchTracker;

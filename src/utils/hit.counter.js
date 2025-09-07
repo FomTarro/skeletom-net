@@ -5,7 +5,7 @@ class HitCounter {
      * 
      * @param {AWSClient} awsClient 
      */
-    constructor(awsClient){
+    constructor(awsClient) {
         this.awsClient = awsClient;
         // key: path, value: list of user ids
         this.userMap = new Map();
@@ -30,7 +30,7 @@ class HitCounter {
      * @param {string} path - URL path, not including query parameters.
      * @returns {Promise<number>} - The number of hits on that page.
      */
-    async getHitCountForPath(path){
+    async getHitCountForPath(path) {
         const results = await this.awsClient.getFromTable(path);
         return results;
     }
@@ -40,11 +40,11 @@ class HitCounter {
      * @param {string} path - URL path, not including query parameters.
      * @param {string} userId - User ID, used to prevent the same user from counting as a page veiw multiple times in quick succession.
      */
-    async incrementHitCountForPath(path, userId,){
-        if(!this.userMap.has(path)){
+    async incrementHitCountForPath(path, userId) {
+        if (!this.userMap.has(path)) {
             this.userMap.set(path, []);
         }
-        if(!this.userMap.get(path).includes(userId)){
+        if (!this.userMap.get(path).includes(userId)) {
             // only increment the hit count if the user hasn't been here recently
             this.awsClient.incrementFromTable(path);
             this.userMap.get(path).push(userId);

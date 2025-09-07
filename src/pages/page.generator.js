@@ -3,25 +3,25 @@ const { PostData } = require("../usecases/convert.markdown.usecase");
 const { TemplateMap } = require("./template.map");
 const { JSDOM } = require('jsdom')
 
-class PageGenerator{
+class PageGenerator {
     /**
      * 
      * @param {AppConfig} appConfig 
      * @param {TemplateMap} templateMap 
      */
-    constructor(appConfig, templateMap){
+    constructor(appConfig, templateMap) {
         this.domain = appConfig.DOMAIN;
         this.templateMap = templateMap;
     }
 
     /**
-     * 
+     * Generates an RSS document including the provided list of posts.
      * @param {PostData[]} posts 
      * @returns 
      */
     async generateRSS(posts) {
         const template = this.templateMap.RSS;
-        const dom = new JSDOM(template, {contentType: "text/xml"});
+        const dom = new JSDOM(template, { contentType: "text/xml" });
         const doc = dom.window.document
         const link = doc.getElementsByTagName("link")[0];
         link.innerHTML = this.domain;

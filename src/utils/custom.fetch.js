@@ -4,10 +4,10 @@
  * @param {RequestInit} init 
  * @returns {Promise<Response>}
  */
-const customFetch = async(input, init) => {
-    try{
+const customFetch = async (input, init) => {
+    try {
         return await fetch(input, init);
-    }catch(e){
+    } catch (e) {
         return new Response(undefined, {
             status: 500,
             statusText: `${e}`

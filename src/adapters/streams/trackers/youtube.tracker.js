@@ -10,7 +10,7 @@ class YouTubeTracker {
      * A class used to track YouTube channels for streams going live.
      * @param {YouTubeClient} client 
      */
-    constructor(client){
+    constructor(client) {
         this.client = client;
         /**
          * Indexed by channelHandle
@@ -21,7 +21,7 @@ class YouTubeTracker {
 
     start() {
         this.stop();
-        this.interval = setInterval(this.scanAndNotify.bind(this), 30*1000);
+        this.interval = setInterval(this.scanAndNotify.bind(this), 30 * 1000);
     }
 
     stop() {
@@ -31,7 +31,7 @@ class YouTubeTracker {
         }
     }
 
-    getTrackedChannelList(){
+    getTrackedChannelList() {
         return [...this.channels.keys()];
     }
 
@@ -44,10 +44,10 @@ class YouTubeTracker {
     async trackChannel(channelHandle, callbackId, onLive) {
         if (!this.channels.has(channelHandle)) {
             const channelId = await this.client.getChannelId(channelHandle);
-            if(channelId){
+            if (channelId) {
                 this.channels.set(channelHandle, new TrackedChannel(channelId, channelHandle, onLive));
                 console.log(`Now tracking YouTube Channel ${channelHandle}`);
-            }else{
+            } else {
                 console.warn(`Cannot track YouTube Channel ${channelHandle} as no channel ID could be found`);
             }
         }
@@ -66,7 +66,7 @@ class YouTubeTracker {
         if (this.channels.has(channelHandle)) {
             console.log(`Removing callback with ID ${callbackId} for YouTube Channel ${channelHandle}`);;
             this.channels.get(userLogin).removeOnLiveCallback(callbackId);
-            if(this.channels.get(userLogin).onLive.size <= 0) {
+            if (this.channels.get(userLogin).onLive.size <= 0) {
                 this.channels.delete(userLogin);
                 console.log(`All callbacks removed, no longer tracking YouTube Channel ${channelHandle}`);
             }
@@ -131,7 +131,7 @@ class YouTubeTracker {
                 if (isNewlyLive) {
                     console.log(`Handling OnLive callback for YouTube Channel ${originalHandle} with video: ${detail.id}`);
                     // invoke the OnLive callback for the corresponding channel
-                    for(const [trackerId, onLive] of trackedChannel.onLive){
+                    for (const [trackerId, onLive] of trackedChannel.onLive) {
                         onLive(detail);
                     }
                 }

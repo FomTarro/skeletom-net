@@ -39,7 +39,7 @@ const WOLFRAM_CLIENT = new WolframClient(APP_CONFIG);
  * Creates an HTTP server.
  * @returns {Promise<http.Server>}
  */
-async function createHttpRoutes(){
+async function createHttpRoutes() {
     const app = express();
     const baseDirectory = path.join(__dirname, './public');
     app.use(express.json());
@@ -49,7 +49,7 @@ async function createHttpRoutes(){
 
     app.all('*', async (req, res, next) => {
         const path = req.path;
-        if(path && !path.startsWith('/hits')){
+        if (path && !path.startsWith('/hits')) {
             // increment hit counter;
             HIT_COUNTER.incrementHitCountForPath(path, req.ip);
         }
@@ -57,11 +57,11 @@ async function createHttpRoutes(){
     });
 
     app.get([`/hits`], async (req, res) => {
-        if(req.query && req.query.page){
+        if (req.query && req.query.page) {
             res.status(200).send(JSON.stringify({
                 count: await HIT_COUNTER.getHitCountForPath(req.query.page)
             }));
-        }else{
+        } else {
             res.status(201).send(JSON.stringify({
                 count: 0
             }));
@@ -87,50 +87,50 @@ async function createHttpRoutes(){
     });
 
     app.get([`/blogs/:blogTitle`], async (req, res) => {
-        try{
+        try {
             const blog = Blogs().find(item => item.title.toLowerCase() === req.params.blogTitle.toLowerCase());
             const html = await GenerateFullBlogPost(blog, TEMPLATE_MAP);
             res.status(200).send(html);
-        }catch(e){
+        } catch (e) {
             console.error(e);
             res.status(404).send("No such blog post exists.");
         }
     })
 
     app.get([`/blogs`], async (req, res) => {
-        try{
-            const filteredBlogs = 
-            (req.query && req.query.tags) ?
-            FilterPostMetadata(Blogs(), req.query.tags)
-            : Blogs();
+        try {
+            const filteredBlogs =
+                (req.query && req.query.tags) ?
+                    FilterPostMetadata(Blogs(), req.query.tags)
+                    : Blogs();
             const html = await GenerateBlogArchive(filteredBlogs, TEMPLATE_MAP);
             res.status(200).send(html);
-        }catch(e){
+        } catch (e) {
             console.error(e);
             res.status(404).send("No such blog post exists.");
         }
     })
 
     app.get([`/projects/:projectTitle`], async (req, res) => {
-        try{
+        try {
             const project = Projects().find(item => item.title.toLowerCase() === req.params.projectTitle.toLowerCase());
             const html = await GenerateFullBlogPost(project, TEMPLATE_MAP);
             res.status(200).send(html);
-        }catch(e){
+        } catch (e) {
             console.error(e);
             res.status(404).send("No such project exists.");
         }
     })
 
     app.get([`/projects`], async (req, res) => {
-        try{
+        try {
             const filteredProjects =
                 (req.query && req.query.tags) ?
-                FilterPostMetadata(Projects(), req.query.tags)
-                : Projects();
+                    FilterPostMetadata(Projects(), req.query.tags)
+                    : Projects();
             const html = await GenerateBlogArchive(filteredProjects, TEMPLATE_MAP);
             res.status(200).send(html);
-        }catch(e){
+        } catch (e) {
             console.error(e);
             res.status(404).send("No such project exists.");
         }
@@ -155,15 +155,15 @@ async function createHttpRoutes(){
     // vts-heartrate authentication
     app.get(['/vts-heartrate/oauth2/pulsoid',], async (req, res) => {
         console.log(JSON.stringify(req.query));
-        if(req.query && req.query.code){
-            try{
+        if (req.query && req.query.code) {
+            try {
                 const token = await GetToken(req.query.code, APP_CONFIG);
                 const templatePath = path.join('src', 'templates', 'auth.token.html');
                 res.status(200).send(await EmbedToken(templatePath, token.body['access_token'], APP_CONFIG));
-            }catch(e){
+            } catch (e) {
                 res.status(500).send(`"An error occured! Please yell at Tom via email: tom@skeletom.net.`)
             }
-        }else{
+        } else {
             res.status(400).send('BAD REQUEST!');
         }
     });
@@ -234,7 +234,7 @@ async function createHttpRoutes(){
     });
 
     app.get(['/wolfram/ask',], async (req, res) => {
-        if(req.query && req.query.input){
+        if (req.query && req.query.input) {
             const answer = await WOLFRAM_CLIENT.ask(req.query.input);
             res.status(answer.status).send({
                 answer: answer.body
@@ -243,7 +243,7 @@ async function createHttpRoutes(){
     });
 
     app.post(['/wolfram/ask-post',], async (req, res) => {
-        if(req.body && req.body.input){
+        if (req.body && req.body.input) {
             const answer = await WOLFRAM_CLIENT.ask(req.body.input);
             res.status(answer.status).send({
                 answer: answer.body
@@ -253,7 +253,7 @@ async function createHttpRoutes(){
 
     // Currency conversion for the Universal Tracker
     app.get(['/donation/convert',], async (req, res) => {
-        if(req.query && req.query.currency){
+        if (req.query && req.query.currency) {
             const answer = await GetCurrencyRates(req.query.currency)
             res.status(200).send(answer)
         }
@@ -289,7 +289,7 @@ async function createHttpRoutes(){
         try {
             const html = path.join(baseDirectory, 'audio.html')
             res.status(200).sendFile(html);
-        }catch(e){
+        } catch (e) {
             console.error(e);
             res.status(404).send("No such project post exists.");
         }
@@ -320,15 +320,15 @@ class YouTubeTrackerRoute {
      * @param {WebSocket.Server} server 
      * @param {string} channelHandle 
      */
-    constructor(route, server, channelHandle){
+    constructor(route, server, channelHandle) {
         // TODO: this is a case where TypeScript could come in clutch,
         // making an interface for Route classes that require a Route accessor 
         // and an onConnection(client) callback definition
         this.route = route;
         YOUTUBE_TRACKER.trackChannel(channelHandle, route, (detail) => {
-            for(const client of server.clients){
-                if (client.readyState === WebSocket.OPEN 
-                && client.route && client.route.toLowerCase() === route.toLowerCase()) {
+            for (const client of server.clients) {
+                if (client.readyState === WebSocket.OPEN
+                    && client.route && client.route.toLowerCase() === route.toLowerCase()) {
                     const content = JSON.stringify({
                         details: [detail]
                     });
@@ -354,12 +354,12 @@ class TwitchTrackerRoute {
      * @param {WebSocket.Server} server 
      * @param {string} userLogin 
      */
-    constructor(route, server, userLogin){
+    constructor(route, server, userLogin) {
         this.route = route;
         TWITCH_TRACKER.trackChannel(userLogin, route, (detail) => {
-            for(const client of server.clients){
-                if (client.readyState === WebSocket.OPEN 
-                && client.route && client.route.toLowerCase() === route.toLowerCase()) {
+            for (const client of server.clients) {
+                if (client.readyState === WebSocket.OPEN
+                    && client.route && client.route.toLowerCase() === route.toLowerCase()) {
                     const content = JSON.stringify({
                         details: [detail]
                     });
@@ -385,15 +385,15 @@ class StreamTrackerRoute {
      * @param {WebSocket.Server} server 
      * @param {string} streamAddress 
      */
-    constructor(route, server, streamAddress){
+    constructor(route, server, streamAddress) {
         this.route = route;
         // if it's a twitch stream, track the channel
-        if(streamAddress.includes(`twitch.tv`)){
+        if (streamAddress.includes(`twitch.tv`)) {
             const userLogin = streamAddress.split('/').pop();
             TWITCH_TRACKER.trackChannel(userLogin, route, (detail) => {
-                for(const client of server.clients){
-                    if (client.readyState === WebSocket.OPEN 
-                    && client.route && client.route.toLowerCase() === route.toLowerCase()) {
+                for (const client of server.clients) {
+                    if (client.readyState === WebSocket.OPEN
+                        && client.route && client.route.toLowerCase() === route.toLowerCase()) {
                         const content = JSON.stringify({
                             details: [detail]
                         });
@@ -409,7 +409,7 @@ class StreamTrackerRoute {
                 });
                 webSocketClient.send(content);
             }
-        }else if(streamAddress.includes(`youtube.com`)){
+        } else if (streamAddress.includes(`youtube.com`)) {
             // TODO
         }
     }
@@ -420,13 +420,12 @@ class StreamTrackerRoute {
  * @param {http.Server} httpServer 
  * @returns {Promise<WebSocket.Server>}
  */
-async function createWebSocketRoutes(httpServer){
-    const webSocketServer = new WebSocket.Server({server: httpServer});
+async function createWebSocketRoutes(httpServer) {
+    const webSocketServer = new WebSocket.Server({ server: httpServer });
     const routes = new Map([
         new YouTubeTrackerRoute(`/mintfantome-desktop/youtube/status`, webSocketServer, '@mintfantome'),
         new YouTubeTrackerRoute(`/amiyamiga/youtube/status`, webSocketServer, '@amiyaaranha'),
-        // TODO: if multiple trackers try to track the same channel, listeners won't get hooked up for the second one.
-        new TwitchTrackerRoute(`/twitch/status`, webSocketServer, 'skeletom_ch'), 
+        new TwitchTrackerRoute(`/twitch/status`, webSocketServer, 'skeletom_ch'),
         new StreamTrackerRoute(`/stream/status`, webSocketServer, APP_CONFIG.STREAM_URL)
     ].map(i => [i.route.toLowerCase(), i]));
     webSocketServer.on('open', async () => {
@@ -435,12 +434,12 @@ async function createWebSocketRoutes(httpServer){
     webSocketServer.on('connection', async (ws, req) => {
         const url = req.url.toLowerCase();
         console.log(`Attempting WebSocket connection to ${url}`);
-        if(routes.has(url)){
+        if (routes.has(url)) {
             // tag the socket as being connected to this route
             // so that we can properly filter it later
             ws.route = url;
             routes.get(url).onConnection(ws);
-        }else{
+        } else {
             // close any sockets connecting to unknown routes
             ws.close();
         }
@@ -448,7 +447,7 @@ async function createWebSocketRoutes(httpServer){
     return webSocketServer;
 }
 
-async function launch(){
+async function launch() {
     const httpServer = await createHttpRoutes();
     const port = APP_CONFIG.PORT;
     httpServer.listen(port, async () => {
