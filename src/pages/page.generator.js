@@ -62,6 +62,26 @@ class PageGenerator {
         const str = dom.serialize();
         return str;
     }
+
+    /**
+     * Embeds a token in a form to let users copy it to clipboard while remaining hidden.
+     * @param {string} token 
+     * @returns 
+     */
+    async embedToken(token) {
+        const dom = new JSDOM(this.templateMap.TOKEN);
+        const doc = dom.window.document;
+        if(token){
+            doc.getElementById('auth-token').value = token;
+        }else{
+            doc.getElementById('auth-token-copy-field').remove();
+            const err = doc.createElement('div');
+            err.id = "error";
+            err.innerHTML = "Unable to generate auth token! Please contact Tom via email: tom@skeletom.net."
+            doc.getElementById('content').append(err);
+        }
+        return dom.serialize();
+    }
 }
 
 module.exports.PageGenerator = PageGenerator;

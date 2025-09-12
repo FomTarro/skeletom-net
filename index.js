@@ -5,7 +5,6 @@ const express = require('express');
 const WebSocket = require('ws');
 const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
-const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const { GetCurrencyRates } = require('./src/usecases/currency.convert.usecase');
 const { Blogs, Projects, FilterPostMetadata, PopulatePostLists } = require('./src/usecases/convert.markdown.usecase');
 const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive, GenerateNotFound, GenerateFileList } = require('./src/usecases/embed.html.usecase');
@@ -172,8 +171,7 @@ async function createHttpRoutes() {
         if (req.query && req.query.code) {
             try {
                 const token = await GetToken(req.query.code, APP_CONFIG);
-                const templatePath = path.join('src', 'templates', 'auth.token.html');
-                res.status(200).send(await EmbedToken(templatePath, token.body['access_token'], APP_CONFIG));
+                res.status(200).send(await PAGE_GENERATOR.embedToken(token.body['access_token']));
             } catch (e) {
                 res.status(500).send(`"An error occured! Please yell at Tom via email: tom@skeletom.net.`)
             }
@@ -379,6 +377,7 @@ async function createWebSocketRoutes(httpServer) {
     const routes = new Map([
         new YouTubeTrackerRoute(`/mintfantome-desktop/youtube/status`, webSocketServer, '@mintfantome'),
         new YouTubeTrackerRoute(`/amiyamiga/youtube/status`, webSocketServer, '@amiyaaranha'),
+        new TwitchTrackerRoute(`/kkcyber-desktop/twitch/status`, webSocketServer, 'KKCYBER'),
         new TwitchTrackerRoute(`/twitch/status`, webSocketServer, 'skeletom_ch'),
         new StreamTrackerRoute(`/stream/status`, webSocketServer, APP_CONFIG.STREAM_URL)
     ].map(i => [i.route.toLowerCase(), i]));

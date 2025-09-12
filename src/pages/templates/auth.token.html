@@ -3,7 +3,9 @@
         <div>
             <label for="auth-token">Your Authentication Token (keep secret!):</label>
             <br>
-            <input type="password" id="auth-token" name="token" readonly><button id='copy-button'>Copy</button>
+            <div id="content">
+                <span id="auth-token-copy-field"><input type="password" id="auth-token" name="token" readonly><button id='copy-button'>Copy</button></span>
+            </div>
         </div>
         <script>
             function copyToClipboard() {
@@ -16,7 +18,6 @@
                 navigator.clipboard.writeText(copyText.value);
             }
             document.getElementById('copy-button').addEventListener('click', copyToClipboard);
-            document.getElementById('auth-token').value = "${VALUE}";
         </script>
     </body>
 </html>
