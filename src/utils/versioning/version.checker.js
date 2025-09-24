@@ -47,6 +47,11 @@ class VersionChecker {
                 version: appConfig.VTS_COUNTER_VERSION,
                 date: appConfig.VTS_COUNTER_DATE,
                 url: appConfig.VTS_COUNTER_URL
+            }],
+            ["vts-facekey", {
+                version: appConfig.VTS_FACEKEY_VERSION,
+                date: appConfig.VTS_FACEKEY_DATE,
+                url: appConfig.VTS_FACEKEY_URL
             }]
         ]);
     }

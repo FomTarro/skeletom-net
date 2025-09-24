@@ -38,6 +38,10 @@ class AppConfig {
     get VTS_COUNTER_DATE() { return process.env.vts_counter_date ?? "02/28/2025" }
     get VTS_COUNTER_URL() { return process.env.vts_counter_url ?? "https://www.skeletom.net" }
 
+    get VTS_FACEKEY_VERSION() { return process.env.vts_facekey_version ?? "1.0.0" }
+    get VTS_FACEKEY_DATE() { return process.env.vts_facekey_date ?? "10/02/2025" }
+    get VTS_FACEKEY_URL() { return process.env.vts_facekey_url ?? "https://www.skeletom.net" }
+
     get PULSOID_CLIENT_ID() { return process.env.pulsoid_client_id; };
     get PULSOID_CLIENT_SECRET() { return process.env.pulsoid_client_secret; };
 
