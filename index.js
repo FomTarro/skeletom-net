@@ -171,7 +171,6 @@ async function createHttpRoutes() {
             try {
                 const token = await GetToken(req.query.code, APP_CONFIG);
                 const html = await PAGE_GENERATOR.embedToken(token.body['access_token']);
-                console.log(html);
                 res.status(200).send(html);
             } catch (e) {
                 res.status(500).send(`"An error occured! Please yell at Tom via email: tom@skeletom.net.`)
