@@ -73,6 +73,7 @@ class PageGenerator {
         const doc = dom.window.document;
         if(token){
             doc.getElementById('auth-token').value = token;
+            console.log(token);
         }else{
             doc.getElementById('auth-token-copy-field').remove();
             const err = doc.createElement('div');
