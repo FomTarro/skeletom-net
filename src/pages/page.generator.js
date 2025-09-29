@@ -71,9 +71,11 @@ class PageGenerator {
     async embedToken(token) {
         const dom = new JSDOM(this.templateMap.TOKEN);
         const doc = dom.window.document;
-        if(token){
-            doc.getElementById('auth-token').value = token;
+        if (token) {
+            console.log(doc.getElementById('auth-token'));
+            doc.getElementById('auth-token').value = `${token}`;
             console.log(token);
+            console.log(doc.getElementById('auth-token').value);
         }else{
             doc.getElementById('auth-token-copy-field').remove();
             const err = doc.createElement('div');

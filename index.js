@@ -167,7 +167,6 @@ async function createHttpRoutes() {
 
     // vts-heartrate authentication
     app.get(['/vts-heartrate/oauth2/pulsoid',], async (req, res) => {
-        console.log(JSON.stringify(req.query));
         if (req.query && req.query.code) {
             try {
                 const token = await GetToken(req.query.code, APP_CONFIG);
