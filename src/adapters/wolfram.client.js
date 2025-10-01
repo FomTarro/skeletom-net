@@ -18,6 +18,7 @@ class WolframClient {
     async ask(question) {
         //http://api.wolframalpha.com/v1/result?appid=DEMO
         // Wolfram demands that the query uses '+' for spaces, which means the actual plus operation gets confused.
+        console.log(`Asking: ${question}`);
         const decodedQuestion = question.replace(/([+])+/g, 'plus').replace(/([ ])+/g, '+');
         const path = encodeURI(`v1/result?appid=${this.client_id}&i=${decodedQuestion}`);
         const url = new URL(`https://api.wolframalpha.com/${path}`);

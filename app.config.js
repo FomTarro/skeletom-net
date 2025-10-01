@@ -10,7 +10,7 @@ class AppConfig {
 
     get STREAM_URL() { return process.env.current_stream_url || 'https://www.twitch.tv/skeletom_ch'; };
 
-    get VTS_HEARTRATE_VERSION() { return process.env.vts_heartrate_version ?? "0.0.0" }
+    get VTS_HEARTRATE_VERSION() { return process.env.vts_heartrate_version ?? "1.0.0" }
     get VTS_HEARTRATE_DATE() { return process.env.vts_heartrate_date ?? "1/7/2022" }
     get VTS_HEARTRATE_URL() { return process.env.vts_heartrate_url ?? "https://github.com/FomTarro/vts-heartrate" }
 
@@ -18,7 +18,7 @@ class AppConfig {
     get VTS_MIDI_DATE() { return process.env.vts_midi_date ?? "10/10/2024" }
     get VTS_MIDI_URL() { return process.env.vts_midi_url ?? "https://www.skeletom.net" }
 
-    get AMIYAMIGA_VERSION() { return process.env.amiyamiga_version ?? "0.0.0" }
+    get AMIYAMIGA_VERSION() { return process.env.amiyamiga_version ?? "1.0.0" }
     get AMIYAMIGA_DATE() { return process.env.amiyamiga_version ?? "11/29/2022" }
     get AMIYAMIGA_URL() { return process.env.amiyamiga_url ?? "https://skeletom-ch.itch.io/amiyamiga" }
 
@@ -37,6 +37,10 @@ class AppConfig {
     get VTS_COUNTER_VERSION() { return process.env.vts_counter_version ?? "1.0.0" }
     get VTS_COUNTER_DATE() { return process.env.vts_counter_date ?? "02/28/2025" }
     get VTS_COUNTER_URL() { return process.env.vts_counter_url ?? "https://www.skeletom.net" }
+
+    get VTS_FACEKEY_VERSION() { return process.env.vts_facekey_version ?? "1.0.0" }
+    get VTS_FACEKEY_DATE() { return process.env.vts_facekey_date ?? "10/02/2025" }
+    get VTS_FACEKEY_URL() { return process.env.vts_facekey_url ?? "https://www.skeletom.net" }
 
     get PULSOID_CLIENT_ID() { return process.env.pulsoid_client_id; };
     get PULSOID_CLIENT_SECRET() { return process.env.pulsoid_client_secret; };

@@ -5,7 +5,6 @@ const express = require('express');
 const WebSocket = require('ws');
 const { AppConfig } = require('./app.config');
 const { GetToken } = require('./src/usecases/get.token.usecase');
-const { EmbedToken } = require('./src/usecases/embed.token.usecase');
 const { GetCurrencyRates } = require('./src/usecases/currency.convert.usecase');
 const { Blogs, Projects, FilterPostMetadata, PopulatePostLists } = require('./src/usecases/convert.markdown.usecase');
 const { GenerateHomePage, GenerateFullBlogPost, GenerateBlogArchive, GenerateNotFound, GenerateFileList } = require('./src/usecases/embed.html.usecase');
@@ -18,11 +17,14 @@ const { TwitchTracker } = require('./src/adapters/streams/trackers/twitch.tracke
 const { AWSClient } = require('./src/adapters/aws.client');
 const { HitCounter } = require('./src/utils/hit.counter');
 const { WolframClient } = require('./src/adapters/wolfram.client');
+const { VersionChecker } = require('./src/utils/versioning/version.checker');
 
 const APP_CONFIG = new AppConfig();
 const TEMPLATE_MAP = new TemplateMap();
 
 const PAGE_GENERATOR = new PageGenerator(APP_CONFIG, TEMPLATE_MAP);
+
+const VERSION_CHECKER = new VersionChecker(APP_CONFIG);
 
 const YOUTUBE_CLIENT = new YouTubeClient(APP_CONFIG);
 const YOUTUBE_TRACKER = new YouTubeTracker(YOUTUBE_CLIENT);
@@ -152,14 +154,24 @@ async function createHttpRoutes() {
         res.redirect('https://www.youtube.com/@fomtarro/videos');
     });
 
+    // application versions 
+    app.get(['/:application/version', '/version/:application'], async (req, res) => {
+        const application = req.params.application;
+        const version = VERSION_CHECKER.getLatestVersion(application);
+        if(version) {
+            res.status(200).send(version);
+        } else {
+            res.status(404).send("No such application exists.");;
+        }
+    });
+
     // vts-heartrate authentication
     app.get(['/vts-heartrate/oauth2/pulsoid',], async (req, res) => {
-        console.log(JSON.stringify(req.query));
         if (req.query && req.query.code) {
             try {
                 const token = await GetToken(req.query.code, APP_CONFIG);
-                const templatePath = path.join('src', 'templates', 'auth.token.html');
-                res.status(200).send(await EmbedToken(templatePath, token.body['access_token'], APP_CONFIG));
+                const html = await PAGE_GENERATOR.embedToken(token.body['access_token']);
+                res.status(200).send(html);
             } catch (e) {
                 res.status(500).send(`"An error occured! Please yell at Tom via email: tom@skeletom.net.`)
             }
@@ -168,69 +180,9 @@ async function createHttpRoutes() {
         }
     });
 
-    // vts-heartrate
-    app.get(['/vts-heartrate/version',], async (req, res) => {
-        res.status(200).send(JSON.stringify({
-            version: APP_CONFIG.VTS_HEARTRATE_VERSION,
-            date: APP_CONFIG.VTS_HEARTRATE_DATE,
-            url: APP_CONFIG.VTS_HEARTRATE_URL
-        }));
-    });
-
     app.get(['/vts-heartrate/widget',], async (req, res) => {
         const file = path.join(baseDirectory, './assets', 'hrm.html')
         res.sendFile(file)
-    });
-
-    //vts-midi
-    app.get(['/vts-midi/version',], async (req, res) => {
-        res.status(200).send(JSON.stringify({
-            version: APP_CONFIG.VTS_MIDI_VERSION,
-            date: APP_CONFIG.VTS_MIDI_DATE,
-            url: APP_CONFIG.VTS_MIDI_URL
-        }));
-    });
-
-    // amiyamiga
-    app.get(['/amiyamiga/version',], async (req, res) => {
-        res.status(200).send(JSON.stringify({
-            version: APP_CONFIG.AMIYAMIGA_VERSION,
-            date: APP_CONFIG.AMIYAMIGA_DATE,
-            url: APP_CONFIG.AMIYAMIGA_URL
-        }));
-    });
-
-    //mintfantome
-    app.get(['/mintfantome-desktop/version',], async (req, res) => {
-        res.status(200).send(JSON.stringify({
-            version: APP_CONFIG.MINT_DESKTOP_VERSION,
-            date: APP_CONFIG.MINT_DESKTOP_DATE,
-            url: APP_CONFIG.MINT_DESKTOP_URL
-        }));
-    });
-
-    app.get(['/kkcyber-desktop/version',], async (req, res) => {
-        res.status(200).send(JSON.stringify({
-            version: APP_CONFIG.KK_DESKTOP_VERSION,
-            date: APP_CONFIG.KK_DESKTOP_DATE,
-            url: APP_CONFIG.KK_DESKTOP_URL
-        }));
-    });
-
-    app.get(['/word-salad/version',], async (req, res) => {
-        res.status(200).send(JSON.stringify({
-            version: APP_CONFIG.WORD_SALAD_VERSION,
-            date: APP_CONFIG.WORD_SALAD_DATE,
-            url: APP_CONFIG.WORD_SALAD_URL
-        }));
-    });
-
-    app.get(['/vts-counter/version',], async (req, res) => {
-        res.status(200).send(JSON.stringify({
-            version: APP_CONFIG.VTS_COUNTER_VERSION,
-            date: APP_CONFIG.VTS_COUNTER_DATE,
-            url: APP_CONFIG.VTS_COUNTER_URL
-        }));
     });
 
     app.get(['/wolfram/ask',], async (req, res) => {
@@ -425,6 +377,7 @@ async function createWebSocketRoutes(httpServer) {
     const routes = new Map([
         new YouTubeTrackerRoute(`/mintfantome-desktop/youtube/status`, webSocketServer, '@mintfantome'),
         new YouTubeTrackerRoute(`/amiyamiga/youtube/status`, webSocketServer, '@amiyaaranha'),
+        new TwitchTrackerRoute(`/kkcyber-desktop/twitch/status`, webSocketServer, 'KKCYBER'),
         new TwitchTrackerRoute(`/twitch/status`, webSocketServer, 'skeletom_ch'),
         new StreamTrackerRoute(`/stream/status`, webSocketServer, APP_CONFIG.STREAM_URL)
     ].map(i => [i.route.toLowerCase(), i]));

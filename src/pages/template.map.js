@@ -24,6 +24,8 @@ class TemplateMap {
 
     get FILE_LIST() { return fs.readFileSync(path.join(ROOT, 'file.list.full.html')) };
 
+    get TOKEN() { return fs.readFileSync(path.join(ROOT, 'auth.token.html')) };
+
     get RSS() { return fs.readFileSync(path.join(ROOT, 'rss.xml')) };
 }
 

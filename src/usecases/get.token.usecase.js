@@ -4,7 +4,7 @@ const { httpRequest } = require("../adapters/http.utils");
 /**
  * @param {string} accessCode
  * @param {AppConfig} appConfig 
- * @returns {string} Token
+ * @returns {Promise<string>} Token
  */
 async function usecase(accessCode, appConfig){
 
