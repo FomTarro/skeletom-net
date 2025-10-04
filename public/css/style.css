@@ -513,7 +513,6 @@ ul {
 	height: 10px;
 	width: 100%;
 	background: repeating-conic-gradient(var(--pink) 0% 25%, white 0% 50%) 50% / 10px 10px;
-	animation: anim-scroll-horizontal 16s linear infinite;
 }
 
 .square-box{
