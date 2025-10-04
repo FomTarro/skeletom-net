@@ -16,8 +16,7 @@
 }
 
 html {
-	--white: white;
-	--offwhite: #F4F4F4;
+	--white: #F4F4F4;
 	--black: black;
 	--light: #3C3C3C;
 	--dark: #2E2D31;
@@ -29,8 +28,9 @@ html {
 	--drop-shadow: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.45));
 
 	position: relative;
-	color: var(--offwhite);
-	font-family: 'dustismo_romanregular';
+	color: var(--white);
+	/* font-family: 'dustismo_romanregular'; */
+	font-family: sans-serif, Lato, LatoExtended, sans-serif;
 	/* font-size: min(2vmax, 1.5em); */
 	margin: 0;
 	padding: 0;
@@ -258,12 +258,14 @@ ul {
 	max-height: 12em;
 	max-width: 100%;
 	filter: var(--drop-shadow);
+	padding-bottom: 0.75em;
 }
 
 .item {
 	position: relative;
 	padding: 5vmin;
 	padding-top: 1.5em;
+	padding-bottom: 1.25em;
 	border-radius: 1.5em;
 	box-sizing: border-box;
 	width: 100%;
@@ -332,7 +334,7 @@ ul {
 
 #bust {
 	padding-bottom: 1.5em;
-	max-height: 20em;
+	max-height: 15em;
 }
 
 #stamp {
@@ -346,7 +348,6 @@ ul {
 }
 
 .title {
-	font-family: 'dustismo_romanbold_italic';
 	font-size: 4vmax;
 	font-style: italic;
 	color: var(--darker);
@@ -367,7 +368,7 @@ ul {
 
 .title-link {
 	text-decoration: none;
-	color: var(--offwhite);
+	color: var(--white);
 }
 
 .subtitle {
@@ -377,7 +378,7 @@ ul {
 .thumbnail-title {
 	margin-top: 0.5em;
 	margin-bottom: 0.5em;
-	text-decoration: underline;
+	/* text-decoration: underline; */
 }
 
 .download-button {
@@ -418,7 +419,6 @@ ul {
 	box-sizing: border-box;
 	border-radius: 1.5em;
 	padding: 1em;
-	font-family: 'dustismo_romanbold_italic';
 	padding-left: 3em;
 	z-index: 100;
 }
@@ -513,6 +513,7 @@ ul {
 	height: 10px;
 	width: 100%;
 	background: repeating-conic-gradient(var(--pink) 0% 25%, white 0% 50%) 50% / 10px 10px;
+	animation: anim-scroll-horizontal 16s linear infinite;
 }
 
 .square-box{
@@ -536,7 +537,7 @@ ul {
 }
 
 .white {
-	background-color: var(--offwhite);
+	background-color: var(--white);
 }
 
 .dark {
@@ -547,6 +548,7 @@ ul {
 	background-color: var(--darker);
 	font-weight: bold;
 	font-size: 1em;
+	/* font-variant: small-caps; */
 }
 
 .font-arial {
@@ -681,6 +683,16 @@ ul {
 	}
 }
 
+@keyframes anim-scroll-horizontal {
+	0% {
+		background-position: 0px 0px;
+	}
+
+	100% {
+		background-position: -256px 0px;
+	}
+}
+
 .marquee {
 	--gap: 1.5rem;
 	display: flex;
@@ -733,7 +745,7 @@ ul {
 	}
 
 	.other-post {
-		width: 100%
+		width: 100%;
 	}
 
 	.homepage-row {
