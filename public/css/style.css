@@ -17,6 +17,7 @@
 
 html {
 	--white: white;
+	--offwhite: #F4F4F4;
 	--black: black;
 	--light: #3C3C3C;
 	--dark: #2E2D31;
@@ -28,7 +29,7 @@ html {
 	--drop-shadow: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.45));
 
 	position: relative;
-	color: var(--white);
+	color: var(--offwhite);
 	font-family: 'dustismo_romanregular';
 	/* font-size: min(2vmax, 1.5em); */
 	margin: 0;
@@ -40,6 +41,7 @@ html {
 	box-sizing: border-box;
 	height: inherit;
 	overflow-x: hidden;
+	/* text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.45); */
 }
 
 main {
@@ -133,7 +135,7 @@ iframe {
 		linear-gradient(to bottom, var(--grid-color) var(--grid-strength), transparent var(--grid-strength)); */
 }
 
-.yt-embed{
+.yt-embed {
 	width: 100% !important;
     height: auto !important;
     aspect-ratio: 560 / 315 !important;
@@ -154,9 +156,14 @@ h1 {
 	margin-bottom: 0.1em;
 }
 
+h2 {
+	margin-top: 1em;
+	margin-bottom: 0em;
+}
+
 h3 {
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
+	margin-top: 1em;
+	margin-bottom: 0em;
 }
 
 h5 {
@@ -166,9 +173,11 @@ h5 {
 
 li {
 	padding-top: 0.5em;
+	font-size: 0.90rem;
 }
 
 ul {
+	margin-top: 0em;
 	padding-left: 1.5em;
 }
 
@@ -358,11 +367,17 @@ ul {
 
 .title-link {
 	text-decoration: none;
-	color: var(--white);
+	color: var(--offwhite);
 }
 
 .subtitle {
 	font-style: italic;
+}
+
+.thumbnail-title {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	text-decoration: underline;
 }
 
 .download-button {
@@ -521,7 +536,7 @@ ul {
 }
 
 .white {
-	background-color: var(--white);
+	background-color: var(--offwhite);
 }
 
 .dark {
@@ -530,6 +545,8 @@ ul {
 
 .darker {
 	background-color: var(--darker);
+	font-weight: bold;
+	font-size: 1em;
 }
 
 .font-arial {

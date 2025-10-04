@@ -1,13 +1,13 @@
 ---
 title: Tactical Desktop Action
 date: 2024-10-01
-updated: 2024-10-01
+updated: 2025-10-01
 author: Skeletom
-brief: Beloved VTuber and Metal Gear fanatic Mint Fantome infiltrates your desktop as a digital assistant!
+brief: Beloved VTuber and Metal Gear fanatic Mint Fantôme infiltrates your desktop as a digital assistant!
 thumb: /img/projects/mint-birthday-2024/banner.png
-tags: vtubers,c#,unity,fan game,mint,desktop toy,mgs,metal gear,toy
+tags: vtubers,c#,unity,fan game,mint,desktop toy,mgs,metal gear,toy,fantome
 release: https://skeletom-ch.itch.io/tactical-desktop-action
-version: v1.0.1
+version: v1.1.0
 platforms: Windows
 ---
 
@@ -23,9 +23,11 @@ This app was made in roughly 2 months, and released in honor of [Mint Fantôme](
 
 In addition to wandering around your desktop and windows, Mint comes equipped with the following features:
 
-* Drag-and-drop Music Player!
+* **NEW:** YouTube Go-Live Alerts!
+* **NEW:** Calendar and Event Alerts (with [.ICS](https://en.wikipedia.org/wiki/ICalendar) compatibility)!
+* Drag-and-drop Music Player (.MP3, .WAV and .FLAC)!
 * Natural Language Question Processor (courtesy of Wolfram Alpha!)
-* Clock and Timer!
+* World Clock and Countdown Alarm!
 * Notepad!
 * Photo Mode!
 
@@ -47,7 +49,7 @@ Mint was also pretty happy to recieve this gift! You can watch her live reaction
 ## Credits
 
 * Project Lead / Programming: Tom "Skeletom" Farro ([@FomTarro](https://twitter.com/fomtarro))
-* 3D Character / Prop Modeling: BIGHAM (([@BIGHAM_vt](https://bsky.app/profile/bigham.bsky.social)))
+* 3D Character / Prop Modeling: BIGHAM ([@BIGHAM_vt](https://bsky.app/profile/bigham.bsky.social))
 * 3D Character Animation: Dillon ([@gunpuncher](https://twitter.com/gunpuncher))
 * Mint Portrait Illustration: Advarcher ([@Anonamos_701](https://twitter.com/Anonamos_701))
 * Shader Programming: Millennium Cyborg ([@y2k_cyborg](https://twitter.com/y2k_cyborg))

@@ -159,7 +159,7 @@ async function embedPostInTemplate(post, template, templateMap){
 
     if(dom.window.document.querySelector('#related-posts')){
         for(const classification of dom.window.document.querySelectorAll('.related-classification')){
-            classification.innerHTML = post.classification === "blogs" ? "Projects" : "Blogs Posts";
+            classification.innerHTML = post.classification === "blogs" ? "projects" : "blogs posts";
         }
         if(post.related.length > 0){
             for(const relatedPost of post.related){
