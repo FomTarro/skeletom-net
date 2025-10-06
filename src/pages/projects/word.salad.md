@@ -41,5 +41,3 @@ You can check out the launch trailer here. I was on a huge "Pokémon: Battle Rev
 
 - The voice sample I use in the trailer is of Rodger Parsons, who serves as the primary narrator of the Pokémon Anime, as well as the shoutcaster for the "Pokémon: Battle Revolution" video game.
 - Big shoutout to [Izve Mashina](https://izve.lmaonice.com) for making the logo!
-
----

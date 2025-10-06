@@ -88,9 +88,8 @@ In addition, as mentioned above, I typically stream all of the work I do on this
 
 ## FAQ
 
-**Q: "What devices are supported?"**
-
-**A: This plugin supports any device that is supported by:**
+### Q: "What devices are supported?"
+### A: This plugin supports any device that is supported by:
 
 * [Pulsoid (compatibility list)](https://www.blog.pulsoid.net/monitors?from=faq)
 * [HypeRate (compatibility list)](https://www.hyperate.io/supported-devices)

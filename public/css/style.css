@@ -100,11 +100,22 @@ a:hover {
 }
 
 code {
-	padding: 2px 4px;
+	padding: 1px 2px;
     font-family: "Roboto Mono", monospace;
-    line-height: 1.5;
+    /* line-height: 1.5; */
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 4px;
+}
+
+pre {
+	background-color: rgba(255, 255, 255, 0.15);
+	border-radius: 4px;
+	padding: 2px 4px;
+	overflow: auto;
+	code {
+		padding: 0;
+		background-color: rgba(255, 255, 255, 0);
+	}
 }
 
 video {
@@ -258,7 +269,7 @@ ul {
 	max-height: 12em;
 	max-width: 100%;
 	filter: var(--drop-shadow);
-	padding-bottom: 0.75em;
+	/* padding-bottom: 0.75em; */
 }
 
 .item {
@@ -289,7 +300,7 @@ ul {
 	height: 1em;
 	width: fit-content;
 	box-sizing: content-box;
-	line-height: 1em;
+	line-height: 1.1em;
 	overflow-y: hidden;
 }
 
@@ -334,7 +345,7 @@ ul {
 
 #bust {
 	padding-bottom: 1.5em;
-	max-height: 15em;
+	max-height: 17em;
 }
 
 #stamp {
@@ -713,6 +724,7 @@ ul {
 	font-weight: bold;
 	text-decoration: none;
 	color: var(--darker);
+	line-height: 1.5em;
 }
 
 .marquee-link:hover {
