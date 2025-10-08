@@ -182,8 +182,7 @@ Because <span class="highlight">an `RRULE` can potentially recur forever, we can
     - If the `UNTIL` parameter is present, remove all potential dates that occur after the given date.
     - Finally, remove all potential dates that occur before our `RANGE_START` or after our `RANGE_END` dates.
 
-And there you have it! <span class="highlight">The resulting list of dates represent every occurrence of the event within the desired range</span>. I'm sure there's room for optimization, but we're not actually in the '90s any more. We can afford the computational overhead (though I will continue to try to work on optimization when I can!)
-    
+And there you have it! <span class="highlight">The resulting list of dates represent every occurrence of the event within the desired range</span>. I'm sure there's room for optimization, but despite what all this work with the format may have you thinking, we're not actually in the '90s any more! We can afford the computational overhead (but I will continue to think about ways to optimize when making updates).
 
 ### Why Didn't You Just Use ical.NET?
 
@@ -197,7 +196,7 @@ While all the aformentioned complexities certainly vexed me, I was genuinely ver
 ---
 
 ## Closing Remarks
-I genuinely cannot fathom why anyone would reach the end of this article organically, but thank you for doing so. As hinted at by the end of the release trailer, I have yet another big update planned for "*Tactical Desktop Action*", this one featuring mini-games. And hopefully good ones at that! Please look forward to them, hopefully releasing sooner than Mint's next birthday.
+I genuinely cannot fathom why anyone would reach the end of this article organically, but thank you for doing so. As hinted at by the end of the release trailer, I have yet another big update planned for "*Tactical Desktop Action*", this one featuring mini-games. And hopefully good ones at that! Please look forward to them, ideally releasing sooner than Mint's next birthday.
 
 If you got this far, please ping me with the phrase "*I READ THE TACTICAL DESKTOP ACTION 1.1.0 RELEASE NOTES AND ALL I GOT WAS THIS LOUSY COMMAND.*" on any platform of your choosing. Hell, even <a href="mailto:tom@skeletom.net">Email</a> me. It's fine.
 
