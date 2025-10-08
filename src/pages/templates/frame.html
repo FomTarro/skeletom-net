@@ -34,7 +34,7 @@
                             <!-- <div class="title font-black italic">skeletom.net</div> -->
                         </div>
                         <div class="darker item-label-below item">
-                            <span><a href="/">home</a> | <a href="/projects">projects</a> | <a href="/blogs">blogs</a> | <a href="/stream">streams</a></span>
+                            <span><a href="/">Home</a> | <a href="/projects">Projects</a> | <a href="/blogs">Blogs</a> | <a href="/stream">Streams</a></span>
                         </div>
                     </div>
                 </header>
@@ -62,6 +62,8 @@
                         <a href="https://dotlvl.neocities.org/" target="_blank"><img src="https://dotlvl.neocities.org/aboutme/dotlvlbutton.png"></a>
                         <a href="https://izve.lmaonice.com/"><img src="https://izve.lmaonice.com/img/izve-btn.gif"></a>
                         <!-- <img src="img/88x31/pokemon.gif"> -->
+                        <a href="https://munchroome.dog/"><img src="https://munchroome.dog/wp-content/uploads/2025/04/munchroome-button.png"></a>
+                        <!-- <img src="img/88x31/pokemon.gif"> -->
                         <a href="https://www.youtube.com/watch?v=9OmVRQGMKAg" target="_blank"><img src="/img/88x31/italian.gif"></a>
                         <img src="/img/88x31/anybrowser3.gif">
                         <a href="https://www.w3.org/TR/2011/WD-html5-20110405/" target="_blank"><img src="/img/88x31/valid-html5.gif"></a>
@@ -70,6 +72,7 @@
                     <div class="row webring-tray fill flex-center">
                         <a href="https://skeletom.net"><img src="/img/88x31/MOLTO_BENE.gif"></a>
                         <input id="widget-url" type="text" style="box-sizing: border-box; width: calc(176px + 1rem)" readonly value='<a href="https://skeletom.net"><img src="https://skeletom.net/img/88x31/MOLTO_BENE.gif"></a>'></input>
+                        <button onclick=copyURL()> Copy HTML</button>
                     </div>
                     <div class="webring-nav">
                         <link rel="stylesheet" href="/css/vtuber.webring.css">
@@ -84,4 +87,21 @@
             </div>
         </main>
     </body>
+    <script>
+    function copyURL(){
+        const copyZone = document.querySelector('#widget-url');
+        copyZone.focus();
+        copyZone.select();
+        try {
+            const successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Copying was ' + msg);
+        } catch (err) {
+            console.log('Unable to copy');
+        }
+    }
+    function setDimensions(){
+        // Do nothing
+    }
+</script>
 </html>

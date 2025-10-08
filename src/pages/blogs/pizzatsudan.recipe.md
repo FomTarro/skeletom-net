@@ -11,7 +11,7 @@ tags: pizza,cooking,baking,pizzatsudan,food,🍕
 
 ## The Recipe
 
-I won't bore you with some longwinded personal anecdotte before getting to the recipe, like some cooking blogs. We'll get right to it. If YOU want to make <input type=number value=2 min=1 max=100 id="quantity"> small pizza pies, you will need...
+I won't bore you with some longwinded personal anecdote before getting to the recipe, like some cooking blogs. So, if YOU want to make <input type=number value=2 min=1 max=100 id="quantity"> small pizza pies, you will need...
 
 - <span class="quantity italic highlight" id="water" initial=1.5>1.5</span> Cups of Warm Water
 - <span class="quantity italic highlight" id="oil" initial=1.5>1.5</span> Tablespoons of Olive Oil
