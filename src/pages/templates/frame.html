@@ -72,6 +72,7 @@
                     <div class="row webring-tray fill flex-center">
                         <a href="https://skeletom.net"><img src="/img/88x31/MOLTO_BENE.gif"></a>
                         <input id="widget-url" type="text" style="box-sizing: border-box; width: calc(176px + 1rem)" readonly value='<a href="https://skeletom.net"><img src="https://skeletom.net/img/88x31/MOLTO_BENE.gif"></a>'></input>
+                        <button onclick=copyURL()> Copy HTML</button>
                     </div>
                     <div class="webring-nav">
                         <link rel="stylesheet" href="/css/vtuber.webring.css">
@@ -86,4 +87,21 @@
             </div>
         </main>
     </body>
+    <script>
+    function copyURL(){
+        const copyZone = document.querySelector('#widget-url');
+        copyZone.focus();
+        copyZone.select();
+        try {
+            const successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Copying was ' + msg);
+        } catch (err) {
+            console.log('Unable to copy');
+        }
+    }
+    function setDimensions(){
+        // Do nothing
+    }
+</script>
 </html>

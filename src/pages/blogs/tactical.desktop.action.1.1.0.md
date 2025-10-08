@@ -33,16 +33,18 @@ Happy birthday, Mint! This was a fun one to put together, with some features tha
 - The application now <span class="highlight">properly handles launching on secondary monitors</span> (previously failed to calculate window borders).
 
 
-If you find any other bugs or have any feature requests, please let me know! The best way to reach me is via <a href="mailto:tom@skeletom.net?subject=Tactical Desktop Action Bug Report">Email</a> <span class="highlight fa fa-sm fa-envelope"></span>, but my DMs are open on most platforms, too!
+If you find any other bugs or have any feature requests, please let me know!
+The best way to reach me is via <a href="mailto:tom@skeletom.net?subject=Tactical Desktop Action Bug Report">Email</a>, but my DMs are open on most platforms, too!
 
 ---
 
 ## Behind The Scenes
 
-Now for the part of the blog post where I go in to excruciating detail about the work behind getting this update out the door. The new features might look rather mundane, but there was a lot of learning involved.
+Now for the part of the blog post where I go in to excruciating detail about the work behind getting this update out the door.
+The new features might look rather mundane, but there was a lot of learning involved.
 
 ## YouTube Alerts
-### A Brief Summary of Network Protocols
+### A Brief Summary of Network Protocols: Socket To 'Em
 In the world of networked systems, there are two major protocols for communication: [HTTP](https://en.wikipedia.org/wiki/HTTP) and [WebSocket](https://en.wikipedia.org/wiki/WebSocket). You are undoubtedly already familiar with the first, even if you have no engineering background! 
 
 With <span class="highlight">HTTP</span>, the client makes a <span class="highlight">single request</span> to an address, and then waits to receive a <span class="highlight">single response</span> from the server. Great for transactional behavior, like asking for a web page!
@@ -66,7 +68,7 @@ A natural solution here would just be to further decrease the frequency of the p
 
 For example, we can hit up the address [`https://www.youtube.com/feeds/videos.xml?channel_id=UCr5N4CrcoegFpm7fR5a_ORg`](https://www.youtube.com/feeds/videos.xml?channel_id=UCr5N4CrcoegFpm7fR5a_ORg) to get a list of my most recent dozen-or-so videos. If I were streaming on YouTube, this list would also include upcoming scheduled streams. So, from this document, we can pluck out the most recent Video IDs for a channel for free, and then poll the `videos/list` request at our desired frequency as originally planned. Now, what do we do with this information?
 
-### Righting the Wrongs
+### Righting the Wrongs: Doing It Ourselves
 Since YouTube won't give us one, we'll just <span class="highlight">make our own WebSocket server</span>. As established, a single poller checking for video status every 10 seconds consumes nearly the entire daily quota, so it is completely infeasible to have every individual instance of "*Tactical Desktop Action*" do its own polling. Instead, they all connect to a central WebSocket server that I've deployed here on [skeletom.net](https://www.skeletom.net). <span class="highlight">My singular server handles the polling</span>, and dispatches stream information to clients once when they connect and then again whenever there is a status update. In this way, <span class="highlight">we can handle an extremely high and variable number of clients while maintaining a fixed quota consumption</span>.
 
 Once I got this up and running for Mint's channel, I began thinking about a design pattern that would let me expand this coverage to more channels. After all, I have made [quite a few desktop toys](../../projects?tags=desktop%20toy) and it would be nice to eventually backport this feature to all of them. The good news is, that for all of its shortcomings, the YouTube API *does* permit you to batch your requests together to save on quota. That is to say, <span class="highlight">we can include Video IDs from multiple channels</span> in our `videos/list` request. 
@@ -81,27 +83,122 @@ Like all good standards on the internet, the [iCalendar (.ICS) format](https://e
 
 Anyway, ICS is simple and text-based. But it's not [XML](https://en.wikipedia.org/wiki/XML) (which was also invented in 1998), and it's not [JSON](https://en.wikipedia.org/wiki/JSON) (which was invented in 1999), it's a third thing!
 
-An extremely simple ICS file looks something like this:
+An extremely minimal ICS file looks something like this:
 ```
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//hacksw/handcal//NONSGML v1.0//EN
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
 BEGIN:VEVENT
 UID:123-ABC-456
 DTSTART:20050228T100000Z
-SUMMARY:Feed my 50 Huskies
+SUMMARY:Dog-sledding Practice
 END:VEVENT
 END:VCALENDAR
 ```
 
-Similarly to XML, the ICS format features verbose start and end tags for components (here denoted with `BEGIN:` and `END:`), and can also feature components nested within eachother (for example, the `VEVENT` component is nested within a `VCALENDAR`). Properties can be interperted in `KEY:VALUE` pairs
+Here, we have a calendar with a single event, titled "*Dog-sledding Practice*", which occurs on February 28th, 2005 at 10 AM GMT.
+
+Similarly to XML, the ICS format features <span class="highlight">verbose start and end tags for components</span> (here denoted with `BEGIN:` and `END:`), and can also feature <span class="highlight">components nested within eachother</span> (for example, the `VEVENT` component is nested within a `VCALENDAR`). <span class="highlight">Properties are presented in `KEY:VALUE` pairs</span> (for example, the property `VERSION` has a value of `2.0`). Because this is a specialty format used only for this one thing, <span class="highlight">modern programming languages don't typically ship with parsers for ICS</span>, as they do for XML and JSON (which are usage-agnostic, general purpose formats).
+
+That's fine, though. Seems simple enough to write our own parser for, right? Just split the file on line breaks, and split the lines on colons. Every time you hit a new  `BEGIN:` tag, store all subsequent properties in a new component until you hit an `END:` tag.
+
+Well, not quite. The [IETF](https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force) decided that no individual line of an ICS file may exceed 75 octets (8 bits). Apparently, this was done because some contemporary sytems of the era were *so* memory-bound that they [could not handle longer lines](https://www.rfc-editor.org/rfc/rfc5322.html#section-2.1.1). The '90s were a different time, indeed. So what do you do if you have a line that needs to be longer? You "[*fold*](https://icalendar.org/iCalendar-RFC-5545/3-1-content-lines.html)" it.
+
+```
+DESCRIPTION:This is a long description that exists on a long line.
+```
+Becomes...
+```
+DESCRIPTION:This is a lo
+ ng description
+  that exists on a long line.
+```
+Thus, to "*unfold*", you must search for leading whitespace on a line, and, if present, append that line the the prior line, removing the whitespace. I used a [RegEx](https://en.wikipedia.org/wiki/Regular_expression) for this. Your mileage may vary. But, once we unfold, we can finally parse line-by-line.
+
+Next, we need to know that <span class="highlight">properties may also have parameters</span>, in addition to their values. These are denoted by a leading semicolon, a parameter name, an equal sign, and a parameter value, like so:
+```
+DTSTART:20060228T100000;TZID=America/New_York
+```
+<span class="font-tiny translucent italic caption">A start time with a Time Zone ID specified.</span>
+
+Lastly, we need to know that <span class="highlight">property values and property parameters can occur in any order</span>. For example, this property also valid and is functionally identical to the prior one:
+```
+DTSTART;TZID=America/New_York:20060228T100000
+```
+<span class="font-tiny translucent italic caption">A start time with a Time Zone ID specified, in an alternate order.</span>
 
 
+With all of this knowledge, we can finally assemble our data model for ICS. Each pair of `BEGIN:` and `END:` tags forms a `Component` object, which itself contains a list of nested `Component` objects and a list of `Property` objects. Each unfolded line that isnt a `BEGIN:` or `END:` tag becomes one of those `Property` objects, which contains a `Value` string, as well as a map of string-to-string `Parameter` pairs.
 
-Oh, just split the file on newlines. Allow me to introduce "folding".
+### The Loathsome RRULE: Do It Again
+Unfortunately, there's one property that kind of <span class="highlight">breaks the established patterns</span>. And it's an important one. It's called the `RRULE`, or "[*Recurrence Rule*](https://icalendar.org/iCalendar-RFC-5545/3-3-10-recurrence-rule.html)".
 
-### The Loathsome RRULE
-Intuitive to read for a human, profoundly complex for a machine.
+They're somewhat intuitive to read for a human, but surprisingly complex for a machine. Let's write a rule to make our event recur every day in February in 2005 and 2006.
+```
+RRULE:FREQ=DAILY;UNTIL=20060228T100000Z;BYMONTH=2
+```
+<span class="font-tiny translucent italic caption">Every day, in Month 2, until February 28th, 2006.</span>
+
+Or...
+```
+RRULE:FREQ=YEARLY;UNTIL=20060228T100000Z;
+ BYMONTH=2;BYDAY=SU,MO,TU,WE,TH,FR,SA
+```
+<span class="font-tiny translucent italic caption">Every year, in Month 2, on Sunday, Monday, Tuesday, Wednesday, Thursday, Friday and Saturday, until February 28th, 2006.</span>
+
+Or...
+```
+RRULE:FREQ=MONTHLY;UNTIL=20060228T100000Z;
+ INTERVAL=12;BYDAY=SU,MO,TU,WE,TH,FR,SA
+```
+<span class="font-tiny translucent italic caption">Every 12 months, on Sunday, Monday, Tuesday, Wednesday, Thursday, Friday and Saturday, until February 28th, 2006.</span>
+
+
+Or... Well, I could go on and on. But hey, did you notice that?
+```
+RRULE:FREQ=MONTHLY;
+```
+
+Huh? Why is the value of an `RRULE` formatted like a parameter? That throws our whole parsing process into disarray. It's particularly confusing because, according to the [iCalendar guidelines](https://icalendar.org/iCalendar-RFC-5545/3-3-10-recurrence-rule.html), the only valid value types for the `RRULE` are frequencies. So why specify that the value is a frequency at all?
+
+Anyway, once we fix our parsing to account for that, <span class="highlight">we still have to actually interpert the meaning of the `RRULE`</span>. This was tricky for me to wrap my head around, so I'll do my best to summarize. 
+
+Because <span class="highlight">an `RRULE` can potentially recur forever, we can't simply pre-process them to generate a definitive list of all recurrences</span> for every event when loading a calendar. Instead, <span class="highlight">they need to be evaluated within the scope of a `RANGE_START` date and a `RANGE_END` date</span>, which is fine, because a calendar is only ever viewed in slices anyway, be they weeks, months, or years. Once we define those bounds, we can take the following steps:
+
+- Generate list of all potential dates.
+    - Start with your first occurrence date (`DTSTART` property) and extend a number of days based on the `FREQ` value. For example, a `WEEKLY` frequency would extend 7 days from the first occurrence.
+    - Jump ahead to the next start date by multiplying the frequency by the `INTERVAL` parameter, if it exists. For example, a `WEEKLY` frequency with `INTERVAL=2` would advance 14 days (7 days * 2 intervals) from the previous start date.
+    - Repeat this process until the next start date is later than the `RANGE_END` date specified by our evaluation range.
+- Apply default values to our filters if needed.
+    - If the rule is of `WEEKLY` frequency and does not specify a `BYDAY`, `BYWEEK`, `BYMONTHDAY` or `BYMONTH` parameter, add the day of the week of the `DTSTART` date to `BYDAY`.
+    - If the rule is less frequent than `WEEKLY` and does not specify a `BYDAY`, `BYWEEK`, `BYMONTHDAY` or `BYMONTH` parameter, add the day of the month of the `DTSTART` date to `BYMONTHDAY`.
+    - If the rule is less frequent than `MONTHLY` and does not specify a `BYWEEK` or `BYMONTH` parameter, add the month of the `DTSTART` date to `BYMONTH`.
+- Begin pruning the list of potential dates based on filter criteria.
+    - If the `BYMONTH` parameter is present, remove potential dates that are not within the listed months.
+    - If the `BYYEARDAY` parameter is present, remove potential dates that are not on the listed days of the year.
+    - If the `BYMONTHDAY` parameter is present, remove potential dates that are not on the listed days of the month.
+    - If the `BYDAY` parameter is present, remove potential dates that are not on the listed days of the week.
+    - If the `COUNT` parameter is present, trim the list of potential dates to match the given length.
+    - If the `UNTIL` parameter is present, remove all potential dates that occur after the given date.
+    - Finally, remove all potential dates that occur before our `RANGE_START` or after our `RANGE_END` dates.
+
+And there you have it! <span class="highlight">The resulting list of dates represent every occurrence of the event within the desired range</span>. I'm sure there's room for optimization, but we're not actually in the '90s any more. We can afford the computational overhead (though I will continue to try to work on optimization when I can!)
+    
 
 ### Why Didn't You Just Use ical.NET?
-Listen.
+
+Listen. I don't make these toys *just* to show off and impress my idols, I also make them to improve my design and engineering skills, While there *is* a robust, [existing, open-source C# library for ICS parsing called ical.NET](https://github.com/ical-org/ical.net), I encountered a few problems with it:
+
+- It required a version of C# newer than [what my version of Unity supported](https://docs.unity3d.com/2022.3/Documentation/Manual/CSharpCompiler.html).
+- I wouldn't gain any problem-solving skills from using it!
+
+While all the aformentioned complexities certainly vexed me, I was genuinely very interested to write my own parser. I don't get to work on pure algorithms too often, and this one dealt with recursion (for nested components), which is always a little daunting to think about. The resulting system is tailored to support the specific needs of my application, while also being lightweight enough for me to debug by myself. Much like the YouTube notifier, I am proud of it. I think it's some of my best work to date. And that, to me, is what really counts. Not just production speed, but personal growth.
+
+---
+
+## Closing Remarks
+I genuinely cannot fathom why anyone would reach the end of this article organically, but thank you for doing so. As hinted at by the end of the release trailer, I have yet another big update planned for "*Tactical Desktop Action*", this one featuring mini-games. And hopefully good ones at that! Please look forward to them, hopefully releasing sooner than Mint's next birthday.
+
+If you got this far, please ping me with the phrase "*I READ THE TACTICAL DESKTOP ACTION 1.1.0 RELEASE NOTES AND ALL I GOT WAS THIS LOUSY COMMAND.*" on any platform of your choosing. Hell, even <a href="mailto:tom@skeletom.net">Email</a> me. It's fine.
+
+Ciao!

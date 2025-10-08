@@ -105,6 +105,7 @@ code {
     /* line-height: 1.5; */
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 4px;
+	font-size: 0.80rem;
 }
 
 pre {
@@ -116,6 +117,7 @@ pre {
 		padding: 0;
 		background-color: rgba(255, 255, 255, 0);
 	}
+	margin: 0;
 }
 
 video {
@@ -190,6 +192,10 @@ li {
 ul {
 	margin-top: 0em;
 	padding-left: 1.5em;
+}
+
+p {
+	font-size: 0.95em;
 }
 
 .hidden {
