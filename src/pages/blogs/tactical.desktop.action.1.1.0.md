@@ -51,7 +51,7 @@ With <span class="highlight">HTTP</span>, the client makes a <span class="highli
 
 Meanwhile, with <span class="highlight">WebSockets</span>, the client makes a <span class="highlight">single request</span> to an address, and then maintains a <span class="highlight">persistent connection</span> to the server. This, in turn, <span class="highlight">allows the server to push information back to the client whenever</span>, without needing to be asked for it first. 
 
-So, if you wanted to get notified every time a specific channel on the mega-giant streaming platform YouTube went live, which protocol do you think you'd want to use? WebSocket, right? Connect to the YouTube API server, provide it with a little information about what you're looking for, and then every time your channel went live, the server could proactively push a message to your client. Seems efficient and straighforward!
+So, if you wanted to get notified every time a specific channel on the mega-giant streaming platform YouTube went live, which protocol do you think you'd want to use? WebSocket, right? Connect to the YouTube API server, provide it with a little information about what you're looking for, and then every time your channel went live, the server could proactively push a message to your client. Seems efficient and straightforward!
 
 Wrong! <span class="highlight">YouTube doesn't have a WebSocket API</span>. That would be too easy, too logical. Twitch does (called "[EventSub](https://dev.twitch.tv/docs/eventsub/)"). But YouTube does not.
 
@@ -98,11 +98,11 @@ END:VCALENDAR
 
 Here, we have a calendar with a single event, titled "*Dog-sledding Practice*", which occurs on February 28th, 2005 at 10 AM GMT.
 
-Similarly to XML, the ICS format features <span class="highlight">verbose start and end tags for components</span> (here denoted with `BEGIN:` and `END:`), and can also feature <span class="highlight">components nested within eachother</span> (for example, the `VEVENT` component is nested within a `VCALENDAR`). <span class="highlight">Properties are presented in `KEY:VALUE` pairs</span> (for example, the property `VERSION` has a value of `2.0`). Because this is a specialty format used only for this one thing, <span class="highlight">modern programming languages don't typically ship with parsers for ICS</span>, as they do for XML and JSON (which are usage-agnostic, general purpose formats).
+Similarly to XML, the ICS format features <span class="highlight">verbose start and end tags for components</span> (here denoted with `BEGIN:` and `END:`), and can also feature <span class="highlight">components nested within each other</span> (for example, the `VEVENT` component is nested within a `VCALENDAR`). <span class="highlight">Properties are presented in `KEY:VALUE` pairs</span> (for example, the property `VERSION` has a value of `2.0`). Because this is a specialty format used only for this one thing, <span class="highlight">modern programming languages don't typically ship with parsers for ICS</span>, as they do for XML and JSON (which are usage-agnostic, general purpose formats).
 
 That's fine, though. Seems simple enough to write our own parser for, right? Just split the file on line breaks, and split the lines on colons. Every time you hit a new  `BEGIN:` tag, store all subsequent properties in a new component until you hit an `END:` tag.
 
-Well, not quite. The [IETF](https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force) decided that no individual line of an ICS file may exceed 75 octets (8 bits). Apparently, this was done because some contemporary sytems of the era were *so* memory-bound that they [could not handle longer lines](https://www.rfc-editor.org/rfc/rfc5322.html#section-2.1.1). The '90s were a different time, indeed. So what do you do if you have a line that needs to be longer? You "[*fold*](https://icalendar.org/iCalendar-RFC-5545/3-1-content-lines.html)" it.
+Well, not quite. The [IETF](https://en.wikipedia.org/wiki/Internet_Engineering_Task_Force) decided that no individual line of an ICS file may exceed 75 octets (8 bits). Apparently, this was done because some contemporary systems of the era were *so* memory-bound that they [could not handle longer lines](https://www.rfc-editor.org/rfc/rfc5322.html#section-2.1.1). The '90s were a different time, indeed. So what do you do if you have a line that needs to be longer? You "[*fold*](https://icalendar.org/iCalendar-RFC-5545/3-1-content-lines.html)" it.
 
 ```
 DESCRIPTION:This is a long description that exists on a long line.
@@ -161,7 +161,7 @@ RRULE:FREQ=MONTHLY;
 
 Huh? Why is the value of an `RRULE` formatted like a parameter? That throws our whole parsing process into disarray. It's particularly confusing because, according to the [iCalendar guidelines](https://icalendar.org/iCalendar-RFC-5545/3-3-10-recurrence-rule.html), the only valid value types for the `RRULE` are frequencies. So why specify that the value is a frequency at all?
 
-Anyway, once we fix our parsing to account for that, <span class="highlight">we still have to actually interpert the meaning of the `RRULE`</span>. This was tricky for me to wrap my head around, so I'll do my best to summarize. 
+Anyway, once we fix our parsing to account for that, <span class="highlight">we still have to actually interpret the meaning of the `RRULE`</span>. This was tricky for me to wrap my head around, so I'll do my best to summarize. 
 
 Because <span class="highlight">an `RRULE` can potentially recur forever, we can't simply pre-process them to generate a definitive list of all recurrences</span> for every event when loading a calendar. Instead, <span class="highlight">they need to be evaluated within the scope of a `RANGE_START` date and a `RANGE_END` date</span>, which is fine, because a calendar is only ever viewed in slices anyway, be they weeks, months, or years. Once we define those bounds, we can take the following steps:
 
@@ -191,7 +191,7 @@ Listen. I don't make these toys *just* to show off and impress my idols, I also 
 - It required a version of C# newer than [what my version of Unity supported](https://docs.unity3d.com/2022.3/Documentation/Manual/CSharpCompiler.html).
 - I wouldn't gain any problem-solving skills from using it!
 
-While all the aformentioned complexities certainly vexed me, I was genuinely very interested to write my own parser. I don't get to work on pure algorithms too often, and this one dealt with recursion (for nested components), which is always a little daunting to think about. The resulting system is tailored to support the specific needs of my application, while also being lightweight enough for me to debug by myself. Much like the YouTube notifier, I am proud of it. I think it's some of my best work to date. And that, to me, is what really counts. Not just production speed, but personal growth.
+While all the aforementioned complexities certainly vexed me, I was genuinely very interested to write my own parser. I don't get to work on pure algorithms too often, and this one dealt with recursion (for nested components), which is always a little daunting to think about. The resulting system is tailored to support the specific needs of my application, while also being lightweight enough for me to debug by myself. Much like the YouTube notifier, I am proud of it. I think it's some of my best work to date. And that, to me, is what really counts. Not just production speed, but personal growth.
 
 ---
 
