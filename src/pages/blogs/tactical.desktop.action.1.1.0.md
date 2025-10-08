@@ -71,6 +71,11 @@ For example, we can hit up the address [`https://www.youtube.com/feeds/videos.xm
 ### Righting the Wrongs: Doing It Ourselves
 Since YouTube won't give us one, we'll just <span class="highlight">make our own WebSocket server</span>. As established, a single poller checking for video status every 10 seconds consumes nearly the entire daily quota, so it is completely infeasible to have every individual instance of "*Tactical Desktop Action*" do its own polling. Instead, they all connect to a central WebSocket server that I've deployed here on [skeletom.net](https://www.skeletom.net). <span class="highlight">My singular server handles the polling</span>, and dispatches stream information to clients once when they connect and then again whenever there is a status update. In this way, <span class="highlight">we can handle an extremely high and variable number of clients while maintaining a fixed quota consumption</span>.
 
+<img src=/img/projects/mint-birthday-2024/mint_network.png>
+<br>
+<span class="font-tiny translucent italic caption">A diagram illustrating how our web server can handle many clients without increasing YouTube API quota consumption.</span>
+
+
 Once I got this up and running for Mint's channel, I began thinking about a design pattern that would let me expand this coverage to more channels. After all, I have made [quite a few desktop toys](../../projects?tags=desktop%20toy) and it would be nice to eventually backport this feature to all of them. The good news is, that for all of its shortcomings, the YouTube API *does* permit you to batch your requests together to save on quota. That is to say, <span class="highlight">we can include Video IDs from multiple channels</span> in our `videos/list` request. 
 
 With this knowledge in mind, I designed a system with a central polling engine that fires at a fixed frequency, which contains a map linking Channel IDs to callback functions. The system goes through the list of Channel IDs, queries their RSS feeds, and populates a list of Video IDs for each Channel ID. This allows us to remember previous the status of each video, and also allows us to link Video IDs back to specific Channels. When a stream finally goes from being offline to being live, we can easily find which Channel ID it belongs to, and therefore which callback function to execute. In this specific example, the callback is "*notify all WebSocket clients who care about this channel with a structured message*", but with the way the system is designed, it could be anything you'd like.
@@ -183,6 +188,11 @@ Because <span class="highlight">an `RRULE` can potentially recur forever, we can
     - Finally, remove all potential dates that occur before our `RANGE_START` or after our `RANGE_END` dates.
 
 And there you have it! <span class="highlight">The resulting list of dates represent every occurrence of the event within the desired range</span>. I'm sure there's room for optimization, but despite what all this work with the format may have you thinking, we're not actually in the '90s any more! We can afford the computational overhead (but I will continue to think about ways to optimize when making updates).
+
+<img src=/img/projects/mint-birthday-2024/mint_calendar.png>
+<br>
+<span class="font-tiny translucent italic caption">A calendar with recurring events in all of its glory.</span>
+
 
 ### Why Didn't You Just Use ical.NET?
 
