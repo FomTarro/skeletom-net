@@ -84,6 +84,7 @@ class YouTubeClient {
         if (response.status >= 200 && response.status < 300) {
             const json = await response.json();
             const id = json.items ? json.items[0].id : undefined;
+            console.log(`ID of ${id} for channel ${channelHandle}`);
             return id;
         } else {
             console.error(`Error fetching channel ID for channel ID ${channelHandle} - ${response.statusText}`);

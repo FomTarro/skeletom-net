@@ -33,7 +33,7 @@ Happy birthday, Mint! This was a fun one to put together, with some features tha
 - The application now <span class="highlight">properly handles launching on secondary monitors</span> (previously failed to calculate window borders).
 
 
-If you find any other bugs or have any feature requests, please let me know!
+If you find any bugs or have any feature requests, please let me know!
 The best way to reach me is via <a href="mailto:tom@skeletom.net?subject=Tactical Desktop Action Bug Report">Email</a>, but my DMs are open on most platforms, too!
 
 ---
@@ -69,7 +69,7 @@ A natural solution here would just be to further decrease the frequency of the p
 For example, we can hit up the address [`https://www.youtube.com/feeds/videos.xml?channel_id=UCr5N4CrcoegFpm7fR5a_ORg`](https://www.youtube.com/feeds/videos.xml?channel_id=UCr5N4CrcoegFpm7fR5a_ORg) to get a list of my most recent dozen-or-so videos. If I were streaming on YouTube, this list would also include upcoming scheduled streams. So, from this document, we can pluck out the most recent Video IDs for a channel for free, and then poll the `videos/list` request at our desired frequency as originally planned. Now, what do we do with this information?
 
 ### Righting the Wrongs: Doing It Ourselves
-Since YouTube won't give us one, we'll just <span class="highlight">make our own WebSocket server</span>. As established, a single poller checking for video status every 10 seconds consumes nearly the entire daily quota, so it is completely infeasible to have every individual instance of "*Tactical Desktop Action*" do its own polling. Instead, they all connect to a central WebSocket server that I've deployed here on [skeletom.net](https://www.skeletom.net). <span class="highlight">My singular server handles the polling</span>, and dispatches stream information to clients once when they connect and then again whenever there is a status update. In this way, <span class="highlight">we can handle an extremely high and variable number of clients while maintaining a fixed quota consumption</span>.
+Since YouTube won't give us one, we'll just <span class="highlight">make our own WebSocket server</span>. As established, a single poller checking for video status every 10 seconds consumes nearly the entire daily quota, so it is completely infeasible to have every individual instance of "*Tactical Desktop Action*" do its own polling. Instead, they all connect to a central WebSocket server that I've deployed here on [skeletom.net](https://www.skeletom.net). <span class="highlight">The singular server handles the polling</span>, and dispatches stream information to clients once when they connect to the socket, and then again whenever there is a status update. In this way, we can <span class="highlight">handle an extremely high and variable number of clients while maintaining a fixed quota consumption</span>.
 
 <img src=/img/projects/mint-birthday-2024/mint_network.png>
 <br>
@@ -78,7 +78,7 @@ Since YouTube won't give us one, we'll just <span class="highlight">make our own
 
 Once I got this up and running for Mint's channel, I began thinking about a design pattern that would let me expand this coverage to more channels. After all, I have made [quite a few desktop toys](../../projects?tags=desktop%20toy) and it would be nice to eventually backport this feature to all of them. The good news is, that for all of its shortcomings, the YouTube API *does* permit you to batch your requests together to save on quota. That is to say, <span class="highlight">we can include Video IDs from multiple channels</span> in our `videos/list` request. 
 
-With this knowledge in mind, I designed a system with a central polling engine that fires at a fixed frequency, which contains a map linking Channel IDs to callback functions. The system goes through the list of Channel IDs, queries their RSS feeds, and populates a list of Video IDs for each Channel ID. This allows us to remember previous the status of each video, and also allows us to link Video IDs back to specific Channels. When a stream finally goes from being offline to being live, we can easily find which Channel ID it belongs to, and therefore which callback function to execute. In this specific example, the callback is "*notify all WebSocket clients who care about this channel with a structured message*", but with the way the system is designed, it could be anything you'd like.
+With this knowledge in mind, I designed a system with a central polling engine that fires at a fixed frequency, which contains a map linking Channel IDs to callback functions. The system goes through the list of Channel IDs, queries their RSS feeds, and populates a list of Video IDs for each Channel ID. This allows us to remember previous the status of each video, and also allows us to link Video IDs back to specific Channels. We can then poll for status of all desired channels in a single batch. When a given Video ID finally goes from being offline to being live, we can easily find which Channel ID it belongs to, and therefore which callback function to execute. In this specific example, the callback is "*notify all WebSocket clients who care about this channel with a structured message*", but with the way the system is designed, it could be anything you'd like.
 
 This is a system I am proud of. You can check out the full implementation [on GitHub](https://github.com/FomTarro/skeletom-net/blob/c7ebd45ad71ff5a6280600f6d131c6ee54b64e69/src/adapters/streams/trackers/youtube.tracker.js), if you'd like.
 
@@ -100,10 +100,9 @@ SUMMARY:Dog-sledding Practice
 END:VEVENT
 END:VCALENDAR
 ```
+<span class="font-tiny translucent italic caption">A calendar with a single event, titled "*Dog-sledding Practice*", which occurs on February 28th, 2005 at 10 AM GMT.</span>
 
-Here, we have a calendar with a single event, titled "*Dog-sledding Practice*", which occurs on February 28th, 2005 at 10 AM GMT.
-
-Similarly to XML, the ICS format features <span class="highlight">verbose start and end tags for components</span> (here denoted with `BEGIN:` and `END:`), and can also feature <span class="highlight">components nested within each other</span> (for example, the `VEVENT` component is nested within a `VCALENDAR`). <span class="highlight">Properties are presented in `KEY:VALUE` pairs</span> (for example, the property `VERSION` has a value of `2.0`). Because this is a specialty format used only for this one thing, <span class="highlight">modern programming languages don't typically ship with parsers for ICS</span>, as they do for XML and JSON (which are usage-agnostic, general purpose formats).
+Similarly to XML, the ICS format features <span class="highlight">verbose start and end tags for components</span> (here denoted with `BEGIN:` and `END:`), and can also feature <span class="highlight">components nested within each other</span> (for example, the `VEVENT` component is nested within a `VCALENDAR`). <span class="highlight">Properties are presented in `KEY:VALUE` pairs</span> (for example, the `VERSION` property has a value of `2.0`). Because this is a specialty format used only for this one thing, <span class="highlight">modern programming languages don't ship with parsers for ICS</span>, as they often do for XML and JSON (which are usage-agnostic, general purpose formats).
 
 That's fine, though. Seems simple enough to write our own parser for, right? Just split the file on line breaks, and split the lines on colons. Every time you hit a new  `BEGIN:` tag, store all subsequent properties in a new component until you hit an `END:` tag.
 
@@ -133,12 +132,12 @@ DTSTART;TZID=America/New_York:20060228T100000
 <span class="font-tiny translucent italic caption">A start time with a Time Zone ID specified, in an alternate order.</span>
 
 
-With all of this knowledge, we can finally assemble our data model for ICS. Each pair of `BEGIN:` and `END:` tags forms a `Component` object, which itself contains a list of nested `Component` objects and a list of `Property` objects. Each unfolded line that isnt a `BEGIN:` or `END:` tag becomes one of those `Property` objects, which contains a `Value` string, as well as a map of string-to-string `Parameter` pairs.
+With all of this knowledge, we can finally assemble our data model for ICS. Each pair of `BEGIN:` and `END:` tags forms a `Component` object, which itself contains a list of nested `Component` objects and a list of `Property` objects. Each unfolded line that isn't a `BEGIN:` or `END:` tag becomes one of those `Property` objects, which contains a `Value` string, as well as a map of string-to-string `Parameter` pairs.
 
 ### The Loathsome RRULE: Do It Again
 Unfortunately, there's one property that kind of <span class="highlight">breaks the established patterns</span>. And it's an important one. It's called the `RRULE`, or "[*Recurrence Rule*](https://icalendar.org/iCalendar-RFC-5545/3-3-10-recurrence-rule.html)".
 
-They're somewhat intuitive to read for a human, but surprisingly complex for a machine. Let's write a rule to make our event recur every day in February in 2005 and 2006.
+These rules are somewhat intuitive to read for a human, but are surprisingly complex for a machine. Let's write a rule to make our event recur every day in February in 2005 and 2006.
 ```
 RRULE:FREQ=DAILY;UNTIL=20060228T100000Z;BYMONTH=2
 ```
@@ -166,9 +165,9 @@ RRULE:FREQ=MONTHLY;
 
 Huh? Why is the value of an `RRULE` formatted like a parameter? That throws our whole parsing process into disarray. It's particularly confusing because, according to the [iCalendar guidelines](https://icalendar.org/iCalendar-RFC-5545/3-3-10-recurrence-rule.html), the only valid value types for the `RRULE` are frequencies. So why specify that the value is a frequency at all?
 
-Anyway, once we fix our parsing to account for that, <span class="highlight">we still have to actually interpret the meaning of the `RRULE`</span>. This was tricky for me to wrap my head around, so I'll do my best to summarize. 
+Anyway, once we fix our parsing to account for that, <span class="highlight">we still have to actually interpret the meaning</span> of the `RRULE`. This was tricky for me to wrap my head around, so I'll do my best to summarize. 
 
-Because <span class="highlight">an `RRULE` can potentially recur forever, we can't simply pre-process them to generate a definitive list of all recurrences</span> for every event when loading a calendar. Instead, <span class="highlight">they need to be evaluated within the scope of a `RANGE_START` date and a `RANGE_END` date</span>, which is fine, because a calendar is only ever viewed in slices anyway, be they weeks, months, or years. Once we define those bounds, we can take the following steps:
+Because an `RRULE` can <span class="highlight">potentially recur forever, we can't simply pre-process them</span> to generate a definitive list of all recurrences for every event when loading a calendar. Instead, <span class="highlight">they need to be evaluated</span> within the scope of a `RANGE_START` date and a `RANGE_END` date, which is fine, because a calendar is only ever viewed in slices anyway, be they weeks, months, or years. Once we define those bounds, we can take the following steps:
 
 - Generate list of all potential dates.
     - Start with your first occurrence date (`DTSTART` property) and extend a number of days based on the `FREQ` value. For example, a `WEEKLY` frequency would extend 7 days from the first occurrence.
@@ -187,7 +186,7 @@ Because <span class="highlight">an `RRULE` can potentially recur forever, we can
     - If the `UNTIL` parameter is present, remove all potential dates that occur after the given date.
     - Finally, remove all potential dates that occur before our `RANGE_START` or after our `RANGE_END` dates.
 
-And there you have it! <span class="highlight">The resulting list of dates represent every occurrence of the event within the desired range</span>. I'm sure there's room for optimization, but despite what all this work with the format may have you thinking, we're not actually in the '90s any more! We can afford the computational overhead (but I will continue to think about ways to optimize when making updates).
+And there you have it! <span class="highlight">The resulting list of dates represent every occurrence of the event</span> within the desired range. I'm sure there's room for optimization, but despite what all this work with the format may have you thinking, we're not actually in the '90s any more! We can afford the computational overhead (but I will continue to think about ways to optimize when making updates).
 
 <img src=/img/projects/mint-birthday-2024/mint_calendar.png>
 <br>
