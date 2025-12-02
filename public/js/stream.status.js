@@ -3,6 +3,7 @@ const streamStatusSocket = new WebSocket(`${window.location.host.includes('local
 // Listen for messages
 streamStatusSocket.addEventListener("message", (event) => {
     const parsed = JSON.parse(event.data);
+    console.log(parsed);
     const isOnline = parsed.details && parsed.details.length > 0 && parsed.details[0].isLive;
     const details = parsed.details[0];
     for(const marquee of document.querySelectorAll('.stream-status-marquee')){
@@ -23,7 +24,9 @@ streamStatusSocket.addEventListener("message", (event) => {
         }
     }
     for(const address of document.querySelectorAll('.stream-address')){
-        address.innerHTML = details.url;
+        if(details){
+            address.innerHTML = details.url;
+        }
     }
     // Player Embed
     if(isOnline){
