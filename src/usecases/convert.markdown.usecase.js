@@ -21,6 +21,7 @@ const fs = require('fs');
  * @property {string} release - The absolute URL of the release link for the item.
  * @property {string} version - The release version of the item.
  * @property {string} platforms - The list of platforms. (TODO: these should work as tags, too?)
+ * @property {boolean} private - Should this post be displayed on production deploy?
  * @property {string} html - The HTML of the post page.
  */
 
@@ -72,6 +73,7 @@ async function getMetadata(markdownPath, classification, appConfig){
         platforms: metadata['platforms'],
         release: metadata['release'],
         version: metadata['version'],
+        private: metadata['private'],
         html,
     }
 }
@@ -85,7 +87,9 @@ async function populatePostLists(appConfig){
     blogs.length = 0;
     for(const file of fs.readdirSync(BLOGS_PATH)){
         const blogInfo = await getMetadata(path.join(BLOGS_PATH, file), "blogs", appConfig);
-        blogs.push(blogInfo);
+        if(!blogInfo.private || appConfig.ENV === 'local'){
+            blogs.push(blogInfo);
+        }
     }
     // sorted newest to oldest
     blogs.sort((a, b) => b.updated - a.updated);
@@ -94,7 +98,9 @@ async function populatePostLists(appConfig){
     projects.length = 0;
     for(const file of fs.readdirSync(PROJECTS_PATH)){
         const projectInfo = await getMetadata(path.join(PROJECTS_PATH, file), "projects", appConfig);
-        projects.push(projectInfo);
+        if(!projectInfo.private || appConfig.ENV === 'local'){
+            projects.push(projectInfo);
+        }
     }
     // sorted newest to oldest
     projects.sort((a, b) => b.updated - a.updated);
@@ -154,7 +160,7 @@ function slugify(title) {
 // If we're running locally, spin up a set of watchers 
 // to automatically refresh the content when we make edits
 const APP_CONFIG = new AppConfig();
-if(APP_CONFIG.DOMAIN.includes("localhost")){
+if(APP_CONFIG.ENV === 'local'){
     let fsTimeout;
     fs.watch(BLOGS_PATH, e => {
         try{

@@ -1,7 +1,7 @@
 let embed = undefined;
-const socket2 = new WebSocket(`ws://${window.location.host}/stream/status`);
+const streamStatusSocket = new WebSocket(`${window.location.host.includes('localhost') ? 'ws' : 'wss'}://${window.location.host}/stream/status`);
 // Listen for messages
-socket2.addEventListener("message", (event) => {
+streamStatusSocket.addEventListener("message", (event) => {
     const parsed = JSON.parse(event.data);
     const isOnline = parsed.details && parsed.details.length > 0 && parsed.details[0].isLive;
     const details = parsed.details[0];
