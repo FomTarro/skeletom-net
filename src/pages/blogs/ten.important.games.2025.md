@@ -39,9 +39,9 @@ Also, to this day, I think about a stream of green smiles or red frowns (and the
 
 ## Sly 2: Band of Thieves (PS2, 2004)
 
-While the original "*Sly Cooper*" was a relatively standard early-2000s mascot-platformer fare, "*Sly 2*" elevated the franchise into a family-friendly crime drama. There are stakes, emotional and otherwise. The gameplay completely opens up, You can finally play as Sly's partners, and they're great. They make each chapter's heist really feel like a concerted team effort, rather than just something that happens as a result of completeing enough platforming levels.
+While the original "*Sly Cooper*" was a relatively standard early-2000s mascot-platformer fare, "*Sly 2*" elevated the franchise into a family-friendly crime drama. There are stakes, emotional and otherwise. The gameplay completely opens up; you can finally play as Sly's partners, and they're great. They make each chapter's heist really feel like a concerted team effort, rather than just something that happens as a result of completeing enough platforming levels.
 
-In all likelihood, *"Sly 2* is responsible for my keen interest in "*Lupin the 3rd*" later in life. I genuinely think the Venn Diagram of *"Sly Cooper"/"Lupin the 3rd"/"[Metal Gear Solid](#metal-gear-solid-3-snake-eater-ps2-2004)"* 
+In all likelihood, *"Sly 2* is responsible for my keen interest in "*Lupin the 3rd*" later in life. I genuinely think the Venn Diagram of *"Sly Cooper"/"Lupin the 3rd"/"[Metal Gear Solid](#metal-gear-solid-3-snake-eater-ps2-2004)"* is close to a single circle.
 
 This game has exceptionally strong voice acting and writing for what it was. I firmly believe that the way that each chapter of the game [starts with a character profile about that chapter's boss](https://www.youtube.com/watch?v=XdPp8RZg31A), almost always told through a retrospective, heavily influenced my tastes in character and world-building. It's such an iconic narrative style.
 
@@ -59,7 +59,9 @@ That's the other thing about this game. While your party's characters are all pr
 
 But weapons have finite durability. And when it runs out, the weapon instantly breaks and is gone forever. Without a steady supply of Weapon Repair Powder, using any weapons you find besides your tiny little unbreakable dagger feels too risky. Oh, also, weapons are found randomly in dungeons, which means you can go many, many floors without ever finding one, *forcing* you to stick to the aformentioned tiny dagger for much longer than you'd like. Ugh.
 
-But all that aside, it's a very enjoyable RPG. The people you liberate will all have requests about how their houses should be built, and where they'd like to live. Figuring out how to accomodate everyone's ideals simultaneously is a charming little puzzle. As will probably be a recurring theme on these retrospectives (I am writing them out of order), I really enjoy the music in this game. I think [the tune that plays in *"Norune Village"*](https://www.youtube.com/watch?v=xBgXPza9Qko) is like, *the* canonical JRPG town theme.
+But all that aside, it's a very enjoyable RPG. The people you liberate will all have requests about how their houses should be built, and where they'd like to live. Figuring out how to accomodate everyone's ideals simultaneously is a charming little puzzle. As will probably be a recurring note on these retrospectives (I am writing them out of order), I really enjoy the music in this game. I think [the tune that plays in *"Norune Village"*](https://www.youtube.com/watch?v=xBgXPza9Qko) is like, *the* canonical JRPG town theme.
+
+If you'd rather watch someone play it instead of playing it yourself, [STALKERALKER streamed her full Let's Play](https://www.youtube.com/playlist?list=PL-2M8lYHSxqeL8vwi5aHiQ7drYIWkdznH) a while back. 
 
 Before we move on, I'd lke to share the only *"Dark Cloud*" meme I've ever seen in my entire afterlife.
 
@@ -69,7 +71,7 @@ Before we move on, I'd lke to share the only *"Dark Cloud*" meme I've ever seen 
 
 ## Metal Gear Solid 3: Snake Eater (PS2, 2004)
 
-It's Metal Gear Solid 3. Need I say more? I think this one's on everyone's list. You should play this one (and the rest of the franchise). You will enrich yourself in doing so.
+It's *"Metal Gear Solid 3"*. Need I say more? I think this one's on everyone's list. You should play this one (and the rest of the franchise). You will enrich yourself in doing so.
 
 As an aside, I think I can quote the entire script by memory. "*After the end of World War 2... the world was split into two...*"
 
@@ -119,7 +121,7 @@ As a fun piece of trivia, the [same fellow](https://www.imdb.com/name/nm0566308/
 
 WarCraft 3's "*World Editor*" is where I learned how to program. Using a language called [JASS (Just Another Scripting Syntax)](https://jass.sourceforge.net/doc/), you could go beyond the confines of the drag-and-drop event editor and produce some truly impressive things. I've seen nearly every genre of game recreated in WarCraft 3, including [arena shooters](https://www.hiveworkshop.com/threads/tcx-1-03b.80762/).
 
-Unfortunately, in 2020, Blizzard decided to fully lobotomize themselves by releasing "*WarCraft 3: Reforged*", and in the same swift motion, permanently decomissioned the original WarCraft 3. I'm unclear on if the old custom maps still work, but I have to imagine that some percentage of them became lost or broken in the migration. 
+Unfortunately, in 2020, Blizzard decided to fully lobotomize themselves by releasing "*WarCraft 3: Reforged*", and in the same swift motion, permanently decommissioned the original WarCraft 3. I'm unclear on if the old custom maps still work, but I have to imagine that some percentage of them became lost or broken in the migration. 
 
 My favorite of these custom maps was "*Island Troll Tribes*", but...
 
