@@ -15,22 +15,22 @@ Happy birthday, Mint! This was a fun one to put together, with some features tha
 
 ### Additions:
 
-- <span class="highlight">YouTube Go-Live Alerts</span>! Mint will CALL you on the Codec when she goes live. Never miss a stream again! There’s no excuse.
-- <span class="highlight">Calendar</span> and <span class="highlight">Event Alerts</span>! Manage your calendar and get a CALL from Mint to remind you of your tasks for the day. You can even import and export <span class="highlight">.ICS files</span>, offering full compatibility with most major calendar apps, such as Google Calendar!
+- **YouTube Go-Live Alerts**! Mint will CALL you on the Codec when she goes live. Never miss a stream again! There’s no excuse.
+- **Calendar** and **Event Alerts**! Manage your calendar and get a CALL from Mint to remind you of your tasks for the day. You can even import and export **.ICS files**, offering full compatibility with most major calendar apps, such as Google Calendar!
 
 
 ### Updates:
 
-- The <span class="highlight">Clock</span> can now select <span class="highlight">any time zone</span> in the world. Yes, you can finally find out what time it is in the Fox Archipelago.
-- The <span class="highlight">Music Player</span> now supports lossless <span class="highlight">.FLAC files</span>. Go wild, audio freaks.
+- The **Clock** can now select **any time zone** in the world. Yes, you can finally find out what time it is in the Fox Archipelago.
+- The **Music Player** now supports lossless **.FLAC files**. Go wild, audio freaks.
 
 
 ### Quality-of-(After)Life Fixes and Improvements:
 
-- You can now opt to <span class="highlight">skip the intro/exit cutscenes</span> on subsequent launches from the Settings menu.
+- You can now opt to **skip the intro/exit cutscenes** on subsequent launches from the Settings menu.
 - You can opt in and out of the YouTube and Calendar Alerts from the Settings menu as well.
-- The application <span class="highlight">no longer suppresses OS notifications</span> as though it were a normal full-screen window.
-- The application now <span class="highlight">properly handles launching on secondary monitors</span> (previously failed to calculate window borders).
+- The application **no longer suppresses OS notifications** as though it were a normal full-screen window.
+- The application now **properly handles launching on secondary monitors** (previously failed to calculate window borders).
 
 
 If you find any bugs or have any feature requests, please let me know!
@@ -47,20 +47,20 @@ The new features might look rather mundane, but there was a lot of learning invo
 ### A Brief Summary of Network Protocols: Socket To 'Em
 In the world of networked systems, there are two major protocols for communication: [HTTP](https://en.wikipedia.org/wiki/HTTP) and [WebSocket](https://en.wikipedia.org/wiki/WebSocket). You are undoubtedly already familiar with the first, even if you have no engineering background! 
 
-With <span class="highlight">HTTP</span>, the client makes a <span class="highlight">single request</span> to an address, and then waits to receive a <span class="highlight">single response</span> from the server. Great for transactional behavior, like asking for a web page!
+With **HTTP**, the client makes a **single request** to an address, and then waits to receive a **single response** from the server. Great for transactional behavior, like asking for a web page!
 
-Meanwhile, with <span class="highlight">WebSockets</span>, the client makes a <span class="highlight">single request</span> to an address, and then maintains a <span class="highlight">persistent connection</span> to the server. This, in turn, <span class="highlight">allows the server to push information back to the client whenever</span>, without needing to be asked for it first. 
+Meanwhile, with **WebSockets**, the client makes a **single request** to an address, and then maintains a **persistent connection** to the server. This, in turn, **allows the server to push information back to the client whenever**, without needing to be asked for it first. 
 
 So, if you wanted to get notified every time a specific channel on the mega-giant streaming platform YouTube went live, which protocol do you think you'd want to use? WebSocket, right? Connect to the YouTube API server, provide it with a little information about what you're looking for, and then every time your channel went live, the server could proactively push a message to your client. Seems efficient and straightforward!
 
-Wrong! <span class="highlight">YouTube doesn't have a WebSocket API</span>. That would be too easy, too logical. Twitch does (called "[EventSub](https://dev.twitch.tv/docs/eventsub/)"). But YouTube does not.
+Wrong! **YouTube doesn't have a WebSocket API**. That would be too easy, too logical. Twitch does (called "[EventSub](https://dev.twitch.tv/docs/eventsub/)"). But YouTube does not.
 
-Okay, so if we can't get the server to reach out to us every time it has new information to share, and if we want up-to-the-second status updates, then we have to do <span class="highlight">HTTP Polling</span>, which refers to the technique of <span class="highlight">making an HTTP request repeatedly at a high frequency</span>, continually checking to <span class="highlight">see if the response has changed</span>. This results in a lot of network traffic, most of which is effectively garbage. For example, if you polled an HTTP address every second of the day, that would be 86,400 requests, of which only one is likely to yield a response that you care about (the response which changed from "not live" to "live").
+Okay, so if we can't get the server to reach out to us every time it has new information to share, and if we want up-to-the-second status updates, then we have to do **HTTP Polling**, which refers to the technique of **making an HTTP request repeatedly at a high frequency**, continually checking to **see if the response has changed**. This results in a lot of network traffic, most of which is effectively garbage. For example, if you polled an HTTP address every second of the day, that would be 86,400 requests, of which only one is likely to yield a response that you care about (the response which changed from "not live" to "live").
 
 But, whatever, fine. We don't have a choice. If YouTube won't give us a WebSocket to connect to, surely they understand that this is the only alternative, and are therefore okay with us hitting their HTTP API with such volume.
 
 ### Working Within Arbitrary Constraints: Fish Outta Quota
-Wrong again! The YouTube API (and all Google APIs) have famously stingy [quotas](https://developers.google.com/youtube/v3/guides/quota_and_compliance_audits). By default, <span class="highlight">applications are allotted 10,000 Quota Units per day</span>. The `videos/list` request, which, as the name suggests, can give us back status information about a list of videos, costs 1 Quota Unit. As established earlier, <span class="highlight">one request per second would come out to 86,400 requests per day</span>, way above our quota. We can scale it back to one request per 10 seconds, bringing the total back down to 8,640 requests per day, and back below the quota. 
+Wrong again! The YouTube API (and all Google APIs) have famously stingy [quotas](https://developers.google.com/youtube/v3/guides/quota_and_compliance_audits). By default, **applications are allotted 10,000 Quota Units per day**. The `videos/list` request, which, as the name suggests, can give us back status information about a list of videos, costs 1 Quota Unit. As established earlier, **one request per second would come out to 86,400 requests per day**, way above our quota. We can scale it back to one request per 10 seconds, bringing the total back down to 8,640 requests per day, and back below the quota. 
 
 Great! Now, what do we need to provide the `videos/list` request to get the information we need from it? Well, that would be a list of Video IDs. Not Channel IDs. Video IDs. So, how do we get a list of every Video ID that a channel has scheduled? Why, use the `channels/list` request, which also has a cost of 1 Quota Unit. And to be sure we pick up new Video IDs as soon as they're scheduled (for, say, guerrilla/unplanned streams), we would need to poll that address. Another 8,640 Quota Units spent, and suddenly we're back above our daily quota. Uh oh!
 
@@ -69,14 +69,14 @@ A natural solution here would just be to further decrease the frequency of the p
 For example, we can hit up the address [`https://www.youtube.com/feeds/videos.xml?channel_id=UCr5N4CrcoegFpm7fR5a_ORg`](https://www.youtube.com/feeds/videos.xml?channel_id=UCr5N4CrcoegFpm7fR5a_ORg) to get a list of my most recent dozen-or-so videos. If I were streaming on YouTube, this list would also include upcoming scheduled streams. So, from this document, we can pluck out the most recent Video IDs for a channel for free, and then poll the `videos/list` request at our desired frequency as originally planned. Now, what do we do with this information?
 
 ### Righting the Wrongs: Doing It Ourselves
-Since YouTube won't give us one, we'll just <span class="highlight">make our own WebSocket server</span>. As established, a single poller checking for video status every 10 seconds consumes nearly the entire daily quota, so it is completely infeasible to have every individual instance of "*Tactical Desktop Action*" do its own polling. Instead, they all connect to a central WebSocket server that I've deployed here on [skeletom.net](https://www.skeletom.net). <span class="highlight">The singular server handles the polling</span>, and dispatches stream information to clients once when they connect to the socket, and then again whenever there is a status update. In this way, we can <span class="highlight">handle an extremely high and variable number of clients while maintaining a fixed quota consumption</span>.
+Since YouTube won't give us one, we'll just **make our own WebSocket server**. As established, a single poller checking for video status every 10 seconds consumes nearly the entire daily quota, so it is completely infeasible to have every individual instance of "*Tactical Desktop Action*" do its own polling. Instead, they all connect to a central WebSocket server that I've deployed here on [skeletom.net](https://www.skeletom.net). **The singular server handles the polling**, and dispatches stream information to clients once when they connect to the socket, and then again whenever there is a status update. In this way, we can **handle an extremely high and variable number of clients while maintaining a fixed quota consumption**.
 
 <img src=/img/projects/mint-birthday-2024/mint_network.png>
 <br>
-<span class="font-tiny translucent italic caption">A diagram illustrating how our web server can handle many clients without increasing YouTube API quota consumption.</span>
+<span class="font-tiny translucent italic caption">A diagram illustrating how our web server can handle many clients without increasing YouTube API quota consumption.**
 
 
-Once I got this up and running for Mint's channel, I began thinking about a design pattern that would let me expand this coverage to more channels. After all, I have made [quite a few desktop toys](../../projects?tags=desktop%20toy) and it would be nice to eventually backport this feature to all of them. The good news is, that for all of its shortcomings, the YouTube API *does* permit you to batch your requests together to save on quota. That is to say, <span class="highlight">we can include Video IDs from multiple channels</span> in our `videos/list` request. 
+Once I got this up and running for Mint's channel, I began thinking about a design pattern that would let me expand this coverage to more channels. After all, I have made [quite a few desktop toys](../../projects?tags=desktop%20toy) and it would be nice to eventually backport this feature to all of them. The good news is, that for all of its shortcomings, the YouTube API *does* permit you to batch your requests together to save on quota. That is to say, **we can include Video IDs from multiple channels** in our `videos/list` request. 
 
 With this knowledge in mind, I designed a system with a central polling engine that fires at a fixed frequency, which contains a map linking Channel IDs to callback functions. The system goes through the list of Channel IDs, queries their RSS feeds, and populates a list of Video IDs for each Channel ID. This allows us to remember previous the status of each video, and also allows us to link Video IDs back to specific Channels. We can then poll for status of all desired channels in a single batch. When a given Video ID finally goes from being offline to being live, we can easily find which Channel ID it belongs to, and therefore which callback function to execute. In this specific example, the callback is "*notify all WebSocket clients who care about this channel with a structured message*", but with the way the system is designed, it could be anything you'd like.
 
@@ -102,7 +102,7 @@ END:VCALENDAR
 ```
 <span class="font-tiny translucent italic caption">A calendar with a single event, titled "*Dog-sledding Practice*", which occurs on February 28th, 2005 at 10 AM GMT.</span>
 
-Similarly to XML, the ICS format features <span class="highlight">verbose start and end tags for components</span> (here denoted with `BEGIN:` and `END:`), and can also feature <span class="highlight">components nested within each other</span> (for example, the `VEVENT` component is nested within a `VCALENDAR`). <span class="highlight">Properties are presented in `KEY:VALUE` pairs</span> (for example, the `VERSION` property has a value of `2.0`). Because this is a specialty format used only for this one thing, <span class="highlight">modern programming languages don't ship with parsers for ICS</span>, as they often do for XML and JSON (which are usage-agnostic, general purpose formats).
+Similarly to XML, the ICS format features **verbose start and end tags for components** (here denoted with `BEGIN:` and `END:`), and can also feature **components nested within each other** (for example, the `VEVENT` component is nested within a `VCALENDAR`). **Properties are presented in `KEY:VALUE` pairs** (for example, the `VERSION` property has a value of `2.0`). Because this is a specialty format used only for this one thing, **modern programming languages don't ship with parsers for ICS**, as they often do for XML and JSON (which are usage-agnostic, general purpose formats).
 
 That's fine, though. Seems simple enough to write our own parser for, right? Just split the file on line breaks, and split the lines on colons. Every time you hit a new  `BEGIN:` tag, store all subsequent properties in a new component until you hit an `END:` tag.
 
@@ -119,23 +119,23 @@ DESCRIPTION:This is a lo
 ```
 Thus, to "*unfold*", you must search for leading whitespace on a line, and, if present, append that line the the prior line, removing the whitespace. I used a [RegEx](https://en.wikipedia.org/wiki/Regular_expression) for this. Your mileage may vary. But, once we unfold, we can finally parse line-by-line.
 
-Next, we need to know that <span class="highlight">properties may also have parameters</span>, in addition to their values. These are denoted by a leading semicolon, a parameter name, an equal sign, and a parameter value, like so:
+Next, we need to know that **properties may also have parameters**, in addition to their values. These are denoted by a leading semicolon, a parameter name, an equal sign, and a parameter value, like so:
 ```
 DTSTART:20060228T100000;TZID=America/New_York
 ```
 <span class="font-tiny translucent italic caption">A start time with a Time Zone ID specified.</span>
 
-Lastly, we need to know that <span class="highlight">property values and property parameters can occur in any order</span>. For example, this property also valid and is functionally identical to the prior one:
+Lastly, we need to know that **property values and property parameters can occur in any order**. For example, this property also valid and is functionally identical to the prior one:
 ```
 DTSTART;TZID=America/New_York:20060228T100000
 ```
 <span class="font-tiny translucent italic caption">A start time with a Time Zone ID specified, in an alternate order.</span>
 
 
-With all of this knowledge, we can finally assemble our data model for ICS. Each pair of `BEGIN:` and `END:` tags forms a `Component` object, which itself contains a list of nested `Component` objects and a list of `Property` objects. Each unfolded line that isn't a `BEGIN:` or `END:` tag becomes one of those `Property` objects, which contains a `Value` string, as well as a map of string-to-string `Parameter` pairs.
+With all of this knowledge, we can finally assemble our data model for ICS. Each pair of `BEGIN:` and `END:` tags forms a **component** object, which itself contains a list of nested **component** objects and a list of **property** objects. Each unfolded line that isn't a `BEGIN:` or `END:` tag becomes one of those **property** objects, which contains a **Value** string, as well as a map of string-to-string **parameter** pairs.
 
 ### The Loathsome RRULE: Do It Again
-Unfortunately, there's one property that kind of <span class="highlight">breaks the established patterns</span>. And it's an important one. It's called the `RRULE`, or "[*Recurrence Rule*](https://icalendar.org/iCalendar-RFC-5545/3-3-10-recurrence-rule.html)".
+Unfortunately, there's one property that kind of **breaks the established patterns**. And it's an important one. It's called the `RRULE`, or "[*Recurrence Rule*](https://icalendar.org/iCalendar-RFC-5545/3-3-10-recurrence-rule.html)".
 
 These rules are somewhat intuitive to read for a human, but are surprisingly complex for a machine. Let's write a rule to make our event recur every day in February in 2005 and 2006.
 ```
@@ -165,9 +165,9 @@ RRULE:FREQ=MONTHLY;
 
 Huh? Why is the value of an `RRULE` formatted like a parameter? That throws our whole parsing process into disarray. It's particularly confusing because, according to the [iCalendar guidelines](https://icalendar.org/iCalendar-RFC-5545/3-3-10-recurrence-rule.html), the only valid value types for the `RRULE` are frequencies. So why specify that the value is a frequency at all?
 
-Anyway, once we fix our parsing to account for that, <span class="highlight">we still have to actually interpret the meaning</span> of the `RRULE`. This was tricky for me to wrap my head around, so I'll do my best to summarize. 
+Anyway, once we fix our parsing to account for that, **we still have to actually interpret the meaning** of the `RRULE`. This was tricky for me to wrap my head around, so I'll do my best to summarize. 
 
-Because an `RRULE` can <span class="highlight">potentially recur forever, we can't simply pre-process them</span> to generate a definitive list of all recurrences for every event when loading a calendar. Instead, <span class="highlight">they need to be evaluated</span> within the scope of a `RANGE_START` date and a `RANGE_END` date, which is fine, because a calendar is only ever viewed in slices anyway, be they weeks, months, or years. Once we define those bounds, we can take the following steps:
+Because an `RRULE` can **potentially recur forever, we can't simply pre-process them** to generate a definitive list of all recurrences for every event when loading a calendar. Instead, **they need to be evaluated** within the scope of a `RANGE_START` date and a `RANGE_END` date, which is fine, because a calendar is only ever viewed in slices anyway, be they weeks, months, or years. Once we define those bounds, we can take the following steps:
 
 - Generate list of all potential dates.
     - Start with your first occurrence date (`DTSTART` property) and extend a number of days based on the `FREQ` value. For example, a `WEEKLY` frequency would extend 7 days from the first occurrence.
@@ -186,7 +186,7 @@ Because an `RRULE` can <span class="highlight">potentially recur forever, we can
     - If the `UNTIL` parameter is present, remove all potential dates that occur after the given date.
     - Finally, remove all potential dates that occur before our `RANGE_START` or after our `RANGE_END` dates.
 
-And there you have it! <span class="highlight">The resulting list of dates represent every occurrence of the event</span> within the desired range. I'm sure there's room for optimization, but despite what all this work with the format may have you thinking, we're not actually in the '90s any more! We can afford the computational overhead (but I will continue to think about ways to optimize when making updates).
+And there you have it! **The resulting list of dates represent every occurrence of the event** within the desired range. I'm sure there's room for optimization, but despite what all this work with the format may have you thinking, we're not actually in the '90s any more! We can afford the computational overhead (but I will continue to think about ways to optimize when making updates).
 
 <img src=/img/projects/mint-birthday-2024/mint_calendar.png>
 <br>

@@ -14,7 +14,7 @@ version: v1.1.0
 ### Additions:
 
 
-- Added Support for processing <span class='highlight'>unknown words</span> by adding files named `_`, `_1`, `_2`, etc, to the sounds folder. If files with this name are not present, unknown words will simply be skipped.
-- Implemented a <span class='highlight'>queue system</span> for Speak commands, which will be processed in order. This prevents redeems from speaking over each other. 
+- Added Support for processing **unknown words** by adding files named `_`, `_1`, `_2`, etc, to the sounds folder. If files with this name are not present, unknown words will simply be skipped.
+- Implemented a **queue system** for Speak commands, which will be processed in order. This prevents redeems from speaking over each other. 
     - If you would like to disable this behavior, add `?queue=false` to the end of the Browser Source URL.
-- Added <span class='highlight'>tooltip hovers</span> to the UI.
+- Added **tooltip hovers** to the UI.

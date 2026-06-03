@@ -28,7 +28,7 @@ Finally, divide the dough into <span class="quantity italic highlight" id="chunk
 
 ## What is "Pizzatsudan"?
 
-Now for the longwinded personal anecdote. <a href="https://www.youtube.com/playlist?list=PLspwi8mJZ2799Rhk-6G-fP3JQBjBFgOFT" target="_blank">Pizzatsudan</a> is a stream concept I came up with shortly after finding my footing as a streamer. It combines real-world <span class="highlight">pizza baking</span> with the <span class="highlight">Japanese "zatsudan"</span>, which pretty much means "just chatting". It's basically just a talk show with extra steps. 
+Now for the longwinded personal anecdote. <a href="https://www.youtube.com/playlist?list=PLspwi8mJZ2799Rhk-6G-fP3JQBjBFgOFT" target="_blank">Pizzatsudan</a> is a stream concept I came up with shortly after finding my footing as a streamer. It combines real-world **pizza baking** with the **Japanese "zatsudan"**, which pretty much means "just chatting". It's basically just a talk show with extra steps. 
 
 Originally, I would pivot to playing a video game for the 90 minutes that I left the dough to rise, with a dough-cam and timer on the stream overlay. Eventually, though, I found that a little to hectic and just settled on shooting the breeze.
 

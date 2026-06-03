@@ -13,9 +13,9 @@ version: v1.4.0
 
 ### Additions:
 
-- <span class='highlight'>VFX Support!</span> Dynamically control any of the fabulous [VTube Studio post-processing VFX](https://github.com/DenchiSoft/VTubeStudio/wiki/Visual-Effects) with your heart rate! Experience distortion that pulses in time with your heart, or become increasingly desaturated and unstable as your heart rate climbs! The possibilities are endless.
-- <span class='highlight'>Built-in Stream Widget!</span> Usable as a [Browser Source in OBS](https://obsproject.com/kb/browser-source), or as a [Web Item in VTube Studio](https://github.com/DenchiSoft/VTubeStudio/wiki/Web-Items). It prints your heartrate in real time, and the backing image does a pulsing animation at the corresponding speed. Can be customized with Custom CSS in either case!
-- <span class='highlight'>Heartrate Offsets!</span> Apply a flat +/- value to add or subtract from your real heartrate; perfect for folks who may feel sheepish about their naturally high or low BPM. 
+- **VFX Support!** Dynamically control any of the fabulous [VTube Studio post-processing VFX](https://github.com/DenchiSoft/VTubeStudio/wiki/Visual-Effects) with your heart rate! Experience distortion that pulses in time with your heart, or become increasingly desaturated and unstable as your heart rate climbs! The possibilities are endless.
+- **Built-in Stream Widget!** Usable as a [Browser Source in OBS](https://obsproject.com/kb/browser-source), or as a [Web Item in VTube Studio](https://github.com/DenchiSoft/VTubeStudio/wiki/Web-Items). It prints your heartrate in real time, and the backing image does a pulsing animation at the corresponding speed. Can be customized with Custom CSS in either case!
+- **Heartrate Offsets!** Apply a flat +/- value to add or subtract from your real heartrate; perfect for folks who may feel sheepish about their naturally high or low BPM. 
     - <span class="translucent italic font-tiny">(NOTE: this feature was added at the behest of [Henemimi](https://www.henemimi.tv) who told me to say "*can you put me in the patch note and say this is for henemimi who said her heart rate is cringe*")</span>
 
 ### Updates:
@@ -26,7 +26,7 @@ version: v1.4.0
 
 ### Tips and Tricks
 
-The <span class="highlight">VFX</span> feature lends itself to a lot of customizability. Maybe too much! It can be pretty overwhelming to look at, but the basic gist is that you can use <span class="highlight">Custom Tracking Parameters</span> to control effects. You can then apply an additional multipler to these values to increase or decrease the overall intensity of the effect.
+The **VFX** feature lends itself to a lot of customizability. Maybe too much! It can be pretty overwhelming to look at, but the basic gist is that you can use **Custom Tracking Parameters** to control effects. You can then apply an additional multipler to these values to increase or decrease the overall intensity of the effect.
 
 Broadly speaking, I think setting the `strength` component of your desired effect to be driven by the `vts_heartrate_linear` Custom Tracking Parameter is a good starting point. You can then control the other components of the effect with `vts_heartrate_pulse` to create a visual reminsicent of being at "critical HP" in a video game. Finally, we can apply some dampening modifiers with the sliders to keep the effect relatively subtle.
 
