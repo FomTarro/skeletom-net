@@ -62,9 +62,8 @@
                         <a href="https://www.mew151.net/index.html" target="_blank"><img src="https://www.mew151.net/img/mew151_button.gif"></a>
                         <a href="https://dotlvl.neocities.org/" target="_blank"><img src="https://dotlvl.neocities.org/aboutme/dotlvlbutton.png"></a>
                         <a href="https://izve.lmaonice.com/"><img src="https://izve.lmaonice.com/img/izve-btn.gif"></a>
-                        <!-- <img src="img/88x31/pokemon.gif"> -->
+                        <a href="https://mid.nekoweb.org"><img src="https://mid.nekoweb.org/public/img/midori_88-31.gif" title="Your Personal Vtuber Coding Maid!" alt="Megane Midori 88x31 button" /></a>
                         <a href="https://munchroome.dog/"><img src="https://munchroome.dog/wp-content/uploads/2025/04/munchroome-button.png"></a>
-                        <!-- <img src="img/88x31/pokemon.gif"> -->
                         <a href="https://mintywyvern.neocities.org" target= "_blank"><img src="/img/88x31/minty_wyvern.png"></a>
                         <a href="https://connorclang.blogspot.com/" target= "_blank"><img src="/img/88x31/clang.png"></a>
                         <a href="https://heyoperator.neocities.org/" target="_blank"><img src="https://heyoperator.neocities.org/webassets/HeyOperatorButton.gif" alt="heyoperatorbutton"></a>
@@ -74,8 +73,8 @@
                         <a href="http://www.rssboard.org/rss-validator/check.cgi?url=https%3A//www.skeletom.net/rss/rss.xml" target="_blank"><img src="/img/88x31/valid-rss-rogers.png"/></a>
                     </div>
                     <div class="row webring-tray fill flex-center">
-                        <a href="https://skeletom.net"><img src="/img/88x31/MOLTO_BENE.gif"></a>
-                        <input id="widget-url" type="text" style="box-sizing: border-box; width: calc(176px + 1rem)" readonly value='<a href="https://skeletom.net"><img src="https://skeletom.net/img/88x31/MOLTO_BENE.gif"></a>'></input>
+                        <a id='skeletom-88x31' href="https://skeletom.net" target="_blank"><img src="/img/88x31/MOLTO_BENE.gif" title="Piping Hot Code, Served Fresh Daily" alt="Skeletom 88x31 button"  ></a>
+                        <input id="widget-url" type="text" style="box-sizing: border-box; width: calc(176px + 1rem)" readonly value=></input>
                         <button onclick=copyURL()> Copy HTML</button>
                     </div>
                     <div class="webring-nav">
@@ -95,6 +94,7 @@
         </main>
     </body>
     <script>
+    document.querySelector('#widget-url').setAttribute('value', document.querySelector('#skeletom-88x31').outerHTML);
     function copyURL(){
         const copyZone = document.querySelector('#widget-url');
         copyZone.focus();
