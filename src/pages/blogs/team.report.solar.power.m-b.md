@@ -4,7 +4,7 @@ date: 2026-08-03
 author: Skeletom
 brief: The only thing stronger than Mega Charizard Y is... regular Charizard?
 private: true
-thumb: /img/blogs/mint-birthday-2024/alert_update_banner.png
+thumb: /img/blogs/team-reports/solar-power/banner.png
 tags: pokemon, team report, regulation m-b, vgc, trick room, farigiraf, torkoal, charizard, incineroar, venusaur, basculegion,
 ---
 
@@ -21,6 +21,8 @@ Basically, **my items are all mixed up**; Basculegion’s Choice Scarf goes to C
 These relatively simple changes enable a fairly diverse set of play styles that I feel give me a good plan into most matchups, despite appearing so Sun-dependent on from the outside. 
 
 This team took me on a **14-0 win streak** during the last weekend of the ranked season, so I'm reasonably happy with it overall. Let’s get into it!
+
+---
 
 ## The Process
 
@@ -106,7 +108,9 @@ I think this could have worked fairly well if I was willing to put in the time t
     </div>
 </div>
 
-Which finally brought me here! This is something of a re-invention of the team from first principles, focusing on what worked and how those aspects could best be improved to make a more robust, well-rounded package...
+Which finally brought me here! This is something of a re-invention of the team from first principles, focusing on what worked and how those aspects could best be improved to make a more robust, well-rounded package. Here's the breakdown.
+
+---
 
 ## The Team
 
@@ -129,6 +133,12 @@ Which finally brought me here! This is something of a re-invention of the team f
 
 Going back to Mega Pyroar, let us recount the positives: a **high speed stat** and the ability to **stack multipliers** in service of doing **tremendous Fire-type damage**. The drawback, of course, was needing to **commit the once-per-game Mega Evolution** in order to actually *materialize* any of those positives. 
 
+With **Choice Scarf** and **maximum Speed investment**, Charizard hits a blistering **final Speed stat of 250**. Charizard *soars* past almost everything else in the game, and people do not expect this at all.
+
+This element of surprise is a fantastic weapon. According to the in-game stats, only **0.1% of Charizards are holding this item**, compared to **over 93% of them holding a Mega Stone**. Thus, when your opponent sees Charizard on team preview, they will intuitively expect that any of their Pokemon which can outpace Charizard's unboosted base-100 Speed stat will be able to threaten it before it can move. They will also anticpate that is will be your Mega Evolution, and thus your most valuable piece, making them index incredibly hard on taking it down. They will send out leads like Choice-Scarf Rotom and Mega Raichu, thinking that they can strike you first for super-effective damage.
+
+They are wrong. Prey on their conditioning and **seize the moment by inflicting a Helping-Hand-Solar-Power-Sun-Boosted Heat Wave upon them**. Even if you don't get a double knockout, you will have undoubtedly done severe damage to their team. And if they get you in exchange, well, that's fine. **You still have your Mega in the back**.
+
 <div class='team-individual-mon'>
     <div class='team-list-mon'>
         <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0902_000.png'>
@@ -146,7 +156,7 @@ Going back to Mega Pyroar, let us recount the positives: a **high speed stat** a
     </pre>
 </div>
 
-It's Basculegion.
+Basculieve in Yourself.
 
 <div class='team-individual-mon'>
     <div class='team-list-mon'>
@@ -165,11 +175,11 @@ It's Basculegion.
     </pre>
 </div>
 
-One thing that was immediately clear to me from the very beginning is that max-attack White Herb Incineroar felt like a **cheat code** for Trick Room modes. Having a **physical attacker** that **cannot be burned** and also gets to **shrug off one stack of Intimidate** goes a really, really long way. **White Herb** also serves the purpose of purging the Defense drop that he naturally incurs from Close Combat. Also, this guy gets Close Combat! Tyranitars never see it coming.
+One thing that was immediately clear to me from the very beginning is that max-Attack White Herb Incineroar felt like a **cheat code** for Trick Room modes. Having a **physical attacker** that **cannot be burned** and also gets to **shrug off one stack of Intimidate** goes a really, really long way. **White Herb** also serves the purpose of purging the Defense drop that he naturally incurs from **Close Combat**. Also, this guy gets Close Combat! Tyranitars never see it coming.
 
 This guy checks a lot of things, namely Ceruledge and Basculegion, though unlike the first iteration of the team, he is no longer the *only* check to these guys, so some times it's perfectly alright to let him fall after getting a Fake Out off to improve your board position.
 
-If you wanted to tweak the build a little bit, I think there's an argument to be made for **swapping out the White Herb for a Life Orb**. While the presence of Farigiraf on your team will very frequently encourage your opponent to bring an Incineroar of their own, it doesn't happen all the time. In games where you do *not* need to dispel a rival Intimidate, the Life Orb would just give you that much more power in your punches. I haven't run the numbers, but I could easily see that being signifigant.
+If you wanted to tweak the build a little bit, I think there's an argument to be made for **swapping out the White Herb for a Life Orb**. While the presence of Farigiraf on your team will very frequently encourage your opponent to bring an Incineroar of their own, it doesn't happen all the time. In games where you do *not* need to dispel a rival Intimidate, the Life Orb would give you a fair bit more power in your punches. I haven't run the numbers, but I could easily see that being signifigant.
 
 ### Offensive Calcs To Know
 `32+ Atk Incineroar Close Combat vs. 32 HP  / 0 Def Mega Tyranitar: 196-232 (94.6 - 112%) -- 68.75% chance to OHKO`
@@ -184,7 +194,7 @@ If you wanted to tweak the build a little bit, I think there's an argument to be
 
 `32+ Atk Incineroar Darkest Lariat vs. 2 HP  / 0 Def Basculegion: 206-246 (104.5 - 124.8%) -- guaranteed OHKO`
 
-`32+ Atk Incineroar Darkest Lariat vs. 2 HP  / 0 Def Mega Charizard Y: 90-106 (58 - 68.3%) -- guaranteed 2HKO`
+`32+ Atk Incineroar Darkest Lariat vs. 2 HP  / 0 Def Mega Charizard Y: 90-106 (58 - 68.3%) -- guaranteed 2HKO` (easily finished off by Farigiraf's Thunder Bolt)
 
 `32+ Atk Incineroar Helping Hand Darkest Lariat vs. 27 HP  / 18 Def Colbur Berry Ceruledge: 111-132 (62.7 - 74.5%) -- guaranteed 2HKO`
 
@@ -206,11 +216,17 @@ If you wanted to tweak the build a little bit, I think there's an argument to be
     </pre>
 </div>
 
-25 points invested into HP brings her to a nice, **even HP value** of 220, which is relevant for making sure her Sitrus Berry activates reliably in the face of things like Super Fang from Maushold, or after several turns of percentage-based chip effects.
+Probably the most standard member of the team, this Farigiraf does what Farigirafs do best: **blocks Fake-Out and sets up Trick Room**.
 
-With a well-placed Intimidate from Incineroar by her side, Farigiraf can truly withstand the most heinous attacks imaginable. I'm talking Life Orb Basculegion Wave Crash in Rain.
+25 points invested into HP brings her to a nice, **even HP value of 220**, which is relevant for making sure her Sitrus Berry activates reliably in the face of things like Super Fang from Maushold, or after several turns of percentage-based chip effects.
 
-**Psychic Noise** might be worthwhile over plain-old **Psychic**, if for no other reason than it being really funny to wall out Ceruledge completely. Remember, the heal block effect doesn't just remove the healing aspect, it *fully disables the ability to use healing moves*. That said, the power drop is considerable, and Psychic really does nice neutral damage into a lot of things, even without any special attack investment. 
+With a well-placed Intimidate from Incineroar by her side, she can also **withstand the most heinous attacks imaginable**. I'm talking Life Orb Basculegion Wave Crash in Rain.
+
+**Thunderbolt** is there to snipe Pelippers and rival Charizards, which is a thing you will find yourself doing surprisngly often. According to the in-game stats, this is also a fairly common move choice, so I don't think it needs much more explanation.
+
+**Helping Hand** 
+
+**Psychic Noise** might be worthwhile over plain-old **Psychic**, if for no other reason than it being really funny to wall out Ceruledge completely, and to make Milotic sweat a bit. Remember, the heal block effect doesn't just remove the healing aspect, it *fully disables the ability to use healing moves* such as Bitter Blade. That said, the power drop is considerable, and Psychic really does nice neutral damage into a lot of things, even without any special attack investment. 
 
 ### Defensive Calcs To Know
 
@@ -240,7 +256,19 @@ With a well-placed Intimidate from Incineroar by her side, Farigiraf can truly w
     </pre>
 </div>
 
-What if Vileplume was incredibly bulky? This is 
+What if Vileplume was incredibly bulky? This is question that few dare to ask but for which I have the answer. As discussed earlier, while Vileplume's versatile Speed stat and its Water-resistant typing made it an appealing incusion for a Sun team, it still had a few glaring issues. 
+
+Firstly, it would *always* have its Speed doubled in the Sun, no matter what, resulting in occasional awkward board states once Trick Room was set up. Secondly, it was simultaneously our only Water-resist *and* our Focus Sash holder, meaning that you would functionally lose your item immediately if you ever needed to make a defensive switch-in.
+
+Venusaur, and more specifically *Mega* Venusaur, solves all of these problems. A mere 12 points of Speed investment allows her to reach a **Speed stat of 112**, which is the same as maximum-investment Vileplume. This number is important, because it is still slow enough to be usable inside Trick Room, but when doubled with Chlorophyll, hits the magic number of 224, which is exactly 2 points faster than the base-150s, who are currently the fastest unboosted Pokemon in the entire game. 
+
+Importantly, unlike with Vileplume, we have the option of **turning off Chlorophyll by Mega Evolving**, allowing us to sit comfortably in a Trick Room scenario where Sun has already been set up. And of course, if we don't see Trick Room in our immediate future, we can just delay our Mega Evolution for a little while and enjoy the Speed boost while we need it.
+
+And it's not like she gets a useless ability in echange for Chlorophyll, either. She gains **Thick Fat**, which nullifies her Fire and Ice-type weaknesses, leaving her only vulnerable to the less-common Psychic and Flying-type damage. This, in addition to the natrually superior bulk stats, allows Venusaur to feel much, much better as defensive countermeasure to the Water, Rock and Ground-type damage that would otherwise completely run over earlier versions of the team. Add restoration from **STAB-boosted Giga Drain** on top of that, and you have a mon that can really stick around.
+
+And, of course, by being a Mega Pokemon, this **frees up the Focus Sash** to be held by another member of the team, one which *isn't* also serving double-duty as a defensive option (*in this case, Basculegion*).
+
+Venusaur also has the option of going for **Sleep Powder** just like Vileplume, but here I have opted to go for a third attack instead, with **Earth Power**. Special Ground-type damage is at a premium in this format, giving us additional answer into guys like Archaludon, Kingambit and Ceruledge. Overall, I preferred this to the inconsistency of Sleep Powder, but it is by no means definitively the correct moveset.
 
 <div class='team-individual-mon'>
     <div class='team-list-mon'>
@@ -261,13 +289,18 @@ What if Vileplume was incredibly bulky? This is
 
 It's Torkoal! :D
 
+---
+
 ## The Paste
 <a id="paste" class="download-button" onclick=copy()>
     <span><span class="fa fa-lg fa-copy"></span> Copy the PokePaste to Clipboard!<span>
 </a>
 
+---
+
 ## Common Leads
 
+---
 
 ## Closing Remarks
 Thank you for reading! 
