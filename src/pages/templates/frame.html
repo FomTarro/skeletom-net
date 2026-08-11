@@ -94,7 +94,10 @@
         </main>
     </body>
     <script>
-    document.querySelector('#widget-url').setAttribute('value', document.querySelector('#skeletom-88x31').outerHTML);
+    const badge = document.querySelector('#skeletom-88x31');
+    const banner = badge.querySelector('img');
+    banner.setAttribute('src', `${window.location.protocol}//${window.location.host}${banner.getAttribute('src')}`)
+    document.querySelector('#widget-url').setAttribute('value', badge.outerHTML);
     function copyURL(){
         const copyZone = document.querySelector('#widget-url');
         copyZone.focus();
