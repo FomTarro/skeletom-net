@@ -694,6 +694,11 @@ p {
 	content: 'ONLINE';
 }
 
+.disclaimer {
+	font-size: 0.5em;
+	color: var(--darker);
+}
+
 @keyframes anim-scroll {
 	0% {
 		background-position: 0px 0px;
