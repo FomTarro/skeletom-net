@@ -78,7 +78,7 @@
                     </div>
                     <div class="row webring-tray fill flex-center">
                         <a id='skeletom-88x31' href="https://skeletom.net" target="_blank"><img src="/img/88x31/MOLTO_BENE.gif" title="Piping Hot Code, Served Fresh Daily" alt="Skeletom 88x31 button"  ></a>
-                        <input id="widget-url" type="text" style="box-sizing: border-box; width: calc(176px + 1rem)" readonly value=></input>
+                        <input id="badge-url" type="text" style="box-sizing: border-box; width: calc(176px + 1rem)" readonly value=></input>
                         <button onclick=copyURL()> Copy HTML</button>
                     </div>
                     <div class="webring-nav">
@@ -101,9 +101,9 @@
     const badge = document.querySelector('#skeletom-88x31');
     const banner = badge.querySelector('img');
     banner.setAttribute('src', `${window.location.protocol}//${window.location.host}${banner.getAttribute('src')}`)
-    document.querySelector('#widget-url').setAttribute('value', badge.outerHTML);
+    document.querySelector('#badge-url').setAttribute('value', badge.outerHTML);
     function copyURL(){
-        const copyZone = document.querySelector('#widget-url');
+        const copyZone = document.querySelector('#badge-url');
         copyZone.focus();
         copyZone.select();
         try {
