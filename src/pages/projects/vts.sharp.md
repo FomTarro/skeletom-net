@@ -24,7 +24,7 @@ After wracking my mind for something fun to build that would showcase the power 
 
 VTS-Sharp is a C#-language wrapper for the VTube Studio API. As such, it can let you do anything that the VTube Studio API can, from the C# environment of your choice. Some features include:
 
-- Support for Unity3D engine, XNA, .NET forms, and more!
+- Support for Unity3D, Godot, XNA, .NET forms, and more!
 - Synchronous and Asynchronous implementations of all function calls!
     - Full support for both [Plugin API](https://github.com/DenchiSoft/VTubeStudio) and [Event API](https://github.com/DenchiSoft/VTubeStudio/blob/master/Events/README.md) functions!
 - Interface-based design allowing you to write your own implementations (if you want!)
@@ -67,6 +67,17 @@ A plugin that allows for folks with high-end iPhones to get the most out of thei
 <span class="font-tiny translucent caption">By Remasuri3 | <span class="fa fa-brands fa-itch-io"></span> [Available on itch.io](https://remasuri3.itch.io/tits)</span>
 
 A plugin that allows stream viewers to throw miscellaneous objects at their beloved streamers in exchange for Channel Points or Superchats. This one is nearly-ubiquitous in the VTubing space. I find the acronym a bit unseemly, but am deeply grateful that the plugin exists!
+
+<br>
+
+
+### VConnect
+
+![vconnect](/img/projects/vts-sharp/vconnect.png)
+<br>
+<span class="font-tiny translucent caption">By Remasuri3 | <span class="fa fa-brands fa-steam"></span> [Available on Steam](https://store.steampowered.com/app/4818300/VConnect/)</span>
+
+A plugin that allows for... well, almost anything. It has a powerful node-based editor to allow streamers to do some visual scripting and set up all sorts of interactions and animations with their model. It's basically a sequel to the plugin listed above, and is from the same developer.
 
 <br>
 
