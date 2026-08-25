@@ -41,7 +41,7 @@ Also, to this day, I think about a stream of green smiles or red frowns (and the
 
 While the original "*Sly Cooper*" was a relatively standard early-2000s mascot-platformer fare, "*Sly 2*" elevated the franchise into a family-friendly crime drama. There are stakes, emotional and otherwise. The gameplay completely opens up; you can finally play as Sly's partners, and they're great. They make each chapter's heist really feel like a concerted team effort, rather than just something that happens as a result of completeing enough platforming levels.
 
-In all likelihood, *"Sly 2* is responsible for my keen interest in "*Lupin the 3rd*" later in life. I genuinely think the Venn Diagram of *"Sly Cooper"/"Lupin the 3rd"/"[Metal Gear Solid](#metal-gear-solid-3-snake-eater-ps2-2004)"* is close to a single circle.
+In all likelihood, *"Sly 2* is responsible for my keen interest in "*Lupin the 3rd*" later in life. I genuinely think the Venn Diagram of *"Sly Cooper"/"Lupin the 3rd"/"[Metal Gear Solid](#metalgearsolid3snakeeaterps22004)"* is close to a single circle.
 
 This game has exceptionally strong voice acting and writing for what it was. I firmly believe that the way that each chapter of the game [starts with a character profile about that chapter's boss](https://www.youtube.com/watch?v=XdPp8RZg31A), almost always told through a retrospective, heavily influenced my tastes in character and world-building. It's such an iconic narrative style.
 
