@@ -3,7 +3,6 @@ title: Baby Zard - A Regulation M-B Team Report
 date: 2026-08-03
 author: Skeletom
 brief: The only thing stronger than Mega Charizard Y is... regular Charizard?
-private: true
 thumb: /img/blogs/team-reports/solar-power/banner.png
 tags: pokemon, team report, regulation m-b, vgc, trick room, farigiraf, torkoal, charizard, incineroar, venusaur, basculegion,
 ---
