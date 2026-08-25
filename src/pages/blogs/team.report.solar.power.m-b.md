@@ -19,7 +19,7 @@ Basically, the team is made of various **good-stuff staples**, but **the items a
 
 These relatively simple changes enable a fairly diverse set of play styles that I feel give me a good plan into most matchups, despite appearing so Sun-dependent on from the outside. 
 
-This team took me on a **14-0 win streak** through Master Ball during the last weekend of the ranked season, so I'm reasonably happy with it overall. Here's the story. Or, if you'd preferm you can jump to the [Paste and Rental Code](#thepaste).
+This team took me on a **14-0 win streak** through Master Ball during the last weekend of the ranked season, so I'm reasonably happy with it overall. Here's the story. Or, if you'd preferm you can jump to the [Paste and Replica Code](#thepaste).
 
 ---
 
