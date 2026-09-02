@@ -1,10 +1,11 @@
 ---
 title: Baby Zard - A Regulation M-B Team Report
+alt-title-1: ['Mega Charizard? Why? - A Regulation M-B Team Report']
 date: 2026-08-03
 author: Skeletom
-brief: The only thing stronger than Mega Charizard Y is... regular Charizard?
+brief: Mega Charizard? Why?
 thumb: /img/blogs/team-reports/solar-power/banner.png
-tags: pokemon, team report, regulation m-b, vgc, trick room, farigiraf, torkoal, charizard, incineroar, venusaur, basculegion,
+tags: pokemon, team report, regulation m-b, vgc, trick room, hyper offense, farigiraf, torkoal, charizard, incineroar, venusaur, basculegion,
 ---
 
 ---
@@ -13,13 +14,13 @@ tags: pokemon, team report, regulation m-b, vgc, trick room, farigiraf, torkoal,
 
 People who are even peripherally familiar with me will know that Torkoal is my favorite Pokemon, so let me be absolutely clear: this team was built with the singular focus of allowing me to bring Torkoal to as many games as possible, in order to work towards the unlockable *“Torkoal Professor”* title. Still, I *didn't want* a one-dimensional Hard Trick Room lineup, because you actually have to **win** the games to get title progress, and I think that you need at least *a little bit* of flexibility to do that reliably.
 
-That said, the thing which I suspect most people will find interesting about this team is not the inclusion of Torkoal, but rather the way in which the rest of the team leverages the expectations set by the existing metagame to cause a lot of confusion on team preview. It's a type of camoflage that exists only on ladder, where team sheets do not exist. 
+That said, the thing which I suspect most people will find interesting about this team is not the inclusion of Torkoal, but rather the way in which the rest of the team leverages the expectations set by the existing metagame to cause a lot of confusion on team preview. It's a type of camoflage which exists only on ladder, where team sheets do not exist. 
 
-Basically, the team is made of various **good-stuff staples**, but **the items are all mixed up** and the **roles are swapped around**; Basculegion’s Choice Scarf goes to Charizard, Charizard’s Mega Stone goes to Venusaur, and Venusaur’s Focus Sash goes to Basculegion. Meanwhile, Incineroar has a White Herb!
+Basically, the team is made of various **good-stuff staples**, but **the items are all mixed up** and the **roles are swapped around**; Basculegion’s typical Choice Scarf goes to Charizard, Charizard’s typical Mega Stone goes to Venusaur, and Venusaur’s typical Focus Sash goes to Basculegion. Meanwhile, Incineroar, for some reason, has a White Herb and is a sweeper!
 
-These relatively simple changes enable a fairly diverse set of play styles that I feel give me a good plan into most matchups, despite appearing so Sun-dependent on from the outside. 
+These relatively simple changes enable a fairly diverse set of options that I feel give me a good plan into most matchups, despite the team as a whole appearing to be completely Sun-dependent on from the outside. 
 
-This team took me on a **14-0 win streak** through Master Ball during the last weekend of the ranked season, so I'm reasonably happy with it overall. Here's the story. Or, if you'd preferm you can jump to the [Paste and Replica Code](#thepaste).
+This team took me on a **14-0 win streak** through Master Ball during the last weekend of the ranked season, so I'm reasonably happy with it overall. Here's the story. Or, if you'd prefer, you can [jump to the Paste and Replica Code](#thepaste) or [watch some clips of it in action](#media).
 
 ---
 
@@ -27,7 +28,7 @@ This team took me on a **14-0 win streak** through Master Ball during the last w
 
 As I mentioned, my goal with building was to find a team that allowed me to bring Torkoal a lot and win with her, so I started with a team from one of the winningest guys out there: Wolfey Glick. 
 
-He put out [a video about a Mega Pyroar team](https://www.youtube.com/watch?v=4ozQrSHlFWw) which seemed interesting; it had a compelling **fast mode** leveraging Mega Pyroar’s exceptional speed stat, as well as Vileplume’s convenient ability to be exactly 2 points faster than the fastest Pokemon in the game while Sun was active. But it still had a solid **Trick Room backbone**, which is a style that I do enjoy playing quite a lot, despite my jeering comment about it in the opening paragraph. 
+He put out [a video about a Mega Pyroar team](https://www.youtube.com/watch?v=4ozQrSHlFWw) which seemed interesting; it had a **compelling fast mode** which leveraged Mega Pyroar’s exceptional speed stat, as well as Vileplume’s convenient ability to be exactly 2 points faster than the fastest Pokemon in the game while Sun was active. And it still had a **solid Trick Room backbone**, which is a style that I *do* enjoy playing quite a lot, despite what my jeering comment about it in the opening paragraph may have you believe.
 
 Both modes leveraged Torkoal's Sun-setting power and thus aligned with my stated goal, so these seemed like great options and a recipe for success!
 
@@ -53,11 +54,11 @@ Both modes leveraged Torkoal's Sun-setting power and thus aligned with my stated
     </div>
 </div>
 
-Ironically enough, almost everything about this Mega Pyroar team felt great **except** for the Mega Pyroar. Sure, it was **extremely fast** and was able to **stack a lot of damage multipliers** to really power though a lot of teams, but it resulted in a one-dimensional, all-in strategy that was so clearly telegraphed on Team Preview, that I ultimately felt like I was caught playing with one arm tied behind my back. I was often giving my opponent way more information about my plan that I was able to glean about theirs.
+Ironically enough, almost everything about this Mega Pyroar team felt great *except* for the Mega Pyroar aspect. Sure, it was **extremely fast** and was able to **stack a lot of damage multipliers** to really power though a lot of teams... But it resulted in a **one-dimensional, all-in strategy** which was so **clearly telegraphed on Team Preview**, that I ultimately felt like I was giving my opponent way more information about my plan that I was able to glean about theirs. And that's not a very fun way to play, in my opinion!
 
-This team also had Mega-Floette, but I did not feel that the rest of the pieces of the team were coherent in helping support her, with no redirection or healing to speak of. So, at the end of the day, while the Trick Room core of Incineroar, Farigiraf, Torkoal and Vileplume felt were strong, the fast mode felt severely lacking. 
+Besides the Mega Pyroar, This team also had a setup-based Mega Floette running Calm Mind, However, I did not feel that the rest of the pieces on the team were coherent in helping support her, with no redirection or healing to speak of to facilitate actually clicking Calm Mind in the first place. So, at the end of the day, while the Trick Room core of Incineroar, Farigiraf, Torkoal and Vileplume felt rather strong, the fast mode felt severely lacking.
 
-To really illustrate this point, consider the matchups against other weather archetypes. Against Rain lineups, I basically had no recourse but to continually jockey for weather control, while trying to get the most out of Mega Floette. Vileplume, meanwhile, had to pull double-duty as the Focus Sash holder as well as being my only defensive switch-in against Water-type damage. If I matched against another Sun lineup, god help me, that was somehow even worse; **all** of this team’s hardest hitters were resisted by a rival Fire-type. And Sand? We don't even want to mention Sand.
+The matchups into opposing weather archetypes also left a lot to be desired, with the team's Megas doing me few favors in that department. Against Rain lineups, I basically had no recourse but to continually jockey for weather control, while trying to get the most out of Mega Floette. Vileplume, meanwhile, was stretched far too thin, being my only defensive switch-in against Water-type damage, my primary source of Grass-type damage, and my primary form of speed control with Sleep Powder. If I matched against another Sun lineup, god help me, that was somehow even worse; five of the six members of the team, including *both* Megas, were walled by literally any rival Fire-type. And Sand? I don't even want to *think* about Sand.
 
 <hr class="hr-half">
 
@@ -83,9 +84,9 @@ To really illustrate this point, consider the matchups against other weather arc
     </div>
 </div>
 
-Having the team struggle against the two most popular archetypes of the format wasn’t great! Because my goal was *still* to bring Torkoal to a lot of games, I sought to keep the identity of the team as being Sun-oriented. Thus, I first tried replacing Floette. I decided exchanging the secondary Mega option for a **a Life Orb-equipped Rotom-Wash**, running **Thunderbolt, Hydro Pump, Volt Switch and Will-o-Wisp**. 
+Clearly, the team was facing an uphill battle near-constantly, and something would need to change. And because my goal was *still* to bring Torkoal to a lot of games, I sought to keep the identity of the team as being Sun-oriented when considering what those changes would. Thus, I opted to keep the Mega Pyroar, and instead tried replaccing the Mega Floette with a **Life Orb-equipped Rotom-Wash**, running **Thunderbolt, Hydro Pump, Volt Switch and Will-o-Wisp**. 
 
-The theory here was the combination of **Electric-type** and **Water-type** coverage gave me excellent options into opposing Water-types and Fire-types, such as Milotic and Ceruledge, who otherwise would wall the team fairly well. **Levitate**, meanwhile, gave me a defensive switch-in against Ground-type damage, which this team completely lacked a resistance to before, with Vileplume’s Poison-typing doing it no favors in that regard.
+The theory here was the combination of **Electric** and **Water-type** coverage gave me **excellent options into opposing Water and Fire, and Rock-types**, such as Milotic, Ceruledge, and Tyranitar, who otherwise would wall the team fairly well. **Levitate**, meanwhile, gave me a **defensive switch-in against Ground-type damage**, which this team completely lacked a resistance to before.
 
 I think this could have worked fairly well if I was willing to put in the time to refine Rotom’s stat spread and moveset. But I still kept finding myself not wanting to bring Mega Pyroar to most games, as it still suffered from all of the shortcomings which I had mentioned earlier. This was still not how I wanted to be using my Mega slot, so it was back to the drawing board...
 
@@ -113,7 +114,7 @@ I think this could have worked fairly well if I was willing to put in the time t
     </div>
 </div>
 
-Which finally brought me here! This is something of a re-invention of the team from first principles, focusing on what worked and how those aspects could best be improved to make a more robust, well-rounded package. Here's the breakdown.
+Which finally brought me here! This is something of a re-invention of the team from first principles, focusing on what each member of the original team did, and how those aspects could best be improved to make a more robust, well-rounded package. Here's the breakdown.
 
 ---
 
@@ -123,7 +124,7 @@ Which finally brought me here! This is something of a re-invention of the team f
         <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0006_000.png'>
     </div>
     <pre class='team-individual-mon-paste'>
-    <span class='bold'>Hot To Go!</span> (Charizard) @ Choice Scarf  
+    <span class='bold'><a href='https://music.youtube.com/watch?v=GJAt8bqW00E' target=_blank>Hot To Go!</a></span> (Charizard) @ Choice Scarf  
     <span class='bold'>Ability:</span> Solar Power
     <span class='bold'>Level</span>: 50  
     <span class='bold'>EVs</span>: 2 HP / 32 SpA / 32 Spe  
@@ -135,23 +136,24 @@ Which finally brought me here! This is something of a re-invention of the team f
     </pre>
 </div>
 
-Going back to Mega Pyroar, let us recount the positives: the ability to outpace most things with a **high speed stat**, and the ability to **stack multipliers** in service of doing **tremendous Fire-type damage**. The drawback, of course, was needing to **commit the once-per-game Mega Evolution** in exchange. Surprisingly, base-form "Baby" Charizard is able to achieve similar things with a much lower opportunity cost! 
+Thinking back to Mega Pyroar, let's recount the positives: the ability to outpace most things with a **high speed stat**, and the ability to **stack multipliers** in service of doing **tremendous Fire-type damage**. The drawback, of course, was needing to **commit the once-per-game Mega Evolution** in exchange. Surprisingly, base-form "baby" Charizard is able to achieve similar things with a much lower opportunity cost! 
 
-With **Choice Scarf** and **maximum Speed investment**, Charizard hits a blistering **final Speed stat of 250**, and with **Solar Power** active, it hits a **final Special Attack Stat of 241** which is even 10 points higher than Modest Mega Charizard-Y! This Charizard *soars* past almost everything else in the game, and people really do not expect this at all.
+With **Choice Scarf** and **maximum Speed investment**, base Charizard hits a blistering **final Speed stat of 250**, and with **Solar Power** active, it hits a **final Special Attack stat of 241**, which is actually 10 points higher than Modest Mega Charizard-Y! This Charizard *soars* past almost everything else in the game, and most players don't expect this at all.
 
-This element of surprise is a fantastic weapon. According to the in-game stats, only **0.1% of Charizards are holding this item**, compared to **over 93% of them holding a Mega Stone**. Thus, when your opponent sees Charizard on team preview with no supporting Tailwind-setter, they will intuitively expect that any of their Pokemon which can outpace Charizard's unboosted base-100 Speed stat will be able to threaten it before it can move. They will also anticpate that is will be your Mega Evolution, and thus your most valuable piece, making them index incredibly hard on taking it down. They will send out leads like Choice Scarf Rotom and Mega Raichu, thinking that they can strike you first for super-effective damage.
+This element of surprise is a fantastic weapon. According to the in-game stats, only **0.1% of Charizards are holding this item**, compared to **over 93% of them holding a Mega Stone**. Thus, when your opponent sees Charizard on team preview with no supporting Tailwind-setter, they will intuitively expect that any of their mons which can outpace Charizard's unboosted base-100 Speed stat will be able to threaten it before it can move. They will also anticpate that is will be your Mega Evolution, and thus your most valuable piece, making them index incredibly hard on taking it down. They will send out leads like Choice Scarf Rotom and Mega Raichu, thinking that they can strike you first for super-effective damage.
 
-They are *wrong*. Prey on their conditioning and **seize the moment by inflicting a Helping-Hand-Solar-Power-Sun-Boosted Heat Wave upon them**. Even if you don't get a double knockout, you will have undoubtedly done severe damage to their team. And if they *do* take you down you in exchange, well, that's fine. You have likely traded up, because **you still have your Mega in the back**, and she matches up very well against things which resist Fire-type damage. We'll get to her later.
+They are *wrong*. Prey on their conditioning and **seize the moment by inflicting a Helping-Hand-Solar-Power-Sun-Boosted Heat Wave upon them**. Even if you don't get a double knockout, you will have undoubtedly done severe damage to their team. And if they *do* take you down you in exchange, well, that's fine. You have likely traded favorably, because **you still have your Mega in the back**, and she matches up very well against things which resist Fire-type damage. We'll get to her later.
 
 ### Possible Alterations
 
-This Charizard runs the **Timid nature** to assure that it is the fastest thing on the field, but it's possible that **Modest nature** would still let you be fast enough while getting a little bit more damage on the board. I ran a few calculations and didn't see anything that suddenly became an OHKO, so I left it at that, but feel free to experiment further.
+This Charizard runs the **Timid nature** to assure that it is the fastest thing on the field, but it's possible that **Modest nature** would still let you be fast *enough* while getting a little bit more damage on the board. I ran a few calculations and didn't see anything that suddenly became an OHKO, so I left it at that, but feel free to experiment further.
 
 ### Offensive Calcs To Know
 * 32 SpA Solar Power Charizard Ancient Power vs. 2 HP  / 0 SpD Mega Charizard Y in Sun: 164-196 (105.8 - 126.4%) -- guaranteed OHKO
 * 32 SpA Solar Power Charizard Helping Hand Heat Wave vs. 32 HP  / 2 SpD Mega Staraptor in Sun: 195-229 (101.5 - 119.2%) -- guaranteed OHKO 
-* 32 SpA Solar Power Charizard Weather Ball (100 BP Fire) vs. 32 HP  / 0 SpD Mega Raichu Y in Sun: 205-243 (122.7 - 145.5%) -- guaranteed OHKO`
-* 32 SpA Solar Power Charizard Weather Ball (100 BP Fire) vs. 32 HP  / 0 SpD Mega Gengar in Sun: 177-208 (105.9 - 124.5%) -- guaranteed OHKO`
+* 32 SpA Solar Power Charizard Helping Hand Heat Wave vs. 32 HP  / 12 SpD Farigiraf in Sun: 213-252 (93.8 - 111%) -- 62.5% chance to OHKO
+* 32 SpA Solar Power Charizard Weather Ball (100 BP Fire) vs. 32 HP  / 0 SpD Mega Raichu Y in Sun: 205-243 (122.7 - 145.5%) -- guaranteed OHKO
+* 32 SpA Solar Power Charizard Weather Ball (100 BP Fire) vs. 32 HP  / 0 SpD Mega Gengar in Sun: 177-208 (105.9 - 124.5%) -- guaranteed OHKO
 
 <hr class="hr-half">
 
@@ -160,7 +162,7 @@ This Charizard runs the **Timid nature** to assure that it is the fastest thing 
         <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0902_000.png'>
     </div>
     <pre class='team-individual-mon-paste'>
-    <span class='bold'>Tough Luck</span> (Basculegion) (M) @ Focus Sash  
+    <span class='bold'><a href='https://music.youtube.com/watch?v=fah1fdkW0UA' target=_blank>Tough Luck</a></span> (Basculegion) (M) @ Focus Sash  
     <span class='bold'>Ability:</span> Adaptability 
     <span class='bold'>Level</span>: 50  
     <span class='bold'>EVs</span>: 32 Atk / 2 SpD / 32 Spe  
@@ -172,9 +174,11 @@ This Charizard runs the **Timid nature** to assure that it is the fastest thing 
     </pre>
 </div>
 
-Basculieve in Yourself. Basculegion is still the apex late-game closer. Sash used to be somewhat popular on this mon, but as of recent has fallen signifigantly behind in usage to more offensive items like **Choice Scarf**, **Mystic Water** and **Life Orb**. Basculegion feels like a much more effective Focus Sash holder than Vileplume was on the prior team composition, because you're not relying on him for early-game speed control (*Chlorophyll, After You, Sleep Powder*) or mid-game defensive properties (*being a Grass-type switch-in*). This makes it much easier to **preserve the Focus Sash until the end-game**, letting you reliably get two hits off against the final opponent, which is usually enough to get the KO.
+"*Basculieve in Yourself*". Basculegion is still the apex late-game closer. Here, he's holding the **Focus Sash**, which used to be somewhat popular on this mon, but as of recent has fallen signifigantly behind in usage to more offensive items like **Choice Scarf**, **Mystic Water** and **Life Orb**. 
 
-Keep in mind that there's also the **potential for anti-synergy** if you set up the Sun before sending Basculegion out, as you'll weaken your own water moves. **Adaptability** helps offset this potential risk a bit, and you'll often find that you're a **Last Respects**-clicking machine anyway. Plus, Basculegion is at his most effective against the Rain and Sand lineups, where you probably don't want to be struggling to keep Sun up while trying to do Fire-type damage in the first place.
+Basculegion feels like a much more effective Focus Sash holder than Vileplume was on the prior team composition, because you're not relying on him for early-game speed control (*Chlorophyll, After You, Sleep Powder*) or mid-game defensive properties (*being a Grass-type switch-in*). This makes it much easier to **preserve the Focus Sash until the end-game**, letting you reliably get two hits off against the final opponent, which is usually enough to get the KO.
+
+Keep in mind that there is the **potential for anti-synergy if you set up the Sun before sending Basculegion out**, as you'll weaken your own water moves. **Adaptability** helps offset this potential risk a bit, and you'll often find that you're a **Last Respects**-clicking machine anyway. Plus, Basculegion is at his most effective against the Rain and Sand lineups, where you probably don't want to be struggling to keep Sun up while trying to do Fire-type damage in the first place.
 
 ### Possible Alterations
 
@@ -190,7 +194,7 @@ I do think that this is the most flexible slot on the team, and if you wanted to
         <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0727_000.png'>
     </div>
     <pre class='team-individual-mon-paste'>
-    <span class='bold'>Judas</span> (Incineroar) @ White Herb   
+    <span class='bold'><a href='https://youtu.be/3azQuNL2LIM' target=_blank>Judas</a></span> (Incineroar) @ White Herb   
     <span class='bold'>Ability:</span> Intimidate 
     <span class='bold'>Level</span>: 50  
     <span class='bold'>EVs</span>: 30 HP / 32 Atk / 2 Def / 2 SpD  
@@ -202,15 +206,16 @@ I do think that this is the most flexible slot on the team, and if you wanted to
     </pre>
 </div>
 
-One thing that was immediately clear to me from the very beginning is that max-Attack White Herb Incineroar felt like a **cheat code** for Trick Room modes. Having a **physical attacker** that **cannot be burned** and also gets to **shrug off one stack of Intimidate** goes a really, really long way. **White Herb** also serves the purpose of purging the Defense drop that he naturally incurs from **Close Combat**. Also, this guy gets Close Combat! Tyranitars never see it coming.
+One thing that was immediately clear to me from the very beginning is that **maximum Attack investment Incineroar with a White Herb** felt like a **cheat code** for the Trick Room mode. He continues the trend of standard mons being played in non-standard ways; most opponents will see Incineroar with teammates like these and assume that it will adopt a defensive, pivot-oritented playstyle. But not this Incineroar. *Oh no*. He's here to stay put and do *damage*. Because as it turns out, having a **physical attacker** that **cannot be burned** and also gets to **shrug off one stack of Intimidate for free** goes a really, *really* long way. And similarly to Charizard, you can stack a lot of offensive modifiers on him between **Helping Hand** and **Sun** to further increase his damage potential. 
 
-This guy checks a lot of things, namely Ceruledge and Basculegion, though unlike the first iteration of the team, he is no longer the *only* check to these guys, so some times it's perfectly alright to let him fall after getting a Fake Out off to improve your board position.
+Besides just letting him shrug off Intimidate, his **White Herb** can instead let him ditch the defensive drop that he incurs from using **Close Combat**, if the situation calls for it. Speaking of which, he *also* gets Close Combat! Tyranitars never see this coming and hate him for it.
 
-Similar to Charizard, you can stack a lot of offensive modifiers on this guy between **Helping Hand** and **Sun**.
+With Dark and Fighting-type coverage at his disposal and a great defensive typing of his own, this guy checks things such as Ceruledge, Delphox, Pyroar, and the occasional Hisuian Arcanine. However, unlike the first iteration of the team, he is no longer the *only* check to them, so while he is meant to act as a sweeper, sometimes it's still perfectly alright to let him fall after getting a Fake Out off to improve your board position.
+
 
 ### Possible Alterations
 
-If you wanted to tweak the build a little bit, I think there's an argument to be made for **swapping out the White Herb for a Life Orb**. While the presence of Farigiraf on your team will very frequently encourage your opponent to bring an Incineroar of their own, it doesn't happen all the time. In games where you do *not* need to dispel a rival Intimidate, the Life Orb would give you a fair bit more power in your initial punches. 
+If you wanted to tweak the build a little bit, I think there's an argument to be made for **swapping out the White Herb for a Life Orb**. While the presence of Farigiraf and lots of Fire-type damage on your team will very frequently encourage your opponent to bring an Incineroar of their own, it doesn't happen all the time. In games where you do *not* need to dispel a rival Intimidate, the Life Orb would give you a fair bit more power in your initial punches. 
 
 In some of the calculations below, Incineroar comes just shy of OHKOing several things, and Life Orb would push it over the threshold. However, it's impossible to say if you would find yourself at -1 from an undispelled Intimidate in those same situations if you didn't have the White Herb, and would thus still be doing less damage overall.
 
@@ -236,6 +241,7 @@ In some of the calculations below, Incineroar comes just shy of OHKOing several 
 * 32+ Atk Incineroar Flare Blitz vs. 32 HP  / 0 Def Mega Mawile: 170-204 (108.2 - 129.9%) -- guaranteed OHKO
 * 32+ Atk Incineroar Helping Hand Flare Blitz vs. 26 HP  / 2 Def Mega Floette: 169-201 (96.5 - 114.8%) -- 81.25% chance to OHKO
 * 32+ Atk Incineroar Helping Hand Flare Blitz vs. 0 HP  / 0 Def Mega Staraptor: 154-183 (96.2 - 114.3%) -- 81.25% chance to OHKO
+* 32+ Atk Incineroar Darkest Lariat vs. 0 HP  / 0 Def Mega Delphox: 192-228 (128 - 152%) -- guaranteed OHKO
 
 <hr class="hr-half">
 
@@ -244,7 +250,7 @@ In some of the calculations below, Incineroar comes just shy of OHKOing several 
         <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0981_000.png'>
     </div>
     <pre class='team-individual-mon-paste'>
-    <span class='bold'>Toto</span> (Farigiraf) @ Sitrus Berry   
+    <span class='bold'><a href='https://music.youtube.com/watch?v=ZP69PLBqFUo' target=_blank>Toto</a></span> (Farigiraf) @ Sitrus Berry   
     <span class='bold'>Ability:</span> Armor Tail 
     <span class='bold'>Level</span>: 50  
     <span class='bold'>EVs</span>: 25 HP / 26 Def / 15 SpD  
@@ -260,17 +266,17 @@ Probably the most standard member of the team, this Farigiraf does what Farigira
 
 25 points invested into HP brings her to a nice, **even HP value of 220**, which is relevant for making sure her Sitrus Berry activates reliably in the face of things like Super Fang from Maushold, or after several turns of percentage-based chip effects.
 
-With a well-placed **Intimidate** from Incineroar by her side, she can **withstand the most heinous attacks imaginable**. I'm talking **Life Orb Adamant Basculegion Wave Crash in Rain**. This was chosen as my defensive benchmark under the rationale that it would be the single hardest hit that could be coming from something that cannot be Faked Out on Turn 1. 
+With a well-placed **Intimidate** from Incineroar by her side, she can **withstand the most heinous attacks imaginable**. I'm talking **Life Orb Adamant Basculegion Wave Crash in Rain**. This was chosen as my target defensive benchmark under the rationale that it would be the single hardest hit achievable on Turn 1 that could be coming from something which cannot be Faked Out. 
 
-On the special side, **she can endure a Weather Ball from Modest Charizard-Y in Sun**, but **it's a roll to survive a Fairy Feather-boosted Hyper Beam from Modest Sylveon** or a **Fairy Aura-boosted Light of Ruin from Mega Floette**. But, like I said, you *can* Fake Out both of these threats.
+On the special side, **she can endure a Weather Ball from Modest Charizard-Y in Sun**, but **it's a roll to survive a Fairy Feather-boosted Hyper Beam from Modest Sylveon** or a **Fairy Aura-boosted Light of Ruin from Mega Floette**. But, like I said, you *can* Fake Out either of these threats, so hopefully you just never end up facing them both at the same time.
 
 **Thunderbolt** is there to snipe Pelippers and rival Charizards, which is a thing you will find yourself doing surprisngly often. According to the in-game stats, this is also a fairly common move choice, so I don't think it needs much more explanation.
 
-Do not be afraid to click **Helping Hand** frequently, as every other member of this team is offensively-tuned and designed to do a lot of damage. You will surprise people with how much damage guys like Incineroar can do.
+Do not be afraid to click **Helping Hand** frequently. As demonstrated with Incineroar, every other member of this team is offensively-tuned and designed to do a lot of damage.
 
 ### Possible Alterations
 
-**Psychic Noise** might be worthwhile over plain-old **Psychic**, if for no other reason than it being really funny to wall out Ceruledge completely, and to make Milotic sweat a bit. Remember, the heal block effect doesn't just remove the healing aspect, it *fully disables the ability to use healing moves* such as Bitter Blade. That said, the power drop is considerable, and Psychic really does nice neutral damage into a lot of things, even without any special attack investment. 
+**Psychic Noise** might be worthwhile over plain-old **Psychic**, if for no other reason than it being really funny to wall out Ceruledge completely, and to make Milotic sweat a bit. Remember, the heal block effect doesn't just remove the healing aspect, it *fully disables the ability to click healing moves* such as Bitter Blade. That said, the power drop is considerable, and Psychic honestly does great neutral damage into a lot of things, even without any Special Attack investment. 
 
 ### Defensive Calcs To Know
 
@@ -292,7 +298,7 @@ Do not be afraid to click **Helping Hand** frequently, as every other member of 
         <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0003_000.png'>
     </div>
     <pre class='team-individual-mon-paste'>
-    <span class='bold'>Aphrodite</span> (Venusaur) @ Venusaurite   
+    <span class='bold'><a href='https://music.youtube.com/watch?v=jmB9-99_9Y8' target=_blank>Aphrodite</a></span> (Venusaur) @ Venusaurite   
     <span class='bold'>Ability:</span> Chlorophyll 
     <span class='bold'>Level</span>: 50  
     <span class='bold'>EVs</span>: 32 HP / 22 SpA / 12 Spe 
@@ -304,21 +310,21 @@ Do not be afraid to click **Helping Hand** frequently, as every other member of 
     </pre>
 </div>
 
-What if Vileplume was incredibly bulky? This is question that few dare to ask but for which I have the answer. As discussed earlier, while Vileplume's versatile Speed stat and its Water-resistant typing made it an appealing incusion for a Sun team, it still had a few glaring issues. 
+What if Vileplume was incredibly bulky? This is question that few dare to ask but for which I have the answer. As discussed earlier, while Vileplume's versatile Speed stat and its Water-resistant typing made it an appealing incusion for a Sun team, it still had a few glaring issues that made it feel like not quite the right tool for the job.
 
-Firstly, it would *always* have its Speed doubled in the Sun, no matter what, resulting in occasional awkward board states once Trick Room was set up. Secondly, it was simultaneously the only Water-resist *and* the Focus Sash holder, meaning that it would functionally lose its item immediately if you ever needed to make a defensive switch-in.
+Firstly, it would *always* have its Speed doubled in the Sun, no matter what, resulting in occasional awkward board states once Trick Room was set up and Torkoal was brought out to sweep. Secondly, it was simultaneously the only Water-resist *and* the Focus Sash holder, meaning that it would functionally lose its item immediately if you ever needed to make a defensive switch-in.
 
-Venusaur, and more specifically *Mega* Venusaur, solves all of these problems. A mere 12 points of Speed investment allows her to reach a **Speed stat of 112**, which is the same as maximum-investment Vileplume. This number is important, because it is still slow enough to be usable inside Trick Room, but when doubled with Chlorophyll, hits the magic number of 224, which is exactly 2 points faster than the base-150s, who are currently the fastest unboosted Pokemon in the entire game. 
+Venusaur, and more specifically *Mega* Venusaur, solves both of these problems. A mere 12 points of Speed investment allows her to reach a **Speed stat of 112**, which is the same as maximum-investment Vileplume. This number is important, because it is still slow enough to be usable inside Trick Room, but when doubled with Chlorophyll, hits the magic number of 224, which is exactly 2 points faster than the base-150s, who are currently the fastest unboosted Pokemon in the entire game. 
 
-Importantly, unlike with Vileplume, we have the option of **turning off Chlorophyll by Mega Evolving**, allowing us to sit comfortably in a Trick Room scenario where Sun has already been set up. And of course, if we don't see Trick Room in the immediate future, you can just delay your Mega Evolution for a little while and enjoy the Speed boost while you need it.
+Importantly, unlike with Vileplume, Venusaur has the option of **turning off Chlorophyll by Mega Evolving**, allowing her to sit comfortably in a Trick Room scenario where Sun has already been set up. And of course, if you don't see Trick Room in the immediate future, you can just delay your Mega Evolution for a little while and enjoy the Speed boost while you need it.
 
-And it's not like she gets a useless ability in echange for Chlorophyll, either. She gains **Thick Fat**, which nullifies her Fire and Ice-type weaknesses, leaving her only vulnerable to the less-common Psychic and Flying-type damage. This, in addition to the natrually superior bulk stats, allows Venusaur to feel much, much better as defensive countermeasure to the Water, Rock and Ground-type damage that would otherwise completely run over earlier versions of the team. Add restoration from **STAB-boosted Giga Drain** on top of that, and you have a mon that can really stick around.
+And it's not like she just gets a useless ability in exchange for Chlorophyll, either. The replacement is **Thick Fat**, which nullifies her Fire and Ice-type weaknesses, leaving her only vulnerable to the less-common Psychic and Flying-type damage. This, in addition to the natrually superior bulk stats, allows Venusaur to feel much, much better as defensive countermeasure to the Water, Rock and Ground-type damage that would otherwise completely run over earlier versions of the team. Add restoration from **STAB-boosted Giga Drain** on top of that, and you have a mon that can really stick around.
 
-And, of course, by being a Mega Pokemon, this **frees up the Focus Sash** to be held by another member of the team, one which *isn't* also serving double-duty as a defensive option.
+And, of course, by virtue of being a Mega Pokemon and needing to hold a Mega Stone, Venusaur **freed up the Focus Sash** to be held by another member of the team. One which, as discussed earlier, *isn't* also serving double-duty as a defensive pivot!
 
 ### Possible Alterations
 
-Venusaur also has the option of going for **Sleep Powder** just like Vileplume, but here I have opted to go for a third attack instead, with **Earth Power**. Special Ground-type damage is at a premium in this format, giving us additional answer into guys like Archaludon, Kingambit and Ceruledge. Overall, I preferred this to the inconsistency of Sleep Powder, but it is by no means definitively the correct moveset.
+Venusaur also has the option of going for **Sleep Powder** just like Vileplume, but here I have opted to go for a third attack instead, with **Earth Power**. Special Ground-type damage is at a premium in this format, giving the team an additional answer for guys like Archaludon, Kingambit and Ceruledge. Overall, I preferred this to the inconsistency of Sleep Powder, but it is by no means definitively the correct moveset.
 
 ### Offensive Calcs To Know
 * TBD
@@ -336,7 +342,7 @@ Venusaur also has the option of going for **Sleep Powder** just like Vileplume, 
         <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0324_000.png'>
     </div>
     <pre class='team-individual-mon-paste'>
-    <span class='bold'>O Sole Mio!</span> (Torkoal) @ Charcoal   
+    <span class='bold'><a href='https://music.youtube.com/watch?v=eQSNVBLTXYY' target=_blank>O Sole Mio!</a></span> (Torkoal) @ Charcoal   
     <span class='bold'>Ability:</span> Drought 
     <span class='bold'>Level</span>: 50  
     <span class='bold'>EVs</span>: 32 HP / 32 SpA / 2 SpD 
@@ -348,13 +354,13 @@ Venusaur also has the option of going for **Sleep Powder** just like Vileplume, 
     </pre>
 </div>
 
-Finally, the star of the show (*in my heart*): it's Torkoal! What is there to say? She is the [*Tried and True*](../projects/ribbon-master-tracker) Trick Room sweeper. On this team, **she can play both an offensive and supportive role**, with **Helping Hand** chosen over a third attack. There are a great many leads which you can reduce to ash by simply providing a Helping Hand boost to Charizard.
+Finally, the star of the show (*in my heart*): it's Torkoal! What is there to say? She is the [*Tried and True*](../projects/ribbon-master-tracker) Trick Room sweeper. On this team, **she can play both an offensive and supportive role**, with **Helping Hand** chosen over a third attack. There are a great many leads which you can reduce to ash by simply providing a Helping Hand boost to Charizard on rip.
 
-This Torkoal is my beloved Pokemon and has been with me since Generation 6. She has every ribbon she can get. I am happy that she continues to find new friends to play with, season after season.
+This Torkoal is my beloved Partner Pokemon and has been with me since Generation 6. She has every ribbon she can get. I am happy that she continues to find new friends to play with, season after season.
 
 ### Possible Alterations
 
-There is a real argument to be made for replacing Helping Hand with **Earth Power** so as not to get walled out completely by the Flash-Fire-having Ceruledge. I say you haven't lived until you've won on the first turn with a **Helping-Hand-Solar-Power-Sun-Boosted Heat Wave**. But I won't deny that the team's Ceruledge matchup is somewhat difficult.
+There is a real argument to be made for replacing Helping Hand with **Earth Power** so as not to get walled out completely by the Flash-Fire-having Ceruledge in certain board states. I say you haven't lived until you've won on the first turn with a **Helping-Hand-Solar-Power-Sun-Boosted Heat Wave**. But I won't deny that the team's Ceruledge matchup is still somewhat difficult, even with Venusaur and Incineroar on the roster.
 
 ### Offensive Calcs To Know
 * 32+ SpA Charcoal Torkoal Helping Hand Eruption (150 BP) vs. 32 HP  / 12 SpD Farigiraf in Sun: 252-297 (111 - 130.8%) -- guaranteed OHKO
@@ -372,13 +378,13 @@ There is a real argument to be made for replacing Helping Hand with **Earth Powe
     <span><span class="fa fa-lg fa-copy"></span> Copy the PokePaste to Clipboard!<span>
 </a>
 
-The Replica Code at the time of this writing is `L9VSPYV70U`
+The Replica Code at the time of this writing is `L9VSPYV70U`! However, it will likely not stay up forever, so please consult the above Paste for reference!
 
 ---
 
 ## Common Brings
 
-### All-Out Solar Offense
+### Sun Hyper-Offense
 #### Front
 <div class='team-list no-padding'>
     <div class='team-list-mon'>
@@ -424,7 +430,7 @@ From there, you just click Heat Wave for as long as they let you, and **navigate
     </div>
 </div>
 
-Against teams which seek to outrun you, this is the bread-and-butter Trick Room composition. The combination of Incineroar and Farigiraf allow for an extremely safe combination of **Fake Out + Trick Room**, with fairly few ways to stop it. From there, **Incineroar can flex its full investment in Attack** while Farigiraf can **click Helping Hand, fire off neutral hits, or hard switch into a stronger attacker**. Against the ever-present Kingambit, who is slower than both Incineroar and Farigiraf, I often find myself switching Farigiraf our for Torkoal while targeting Kingambit with a now-boosted Flare Blitz. Torkoal's base 140 physical Defense will keep it going even against a +1 Kowtow.
+Against teams which seek to outrun you, this is the bread-and-butter Trick Room composition. The combination of Incineroar and Farigiraf allow for an extremely safe combination of **Fake Out + Trick Room**, with fairly few ways to stop it. From there, **Incineroar can flex its full investment in Attack** while Farigiraf can **click Helping Hand, fire off neutral hits, or hard switch into a stronger attacker**. Against the ever-present Kingambit, who is slower than both Incineroar and Farigiraf, I often find myself switching Farigiraf out for Torkoal while targeting Kingambit with a now-boosted Flare Blitz. Torkoal's base 140 physical Defense will keep it going even against a +1 Kowtow.
 
 This is also **the composition I bring against Rain teams** (*unless they have a manual Rain setter like Sableye, in which case Torkoal often becomes Basculegion*). Incineroar can get a lot done against Archaludon, and its Intimidate is valuable against Swampert. Pelipper has to live in fear of Thunderbolt from Farigiraf. Throw down damage early and often, and trust in Venusaur to close it out for you.
 
@@ -460,8 +466,15 @@ Garchomp is of course fairly scary, but you can generally just muscle through it
 
 ---
 
+## Media
+
+Marcos "*MoxieBoosted*" Perez gave the team a spin to great results on his YouTube channel.
+<iframe class="yt-embed" src="https://www.youtube.com/embed/d3zdXE5slBY?si=QyhPSzPCeISZdJLI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+---
+
 ## Closing Remarks
-Thank you for reading! This team report is almost certainly way too long, but it was my first time feeling truly good about a team I built for a standard format, and my first time sitting down to commit to writing one of these. I love Torkoal and hope that she continues to shine in to Regulation M-C and beyond.
+Thank you for reading! This team report is almost certainly way too long, but it was my first time feeling truly good about a team I built for a standard format, and also my first time sitting down to commit to writing one of these. I love Torkoal and hope that she continues to shine in to Regulation M-C and beyond.
 
 <style>
 

@@ -57,9 +57,20 @@ async function getMetadata(markdownPath, classification, appConfig){
     const tags = metadata['tags'].split(',').map(tag => tag.trim().toLowerCase()).sort();
     const timestamp = Date.parse(`${metadata['date']}T00:00:00-05:00`) 
     const updated = metadata['updated'] ? Date.parse(`${metadata['updated']}T00:00:00-05:00`) : timestamp;
+    const altTitles = [];
+    let i = 1;
+    let altTitle = undefined;
+    do { 
+        altTitle = metadata[`alt-title-${i}`];
+        if(altTitle){
+            altTitles.push(altTitle);
+        }
+        i++;
+    } while(altTitle != undefined)
     return {
         title: slugify(metadata['title']),
         fullTitle: metadata['title'],
+        altTitles,
         classification: classification ? classification : "blogs",
         brief: metadata['brief'],
         tags,
