@@ -407,7 +407,7 @@ The Replica Code at the time of this writing is `L9VSPYV70U`! However, it will l
     </div>
 </div>
 
-Against teams which do not have a meaningful way to resist Fire damageT (such as Alolan Ninetales + Mega Raichu Y), you can just **turn up the heat immediately**. Leading with Torkoal sets you up in a position to either **just click Helping Hand**, or **hard switch into Farigiraf to block an expected Fake Out**. You can also lead with Farigiraf and hard switch in to Torkoal if you are worried about weather control.
+Against teams which do not have a meaningful way to resist Fire damage (such as Alolan Ninetales + Mega Raichu Y), you can just **turn up the heat immediately**. Leading with Torkoal sets you up in a position to either **just click Helping Hand**, or **hard switch into Farigiraf to block an expected Fake Out**. You can also lead with Farigiraf and hard switch in to Torkoal if you are worried about weather control.
 
 From there, you just click Heat Wave for as long as they let you, and **navigate for setting up Trick Room in the mid-game**. Venusaur can be preserved until the end-game fairly well and clean up either under cover of Sun with Cholorphyll, or by Mega-Evolving. Basculegion is also a fine choice here, as the Sun often expires by the time the game reaches this point, allowing you to rip at least two attacks into something with your Focus Sash preserved.
 
