@@ -20,7 +20,7 @@ Basically, the team is made of various **good-stuff staples**, but **the items a
 
 These relatively simple changes enable a fairly diverse set of options that I feel give me a good plan into most matchups, despite the team as a whole appearing to be completely Sun-dependent on from the outside. 
 
-This team took me on a **14-0 win streak** through Master Ball during the last weekend of the ranked season, so I'm reasonably happy with it overall. Here's the story. Or, if you'd prefer, you can [jump to the Paste and Replica Code](#thepaste) or [watch some clips of it in action](#media).
+This team took me on a **14-0 win streak** through Master Ball during the last weekend of the ranked season, so I'm reasonably happy with it overall. The section below outlines my iterative process. But, if you'd prefer, you can [jump to the Paste and Replica Code](#thepaste) or [watch some clips of it in action](#media).
 
 ---
 
@@ -54,11 +54,18 @@ Both modes leveraged Torkoal's Sun-setting power and thus aligned with my stated
     </div>
 </div>
 
-Ironically enough, almost everything about this Mega Pyroar team felt great *except* for the Mega Pyroar aspect. Sure, it was **extremely fast** and was able to **stack a lot of damage multipliers** to really power though a lot of teams... But it resulted in a **one-dimensional, all-in strategy** which was so **clearly telegraphed on Team Preview**, that I ultimately felt like I was giving my opponent way more information about my plan that I was able to glean about theirs. And that's not a very fun way to play, in my opinion!
+Ironically enough, almost everything about this Mega Pyroar team felt great *except* for the Mega Pyroar aspect. Sure, it was **extremely fast** and was able to **stack a lot of damage multipliers** to really power though a lot of teams... But it resulted in a **one-dimensional, all-in strategy** which was so **clearly telegraphed on Team Preview**, that I ultimately felt like **I was giving my opponent way more information** about my plan that I was able to glean about theirs. And that's not a very fun way to play, in my opinion!
 
-Besides the Mega Pyroar, This team also had a setup-based Mega Floette running Calm Mind, However, I did not feel that the rest of the pieces on the team were coherent in helping support her, with no redirection or healing to speak of to facilitate actually clicking Calm Mind in the first place. So, at the end of the day, while the Trick Room core of Incineroar, Farigiraf, Torkoal and Vileplume felt rather strong, the fast mode felt severely lacking.
+Besides the Mega Pyroar, this team also had a Mega Floette running the Calm Mind set. However, **the rest of the team was not coherent in helping protect her** while she set up, as there was no redirection or healing available to protect her.
 
-The matchups into opposing weather archetypes also left a lot to be desired, with the team's Megas doing me few favors in that department. Against Rain lineups, I basically had no recourse but to continually jockey for weather control, while trying to get the most out of Mega Floette. Vileplume, meanwhile, was stretched far too thin, being my only defensive switch-in against Water-type damage, my primary source of Grass-type damage, and my primary form of speed control with Sleep Powder. If I matched against another Sun lineup, god help me, that was somehow even worse; five of the six members of the team, including *both* Megas, were walled by literally any rival Fire-type. And Sand? I don't even want to *think* about Sand.
+Also, notably, **neither of these Megas felt particularly usable inside the Trick Room mode**. Let's put a pin in that and come back to it later.
+
+With things as they were, **the team really struggled in to almost everything**. Wolfey was able to make it work, but I don't have the same level of game sense as the World Champ. **I needed to restructure the team to work for my skill level**. 
+
+Let's examine some matchups, at least as far as I understood them:
+- Against Rain, I basically had no recourse but to continually jockey for weather control, taking a lot of damage as I repositioned, all while trying to get the most out of Mega Floette. Vileplume, meanwhile, was stretched far too thin, being my only defensive switch-in against Water-type damage, my primary source of Grass-type damage, and my fastest form of speed control with Sleep Powder. 
+- Against Sun, god help me, that was somehow even worse; five of the six members of the team, including *both* Megas, were walled by literally any rival Fire-type.  Granted, our Fire-types walled their Fire-types back, but other teams usually had a bit more type diveristy to work with from an offensive perspective.
+- Against Sand, uh... Hm...
 
 <hr class="hr-half">
 
@@ -88,7 +95,7 @@ Clearly, the team was facing an uphill battle near-constantly, and something wou
 
 The theory here was the combination of **Electric** and **Water-type** coverage gave me **excellent options into opposing Water and Fire, and Rock-types**, such as Milotic, Ceruledge, and Tyranitar, who otherwise would wall the team fairly well. **Levitate**, meanwhile, gave me a **defensive switch-in against Ground-type damage**, which this team completely lacked a resistance to before.
 
-I think this could have worked fairly well if I was willing to put in the time to refine Rotom’s stat spread and moveset. But I still kept finding myself not wanting to bring Mega Pyroar to most games, as it still suffered from all of the shortcomings which I had mentioned earlier. This was still not how I wanted to be using my Mega slot, so it was back to the drawing board...
+I think this could have worked fairly well if I was willing to put in the time to refine Rotom’s stat spread and moveset. However, I got frustrated by the inconsistency having two moves with 85% or lower accuracy. Plus, I still kept finding myself not wanting to bring Mega Pyroar to most games, as it still suffered from all of the shortcomings which I had mentioned earlier. Adding a Rotom didn't change that truth. Maybe **if we were playing a vanilla format without Megas, these five would be enough. But we aren't, so they weren't**. And so, it was back to the drawing board...
 
 <hr class="hr-half">
 
@@ -114,7 +121,7 @@ I think this could have worked fairly well if I was willing to put in the time t
     </div>
 </div>
 
-Which finally brought me here! This is something of a re-invention of the team from first principles, focusing on what each member of the original team did, and how those aspects could best be improved to make a more robust, well-rounded package. Here's the breakdown.
+Which finally brought me here! This is something of a re-invention of the team from first principles, focusing on what each member of the original team did, and thinking about those aspects could best be improved to make a more robust, well-rounded package. Here's the breakdown.
 
 ---
 
@@ -136,7 +143,7 @@ Which finally brought me here! This is something of a re-invention of the team f
     </pre>
 </div>
 
-Let's think back to where this team began: with Mega Pyroar. It had two majorly desirable features: the ability to outpace most things with a **high speed stat**, and the ability to **stack multipliers** in service of doing **tremendous Fire-type damage**. THe drawback, of course, is that it was extremely one-dimensional in nature, and if any of those stacking modifiers got disrupted, it felt like you had wasted your Mega slot. So, what if we could get all of those positives *without* using a Mega in the first place? Enter base form "baby" Charizard.
+Let's think back to where this team began: with Mega Pyroar. It had two majorly desirable features: the ability to outpace most things with a **high speed stat**, and the ability to **stack multipliers** in service of doing **tremendous Fire-type damage**. The drawback, of course, is that it was extremely one-dimensional, and if any of those stacking modifiers got disrupted, it felt like you had wasted your Mega slot. So, what if we could get all of those positives *without* using a Mega in the first place, and thus drastically reduce our opportunity cost? Enter base-form, non-Mega "baby" Charizard.
 
 With **Choice Scarf** and **maximum Speed investment**, base Charizard hits a blistering **final Speed stat of 250**, and with **Solar Power** active, it hits a **final Special Attack stat of 241**, which is actually 10 points higher than even maximum investment Modest Mega Charizard-Y! This Charizard *soars* past almost everything else in the game, and most players don't expect this at all.
 
@@ -208,11 +215,13 @@ I do think that this is the most flexible slot on the team, and if you wanted to
     </pre>
 </div>
 
-One thing that was immediately clear to me from the very beginning is that **maximum Attack investment Incineroar with a White Herb** felt like a **cheat code** for the Trick Room mode. He continues the trend of standard mons being played in non-standard ways; most opponents will see Incineroar with teammates like these and assume that it will adopt a defensive, pivot-oritented playstyle. But not this Incineroar. *Oh no*. He's here to stay put and do *damage*. Because as it turns out, having a **physical attacker** that **cannot be burned** and also gets to **shrug off one stack of Intimidate for free** goes a really, *really* long way. And similarly to Charizard, you can stack a lot of offensive modifiers on him between **Helping Hand** and **Sun** to further increase his damage potential. 
+One thing that was immediately clear to me from the very beginning is that **maximum Attack investment Incineroar with a White Herb** felt like a **cheat code** for the Trick Room mode. 
+
+He continues the trend of standard mons being played in non-standard ways; most opponents will see Incineroar with teammates like these and assume that it will adopt a defensive, pivot-oritented playstyle. But not this Incineroar. *Oh no*. He's here to stay put and do *damage*. Because as it turns out, having a **physical attacker** that **cannot be burned** and also gets to **shrug off one stack of Intimidate for free** goes a really, *really* long way. And similarly to Charizard, you can stack a lot of offensive modifiers on him between **Helping Hand** and **Sun** to further increase his damage potential. 
 
 Besides just letting him shrug off Intimidate, his **White Herb** can instead let him ditch the defensive drop that he incurs from using **Close Combat**, if the situation calls for it. Speaking of which, he *also* gets Close Combat! Tyranitars never see this coming and hate him for it.
 
-With Dark and Fighting-type coverage at his disposal and a great defensive typing of his own, this guy checks things such as Ceruledge, Delphox, Pyroar, and the occasional Hisuian Arcanine. However, unlike the first iteration of the team, he is no longer the *only* check to them, so while he is meant to act as a sweeper, sometimes it's still perfectly alright to let him fall after getting a Fake Out off to improve your board position.
+With Dark and Fighting-type coverage at his disposal and a great defensive typing of his own, this guy checks things such as Ceruledge, Delphox, Pyroar, and the occasional Hisuian Arcanine. However, unlike the first iteration of the team, he is no longer the *only* check to them, so while he is meant to act as a sweeper, sometimes it's still perfectly alright to let him fall after getting a Fake Out and Intimidate off to improve your board position.
 
 
 ### Possible Alterations
@@ -324,18 +333,32 @@ And it's not like she just gets a useless ability in exchange for Chlorophyll, e
 
 And, of course, by virtue of being a Mega Pokemon and needing to hold a Mega Stone, Venusaur **freed up the Focus Sash** to be held by another member of the team. One which, as discussed earlier, *isn't* also serving double-duty as a defensive pivot!
 
+Just keep in mind that **this Venusaur is not designed to pick up huge OHKOs**, but instead **complement the rest of the team** and help put things in range for other members, or to clean up after them. 
+
 ### Possible Alterations
 
 Venusaur also has the option of going for **Sleep Powder** just like Vileplume, but here I have opted to go for a third attack instead, with **Earth Power**. Special Ground-type damage is at a premium in this format, giving the team an additional answer for guys like Archaludon, Kingambit and Ceruledge. Overall, I preferred this to the inconsistency of Sleep Powder, but it is by no means definitively the correct moveset.
 
 ### Offensive Calcs To Know
-* TBD
+#### Giga Drain
+- 22+ SpA Mega Venusaur Giga Drain vs. 2 HP  / 0 SpD Garchomp: 73-87 (39.4 - 47%) -- guaranteed 3HKO
+- 22+ SpA Mega Venusaur Giga Drain vs. 2 HP  / 0 SpD Basculegion: 162-192 (82.2 - 97.4%) -- guaranteed 2HKO *(it is worth mentioning that even 32+ SpA cannot guarantee an OHKO here)*
+#### Earth Power
+- 22+ SpA Mega Venusaur Earth Power vs. 32 HP  / 1 SpD Mega Gengar: 106-126 (63.4 - 75.4%) -- guaranteed 2HKO
+- 22+ SpA Mega Venusaur Helping Hand Earth Power vs. 27 HP  / 1 SpD Ceruledge: 152-180 (85.8 - 101.6%) -- 12.5% chance to OHKO
+- 22+ SpA Mega Venusaur Earth Power vs. 32 HP  / 25 SpD Archaludon: 112-132 (56.8 - 67%) -- guaranteed 2HKO after Leftovers recovery
+#### Sludge Bomb
+- 22+ SpA Mega Venusaur Sludge Bomb vs. 0 HP  / 2 SpD Mega Staraptor: 82-97 (51.2 - 60.6%) -- guaranteed 2HKO
+- 22+ SpA Mega Venusaur Sludge Bomb vs. 2 HP  / 0 SpD Mega Charizard Y: 67-81 (43.2 - 52.2%) -- 10.94% chance to 2HKO
 
 ### Defensive Calcs To Know
 #### Physical Hits
-* TBD
+* 32 Atk Life Orb Garchomp Earthquake vs. 32 HP  / 0 Def Mega Venusaur: 70-83 (37.4 - 44.3%) -- guaranteed 3HKO
+* 32 Atk Mega Staraptor Dual Wingbeat (2 hits) vs. 32 HP  / 0 Def Mega Venusaur: 124-148 (66.3 - 79.1%) -- guaranteed 2HKO
 #### Special Hits
 * 32+ SpA Pelipper Hurricane vs. 32 HP  / 0 SpD Mega Venusaur: 144-170 (77 - 90.9%) -- guaranteed 2HKO
+* 32+ SpA Mega Charizard Y Weather Ball (100 BP Fire) vs. 32 HP  / 0 SpD Thick Fat Mega Venusaur in Sun: 144-170 (77 - 90.9%) -- guaranteed 2HKO
+
 
 <hr class="hr-half">
 
@@ -366,6 +389,8 @@ There is a real argument to be made for replacing Helping Hand with **Earth Powe
 
 ### Offensive Calcs To Know
 * 32+ SpA Charcoal Torkoal Helping Hand Eruption (150 BP) vs. 32 HP  / 12 SpD Farigiraf in Sun: 252-297 (111 - 130.8%) -- guaranteed OHKO
+* 32+ SpA Charcoal Torkoal Weather Ball (100 BP Fire) vs. 0 HP  / 2 SpD Mega Staraptor in Sun: 136-162 (85 - 101.2%) -- 6.25% chance to OHKO
+* 32+ SpA Charcoal Torkoal Weather Ball (100 BP Fire) vs. 2 HP  / 0 SpD Garchomp in Sun: 72-86 (38.9 - 46.4%) -- guaranteed 3HKO
 
 ### Defensive Calcs To Know
 #### Physical Hits
