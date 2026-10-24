@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config(".env");
 
 /**
  * A dependency injection configuration.
