@@ -35,22 +35,28 @@ Both modes leveraged Torkoal's Sun-setting power and thus aligned with my stated
 #### Take 1 - Mega Pyroar
 <div class='team-list'>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0668_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0668_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/mega_stone_icon_pyroarite.png'>
     </div>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0670_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0670_001.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/mega_stone_icon_floettite.png'>
     </div>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0727_000.png'>
+        <img class='mon-icon'src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0727_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/item_icon_white_herb.png'>
     </div>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0981_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0981_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/berry_icon_sitrus_berry.png'>
     </div>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0045_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0045_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/item_icon_focus_sash.png'>
     </div>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0324_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0324_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/item_icon_charcoal.png'>
     </div>
 </div>
 
@@ -73,21 +79,27 @@ Let's examine some matchups, at least as far as I understood them:
 <div class='team-list'>
     <div class='team-list-mon'>
         <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0668_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/mega_stone_icon_pyroarite.png'>
     </div>
     <div class='team-list-mon team-list-mon-new'>
         <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0479_002.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/item_icon_life_orb.png'>
+    </div>
+  <div class='team-list-mon'>
+        <img class='mon-icon'src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0727_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/item_icon_white_herb.png'>
     </div>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0727_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0981_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/berry_icon_sitrus_berry.png'>
     </div>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0981_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0045_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/item_icon_focus_sash.png'>
     </div>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0045_000.png'>
-    </div>
-    <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0324_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0324_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/item_icon_charcoal.png'>
     </div>
 </div>
 
@@ -102,22 +114,28 @@ I think this could have worked fairly well if I was willing to put in the time t
 ### Take 3 - Solar Power
 <div class='team-list'>
     <div class='team-list-mon team-list-mon-new'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0006_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0006_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/item_icon_choice_scarf.png'>
     </div>
     <div class='team-list-mon team-list-mon-new'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0902_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0902_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/item_icon_focus_sash.png'>
     </div>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0727_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0727_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/item_icon_white_herb.png'>
     </div>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0981_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0981_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/berry_icon_sitrus_berry.png'>
     </div>
     <div class='team-list-mon team-list-mon-new'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0003_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0003_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/mega_stone_icon_venusaurite.png'>
     </div>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0324_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0324_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/item_icon_charcoal.png'>
     </div>
 </div>
 
@@ -128,7 +146,8 @@ Which finally brought me here! This is something of a re-invention of the team f
 ## The Team Breakdown
 <div class='team-individual-mon padding-top'>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0006_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0006_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/item_icon_choice_scarf.png'>
     </div>
     <pre class='team-individual-mon-paste'>
     <span class='bold'><a href='https://music.youtube.com/watch?v=GJAt8bqW00E' target=_blank>Hot To Go!</a></span> (Charizard) @ Choice Scarf  
@@ -168,7 +187,8 @@ This Charizard runs the **Timid nature** to assure that it is the fastest thing 
 
 <div class='team-individual-mon'>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0902_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0902_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/item_icon_focus_sash.png'>
     </div>
     <pre class='team-individual-mon-paste'>
     <span class='bold'><a href='https://music.youtube.com/watch?v=fah1fdkW0UA' target=_blank>Tough Luck</a></span> (Basculegion) (M) @ Focus Sash  
@@ -200,7 +220,8 @@ I do think that this is the most flexible slot on the team, and if you wanted to
 
 <div class='team-individual-mon'>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0727_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0727_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/item_icon_white_herb.png'>
     </div>
     <pre class='team-individual-mon-paste'>
     <span class='bold'><a href='https://youtu.be/3azQuNL2LIM' target=_blank>Judas</a></span> (Incineroar) @ White Herb   
@@ -258,7 +279,8 @@ In some of the calculations below, Incineroar comes just shy of OHKOing several 
 
 <div class='team-individual-mon'>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0981_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0981_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/berry_icon_sitrus_berry.png'>
     </div>
     <pre class='team-individual-mon-paste'>
     <span class='bold'><a href='https://music.youtube.com/watch?v=ZP69PLBqFUo' target=_blank>Toto</a></span> (Farigiraf) @ Sitrus Berry   
@@ -306,7 +328,8 @@ Do not be afraid to click **Helping Hand** frequently. As demonstrated with Inci
 
 <div class='team-individual-mon'>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0003_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0003_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/mega_stone_icon_venusaurite.png'>
     </div>
     <pre class='team-individual-mon-paste'>
     <span class='bold'><a href='https://music.youtube.com/watch?v=jmB9-99_9Y8' target=_blank>Aphrodite</a></span> (Venusaur) @ Venusaurite   
@@ -364,7 +387,8 @@ Venusaur also has the option of going for **Sleep Powder** just like Vileplume, 
 
 <div class='team-individual-mon'>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0324_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0324_000.png'>
+        <img class='item-icon' src='../pkmn/tournament-overlay/img/items/item_icon_charcoal.png'>
     </div>
     <pre class='team-individual-mon-paste'>
     <span class='bold'><a href='https://music.youtube.com/watch?v=eQSNVBLTXYY' target=_blank>O Sole Mio!</a></span> (Torkoal) @ Charcoal   
@@ -532,12 +556,23 @@ Thank you for reading! This team report is almost certainly way too long, but it
     border: 2px solid var(--white);
     align-items: center;
     justify-content: center;
-    img {
+    .mon-icon {
         width: 100%;
         filter: var(--drop-shadow);
         max-width: 112px;
     }
+    .item-icon {
+        width: auto;
+        bottom: max(2px, 0.1em);
+        right: max(2px, 0.1em);
+        width: 35%;
+        position: absolute;
+        z-index: 2;
+        display: block;
+        filter: var(--drop-shadow);
+    }
 }
+
 .team-list-mon-new {
     border: 2px solid var(--highlight);
     /* filter: drop-shadow(0px 0px 5px rgba(234, 239, 166, 0.45)) */
@@ -548,7 +583,7 @@ Thank you for reading! This team report is almost certainly way too long, but it
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    /* height: 9rem; */
+    /* height: 8.5rem; */
 }
 .team-individual-mon-paste {
     display: block;
