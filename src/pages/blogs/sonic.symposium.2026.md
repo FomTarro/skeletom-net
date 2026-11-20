@@ -30,7 +30,7 @@ You can catch the VOD on my Twitch channel! The timestamps are as follows:
 - <a onclick=jumpToTimestamp(0,18,30)>00:18:30</a> *"Intro to Echidna Civilization"* presented by Tom
 - <a onclick=jumpToTimestamp(1,19,00)>01:19:00</a> *"Infinite the Jackal and Why I Love Him"* presented by Ray
 - <a onclick=jumpToTimestamp(2,19,00)>02:19:00</a> *"Sounds like Sonic!"* presented by Amiya
-- <a onclick=jumpToTimestamp(3,20,00)>03:20:00</a> *"Why does Shadow Love Latinas?"* presented by Bo
+- <a onclick=jumpToTimestamp(3,20,00)>03:20:00</a> *"Why does Shadow Love Latinas?"* presented by Bodega
 
 <div id="twitch-embed" class='twitch-embed'></div>
 
