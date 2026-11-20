@@ -63,7 +63,7 @@ async function getMetadata(markdownPath, classification, appConfig){
     do { 
         altTitle = metadata[`alt-title-${i}`];
         if(altTitle){
-            altTitles.push(altTitle);
+            altTitles.push(slugify(altTitle));
         }
         i++;
     } while(altTitle != undefined)

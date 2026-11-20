@@ -1,9 +1,9 @@
 ---
-title: Baby Zard - A Regulation M-B Team Report
-alt-title-1: ['Mega Charizard? Why? - A Regulation M-B Team Report']
+title: Mega Charizard? Why?
+alt-title-1: Baby Zard - A Regulation M-B Team Report
 date: 2026-08-03
 author: Skeletom
-brief: Mega Charizard? Why?
+brief: A Pokemon Regulation M-B VGC Team Report!
 thumb: /img/blogs/team-reports/solar-power/banner.png
 tags: pokemon, team report, regulation m-b, vgc, trick room, hyper offense, farigiraf, torkoal, charizard, incineroar, venusaur, basculegion,
 ---
@@ -60,9 +60,9 @@ Both modes leveraged Torkoal's Sun-setting power and thus aligned with my stated
     </div>
 </div>
 
-Ironically enough, almost everything about this Mega Pyroar team felt great *except* for the Mega Pyroar aspect. Sure, it was **extremely fast** and was able to **stack a lot of damage multipliers** to really power though a lot of teams... But it resulted in a **one-dimensional, all-in strategy** which was so **clearly telegraphed on Team Preview**, that I ultimately felt like **I was giving my opponent way more information** about my plan that I was able to glean about theirs. And that's not a very fun way to play, in my opinion!
+Ironically enough, the Mega Pyroar felt like the worst part of this Mega Pyroar team. Sure, it was **extremely fast** and was able to **stack a lot of damage multipliers** to really power though a lot of teams... But it resulted in a **one-dimensional, all-in strategy** which was so **clearly telegraphed on Team Preview**, that I ultimately felt like **I was giving my opponent way more information** about my plan that I was able to glean about theirs. And that's not a very fun way to play, in my opinion!
 
-Besides the Mega Pyroar, this team also had a Mega Floette running the Calm Mind set. However, **the rest of the team was not coherent in helping protect her** while she set up, as there was no redirection or healing available to protect her.
+Besides the Mega Pyroar, this team also had a Mega Floette running the classic Calm Mind set. However, **the rest of the team was not coherent in helping protect her** while she set up, as there was no redirection or healing available.
 
 Also, notably, **neither of these Megas felt particularly usable inside the Trick Room mode**. Let's put a pin in that and come back to it later.
 
@@ -439,20 +439,20 @@ The Replica Code at the time of this writing is `L9VSPYV70U`! However, it will l
 #### Front
 <div class='team-list no-padding'>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0006_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0006_000.png'>
     </div>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0324_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0324_000.png'>
     </div>
 </div>
 
 #### Back
 <div class='team-list no-padding'>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0981_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0981_000.png'>
     </div>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0003_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0003_000.png'>
     </div>
 </div>
 
@@ -464,20 +464,20 @@ From there, you just click Heat Wave for as long as they let you, and **navigate
 #### Front
 <div class='team-list no-padding'>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0727_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0727_000.png'>
     </div>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0981_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0981_000.png'>
     </div>
 </div>
 
 #### Back
 <div class='team-list no-padding'>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0324_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0324_000.png'>
     </div>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0003_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0003_000.png'>
     </div>
 </div>
 
@@ -490,20 +490,20 @@ This is also **the composition I bring against Rain teams** (*unless they have a
 #### Front
 <div class='team-list no-padding'>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0727_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0727_000.png'>
     </div>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0981_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0981_000.png'>
     </div>
 </div>
 
 #### Back
 <div class='team-list no-padding'>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0902_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0902_000.png'>
     </div>
     <div class='team-list-mon'>
-        <img src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0003_000.png'>
+        <img class='mon-icon' src='../pkmn/tournament-overlay/img/pkmn/poke_icon_0003_000.png'>
     </div>
 </div>
 
@@ -527,78 +527,7 @@ Marcos "*MoxieBoosted*" Perez gave the team a spin to great results on his YouTu
 ## Closing Remarks
 Thank you for reading! This team report is almost certainly way too long, but it was my first time feeling truly good about a team I built for a standard format, and also my first time sitting down to commit to writing one of these. I love Torkoal and hope that she continues to shine in to Regulation M-C and beyond.
 
-<style>
-
-.team-list {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    /* padding-top: 1.5rem; */
-    margin-top: 0.5em;
-}
-
-.no-padding {
-    padding-top: 0;
-}
-
-.padding-top {
-    padding-top: 1.5rem;
-}
-
-.team-list-mon {
-    display: flex;
-    filter: var(--drop-shadow);
-    /* width: 16%; */
-    aspect-ratio: 1;
-    /* height: 38px; */
-    background-color: var(--darker);
-    border-radius: 10px; 
-    border: 2px solid var(--white);
-    align-items: center;
-    justify-content: center;
-    .mon-icon {
-        width: 100%;
-        filter: var(--drop-shadow);
-        max-width: 112px;
-    }
-    .item-icon {
-        width: auto;
-        bottom: max(2px, 0.1em);
-        right: max(2px, 0.1em);
-        width: 35%;
-        position: absolute;
-        z-index: 2;
-        display: block;
-        filter: var(--drop-shadow);
-    }
-}
-
-.team-list-mon-new {
-    border: 2px solid var(--highlight);
-    /* filter: drop-shadow(0px 0px 5px rgba(234, 239, 166, 0.45)) */
-}
-
-.team-individual-mon {
-    /* padding-top: 1.5rem; */
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    /* height: 8.5rem; */
-}
-.team-individual-mon-paste {
-    display: block;
-    background-color: transparent;
-    padding: 0;
-    border-radius: 0;
-    margin-block: 0;
-    white-space: pre-line;
-}
-
-.hr-half {
-    width: 50%
-}
-
-</style>
+<link rel="stylesheet" type="text/css" href='/css/team.report.style.css'>
 
 <script>
 

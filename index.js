@@ -90,7 +90,10 @@ async function createHttpRoutes() {
 
     app.get([`/blogs/:blogTitle`], async (req, res) => {
         try {
-            const blog = Blogs().find(item => item.title.toLowerCase() === req.params.blogTitle.toLowerCase());
+            const title = req.params.blogTitle.toLowerCase();
+            const blog = Blogs()
+            .find(item => item.title.toLowerCase() === title 
+            || item.altTitles.findIndex(altTitle => altTitle.toLowerCase() === title) >= 0);
             const html = await GenerateFullBlogPost(blog, TEMPLATE_MAP);
             res.status(200).send(html);
         } catch (e) {

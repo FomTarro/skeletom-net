@@ -1,0 +1,88 @@
+html {
+    --mon-max-width: 8.5rem
+}
+
+.team-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    /* padding-top: 1.5rem; */
+    margin-top: 0.5em;
+}
+
+.no-padding {
+    padding-top: 0;
+}
+
+.padding-top {
+    padding-top: 1.5rem;
+}
+
+.team-list-mon {
+    display: flex;
+    flex: 1 1 calc(16% - 1rem);
+    filter: var(--drop-shadow);
+    aspect-ratio: 1;
+    background-color: var(--darker);
+    border-radius: 10px; 
+    border: 2px solid var(--white);
+    align-items: center;
+    justify-content: center;
+    max-width: var(--mon-max-width);
+    .mon-icon {
+        width: 100%;
+        filter: var(--drop-shadow);
+    }
+    .item-icon {
+        width: auto;
+        bottom: max(2px, 0.1em);
+        right: max(2px, 0.1em);
+        width: 35%;
+        position: absolute;
+        z-index: 2;
+        display: block;
+        filter: var(--drop-shadow);
+    }
+}
+
+.team-list-mon-new {
+    border: 2px solid var(--highlight);
+    background-color: rgb(62, 62, 52);
+    /* filter: drop-shadow(0px 0px 5px rgba(234, 239, 166, 0.45)) */
+}
+
+.team-individual-mon {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: balance;
+    gap: 1rem;
+    justify-content: left;
+    .team-list-mon {
+        flex: 0;
+        height: var(--mon-max-width)
+    }
+}
+.team-individual-mon-paste {
+    display: block;
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    margin-block: 0;
+    white-space: pre-line;
+    height: fit-content;
+}
+
+.hr-half {
+    width: 65%
+}
+
+@media only screen and (max-width: 720px) {
+  .team-list-mon {
+    /* 3 items per row, forcing 2 rows total */
+    flex: 1 1 calc(33% - 1rem);
+  }
+  .team-individual-mon {
+    justify-content: center;
+  }
+}
